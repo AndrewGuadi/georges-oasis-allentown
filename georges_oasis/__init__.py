@@ -5,6 +5,7 @@ import secrets
 from flask_wtf.csrf import CSRFProtect
 from flask_migrate import Migrate
 from .models import db
+from .external_links import EXTERNAL_LINKS
 
 
 def create_app(test_config=None):
@@ -18,6 +19,7 @@ def create_app(test_config=None):
     app.config.update(
         SECRET_KEY=os.environ.get("SECRET_KEY") or secret_file.read_text(),
         SQLALCHEMY_DATABASE_URI="sqlite:///oasis.sqlite",
+        EXTERNAL_LINKS=EXTERNAL_LINKS.copy(),
         MAX_CONTENT_LENGTH=5 * 1024 * 1024,
         SESSION_COOKIE_HTTPONLY=True,
         SESSION_COOKIE_SAMESITE="Lax",
@@ -25,6 +27,10 @@ def create_app(test_config=None):
 
     if test_config:
         app.config.update(test_config)
+    @app.context_processor
+    def inject_external_links():
+        return {"external_links": app.config["EXTERNAL_LINKS"]}
+
     db.init_app(app)
     Migrate(app, db)
     CSRFProtect(app)

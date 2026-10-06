@@ -12,9 +12,24 @@ flask --app app db upgrade
 flask --app app run --debug
 ```
 
-The supplied design is served at `/`. The following routes currently render shared placeholder pages while their content is developed:
+The homepage is served at `/`. Public navigation follows `build_docs/proposed_sitemap.txt`:
 
-`/menu`, `/ice-cream`, `/mini-golf`, `/parties`, `/specials`, `/visit`, `/about`, and `/order`.
+- `/food-and-ice-cream`
+- `/mini-golf`
+- `/gatherings`
+- `/specials`
+- `/our-story`
+- `/visit`
+
+Each indented sitemap topic is a section with a stable anchor on its parent page. The old `/menu`, `/ice-cream`, `/parties`, `/about`, and `/order` routes were removed. View Menu opens the internal Food & Ice Cream page. Order Online opens FoodBooking; Order Delivery opens Grubhub. Table reservations open Google, group reservations use email, and hiring opens Facebook. These are outbound links only; no forms or service integrations are implemented.
+
+External action destinations have one source of truth in `georges_oasis/external_links.py`. The app factory copies them into `app.config["EXTERNAL_LINKS"]` and an application-wide context processor exposes `external_links` to Jinja. Change a provider URL there and restart the application to update every applicable link. The shared `external_action` macro applies new-tab protections to HTTPS links and stable `data-action` identifiers for future analytics; email links remain in the same context. No tracking is installed.
+
+`georges_oasis/public/sitemap.py` defines the navigation and section structure. Only these explicitly registered routes render page templates. Templates use Flask's default HTML autoescaping and `url_for` links; rendered HTML is not rewritten.
+
+`templates/base.html` owns the public document shell and extension blocks (`title`, `description`, `extra_head`, `content`, `scripts`). Shared navigation, actions, and footer live in `templates/public/includes/`. The homepage extends the base directly; each other public page extends `public/section_page.html`, supplies its section copy, and can extend `page_extra`. Public styles live in `static/css/site.css`. Admin templates remain separate under `templates/admin/` with existing CSRF protection.
+
+The existing Tailwind CDN and Google Fonts remain part of the prototype styling. The new page content is a starting structure, awaiting approved menus, hours, prices, contact details, and history.
 
 ## Owner dashboard
 

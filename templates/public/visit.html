@@ -1,0 +1,7 @@
+{% extends 'public/section_page.html' %}
+{% set section_copy = {'restaurant-hours': 'The current restaurant schedule will be posted here.', 'mini-golf-hours': 'The current mini golf schedule and seasonal availability will be posted here.', 'directions': 'Directions and arrival information are coming soon.', 'contact': 'Contact details will be posted here.', 'faqs': 'Answers to common questions about visiting the Oasis are coming soon.'} %}
+{% block page_extra %}
+<div class="mt-8">
+  {{ external_action('table_reservation', 'Reserve a Table') }}
+</div>
+{% endblock %}

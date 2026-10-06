@@ -1,0 +1,12 @@
+{% extends 'public/section_page.html' %}
+{% set section_copy = {'breakfast': 'Our breakfast menu is coming soon.', 'lunch-and-dinner': 'Our lunch and dinner menu is coming soon.', 'ice-cream-and-desserts': 'Flavors and dessert selections will be added here.', 'bakery-and-custom-pies': 'Bakery selections and custom pie ordering information are coming soon.'} %}
+{% block page_extra %}
+<section id="order-online" class="mt-8 rounded-md border border-oasis-950/10 p-6">
+  <h2 class="font-display text-3xl font-semibold">Order Online</h2>
+  <p class="mt-4">Order directly through FoodBooking, or choose Grubhub for delivery.</p>
+  <div class="mt-5 flex flex-wrap gap-3">
+    {{ external_action('food_ordering', 'Order Online') }}
+    {{ external_action('delivery', 'Order Delivery', 'btn btn-gold') }}
+  </div>
+</section>
+{% endblock %}

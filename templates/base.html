@@ -1,0 +1,57 @@
+{% from 'public/includes/external_action.html' import external_action with context %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="{% block description %}George's Oasis — food, ice cream, mini golf and gatherings in Allentown.{% endblock %}" />
+  <title>{% block title %}George's Oasis{% endblock %}</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            oasis: {
+              950: '#073b2e',
+              900: '#0b4938',
+              800: '#115b46',
+              cream: '#f5efe1',
+              cream2: '#efe7d4',
+              gold: '#e9ad18',
+              olive: '#6f7d43',
+              ink: '#153229'
+            }
+          },
+          fontFamily: {
+            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif']
+          },
+          boxShadow: {
+            soft: '0 16px 45px rgba(8, 55, 43, .10)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="font-sans antialiased">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  {% include 'public/includes/nav.html' %}
+  <main id="main-content" tabindex="-1">
+    {% block content %}{% endblock %}
+  </main>
+  {% include 'public/includes/footer.html' %}
+  <script src="{{ url_for('static', filename='js/navigation.js') }}" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

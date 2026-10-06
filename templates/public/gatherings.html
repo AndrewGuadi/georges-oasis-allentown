@@ -1,0 +1,7 @@
+{% extends 'public/section_page.html' %}
+{% set section_copy = {'private-events': 'Private event options are coming soon.', 'birthday-parties': 'Birthday party details are coming soon.', 'company-and-group-outings': 'Company and group outing information is coming soon.', 'event-inquiry': 'Email us to discuss your group reservation or event.'} %}
+{% block section_action %}
+  {% if anchor == 'event-inquiry' %}
+    {{ external_action('group_reservation', 'Group Reservation', 'btn btn-primary mt-5') }}
+  {% endif %}
+{% endblock %}

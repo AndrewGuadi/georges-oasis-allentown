@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}{{ page.title }} | George's Oasis{% endblock %}
+{% block description %}{{ page.description }}{% endblock %}
+{% block content %}
+<section class="paper-noise px-5 py-16 lg:px-8">
+  <div class="mx-auto max-w-7xl">
+    <div class="section-eyebrow">George's Oasis</div>
+    <h1 class="mt-4 font-display text-5xl font-semibold text-oasis-950 md:text-6xl">{{ page.title }}</h1>
+    <p class="mt-6 max-w-2xl text-lg leading-8">{{ page.description }}</p>
+    <nav class="mt-8 flex flex-wrap gap-4" aria-label="On this page">
+      {% for anchor, label in page.sections %}<a class="underline underline-offset-4" href="#{{ anchor }}">{{ label }}</a>{% endfor %}
+    </nav>
+    <div class="mt-12 grid gap-6 md:grid-cols-2">
+      {% for anchor, label in page.sections %}
+      <section id="{{ anchor }}" class="rounded-md border border-oasis-950/10 bg-white/35 p-6 shadow-soft">
+        <h2 class="font-display text-3xl font-semibold">{{ label }}</h2>
+        <p class="mt-4 leading-7 text-oasis-ink/75">{{ section_copy[anchor] }}</p>
+        {% block section_action scoped %}{% endblock %}
+      </section>
+      {% endfor %}
+    </div>
+    {% block page_extra %}{% endblock %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,24 @@
+<footer class="bg-oasis-950 px-5 py-12 text-white/75 lg:px-8">
+  <div class="mx-auto max-w-7xl">
+    <a class="font-display text-3xl font-bold text-white" href="{{ url_for('public.home') }}">George's Oasis.</a>
+    <p class="mt-4 text-sm">Family restaurant, ice cream, mini golf, and gatherings in Allentown, Pennsylvania.</p>
+    <nav class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3" aria-label="Site map">
+      {% for item in site_pages %}
+      <div>
+        <a class="font-bold text-white" href="{{ url_for('public.' ~ item.key) }}">{{ item.title }}</a>
+        <ul class="mt-3 space-y-2 text-sm">
+          {% for anchor, label in item.sections %}
+          <li><a class="hover:text-white" href="{{ url_for('public.' ~ item.key, _anchor=anchor) }}">{{ label }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </nav>
+    <div class="mt-8 flex flex-wrap gap-5 text-sm">
+      {{ external_action('table_reservation', 'Reserve a Table', 'underline underline-offset-4 hover:text-white') }}
+      {{ external_action('group_reservation', 'Group Reservation', 'underline underline-offset-4 hover:text-white') }}
+      {{ external_action('hiring', 'Join Our Team', 'underline underline-offset-4 hover:text-white') }}
+    </div>
+    <p class="mt-10 border-t border-white/10 pt-6 text-xs">© {{ current_year }} George's Oasis.</p>
+  </div>
+</footer>

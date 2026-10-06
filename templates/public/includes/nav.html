@@ -1,0 +1,19 @@
+<div class="header-space" aria-hidden="true"></div>
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <a href="{{ url_for('public.home') }}" class="site-brand" aria-label="George's Oasis home">George's Oasis.</a>
+    <div class="desktop-actions">{% include 'public/includes/actions.html' %}</div>
+    <nav class="desktop-navigation" aria-label="Main navigation">
+      {% include 'public/includes/nav_links.html' %}
+    </nav>
+    <details class="mobile-navigation" id="mobile-navigation">
+      <summary class="menu-toggle"><span>Menu</span><span class="menu-symbol" aria-hidden="true"></span></summary>
+      <div class="mobile-menu-panel">
+        <nav aria-label="Mobile navigation">
+          {% include 'public/includes/nav_links.html' %}
+        </nav>
+        {% include 'public/includes/actions.html' %}
+      </div>
+    </details>
+  </div>
+</header>

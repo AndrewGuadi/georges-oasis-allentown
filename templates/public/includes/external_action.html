@@ -1,0 +1,10 @@
+{% macro external_action(key, label, classes='btn btn-primary') -%}
+{% set actions = {
+  'food_ordering': 'order-foodbooking',
+  'delivery': 'order-grubhub',
+  'table_reservation': 'reserve-google',
+  'group_reservation': 'group-reservation-email',
+  'hiring': 'hiring-facebook'
+} %}
+<a href="{{ external_links[key] }}" class="{{ classes }}" data-action="{{ actions[key] }}"{% if external_links[key].startswith('https://') %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ label }}</a>
+{%- endmacro %}
