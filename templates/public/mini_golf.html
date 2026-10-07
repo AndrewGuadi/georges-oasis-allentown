@@ -1,2 +1,7 @@
 {% extends 'public/section_page.html' %}
-{% set section_copy = {'course-and-experience': 'Explore the Oasis mini golf course. Course details and photos are coming soon.', 'hours': 'The current mini golf schedule will be posted here.', 'pricing': 'Current admission prices will be posted here.', 'group-rates': 'Group pricing information is coming soon.', 'field-trips-and-fundraisers': 'Information about field trips and fundraiser opportunities is coming soon.'} %}
+{% set section_copy = {'course-and-experience': 'Explore the Oasis mini golf course. See the course and plan your next outing.', 'hours': 'Check the published schedule for seasonal hours and last admission.', 'pricing': 'See our published golf information for admission prices.', 'group-rates': 'Contact us to discuss your group size and preferred date.', 'field-trips-and-fundraisers': 'Get in touch to discuss a field trip or fundraiser at the Oasis.'} %}
+{% block section_action scoped %}
+{% if anchor == 'hours' %}<a class="text-link mt-4" href="{{ external_links.hours }}" target="_blank" rel="noopener noreferrer">View Golf Hours ↗</a>
+{% elif anchor in ['group-rates', 'field-trips-and-fundraisers'] %}{{ external_action('group_reservation', 'Ask About Group Golf', 'btn btn-outline mt-4') }}
+{% else %}<a class="text-link mt-4" href="{{ external_links.golf }}" target="_blank" rel="noopener noreferrer">View Course & Pricing ↗</a>{% endif %}
+{% endblock %}

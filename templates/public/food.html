@@ -1,5 +1,9 @@
 {% extends 'public/section_page.html' %}
-{% set section_copy = {'breakfast': 'Our breakfast menu is coming soon.', 'lunch-and-dinner': 'Our lunch and dinner menu is coming soon.', 'ice-cream-and-desserts': 'Flavors and dessert selections will be added here.', 'bakery-and-custom-pies': 'Bakery selections and custom pie ordering information are coming soon.'} %}
+{% set section_copy = {'breakfast': 'Start your day at the Oasis. See our published menu for breakfast selections.', 'lunch-and-dinner': 'Find your next favorite meal on our published lunch and dinner menu.', 'ice-cream-and-desserts': 'Explore our published ice cream and dessert selections.', 'bakery-and-custom-pies': 'Get in touch for bakery selections and custom pie availability.'} %}
+{% block section_action scoped %}
+{% if anchor == 'bakery-and-custom-pies' %}<a class="text-link mt-4" href="tel:+16102641955">Call about bakery orders →</a>
+{% else %}<a class="text-link mt-4" href="{{ external_links.menus }}" target="_blank" rel="noopener noreferrer">View Published Menu ↗</a>{% endif %}
+{% endblock %}
 {% block page_extra %}
 <section id="order-online" class="mt-8 rounded-md border border-oasis-950/10 p-6">
   <h2 class="font-display text-3xl font-semibold">Order Online</h2>

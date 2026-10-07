@@ -1,31 +1,34 @@
 (() => {
   const header = document.getElementById('site-header');
   const mobileMenu = document.getElementById('mobile-navigation');
-  if (!header || !mobileMenu) return;
-  const toggle = mobileMenu.querySelector('summary');
-  const desktop = window.matchMedia('(min-width: 1024px)');
-  const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 0);
-  const closeMenu = (restoreFocus = false) => {
-    if (!mobileMenu.open) return;
-    mobileMenu.open = false;
-    if (restoreFocus) toggle.focus();
+  const hoursMenu = document.getElementById('hours-menu');
+  if (!header || !mobileMenu || !hoursMenu) return;
+  const menus = [mobileMenu, hoursMenu];
+  const desktop = window.matchMedia('(min-width: 1200px)');
+  const closeMenu = (menu, restoreFocus = false) => {
+    if (!menu.open) return;
+    menu.open = false;
+    if (restoreFocus) menu.querySelector('summary').focus();
   };
-
-  // Stay compact while scrolling in either direction; expand only at the top.
+  const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 0);
   window.addEventListener('scroll', updateHeader, { passive: true });
   window.addEventListener('pageshow', updateHeader);
   updateHeader();
   document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') closeMenu(true);
+    if (event.key === 'Escape') menus.forEach(menu => closeMenu(menu, menu.contains(document.activeElement)));
   });
-  document.addEventListener('click', event => {
-    if (!mobileMenu.contains(event.target)) closeMenu();
+  for (const type of ['click', 'focusin']) {
+    document.addEventListener(type, event => menus.forEach(menu => {
+      if (!menu.contains(event.target)) closeMenu(menu);
+    }));
+  }
+  menus.forEach(menu => {
+    menu.addEventListener('toggle', () => {
+      if (menu.open) menus.filter(other => other !== menu).forEach(other => closeMenu(other));
+    });
+    menu.addEventListener('click', event => {
+      if (event.target.closest('a')) closeMenu(menu, true);
+    });
   });
-  document.addEventListener('focusin', event => {
-    if (!mobileMenu.contains(event.target)) closeMenu();
-  });
-  mobileMenu.addEventListener('click', event => {
-    if (event.target.closest('a')) closeMenu();
-  });
-  desktop.addEventListener('change', () => closeMenu());
+  desktop.addEventListener('change', () => menus.forEach(menu => closeMenu(menu)));
 })();

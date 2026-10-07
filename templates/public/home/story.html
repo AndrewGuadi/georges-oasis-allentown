@@ -1,0 +1,26 @@
+<section id="story" class="paper-noise px-5 py-16 md:py-24 lg:px-8">
+      <div class="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[300px_1fr_260px]">
+        <div class="rotate-[-2deg] rounded-sm bg-white p-3 shadow-soft">
+          <img src="{{ url_for('static', filename='images/georges_history.jpeg') }}"
+               alt="Historic George's Oasis" loading="lazy"
+               class="aspect-[4/3] w-full object-cover sepia-[.2]" />
+        </div>
+
+        <div>
+          <div class="section-eyebrow">The Oasis tradition</div>
+          <h2 class="mt-4 font-display text-4xl font-semibold leading-[.95] tracking-[-.03em] text-oasis-950 md:text-5xl">
+            40 Years of Family, Food & Fun.
+          </h2>
+          <p class="mt-5 max-w-2xl text-base leading-7 text-oasis-ink/70">
+            Since opening our doors in Allentown over 40 years ago, George's Oasis has been a place for families, friends, and our community to come together. We're grateful for the incredible support over the years and look forward to many more.
+          </p>
+          <a href="{{ url_for('public.story') }}" class="btn btn-outline mt-7">Our Story <span>→</span></a>
+        </div>
+
+        <aside class="rounded-md bg-[#efe7cf] p-7 shadow-soft">
+          <div class="small-label">The best part?</div>
+          <p class="mt-4 font-display text-3xl italic leading-8 text-oasis-950">There’s a little something for everyone.</p>
+          <a class="text-link mt-4" href="{{ url_for('public.visit') }}">Make a day of it <span aria-hidden="true">→</span></a>
+        </aside>
+      </div>
+    </section>

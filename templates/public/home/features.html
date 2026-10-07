@@ -1,0 +1,17 @@
+{% from 'public/includes/icons.html' import icon %}
+<section class="features" aria-label="Explore the Oasis">
+  {% set experiences = [
+    ('signature_food.webp', 'Signature food at George’s Oasis', '01', 'Restaurant', 'Breakfast, lunch & dinner', 'View Menu', url_for('public.food')),
+    ('mini_golf_card.webp', 'Mini golf at George’s Oasis', '02', 'Mini Golf', 'A little friendly competition', 'Explore the Course', url_for('public.mini_golf')),
+    ('georges_oasis_ice_cream.webp', 'Ice cream at George’s Oasis', '03', 'Ice Cream', 'Save room for something sweet', 'Ice Cream & Desserts', url_for('public.food', _anchor='ice-cream-and-desserts')),
+    ('families_and_events.png', 'Gatherings at George’s Oasis', '04', 'Parties & Groups', 'Good times, better together', 'Plan a Gathering', url_for('public.gatherings'))
+  ] %}
+  {% for photo, alt, number, title, description, label, href in experiences %}
+  <article class="experience-card">
+    <a class="experience-link" href="{{ href }}">
+      <div class="experience-photo"><img src="{{ url_for('static', filename='images/' ~ photo) }}" alt="{{ alt }}" loading="lazy" width="500" height="500"><span class="experience-number" aria-hidden="true">{{ number }}</span></div>
+      <div class="experience-body"><h3>{{ title }}</h3><p>{{ description }}</p><span class="experience-action">{{ label }} {{ icon('arrow') }}</span></div>
+    </a>
+  </article>
+  {% endfor %}
+</section>

@@ -1,0 +1,21 @@
+{% macro icon(name, classes='') -%}
+<svg class="icon {{ classes }}" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+{% if name == 'clock' %}<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+{% elif name == 'pin' %}<path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/>
+{% elif name == 'arrow' %}<path d="M5 12h14m-5-5 5 5-5 5"/>
+{% elif name == 'chevron' %}<path d="m7 10 5 5 5-5"/>
+{% elif name == 'phone' %}<path d="m7 3 3 5-2 2a15 15 0 0 0 6 6l2-2 5 3-1 4C10 22 2 14 3 4Z"/>
+{% elif name == 'facebook' %}<path fill="currentColor" stroke="none" d="M14 22v-9h3l.5-4H14V7c0-1.2.4-2 2-2h2V1.4c-.4-.1-1.7-.2-3.1-.2C11.8 1.2 10 3.1 10 6.6V9H7v4h3v9Z"/>
+{% elif name == 'menu' %}<path d="M5 4h14v16H5zM9 8h6M9 12h6M9 16h3"/>
+{% elif name == 'bag' %}<path d="M5 7h14l1 14H4L5 7Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>
+{% endif %}
+</svg>
+{%- endmacro %}
+{% macro palm() -%}
+<svg class="brand-palm" width="48" height="56" viewBox="0 0 56 64" fill="none" aria-hidden="true" focusable="false">
+  <path d="M26 57c6-10 9-21 7-34" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+  <path d="M32 23C21 10 9 15 5 24c10-5 18-5 27-1ZM33 22C21 3 10 5 7 11c12 0 17 5 26 11ZM33 22C29 6 35 1 44 3c-7 6-9 11-11 19ZM34 23C42 10 53 13 54 21c-9-3-13-1-20 2ZM34 24C49 21 53 30 49 38c-3-7-8-11-15-14ZM31 24C18 21 12 31 16 38c2-7 7-11 15-14Z" fill="currentColor"/>
+  <path d="M17 59c8-3 17-3 25 0" stroke="#b68a36" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="31" cy="25" r="2.5" fill="#b68a36"/><circle cx="36" cy="26" r="2.5" fill="#b68a36"/>
+</svg>
+{%- endmacro %}

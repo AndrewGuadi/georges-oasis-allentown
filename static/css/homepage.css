@@ -1,0 +1,125 @@
+.homepage-design { color:#173d30; background:#f7f2e6; font-family:'Lato',Arial,sans-serif; }
+.homepage-design .font-display { font-family:'Cormorant Garamond',Georgia,serif; }
+.homepage-design h2 { text-wrap:balance; }
+.homepage-design .section-eyebrow { font-size:11px; line-height:1.6; letter-spacing:.16em; font-weight:900; }
+.homepage-design .hero { height:665px; background:var(--hero-photo) center center/cover no-repeat; position:relative; isolation:isolate; text-align:center; color:#fffaf0; }
+/* The original photo and framing are preserved; only the text's backdrop changes. */
+.homepage-design .hero::before { content:''; position:absolute; z-index:-1; inset:0; background:linear-gradient(180deg,rgba(4,29,23,.65),rgba(4,29,23,.47) 51%,rgba(4,29,23,.14) 82%,rgba(4,29,23,.28)); }
+.hero-content { max-width:1000px; margin:auto; padding:74px 24px 0; }
+.hero .hero-eyebrow { display:inline-block; font-size:11px; font-weight:700; letter-spacing:.23em; margin:0 0 22px; padding:9px 15px; border:1px solid #fff7de66; border-radius:3px; background:#0b302947; }
+.hero h1 { font-family:'Kaushan Script',cursive; font-size:clamp(62px,6.4vw,94px); font-weight:400; line-height:1.2; letter-spacing:-2px; margin:0; text-shadow:0 3px 20px #031b1ac7; }
+.hero h2 { font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(30px,3vw,44px); font-weight:600; line-height:1.2; margin:12px 0 18px; text-shadow:0 2px 12px #031b1ac7; }
+.hero .hero-description { font-size:18px; line-height:1.7; margin:0; text-shadow:0 1px 8px #031b1a; }
+.hero-actions { display:flex; justify-content:center; gap:14px; margin-top:30px; }
+.hero-actions .btn { min-width:180px; min-height:54px; font-size:15px; }
+.btn-glass { background:#073b2edb; color:white; border-color:#ffffff8c; }
+.btn-glass:hover { background:#073b2e; }
+.hero-location { position:absolute; bottom:64px; left:50%; transform:translateX(-50%); display:flex; align-items:center; justify-content:center; gap:8px; font-size:12px; white-space:nowrap; padding:10px 15px; border-radius:4px; background:#082d26d6; }
+.hero-location:hover { background:#073b2e; }
+.hero-location .icon { width:16px; height:16px; }
+.mobile-break { display:none; }
+.features { max-width:1440px; margin:-26px auto 0; padding:0 40px; position:relative; z-index:2; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px; }
+.experience-card { background:#fffbf2; border:1px solid #dedbca; border-radius:10px; box-shadow:0 8px 24px #1333240b; overflow:hidden; transition:transform .25s,box-shadow .25s; }
+.experience-card:hover { transform:translateY(-5px); box-shadow:0 14px 30px #13332417; }
+.experience-link { display:flex; flex-direction:column; height:100%; }
+.experience-link:focus-visible { outline-offset:-4px; border-radius:10px; }
+.experience-photo { position:relative; overflow:hidden; }
+.experience-photo img { display:block; width:100%; aspect-ratio:1; height:auto; object-fit:cover; transition:transform .4s; }
+.experience-card:hover img { transform:scale(1.035); }
+.experience-number { position:absolute; top:14px; left:14px; width:30px; height:30px; display:grid; place-items:center; background:#fffbf2ed; color:#254837; border-radius:50%; font-size:10px; font-weight:900; }
+.experience-body { padding:24px; display:flex; flex-direction:column; flex:1; }
+.experience-body h3 { font-family:'Cormorant Garamond',Georgia,serif; font-size:30px; font-weight:700; line-height:1.1; }
+.experience-body p { font-size:13px; line-height:1.6; color:#576557; margin:9px 0 20px; }
+.experience-action { margin-top:auto; padding-top:16px; border-top:1px solid #dbe0d1; display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:13px; font-weight:700; }
+.experience-action .icon { width:17px; height:17px; transition:transform .2s; }
+.experience-card:hover .experience-action .icon { transform:translateX(3px); }
+.welcome { min-height:480px; padding:90px max(40px,calc((100vw - 1200px)/2)); display:grid; grid-template-columns:120px 1fr 160px; align-items:center; gap:48px; position:relative; overflow:hidden; }
+.welcome-decoration { color:#778761; }
+.welcome-decoration .brand-palm { width:125px; height:170px; opacity:.5; transform:rotate(-12deg); }
+.welcome-copy { max-width:720px; }
+.welcome h2 { font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(38px,3.5vw,52px); font-weight:600; line-height:1.05; margin:16px 0 22px; letter-spacing:-1px; }
+.welcome-copy > p { font-size:16px; line-height:1.9; color:#536454; }
+.welcome-copy .text-link { margin-top:20px; }
+.welcome-note { text-align:center; transform:rotate(-7deg); }
+.note-star { display:block; color:#b68a36; font-size:38px; margin-bottom:14px; }
+.welcome-note p { font-family:'Cormorant Garamond',Georgia,serif; font-size:26px; line-height:1.15; font-weight:600; }
+.welcome-note em { color:#687653; }
+/* Keep every chapter; bring its type, rhythm, and surfaces into one visual system. */
+.homepage-design > section[id]:not(.hero) { border-top:1px solid #1532290d; }
+.homepage-design #specials { min-height:560px; }
+.homepage-design #gatherings { min-height:560px; }
+.homepage-design #golf { min-height:1000px; }
+.homepage-design #golf > div:first-child { position:relative; min-height:560px; }
+.homepage-design #golf > div:first-child img { position:absolute; inset:0; height:100%; max-height:none; }
+.homepage-design #specials h2, .homepage-design #gatherings h2, .homepage-design #golf h2, .homepage-design #visit h2 { font-size:clamp(42px,4.4vw,66px); line-height:1; font-weight:600; letter-spacing:-1.5px; }
+.homepage-design #story h2 { font-size:clamp(38px,3.4vw,50px); font-weight:600; line-height:1.05; }
+.homepage-design #specials p, .homepage-design #gatherings p, .homepage-design #story p, .homepage-design #golf p { font-size:16px; line-height:1.85; }
+.homepage-design #gatherings > img { max-height:none; }
+.homepage-design #story { min-height:490px; display:flex; align-items:center; }
+.homepage-design #story > div { width:100%; }
+.homepage-design #visit { min-height:630px; display:flex; align-items:center; }
+.homepage-design #visit > div { width:100%; }
+.homepage-design #visit dl > div { align-items:center; }
+.homepage-design #visit dd a { text-decoration:underline; text-underline-offset:4px; }
+.homepage-design #visit .visit-address { font-style:normal; }
+.homepage-design #visit .visit-address a { display:inline-flex; align-items:center; gap:10px; margin-top:14px; font-size:15px; }
+.visit-facts { display:flex; flex-wrap:wrap; gap:8px; margin-top:28px; }
+.visit-facts span { padding:8px 12px; border:1px solid #073b2e26; border-radius:4px; font-size:12px; color:#425740; }
+.homepage-design .section { padding:72px 24px; }
+.homepage-design .wrap { max-width:1280px; margin:auto; }
+.homepage-design .section-head { margin-bottom:28px; }
+.homepage-design .section-head h2 { font-family:'Cormorant Garamond',Georgia,serif; font-size:42px; font-weight:600; }
+.homepage-design .experience-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:24px; }
+@media(min-width:1450px) { .homepage-design .hero { height:760px; } .hero-content { padding-top:100px; } }
+@media(max-width:1100px) and (min-width:761px) {
+  .homepage-design .hero { height:610px; }
+  .features { padding-inline:28px; gap:14px; }
+  .experience-body { padding:20px 16px; }
+  .experience-body h3 { font-size:27px; }
+  .welcome { padding:80px 40px; grid-template-columns:1fr 150px; gap:40px; }
+  .welcome-decoration { display:none; }
+}
+@media(max-width:760px) {
+  .homepage-design .hero { height:560px; min-height:560px; background-position:58% center; }
+  .homepage-design .hero::before { background:linear-gradient(180deg,#041d17b8,#041d178a 56%,#041d1730); }
+  .hero-content { padding:58px 20px 0; }
+  .hero .hero-eyebrow { font-size:9px; letter-spacing:.12em; padding:8px 10px; margin-bottom:23px; }
+  .hero h1 { font-size:clamp(41px,9.6vw,62px); letter-spacing:-1px; }
+  .hero h2 { font-size:30px; margin-top:15px; }
+  .hero .hero-description { font-size:15px; line-height:1.7; }
+  .mobile-break { display:block; }
+  .hero-actions { gap:10px; margin-top:25px; flex-wrap:wrap; }
+  .hero-actions .btn { min-width:0; min-height:50px; padding:13px 16px; font-size:13px; gap:8px; }
+  .hero-actions .icon { width:17px; height:17px; }
+  .hero-location { bottom:63px; font-size:11px; }
+  .features { grid-template-columns:repeat(2,minmax(0,1fr)); padding:0 20px; gap:14px; margin-top:-26px; }
+  .experience-body { padding:18px 14px; }
+  .experience-body h3 { font-size:26px; }
+  .experience-body p { font-size:13px; line-height:1.5; margin-bottom:16px; }
+  .experience-action { font-size:12px; line-height:1.5; padding-top:14px; }
+  .experience-action .icon { width:15px; }
+  .experience-number { top:10px; left:10px; width:26px; height:26px; }
+  .welcome { padding:65px 26px; grid-template-columns:1fr; gap:32px; min-height:560px; }
+  .welcome-decoration { position:absolute; right:-25px; top:20px; opacity:.18; }
+  .welcome h2 { font-size:42px; }
+  .welcome-copy { position:relative; }
+  .welcome-copy > p { font-size:16px; }
+  .welcome-note { transform:none; display:flex; align-items:center; justify-content:center; gap:20px; padding-top:24px; border-top:1px solid #073b2e20; }
+  .welcome-note .note-star { margin:0; }
+  .welcome-note p { font-size:24px; text-align:left; }
+  .welcome-note br { display:none; }
+  .homepage-design #specials h2, .homepage-design #gatherings h2, .homepage-design #golf h2, .homepage-design #visit h2 { font-size:46px; letter-spacing:-1px; }
+  .homepage-design #golf > div:first-child { min-height:520px; }
+  .homepage-design #golf > div:last-child { min-height:590px; }
+  .homepage-design #gatherings > div { min-height:420px; }
+  .homepage-design #gatherings > img { height:380px; }
+  .homepage-design #story { padding-block:72px; }
+  .homepage-design #visit { padding-block:72px; }
+}
+@media(max-width:359px) {
+  .features { padding-inline:14px; gap:10px; }
+  .experience-body { padding:16px 11px; }
+  .experience-body h3 { font-size:23px; }
+  .experience-action { align-items:flex-start; }
+  .hero-actions .btn { padding-inline:12px; }
+}

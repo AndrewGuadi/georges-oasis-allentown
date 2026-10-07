@@ -1,5 +1,11 @@
 {% extends 'public/section_page.html' %}
-{% set section_copy = {'restaurant-hours': 'The current restaurant schedule will be posted here.', 'mini-golf-hours': 'The current mini golf schedule and seasonal availability will be posted here.', 'directions': 'Directions and arrival information are coming soon.', 'contact': 'Contact details will be posted here.', 'faqs': 'Answers to common questions about visiting the Oasis are coming soon.'} %}
+{% set section_copy = {'restaurant-hours': 'Restaurant and mini golf hours can differ. Check our published schedule before your visit.', 'mini-golf-hours': 'Mini golf is seasonal. Check the published hours and last admission time before heading over.', 'directions': 'Find us at 2355 Schoenersville Road, Allentown, PA 18109.', 'contact': 'Call (610) 264-1955 or email us about a group gathering.', 'faqs': 'Planning a celebration or a group round of golf? Get in touch to discuss your date and group size.'} %}
+{% block section_action scoped %}
+{% if anchor in ['restaurant-hours', 'mini-golf-hours'] %}<a class="text-link mt-4" href="{{ external_links.hours }}" target="_blank" rel="noopener noreferrer">View Opening Hours ↗</a>
+{% elif anchor == 'directions' %}<a class="text-link mt-4" href="{{ external_links.directions }}" target="_blank" rel="noopener noreferrer">Open Directions ↗</a>
+{% elif anchor == 'contact' %}<a class="text-link mt-4" href="tel:+16102641955">Call (610) 264-1955 →</a>
+{% else %}{{ external_action('group_reservation', 'Ask About Your Visit', 'btn btn-outline mt-4') }}{% endif %}
+{% endblock %}
 {% block page_extra %}
 <div class="mt-8">
   {{ external_action('table_reservation', 'Reserve a Table') }}

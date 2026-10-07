@@ -1,0 +1,29 @@
+{% from 'public/includes/icons.html' import icon %}
+<section id="visit" class="bg-[#e6ead7] px-5 py-16 md:py-24 lg:px-8">
+  <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_.9fr]">
+    <div>
+      <div class="section-eyebrow">Your next good day starts here</div>
+      <h2 class="mt-4 max-w-xl font-display text-5xl font-semibold text-oasis-950">Make your way over.</h2>
+      <address class="visit-address mt-6 text-lg leading-8 text-oasis-ink/75">
+        2355 Schoenersville Road<br>Allentown, PA 18109<br>
+        <a href="tel:+16102641955">{{ icon('phone') }} (610) 264-1955</a>
+      </address>
+      <div class="mt-7 flex flex-wrap gap-3">
+        <a class="btn btn-primary" href="{{ external_links.directions }}" target="_blank" rel="noopener noreferrer">Get Directions {{ icon('arrow') }}</a>
+        {{ external_action('table_reservation', 'Reserve a Table', 'btn btn-outline') }}
+      </div>
+      <div class="visit-facts" aria-label="Things to enjoy"><span>Restaurant</span><span>Ice cream</span><span>Mini golf</span><span>Gatherings</span></div>
+    </div>
+    <div class="rounded-xl border border-oasis-950/10 bg-[#faf6ed] p-6 md:p-8 shadow-soft">
+      <div class="section-eyebrow">Make yourself at home</div>
+      <h3 class="mt-4 font-display text-3xl font-semibold text-oasis-950">A little planning goes a long way.</h3>
+      <p class="mt-3 text-sm leading-6 text-oasis-ink/75">Restaurant and golf hours can differ. Check the published schedule before heading over.</p>
+      <dl class="mt-5 divide-y divide-oasis-950/10 text-sm">
+        <div class="flex justify-between gap-5 py-4"><dt class="font-bold">Restaurant</dt><dd class="text-right text-oasis-ink/75"><a href="{{ external_links.hours }}" target="_blank" rel="noopener noreferrer">Dining hours ↗</a></dd></div>
+        <div class="flex justify-between gap-5 py-4"><dt class="font-bold">Mini golf</dt><dd class="text-right text-oasis-ink/75"><a href="{{ external_links.hours }}" target="_blank" rel="noopener noreferrer">Seasonal schedule ↗</a></dd></div>
+        <div class="flex justify-between gap-5 py-4"><dt class="font-bold">Bringing a group?</dt><dd class="text-right text-oasis-ink/75"><a href="{{ url_for('public.gatherings') }}">Plan your gathering →</a></dd></div>
+      </dl>
+      <a href="{{ external_links.hours }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary mt-6 w-full">View Opening Hours {{ icon('clock') }}</a>
+    </div>
+  </div>
+</section>

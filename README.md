@@ -29,7 +29,7 @@ External action destinations have one source of truth in `georges_oasis/external
 
 `templates/base.html` owns the public document shell and extension blocks (`title`, `description`, `extra_head`, `content`, `scripts`). Shared navigation, actions, and footer live in `templates/public/includes/`. The homepage extends the base directly; each other public page extends `public/section_page.html`, supplies its section copy, and can extend `page_extra`. Public styles live in `static/css/site.css`. Admin templates remain separate under `templates/admin/` with existing CSRF protection.
 
-The existing Tailwind CDN and Google Fonts remain part of the prototype styling. The new page content is a starting structure, awaiting approved menus, hours, prices, contact details, and history.
+The existing Tailwind CDN and Google Fonts remain part of the prototype styling. The shared header includes an inline palm SVG, Facebook, ordering actions, and an accessible hours dropdown. Mobile visitors also have persistent menu, directions, and ordering actions. Hours link to the published restaurant schedule; no live open/closed claim is made without confirmed current hours. Menu and golf pages link to the published menus and course information while approved content is prepared for this site. Provider, Facebook, hours, menu, golf, and map destinations are configured in `georges_oasis/external_links.py`. The homepage retains its original exterior hero photograph and all content sections.
 
 ## Owner dashboard
 

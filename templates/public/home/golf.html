@@ -1,0 +1,33 @@
+<section id="golf" class="grid lg:grid-cols-2">
+      <div class="min-h-[380px] lg:min-h-[560px]">
+        <img src="{{ url_for('static', filename='images/mini_golf.webp') }}"
+             alt="George's Oasis mini golf course" loading="lazy"
+             class="h-full w-full max-h-[100vh] object-cover" />
+      </div>
+
+      <div class="flex items-center bg-oasis-950 px-6 py-14 text-white md:px-12 lg:px-16">
+        <div class="max-w-xl">
+          <div class="section-eyebrow !text-[#d9b44f]">Beyond the dining room</div>
+          <h2 class="mt-5 font-display text-5xl font-semibold leading-[.9] tracking-[-.035em] md:text-6xl">
+            Less screen time.<br>
+            More <span class="italic text-oasis-gold">tee</span> time.
+          </h2>
+          <p class="mt-7 max-w-lg text-base leading-7 text-white/80">
+            Enjoy 18 holes of mini golf in a beautiful, family-friendly setting. It's a great way to make memories together, any time of the season.
+          </p>
+
+          <div class="mt-7 grid gap-4 border-y border-white/15 py-5 sm:grid-cols-2">
+            <div>
+              <div class="text-xs font-bold uppercase tracking-[.18em] text-white/75">Outdoor mini golf</div>
+              <div class="mt-1 text-sm">Family-friendly fun</div>
+            </div>
+            <div>
+              <div class="text-xs font-bold uppercase tracking-[.18em] text-white/75">Make it a group outing</div>
+              <div class="mt-1 text-sm">Ask about group gatherings</div>
+            </div>
+          </div>
+
+          <a href="{{ url_for('public.mini_golf') }}" class="btn btn-gold mt-7">Explore Mini Golf <span>→</span></a>
+        </div>
+      </div>
+    </section>
