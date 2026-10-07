@@ -220,3 +220,22 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local frontend build dependencies
+node_modules/
+
+# Versioned schema and owner source evidence
+!migrations/
+!migrations/**
+!build_docs/source_menu_images/
+!build_docs/source_menu_images/**
+
+# Retain only the build handoff and factual source archive from local build documents.
+!build_docs/
+build_docs/*
+!build_docs/Georges_Oasis_Astra_Build_Specification.md
+!build_docs/source_menu_images/
+!build_docs/source_menu_images/**
+!build_docs/OWNER_REVIEW.md
+!build_docs/IMPLEMENTATION.md
+migrations/**/__pycache__/

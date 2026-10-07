@@ -21,12 +21,34 @@ def create_app(test_config=None):
         SQLALCHEMY_DATABASE_URI="sqlite:///oasis.sqlite",
         EXTERNAL_LINKS=EXTERNAL_LINKS.copy(),
         MAX_CONTENT_LENGTH=5 * 1024 * 1024,
+        INQUIRY_RECIPIENT=os.environ.get("INQUIRY_RECIPIENT"),
+        INQUIRY_SENDER=os.environ.get("INQUIRY_SENDER"),
+        SMTP_HOST=os.environ.get("SMTP_HOST", "localhost"),
+        SMTP_PORT=int(os.environ.get("SMTP_PORT", "587")),
+        SMTP_TLS=os.environ.get("SMTP_TLS", "true").lower() == "true",
+        SMTP_USERNAME=os.environ.get("SMTP_USERNAME"),
+        SMTP_PASSWORD=os.environ.get("SMTP_PASSWORD"),
+        OWNER_USERNAME=os.environ.get("OWNER_USERNAME", "username"),
+        OWNER_PASSWORD_HASH=os.environ.get("OWNER_PASSWORD_HASH"),
+        SESSION_COOKIE_SECURE=os.environ.get("OASIS_ENV") == "production",
         SESSION_COOKIE_HTTPONLY=True,
         SESSION_COOKIE_SAMESITE="Lax",
     )
 
     if test_config:
         app.config.update(test_config)
+    if os.environ.get("OASIS_ENV") == "production" and not app.config.get("OWNER_PASSWORD_HASH"):
+        raise RuntimeError("Production requires OWNER_PASSWORD_HASH before enabling the owner dashboard.")
+
+    @app.cli.command("check-content")
+    def check_content():
+        import click
+        from .content import load_content, validate_content
+        issues = validate_content(load_content())
+        if issues:
+            raise click.ClickException("\n".join(issues))
+        click.echo("Content structure is valid. Draft records remain unpublished.")
+
     @app.context_processor
     def inject_external_links():
         return {"external_links": app.config["EXTERNAL_LINKS"]}

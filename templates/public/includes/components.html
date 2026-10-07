@@ -1,0 +1,33 @@
+{% from 'public/includes/icons.html' import icon, palm %}
+{% from 'public/includes/external_action.html' import external_action with context %}
+{% macro intro(eyebrow, title, description, photo, alt, primary_label, primary_href, secondary_label='', secondary_href='', note='') %}
+<section class="page-intro">
+  <div class="page-intro-copy"><a class="breadcrumb" href="{{ url_for('public.home') }}">George’s Oasis <span aria-hidden="true">/</span></a>
+    <p class="section-eyebrow">{{ eyebrow }}</p><h1>{{ title }}</h1><p class="intro-description">{{ description }}</p>
+    <div class="page-actions"><a class="btn btn-primary" href="{{ primary_href }}">{{ primary_label }} {{ icon('arrow') }}</a>{% if secondary_label %}<a class="btn btn-outline" href="{{ secondary_href }}">{{ secondary_label }}</a>{% endif %}</div>
+    {% if note %}<p class="intro-note">{{ icon('clock') }} {{ note }}</p>{% endif %}
+  </div>
+  <figure class="page-intro-photo"><img src="{{ url_for('static', filename='images/' ~ photo) }}" alt="{{ alt }}" width="720" height="720" fetchpriority="high"><span class="photo-corner" aria-hidden="true">{{ palm() }}</span></figure>
+</section>
+{% endmacro %}
+{% macro section_heading(eyebrow, title, description='') %}<div class="section-heading"><p class="section-eyebrow">{{ eyebrow }}</p><h2>{{ title }}</h2>{% if description %}<p>{{ description }}</p>{% endif %}</div>{% endmacro %}
+{% macro faq(items, title='A few helpful answers', id='questions') %}
+<section class="page-section faq-section" id="{{ id }}"><div>{{ section_heading('Before you visit', title) }}</div><div class="faq-list">{% for question, answer in items %}<details><summary>{{ question }}<span aria-hidden="true">+</span></summary><p>{{ answer }}</p></details>{% endfor %}</div></section>
+{% endmacro %}
+{% macro final_cta(eyebrow, title, description, label, href, second_label='', second_href='') %}
+<section class="final-cta"><div class="cta-palm" aria-hidden="true">{{ palm() }}</div><div><p class="small-label">{{ eyebrow }}</p><h2>{{ title }}</h2><p>{{ description }}</p></div><div class="page-actions"><a class="btn btn-gold" href="{{ href }}">{{ label }} {{ icon('arrow') }}</a>{% if second_label %}<a class="btn btn-light-outline" href="{{ second_href }}">{{ second_label }}</a>{% endif %}</div></section>
+{% endmacro %}
+{% macro photo_card(photo, alt, title, text, label, href) %}<article class="journey-card"><img src="{{ url_for('static', filename='images/' ~ photo) }}" alt="{{ alt }}" width="600" height="450" loading="lazy"><div><h3>{{ title }}</h3><p>{{ text }}</p><a class="text-link" href="{{ href }}">{{ label }} {{ icon('arrow') }}</a></div></article>{% endmacro %}
+{% macro service_card(service, id='') %}
+<article class="service-card"{% if id %} id="{{ id }}"{% endif %}><div class="service-card-title"><h3>{{ service.name }}</h3><span class="service-status status-{{ service.state }}">{{ service.label }}</span></div><p>{{ service.note }}</p>
+{% if service.schedule %}<dl class="weekly-hours">{% for day in service.schedule %}<div><dt>{{ day.day }}</dt><dd>{% if not day.known %}Call for hours{% elif not day.windows %}Closed{% else %}{% for window in day.windows %}{{ window[0]|clock_time }} – {{ window[1]|clock_time }}{% if not loop.last %}<br>{% endif %}{% endfor %}{% endif %}</dd></div>{% endfor %}</dl>{% endif %}
+{% if service.cutoff %}<p class="service-detail">{{ 'Last golf start' if service.key == 'golf' else 'Kitchen service until' }}: <strong>{{ service.cutoff }}</strong></p>{% endif %}{% if service.breakfast %}<p class="service-detail">Breakfast until {{ service.breakfast|clock_time }}.</p>{% endif %}
+{% if service.exception_note %}<p class="service-detail">{{ service.exception_note }}</p>{% endif %}
+<a class="text-link" href="{{ business.phone_uri }}">{{ icon('phone') }} Call for visit information</a></article>
+{% endmacro %}
+{% macro menu_category(category) %}
+<section class="menu-category" id="{{ category.id }}"><div class="menu-category-heading"><div><p class="small-label">From the Oasis kitchen</p><h2>{{ category.name }}</h2><p>{{ category.intro }}</p></div>{% if category.photo %}<img src="{{ url_for('static', filename='images/' ~ category.photo) }}" width="160" height="160" alt="{{ category.name }} at George’s Oasis" loading="lazy">{% endif %}</div>
+{% if category['items'] %}<div class="menu-items">{% set ns=namespace(group='') %}{% for item in category['items'] %}{% if item.group != ns.group %}<h3 class="menu-group">{{ item.group }}</h3>{% set ns.group=item.group %}{% endif %}<article class="menu-item" data-menu-item data-search="{{ (item.name ~ ' ' ~ item.description)|lower }}"><div class="menu-item-top"><h4>{{ item.name }}</h4>{% if item.formatted_price %}<strong class="menu-price">{{ item.formatted_price }}</strong>{% endif %}</div>{% if item.description %}<p>{{ item.description }}</p>{% endif %}{% if item.variants %}<dl class="price-variants">{% for variant in item.variants %}<div><dt>{{ variant.label }}</dt><dd>{{ variant.formatted_price }}</dd></div>{% endfor %}</dl>{% endif %}{% if item.inclusions %}<p class="menu-inclusions">{{ item.inclusions }}</p>{% endif %}{% if item.add_ons %}<details class="menu-addons"><summary>Options & additions</summary><ul>{% for extra in item.add_ons %}<li>{{ extra.name }} <span>+{{ extra.price|money }}</span></li>{% endfor %}</ul></details>{% endif %}</article>{% endfor %}</div>
+{% else %}<div class="menu-source"><p>Browse the ordering menu for current {{ category.name|lower }} selections and prices. For questions about a dish, give us a call.</p>{{ external_action('food_ordering', 'Browse Ordering Menu', 'text-link') }}</div>{% endif %}
+</section>
+{% endmacro %}

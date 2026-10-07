@@ -1,6 +1,6 @@
 <div class="site-navigation">
   <a class="nav-link" href="{{ url_for('public.home') }}"{% if request.endpoint == 'public.home' %} aria-current="page"{% endif %}>Home</a>
-  {% for item in site_pages %}
-  <a class="nav-link" href="{{ url_for('public.' ~ item.key) }}"{% if request.endpoint == 'public.' ~ item.key %} aria-current="page"{% endif %}>{{ item.title }}</a>
-  {% endfor %}
+  {% for item in site_pages[:5] %}<a class="nav-link" href="{{ url_for('public.' ~ item.key) }}"{% if request.endpoint == 'public.' ~ item.key %} aria-current="page"{% endif %}>{{ item.title }}</a>{% endfor %}
+  {% if mobile_navigation %}{% for item in site_pages[5:] %}<a class="nav-link" href="{{ url_for('public.' ~ item.key) }}"{% if request.endpoint == 'public.' ~ item.key %} aria-current="page"{% endif %}>{{ item.title }}</a>{% endfor %}
+  {% else %}<details class="nav-more"><summary class="nav-link">More <span aria-hidden="true">⌄</span></summary><div class="nav-more-panel">{% for item in site_pages[5:] %}<a href="{{ url_for('public.' ~ item.key) }}"{% if request.endpoint == 'public.' ~ item.key %} aria-current="page"{% endif %}>{{ item.title }}</a>{% endfor %}</div></details>{% endif %}
 </div>

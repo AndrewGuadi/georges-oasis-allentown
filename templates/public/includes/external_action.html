@@ -1,10 +1,6 @@
 {% macro external_action(key, label, classes='btn btn-primary') -%}
-{% set actions = {
-  'food_ordering': 'order-foodbooking',
-  'delivery': 'order-grubhub',
-  'table_reservation': 'reserve-google',
-  'group_reservation': 'group-reservation-email',
-  'hiring': 'hiring-facebook'
-} %}
-<a href="{{ external_links[key] }}" class="{{ classes }}" data-action="{{ actions[key] }}"{% if external_links[key].startswith('https://') %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ label }}</a>
+{% set actions = {'food_ordering':'order-foodbooking','delivery':'order-grubhub','table_reservation':'reserve-google','group_reservation':'group-reservation-email','hiring':'hiring-facebook'} %}
+{% set destination = external_links.get(key) %}
+{% if destination and (destination.startswith('https://') or destination.startswith('mailto:')) %}<a href="{{ destination }}" class="{{ classes }}" data-action="{{ actions.get(key,key) }}"{% if destination.startswith('https://') %} target="_blank" rel="noopener noreferrer" aria-label="{{ label }} (opens in a new tab)"{% endif %}>{{ label }}</a>
+{% else %}<a href="{{ business.phone_uri }}" class="{{ classes }}">Call Us for {{ 'Ordering' if key in ['food_ordering','delivery'] else 'Information' }}</a>{% endif %}
 {%- endmacro %}

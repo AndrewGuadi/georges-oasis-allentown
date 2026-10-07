@@ -6,7 +6,10 @@ from zoneinfo import ZoneInfo
 from flask import Blueprint, abort, current_app, flash, redirect, render_template, request, send_from_directory, session, url_for
 from PIL import Image, UnidentifiedImageError
 from werkzeug.security import check_password_hash, generate_password_hash
-from .models import db, Promotion, DisplaySettings
+from .models import db, Promotion, DisplaySettings, Inquiry
+from .content import load_content, public_content
+from .public.sitemap import PAGES
+from .inquiries import notify, OCCASIONS, INTERESTS, FLEXIBILITY, new_submission_token
 
 admin_bp = Blueprint("admin", __name__, url_prefix="/admin")
 DEMO_PASSWORD_HASH = generate_password_hash("password")
@@ -25,7 +28,7 @@ def login_required(view):
 @admin_bp.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        if request.form.get("username") == "username" and check_password_hash(DEMO_PASSWORD_HASH, request.form.get("password", "")):
+        if request.form.get("username") == current_app.config["OWNER_USERNAME"] and check_password_hash(current_app.config.get("OWNER_PASSWORD_HASH") or DEMO_PASSWORD_HASH, request.form.get("password", "")):
             session.clear()
             session["owner"] = True
             return redirect(url_for("admin.dashboard"))
@@ -45,7 +48,9 @@ def logout():
 def dashboard():
     settings = db.session.get(DisplaySettings, 1) or DisplaySettings(deals_enabled=True, coupons_enabled=True)
     promotions = db.session.execute(db.select(Promotion).order_by(Promotion.id.desc())).scalars().all()
-    return render_template("admin/dashboard.html", settings=settings, promotions=promotions)
+    unread = db.session.scalar(db.select(db.func.count()).select_from(Inquiry).where(Inquiry.staff_state=='new'))
+    notification_alerts = db.session.scalar(db.select(db.func.count()).select_from(Inquiry).where(Inquiry.notification_state.in_(['failed','pending','not_configured'])))
+    return render_template("admin/dashboard.html", settings=settings, promotions=promotions,unread=unread,notification_alerts=notification_alerts)
 
 
 @admin_bp.post("/display")
@@ -68,7 +73,11 @@ def parse_time(value):
     local = datetime.fromisoformat(value)
     if local.tzinfo is not None:
         raise ValueError("Use a local date and time.")
-    return local.replace(tzinfo=LOCAL_TIME).astimezone(timezone.utc).replace(tzinfo=None)
+    aware = local.replace(tzinfo=LOCAL_TIME)
+    round_trip = aware.astimezone(timezone.utc).astimezone(LOCAL_TIME).replace(tzinfo=None)
+    if round_trip != local or aware.utcoffset() != local.replace(tzinfo=LOCAL_TIME,fold=1).utcoffset():
+        raise ValueError("Choose a time outside the skipped or repeated daylight-saving hour.")
+    return aware.astimezone(timezone.utc).replace(tzinfo=None)
 
 
 @admin_bp.app_template_filter("local_input")
@@ -113,6 +122,9 @@ def edit(promotion_id=None):
             promotion.kind, promotion.title, promotion.description = kind, title, description
             promotion.code, promotion.starts_at, promotion.ends_at = code, start, end
             promotion.enabled, promotion.image = "enabled" in request.form, image_name
+            if promotion.enabled:
+                promotion.approval_status = "approved"
+                promotion.reviewed_at = datetime.now(timezone.utc).replace(tzinfo=None)
             db.session.add(promotion)
             db.session.commit()
             flash("Offer saved. Live offers now appear on the homepage.")
@@ -126,6 +138,9 @@ def edit(promotion_id=None):
 @login_required
 def toggle(promotion_id):
     promotion = db.get_or_404(Promotion, promotion_id)
+    if promotion.approval_status != 'approved':
+        flash('Review this draft and approve it in the offer editor before publishing.', 'error')
+        return redirect(url_for('admin.edit',promotion_id=promotion.id))
     promotion.enabled = not promotion.enabled
     db.session.commit()
     flash("Offer visibility updated.")
@@ -137,3 +152,65 @@ def uploaded_image(filename):
     if not filename.endswith(".webp"):
         abort(404)
     return send_from_directory(Path(current_app.instance_path) / "uploads", filename)
+
+
+@admin_bp.after_request
+def private_owner_responses(response):
+    response.headers['Cache-Control'] = 'no-store'
+    response.headers['X-Robots-Tag'] = 'noindex, nofollow'
+    return response
+
+
+@admin_bp.get('/inquiries')
+@login_required
+def inquiries():
+    records = db.session.execute(db.select(Inquiry).order_by(Inquiry.received_at.desc())).scalars().all()
+    return render_template('admin/inquiries.html',inquiries=records)
+
+
+@admin_bp.route('/inquiries/<int:inquiry_id>',methods=['GET','POST'])
+@login_required
+def inquiry_detail(inquiry_id):
+    inquiry = db.get_or_404(Inquiry,inquiry_id)
+    if request.method == 'POST':
+        state = request.form.get('staff_state')
+        if state not in ('new','contacted','closed'):
+            abort(400)
+        inquiry.staff_state=state
+        db.session.commit()
+        flash('Inquiry status saved.')
+        return redirect(url_for('admin.inquiry_detail',inquiry_id=inquiry.id))
+    return render_template('admin/inquiry.html',inquiry=inquiry)
+
+
+@admin_bp.post('/inquiries/<int:inquiry_id>/notify')
+@login_required
+def retry_notification(inquiry_id):
+    inquiry=db.get_or_404(Inquiry,inquiry_id)
+    if inquiry.notification_state != 'sent':
+        notify(inquiry)
+    flash('Staff notification state: '+inquiry.notification_state)
+    return redirect(url_for('admin.inquiry_detail',inquiry_id=inquiry.id))
+
+
+@admin_bp.get('/content-review')
+@login_required
+def content_review():
+    data=load_content()
+    return render_template('admin/content_review.html',data=data,pages=PAGES)
+
+
+@admin_bp.get('/preview/<key>')
+@login_required
+def preview(key):
+    page=next((p for p in PAGES if p['key']==key),None)
+    if page is None:
+        abort(404)
+    return render_template('public/'+key+'.html',page=page,review_mode=True,site_pages=PAGES,current_year=datetime.now().year,**public_content(include_drafts=True),deals=[],coupons=[],values={'submission_token':new_submission_token(),'contact_method':'email','date_flexibility':'Not sure yet','interests':[]},errors={},occasions=OCCASIONS,interests=INTERESTS,flexibilities=FLEXIBILITY)
+
+
+@admin_bp.get('/source-menu/<filename>')
+@login_required
+def source_menu(filename):
+    folder=Path(__file__).resolve().parent.parent / 'build_docs' / 'source_menu_images'
+    return send_from_directory(folder,filename)

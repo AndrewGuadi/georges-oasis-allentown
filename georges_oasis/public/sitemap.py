@@ -1,19 +1,13 @@
-"""Public navigation and section structure from build_docs/proposed_sitemap.txt."""
+"""Canonical destinations retain the existing Flask route conventions."""
 PAGES = (
-    {"key": "food", "path": "/food-and-ice-cream", "title": "Food & Ice Cream", "description": "Meals, sweet treats, and something for the whole family.", "sections": (
-        ("breakfast", "Breakfast"), ("lunch-and-dinner", "Lunch & Dinner"),
-        ("ice-cream-and-desserts", "Ice Cream & Desserts"), ("bakery-and-custom-pies", "Bakery / Custom Pies"))},
-    {"key": "mini_golf", "path": "/mini-golf", "title": "Mini Golf", "description": "Plan a round with family, friends, or your group.", "sections": (
-        ("course-and-experience", "Course & Experience"), ("hours", "Hours"),
-        ("pricing", "Pricing"), ("group-rates", "Group Rates"), ("field-trips-and-fundraisers", "Field Trips / Fundraisers"))},
-    {"key": "gatherings", "path": "/gatherings", "title": "Gatherings", "description": "Make room for your next celebration or group outing.", "sections": (
-        ("private-events", "Private Events"), ("birthday-parties", "Birthday Parties"),
-        ("company-and-group-outings", "Company & Group Outings"), ("event-inquiry", "Event Inquiry"))},
-    {"key": "specials", "path": "/specials", "title": "Specials", "description": "Discover current specials and offers for your next visit.", "sections": (
-        ("current-specials", "Current Specials"), ("coupons-offers", "Coupons / Offers"))},
-    {"key": "story", "path": "/our-story", "title": "Our Story", "description": "The family and history behind George's Oasis.", "sections": (
-        ("sitaras-family", "The Sitaras Family"), ("40-plus-years", "40+ Years"), ("oasis-history", "Oasis History"))},
-    {"key": "visit", "path": "/visit", "title": "Visit", "description": "Find the information you need to plan your visit.", "sections": (
-        ("restaurant-hours", "Restaurant Hours"), ("mini-golf-hours", "Mini Golf Hours"),
-        ("directions", "Directions"), ("contact", "Contact"), ("faqs", "FAQs"))},
+ {"key":"food","path":"/food-and-ice-cream","title":"Menu","description":"Explore breakfast, lunch, dinner and desserts at George’s Oasis in Allentown.","sections":(("breakfast","Breakfast"),("lunch-and-dinner","Lunch & Dinner"),("children","Children’s Menu"),("seniors","Senior Selections"),("ice-cream-and-desserts","Desserts"),("bakery-and-custom-pies","Bakery"))},
+ {"key":"mini_golf","path":"/mini-golf","title":"Mini Golf","description":"Plan an outdoor mini golf outing at George’s Oasis in Allentown.","sections":(("course-and-experience","The Course"),("pricing","Rates & Availability"),("hours","Hours"),("group-rates","Group Outings"),("field-trips-and-fundraisers","Trips & Fundraisers"))},
+ {"key":"ice_cream","path":"/ice-cream","title":"Ice Cream","description":"Explore ice cream, sundaes and desserts at George’s Oasis.","sections":(("desserts","Dessert Selections"),("seasonal-availability","Seasonal Availability"))},
+ {"key":"gatherings","path":"/gatherings","title":"Parties & Groups","description":"Start planning a birthday, family celebration or group outing at George’s Oasis.","sections":(("private-events","Gathering Spaces"),("birthday-parties","Birthdays & Celebrations"),("company-and-group-outings","Group Outings"),("event-inquiry","Event Inquiry"))},
+ {"key":"visit","path":"/visit","title":"Visit","description":"Find George’s Oasis in Allentown, check service hours and plan your visit.","sections":(("directions","Directions"),("restaurant-hours","Restaurant Hours"),("mini-golf-hours","Golf Hours"),("contact","Contact"),("faqs","Visit Questions"))},
+ {"key":"specials","path":"/specials","title":"Specials","description":"Find current offers and plan your next visit to George’s Oasis.","sections":(("current-specials","Current Specials"),("coupons-offers","Coupons & Offers"))},
+ {"key":"story","path":"/our-story","title":"Our Story","description":"Meet the spirit of George’s Oasis and explore the restaurant’s family tradition.","sections":(("sitaras-family","The Oasis Family"),("40-plus-years","Our Tradition"),("oasis-history","Oasis Collection"))},
+ {"key":"gallery","path":"/gallery","title":"Gallery","description":"See food, ice cream, golf and gathering spaces at George’s Oasis.","sections":(("food","Food"),("ice-cream","Ice Cream"),("mini-golf","Mini Golf"),("gatherings","Gatherings"),("the-oasis","The Oasis"))},
+ {"key":"order","path":"/order","title":"Order","description":"Continue to George’s Oasis ordering service or Grubhub delivery.","sections":(("ordering-options","Ordering Options"),)},
 )
+LEGACY = {"/menus.html":"food","/menu":"food","/hours--info.html":"visit","/mini-golf.html":"mini_golf","/specials.html":"specials","/gallery.html":"gallery","/private-eventscatering.html":"gatherings","/parties":"gatherings","/index.html":"home"}
