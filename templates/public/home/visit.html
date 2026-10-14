@@ -5,8 +5,8 @@
       <div class="section-eyebrow">Your next good day starts here</div>
       <h2 class="mt-4 max-w-xl font-display text-5xl font-semibold text-oasis-950">Make your way over.</h2>
       <address class="visit-address mt-6 text-lg leading-8 text-oasis-ink/75">
-        2355 Schoenersville Road<br>Allentown, PA 18109<br>
-        <a href="tel:+16102641955">{{ icon('phone') }} (610) 264-1955</a>
+        {{ business.address }}<br>{{ business.city }}<br>
+        <a href="{{ business.phone_uri }}">{{ icon('phone') }} {{ business.phone }}</a>
       </address>
       <div class="mt-7 flex flex-wrap gap-3">
         <a class="btn btn-primary" href="{{ external_links.directions }}" target="_blank" rel="noopener noreferrer">Get Directions {{ icon('arrow') }}</a>

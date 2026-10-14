@@ -1,0 +1,4697 @@
+{
+  "business": {
+    "name": "George’s Oasis",
+    "address": "2355 Schoenersville Road",
+    "city": "Allentown, PA 18109",
+    "phone": "(610) 264-1955",
+    "phone_uri": "tel:+16102641955",
+    "timezone": "America/New_York",
+    "metadata": {
+      "status": "draft",
+      "source": "October 7 Astra specification / public website observation",
+      "reviewed_at": "2026-10-07",
+      "valid_from": null,
+      "valid_until": null
+    }
+  },
+  "services": [
+    {
+      "key": "restaurant",
+      "name": "Restaurant",
+      "metadata": {
+        "status": "draft",
+        "source": "https://www.georgesoasis.com/hours--info.html",
+        "reviewed_at": "2026-10-07",
+        "valid_from": null,
+        "valid_until": null,
+        "notes": "Summer 2026 schedule was still displayed October 7. Do not approve as year-round without owner review."
+      },
+      "weekly": {
+        "0": [
+          [
+            "07:00",
+            "15:00"
+          ]
+        ],
+        "1": [
+          [
+            "07:00",
+            "20:00"
+          ]
+        ],
+        "2": [
+          [
+            "07:00",
+            "20:00"
+          ]
+        ],
+        "3": [
+          [
+            "07:00",
+            "20:00"
+          ]
+        ],
+        "4": [
+          [
+            "07:00",
+            "21:00"
+          ]
+        ],
+        "5": [
+          [
+            "07:00",
+            "21:00"
+          ]
+        ],
+        "6": []
+      },
+      "exceptions": {},
+      "season": "unknown",
+      "cutoff_minutes": 30,
+      "breakfast_cutoff": "14:00",
+      "note": "Check dining hours before your visit."
+    },
+    {
+      "key": "golf",
+      "name": "Mini golf",
+      "metadata": {
+        "status": "draft",
+        "source": "https://www.georgesoasis.com/hours--info.html",
+        "reviewed_at": "2026-10-07",
+        "valid_from": null,
+        "valid_until": null,
+        "notes": "Summer 2026 schedule was still displayed October 7. Do not approve as year-round without owner review."
+      },
+      "weekly": {
+        "0": [
+          [
+            "09:00",
+            "15:00"
+          ]
+        ],
+        "1": [
+          [
+            "09:00",
+            "20:00"
+          ]
+        ],
+        "2": [
+          [
+            "09:00",
+            "20:00"
+          ]
+        ],
+        "3": [
+          [
+            "09:00",
+            "20:00"
+          ]
+        ],
+        "4": [
+          [
+            "09:00",
+            "21:00"
+          ]
+        ],
+        "5": [
+          [
+            "09:00",
+            "21:00"
+          ]
+        ],
+        "6": []
+      },
+      "exceptions": {},
+      "season": "unknown",
+      "cutoff_minutes": 45,
+      "note": "Outdoor play is seasonal. Call for current availability."
+    },
+    {
+      "key": "soft_serve",
+      "name": "Soft serve",
+      "metadata": {
+        "status": "draft",
+        "source": "October 7 Astra specification / public website observation",
+        "reviewed_at": "2026-10-07",
+        "valid_from": null,
+        "valid_until": null
+      },
+      "weekly": {},
+      "exceptions": {},
+      "season": "unknown",
+      "cutoff_minutes": null,
+      "note": "Ask about seasonal soft-serve availability."
+    }
+  ],
+  "menu_categories": [
+    {
+      "id": "breakfast",
+      "name": "Breakfast",
+      "intro": "Find your morning favorite, from eggs and omelets to pancakes and breakfast sandwiches.",
+      "photo": "signature_food.webp",
+      "items": [
+        {
+          "id": "breakfast-1",
+          "name": "Monte Cristo",
+          "group": "Breakfast Specialties",
+          "description": "Eggs, Swiss cheese and ham on French toast; powdered sugar and syrup.",
+          "inclusions": "",
+          "price": "10.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Poached egg (Bagel and Lox)",
+              "price": "2.00"
+            },
+            {
+              "name": "Pulled pork or smoked salmon substitution (Eggs Benedict)",
+              "price": "3.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-2",
+          "name": "Eggs Benedict",
+          "group": "Breakfast Specialties",
+          "description": "Poached eggs and Canadian bacon on an English muffin with hollandaise; home fries.",
+          "inclusions": "",
+          "price": "9.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Poached egg (Bagel and Lox)",
+              "price": "2.00"
+            },
+            {
+              "name": "Pulled pork or smoked salmon substitution (Eggs Benedict)",
+              "price": "3.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-3",
+          "name": "Debbie’s French Toast Delight",
+          "group": "Breakfast Specialties",
+          "description": "Cream-cheese-stuffed French toast, strawberries, blueberries, powdered sugar and whipped cream.",
+          "inclusions": "",
+          "price": "9.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Poached egg (Bagel and Lox)",
+              "price": "2.00"
+            },
+            {
+              "name": "Pulled pork or smoked salmon substitution (Eggs Benedict)",
+              "price": "3.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-4",
+          "name": "Kelly’s Breakfast Sundae",
+          "group": "Breakfast Specialties",
+          "description": "Vanilla yogurt, granola, raisins, blueberries, strawberries and bananas.",
+          "inclusions": "",
+          "price": "8.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Poached egg (Bagel and Lox)",
+              "price": "2.00"
+            },
+            {
+              "name": "Pulled pork or smoked salmon substitution (Eggs Benedict)",
+              "price": "3.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-5",
+          "name": "Bagel and Lox",
+          "group": "Breakfast Specialties",
+          "description": "Smoked salmon, cream cheese, tomatoes, red onions and capers.",
+          "inclusions": "",
+          "price": "11.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Poached egg (Bagel and Lox)",
+              "price": "2.00"
+            },
+            {
+              "name": "Pulled pork or smoked salmon substitution (Eggs Benedict)",
+              "price": "3.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-6",
+          "name": "1 Egg with Home Fries",
+          "group": "Breakfast Entrees",
+          "description": "",
+          "inclusions": "Buttered toast and jelly. Meat choice: bacon, ham, sausage, scrapple or pork roll.",
+          "price": "4.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Turkey sausage or Canadian bacon",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-7",
+          "name": "2 Eggs with Home Fries",
+          "group": "Breakfast Entrees",
+          "description": "",
+          "inclusions": "Buttered toast and jelly. Meat choice: bacon, ham, sausage, scrapple or pork roll.",
+          "price": "6.25",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Turkey sausage or Canadian bacon",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-8",
+          "name": "Creamed Chipped Beef",
+          "group": "Breakfast Entrees",
+          "description": "Over toast, with home fries.",
+          "inclusions": "Buttered toast and jelly. Meat choice: bacon, ham, sausage, scrapple or pork roll.",
+          "price": "8.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Turkey sausage or Canadian bacon",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-9",
+          "name": "2 Eggs with Home Fries & Meat",
+          "group": "Breakfast Entrees",
+          "description": "",
+          "inclusions": "Buttered toast and jelly. Meat choice: bacon, ham, sausage, scrapple or pork roll.",
+          "price": "8.75",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Turkey sausage or Canadian bacon",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-10",
+          "name": "3 Eggs with Home Fries & Meat",
+          "group": "Breakfast Entrees",
+          "description": "",
+          "inclusions": "Buttered toast and jelly. Meat choice: bacon, ham, sausage, scrapple or pork roll.",
+          "price": "10.25",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Turkey sausage or Canadian bacon",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-11",
+          "name": "Greek Omelet",
+          "group": "3-Egg Omelets",
+          "description": "Spinach, feta and tomato.",
+          "inclusions": "Home fries and toast.",
+          "price": "9.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Build-your-own topping",
+              "price": "0.75"
+            },
+            {
+              "name": "Avocado (Carnitas)",
+              "price": "2.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-12",
+          "name": "Yeero Omelet",
+          "group": "3-Egg Omelets",
+          "description": "Gyro meat, feta and tomato.",
+          "inclusions": "Home fries and toast.",
+          "price": "9.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Build-your-own topping",
+              "price": "0.75"
+            },
+            {
+              "name": "Avocado (Carnitas)",
+              "price": "2.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-13",
+          "name": "Farm Omelet",
+          "group": "3-Egg Omelets",
+          "description": "Mushrooms, broccoli, tomatoes, onions and peppers.",
+          "inclusions": "Home fries and toast.",
+          "price": "9.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Build-your-own topping",
+              "price": "0.75"
+            },
+            {
+              "name": "Avocado (Carnitas)",
+              "price": "2.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-14",
+          "name": "Spicy Tex Mex Omelet",
+          "group": "3-Egg Omelets",
+          "description": "Jalapeños, jack and cheddar, scallions and salsa.",
+          "inclusions": "Home fries and toast.",
+          "price": "9.75",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Build-your-own topping",
+              "price": "0.75"
+            },
+            {
+              "name": "Avocado (Carnitas)",
+              "price": "2.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-15",
+          "name": "Spanish Omelet",
+          "group": "3-Egg Omelets",
+          "description": "Green peppers, onions, mushrooms and bacon, with tomato sauce.",
+          "inclusions": "Home fries and toast.",
+          "price": "10.25",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Build-your-own topping",
+              "price": "0.75"
+            },
+            {
+              "name": "Avocado (Carnitas)",
+              "price": "2.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-16",
+          "name": "Western Omelet",
+          "group": "3-Egg Omelets",
+          "description": "Peppers, onions and ham.",
+          "inclusions": "Home fries and toast.",
+          "price": "9.25",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Build-your-own topping",
+              "price": "0.75"
+            },
+            {
+              "name": "Avocado (Carnitas)",
+              "price": "2.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-17",
+          "name": "Cheese Steak Omelet",
+          "group": "3-Egg Omelets",
+          "description": "Steak, onions, American cheese and tomato sauce.",
+          "inclusions": "Home fries and toast.",
+          "price": "9.75",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Build-your-own topping",
+              "price": "0.75"
+            },
+            {
+              "name": "Avocado (Carnitas)",
+              "price": "2.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-18",
+          "name": "Carnitas Especial",
+          "group": "3-Egg Omelets",
+          "description": "Pulled pork, pico de gallo, cilantro and Monterey jack.",
+          "inclusions": "Home fries and toast.",
+          "price": "10.25",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Build-your-own topping",
+              "price": "0.75"
+            },
+            {
+              "name": "Avocado (Carnitas)",
+              "price": "2.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-19",
+          "name": "Power Omelet",
+          "group": "3-Egg Omelets",
+          "description": "Egg whites, chicken, onions, green peppers, tomatoes and broccoli.",
+          "inclusions": "Home fries and toast.",
+          "price": "10.25",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Build-your-own topping",
+              "price": "0.75"
+            },
+            {
+              "name": "Avocado (Carnitas)",
+              "price": "2.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-20",
+          "name": "Build Your Own Omelet",
+          "group": "3-Egg Omelets",
+          "description": "Cheeses: provolone, Swiss, American, feta. Vegetables: spinach, mushrooms, onions, tomatoes, broccoli, potatoes, scallions, green peppers. Meats: bacon, ham, sausage, turkey sausage, pepperoni.",
+          "inclusions": "Home fries and toast.",
+          "price": "7.25",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Build-your-own topping",
+              "price": "0.75"
+            },
+            {
+              "name": "Avocado (Carnitas)",
+              "price": "2.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-1-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-21",
+          "name": "John’s Greek Wrap",
+          "group": "Breakfast Wraps",
+          "description": "Eggs, gyro meat, feta, tomatoes and scallions.",
+          "inclusions": "Home fries.",
+          "price": "9.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-22",
+          "name": "Italian Wrap",
+          "group": "Breakfast Wraps",
+          "description": "Eggs, sausage, green peppers, onions and mozzarella.",
+          "inclusions": "Home fries.",
+          "price": "9.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-23",
+          "name": "Quesadilla Wrap",
+          "group": "Breakfast Wraps",
+          "description": "Eggs, bacon, jack and cheddar; sour cream and salsa.",
+          "inclusions": "Home fries.",
+          "price": "9.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-24",
+          "name": "Mexican Quesadilla",
+          "group": "Breakfast Wraps",
+          "description": "Eggs, pulled pork, pico de gallo, cilantro, jack and cheddar; sour cream or salsa.",
+          "inclusions": "Home fries.",
+          "price": "9.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-25",
+          "name": "Egg Sandwich",
+          "group": "Egg Sandwiches",
+          "description": "",
+          "inclusions": "Sandwiches made with two eggs unless otherwise noted.",
+          "price": "4.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Bagel or croissant",
+              "price": "0.75"
+            },
+            {
+              "name": "Cheese",
+              "price": "1.00"
+            },
+            {
+              "name": "Meat (Farmer’s Melt)",
+              "price": "2.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-26",
+          "name": "Egg with Tomatoes & Feta",
+          "group": "Egg Sandwiches",
+          "description": "On a Kaiser roll.",
+          "inclusions": "Sandwiches made with two eggs unless otherwise noted.",
+          "price": "5.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Bagel or croissant",
+              "price": "0.75"
+            },
+            {
+              "name": "Cheese",
+              "price": "1.00"
+            },
+            {
+              "name": "Meat (Farmer’s Melt)",
+              "price": "2.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-27",
+          "name": "Egg with Choice of Meat",
+          "group": "Egg Sandwiches",
+          "description": "On a Kaiser roll.",
+          "inclusions": "Sandwiches made with two eggs unless otherwise noted.",
+          "price": "5.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Bagel or croissant",
+              "price": "0.75"
+            },
+            {
+              "name": "Cheese",
+              "price": "1.00"
+            },
+            {
+              "name": "Meat (Farmer’s Melt)",
+              "price": "2.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-28",
+          "name": "Oasis Western",
+          "group": "Egg Sandwiches",
+          "description": "Green peppers, onions and ham on a Kaiser roll.",
+          "inclusions": "Sandwiches made with two eggs unless otherwise noted.",
+          "price": "6.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Bagel or croissant",
+              "price": "0.75"
+            },
+            {
+              "name": "Cheese",
+              "price": "1.00"
+            },
+            {
+              "name": "Meat (Farmer’s Melt)",
+              "price": "2.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-29",
+          "name": "Bacon Egg and Cheese Melt",
+          "group": "Egg Sandwiches",
+          "description": "On Texas toast.",
+          "inclusions": "Sandwiches made with two eggs unless otherwise noted.",
+          "price": "6.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Bagel or croissant",
+              "price": "0.75"
+            },
+            {
+              "name": "Cheese",
+              "price": "1.00"
+            },
+            {
+              "name": "Meat (Farmer’s Melt)",
+              "price": "2.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-30",
+          "name": "The Greek",
+          "group": "Egg Sandwiches",
+          "description": "Egg, onion, spinach, feta, home fries and tzatziki on pita.",
+          "inclusions": "Sandwiches made with two eggs unless otherwise noted.",
+          "price": "7.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Bagel or croissant",
+              "price": "0.75"
+            },
+            {
+              "name": "Cheese",
+              "price": "1.00"
+            },
+            {
+              "name": "Meat (Farmer’s Melt)",
+              "price": "2.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-31",
+          "name": "Farmer’s Melt",
+          "group": "Egg Sandwiches",
+          "description": "Green peppers, onions, tomatoes, potatoes and cheddar.",
+          "inclusions": "Sandwiches made with two eggs unless otherwise noted.",
+          "price": "7.75",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Bagel or croissant",
+              "price": "0.75"
+            },
+            {
+              "name": "Cheese",
+              "price": "1.00"
+            },
+            {
+              "name": "Meat (Farmer’s Melt)",
+              "price": "2.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-32",
+          "name": "Texas Breakfast Melt",
+          "group": "Egg Sandwiches",
+          "description": "Three eggs, pulled pork and pepper jack on Texas toast.",
+          "inclusions": "Sandwiches made with two eggs unless otherwise noted.",
+          "price": "9.25",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Bagel or croissant",
+              "price": "0.75"
+            },
+            {
+              "name": "Cheese",
+              "price": "1.00"
+            },
+            {
+              "name": "Meat (Farmer’s Melt)",
+              "price": "2.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-33",
+          "name": "Golden Buttermilk Pancakes",
+          "group": "Pancakes & French Toast",
+          "description": "",
+          "inclusions": "Butter and syrup.",
+          "price": null,
+          "variants": [
+            {
+              "label": "2 pancakes",
+              "price": "5.50"
+            },
+            {
+              "label": "3 pancakes",
+              "price": "6.50"
+            }
+          ],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-34",
+          "name": "Chocolate Chip Pancakes",
+          "group": "Pancakes & French Toast",
+          "description": "",
+          "inclusions": "Butter and syrup.",
+          "price": null,
+          "variants": [
+            {
+              "label": "2 pancakes",
+              "price": "5.95"
+            },
+            {
+              "label": "3 pancakes",
+              "price": "7.25"
+            }
+          ],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-35",
+          "name": "Nutella Pancakes with Strawberries",
+          "group": "Pancakes & French Toast",
+          "description": "",
+          "inclusions": "Butter and syrup.",
+          "price": null,
+          "variants": [
+            {
+              "label": "1 pancake",
+              "price": "7.95"
+            },
+            {
+              "label": "2 pancakes",
+              "price": "9.95"
+            }
+          ],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-36",
+          "name": "Blueberry Pancakes",
+          "group": "Pancakes & French Toast",
+          "description": "",
+          "inclusions": "Butter and syrup.",
+          "price": null,
+          "variants": [
+            {
+              "label": "2 pancakes",
+              "price": "5.95"
+            },
+            {
+              "label": "3 pancakes",
+              "price": "7.25"
+            }
+          ],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-37",
+          "name": "Golden Brown French Toast",
+          "group": "Pancakes & French Toast",
+          "description": "",
+          "inclusions": "Butter and syrup.",
+          "price": null,
+          "variants": [
+            {
+              "label": "2 slices",
+              "price": "5.75"
+            },
+            {
+              "label": "3 slices",
+              "price": "6.75"
+            }
+          ],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-38",
+          "name": "Belgian Waffle with Fresh Fruit",
+          "group": "Pancakes & French Toast",
+          "description": "",
+          "inclusions": "Butter and syrup.",
+          "price": "10.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-39",
+          "name": "Avocado Toast",
+          "group": "Nature Friendly",
+          "description": "Red onion, tomatoes and fresh fruit.",
+          "inclusions": "",
+          "price": "10.25",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-40",
+          "name": "Vegan Flatbread",
+          "group": "Nature Friendly",
+          "description": "Hummus, tomato, cucumber, arugula and olives. (Source item name; not an independently verified dietary assurance.)",
+          "inclusions": "",
+          "price": "9.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-41",
+          "name": "Tofu Scramble",
+          "group": "Nature Friendly",
+          "description": "Tomatoes, mushrooms, onions, green peppers and home fries.",
+          "inclusions": "",
+          "price": "10.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-42",
+          "name": "Tofu Scramble Wrap",
+          "group": "Nature Friendly",
+          "description": "Tomatoes, mushrooms, onions, green peppers and home fries.",
+          "inclusions": "",
+          "price": "10.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-43",
+          "name": "Home Fries",
+          "group": "Breakfast Sides",
+          "description": "",
+          "inclusions": "",
+          "price": "3.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Fruit for oatmeal (each)",
+              "price": "1.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-44",
+          "name": "Bacon, Sausage or Scrapple",
+          "group": "Breakfast Sides",
+          "description": "",
+          "inclusions": "",
+          "price": "3.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Fruit for oatmeal (each)",
+              "price": "1.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-45",
+          "name": "Ham, Pork Roll or Turkey Sausage",
+          "group": "Breakfast Sides",
+          "description": "",
+          "inclusions": "",
+          "price": "4.25",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Fruit for oatmeal (each)",
+              "price": "1.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-46",
+          "name": "Single Pancake",
+          "group": "Breakfast Sides",
+          "description": "",
+          "inclusions": "",
+          "price": "2.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Fruit for oatmeal (each)",
+              "price": "1.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-47",
+          "name": "Fresh Fruit Cup",
+          "group": "Breakfast Sides",
+          "description": "",
+          "inclusions": "",
+          "price": "4.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Fruit for oatmeal (each)",
+              "price": "1.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-48",
+          "name": "Oatmeal",
+          "group": "Breakfast Sides",
+          "description": "",
+          "inclusions": "",
+          "price": null,
+          "variants": [
+            {
+              "label": "Small",
+              "price": "3.25"
+            },
+            {
+              "label": "Large",
+              "price": "4.75"
+            }
+          ],
+          "add_ons": [
+            {
+              "name": "Fruit for oatmeal (each)",
+              "price": "1.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-49",
+          "name": "Oatmeal with Raisins & Brown Sugar",
+          "group": "Breakfast Sides",
+          "description": "",
+          "inclusions": "",
+          "price": null,
+          "variants": [
+            {
+              "label": "Small",
+              "price": "3.95"
+            },
+            {
+              "label": "Large",
+              "price": "5.50"
+            }
+          ],
+          "add_ons": [
+            {
+              "name": "Fruit for oatmeal (each)",
+              "price": "1.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-50",
+          "name": "Homemade Rice Pudding",
+          "group": "Breakfast Sides",
+          "description": "",
+          "inclusions": "",
+          "price": "3.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Fruit for oatmeal (each)",
+              "price": "1.50"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-51",
+          "name": "Coffee or Decaffeinated Coffee",
+          "group": "Beverages & Juices",
+          "description": "",
+          "inclusions": "",
+          "price": "2.25",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-52",
+          "name": "Herbal Tea",
+          "group": "Beverages & Juices",
+          "description": "",
+          "inclusions": "",
+          "price": "2.65",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-53",
+          "name": "Hot Chocolate",
+          "group": "Beverages & Juices",
+          "description": "With whipped cream.",
+          "inclusions": "",
+          "price": "2.75",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-54",
+          "name": "Milk (white or chocolate)",
+          "group": "Beverages & Juices",
+          "description": "",
+          "inclusions": "",
+          "price": null,
+          "variants": [
+            {
+              "label": "Small",
+              "price": "2.25"
+            },
+            {
+              "label": "Large",
+              "price": "3.50"
+            }
+          ],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-55",
+          "name": "Orange Juice",
+          "group": "Beverages & Juices",
+          "description": "",
+          "inclusions": "",
+          "price": null,
+          "variants": [
+            {
+              "label": "Small",
+              "price": "2.50"
+            },
+            {
+              "label": "Large",
+              "price": "3.95"
+            }
+          ],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "breakfast-56",
+          "name": "Apple or Cranberry Juice",
+          "group": "Beverages & Juices",
+          "description": "",
+          "inclusions": "",
+          "price": null,
+          "variants": [
+            {
+              "label": "Small",
+              "price": "2.75"
+            },
+            {
+              "label": "Large",
+              "price": "4.25"
+            }
+          ],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "breakfast-menu-2024-page-2-new_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "lunch-and-dinner",
+      "name": "Lunch & Dinner",
+      "intro": "Explore sandwiches, burgers and dinner plates for your next meal at the Oasis.",
+      "photo": "georges_burger.jpg",
+      "items": [
+        {
+          "id": "lunch-and-dinner-1",
+          "name": "Homemade Soup",
+          "group": "Soup & Appetizers",
+          "description": "",
+          "inclusions": "",
+          "price": null,
+          "variants": [
+            {
+              "label": "Cup",
+              "price": "4.25"
+            },
+            {
+              "label": "Bowl",
+              "price": "6.25"
+            }
+          ],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-2",
+          "name": "Mozzarella Sticks",
+          "group": "Soup & Appetizers",
+          "description": "Marinara sauce.",
+          "inclusions": "",
+          "price": "7.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-3",
+          "name": "Potato Skins",
+          "group": "Soup & Appetizers",
+          "description": "Cheese, bacon and sour cream.",
+          "inclusions": "",
+          "price": "8.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-4",
+          "name": "Nachos",
+          "group": "Soup & Appetizers",
+          "description": "Homemade chips, melted cheddar and sour cream.",
+          "inclusions": "",
+          "price": "8.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-5",
+          "name": "Pretzel Sticks",
+          "group": "Soup & Appetizers",
+          "description": "Cheese sauce and spicy mustard.",
+          "inclusions": "",
+          "price": "7.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-6",
+          "name": "Cheesesteak Egg Rolls",
+          "group": "Soup & Appetizers",
+          "description": "House steak sauce.",
+          "inclusions": "",
+          "price": "10.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-7",
+          "name": "Spanakopita Bites",
+          "group": "Soup & Appetizers",
+          "description": "Spinach and cheese puffs; tzatziki.",
+          "inclusions": "",
+          "price": "8.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-8",
+          "name": "Buffalo Chicken Quesadilla",
+          "group": "Soup & Appetizers",
+          "description": "Monterey and cheddar, chicken and buffalo sauce.",
+          "inclusions": "",
+          "price": "8.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-9",
+          "name": "Steak and Cheese Quesadilla",
+          "group": "Soup & Appetizers",
+          "description": "Monterey and cheddar, steak, peppers and onions.",
+          "inclusions": "",
+          "price": "10.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-10",
+          "name": "Cheeseburger Sliders (4)",
+          "group": "Soup & Appetizers",
+          "description": "Char-grilled with chipotle mayo on brioche.",
+          "inclusions": "",
+          "price": "10.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-11",
+          "name": "Steak and Cheese Melt",
+          "group": "Melts",
+          "description": "Steak, mushrooms, onions and cheese.",
+          "inclusions": "",
+          "price": "10.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-12",
+          "name": "Tuna Melt",
+          "group": "Melts",
+          "description": "Tuna salad, tomatoes and Swiss on rye or pita.",
+          "inclusions": "",
+          "price": "9.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-13",
+          "name": "Ham & Turkey Melt",
+          "group": "Melts",
+          "description": "Ham, turkey, bacon, tomatoes and rye.",
+          "inclusions": "",
+          "price": "9.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-14",
+          "name": "Reuben",
+          "group": "Melts",
+          "description": "Corned beef, sauerkraut, Russian dressing and Swiss on rye.",
+          "inclusions": "",
+          "price": "9.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-15",
+          "name": "Club Sandwich",
+          "group": "Club & Cold Sandwiches",
+          "description": "Ham, tuna, turkey, roast beef or grilled chicken; bacon, tomato, lettuce and mayo.",
+          "inclusions": "",
+          "price": "9.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-16",
+          "name": "Ham, Turkey Breast or Roast Beef",
+          "group": "Club & Cold Sandwiches",
+          "description": "",
+          "inclusions": "",
+          "price": "8.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-17",
+          "name": "Corned Beef or Pastrami",
+          "group": "Club & Cold Sandwiches",
+          "description": "On rye.",
+          "inclusions": "",
+          "price": "8.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-18",
+          "name": "BLT",
+          "group": "Club & Cold Sandwiches",
+          "description": "Mayo on toast.",
+          "inclusions": "",
+          "price": "7.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-19",
+          "name": "Tuna Salad Sandwich",
+          "group": "Club & Cold Sandwiches",
+          "description": "",
+          "inclusions": "",
+          "price": "8.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-20",
+          "name": "Vegetable Pita",
+          "group": "Club & Cold Sandwiches",
+          "description": "Lettuce, tomatoes, mushrooms, onions, green peppers and ranch.",
+          "inclusions": "",
+          "price": "8.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-21",
+          "name": "Oasis Greek Salad",
+          "group": "Salads",
+          "description": "Lettuce, tomatoes, cucumber, carrots, onions, olives, feta, anchovies and grilled pita.",
+          "inclusions": "",
+          "price": "10.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Gyro",
+              "price": "5.00"
+            },
+            {
+              "name": "Chicken",
+              "price": "5.00"
+            },
+            {
+              "name": "Steak",
+              "price": "6.00"
+            },
+            {
+              "name": "Grilled shrimp",
+              "price": "6.00"
+            },
+            {
+              "name": "Grilled salmon",
+              "price": "7.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-22",
+          "name": "Tuna Salad",
+          "group": "Salads",
+          "description": "Lettuce, green peppers, onions, cucumbers and hard-boiled egg.",
+          "inclusions": "",
+          "price": "10.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Gyro",
+              "price": "5.00"
+            },
+            {
+              "name": "Chicken",
+              "price": "5.00"
+            },
+            {
+              "name": "Steak",
+              "price": "6.00"
+            },
+            {
+              "name": "Grilled shrimp",
+              "price": "6.00"
+            },
+            {
+              "name": "Grilled salmon",
+              "price": "7.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-23",
+          "name": "Chef Salad",
+          "group": "Salads",
+          "description": "Ham, turkey, cheese, egg, tomatoes, cucumber and onions.",
+          "inclusions": "",
+          "price": "12.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Gyro",
+              "price": "5.00"
+            },
+            {
+              "name": "Chicken",
+              "price": "5.00"
+            },
+            {
+              "name": "Steak",
+              "price": "6.00"
+            },
+            {
+              "name": "Grilled shrimp",
+              "price": "6.00"
+            },
+            {
+              "name": "Grilled salmon",
+              "price": "7.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-24",
+          "name": "Fresh Garden Salad",
+          "group": "Salads",
+          "description": "Lettuce, carrots, tomatoes, cucumber, onions and green peppers.",
+          "inclusions": "",
+          "price": "8.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Gyro",
+              "price": "5.00"
+            },
+            {
+              "name": "Chicken",
+              "price": "5.00"
+            },
+            {
+              "name": "Steak",
+              "price": "6.00"
+            },
+            {
+              "name": "Grilled shrimp",
+              "price": "6.00"
+            },
+            {
+              "name": "Grilled salmon",
+              "price": "7.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-25",
+          "name": "Southwest Salad",
+          "group": "Salads",
+          "description": "Lettuce, corn, pico de gallo, cheddar and tortilla chips.",
+          "inclusions": "",
+          "price": "9.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Gyro",
+              "price": "5.00"
+            },
+            {
+              "name": "Chicken",
+              "price": "5.00"
+            },
+            {
+              "name": "Steak",
+              "price": "6.00"
+            },
+            {
+              "name": "Grilled shrimp",
+              "price": "6.00"
+            },
+            {
+              "name": "Grilled salmon",
+              "price": "7.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-26",
+          "name": "Cobb Salad",
+          "group": "Salads",
+          "description": "Lettuce, tomatoes, blue cheese, bacon and egg.",
+          "inclusions": "",
+          "price": "10.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Gyro",
+              "price": "5.00"
+            },
+            {
+              "name": "Chicken",
+              "price": "5.00"
+            },
+            {
+              "name": "Steak",
+              "price": "6.00"
+            },
+            {
+              "name": "Grilled shrimp",
+              "price": "6.00"
+            },
+            {
+              "name": "Grilled salmon",
+              "price": "7.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "071825-lunch-dinner-pg1_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-27",
+          "name": "Plain Burger",
+          "group": "Oasis Burger Zone",
+          "description": "",
+          "inclusions": "Kaiser roll.",
+          "price": null,
+          "variants": [
+            {
+              "label": "4 oz",
+              "price": "5.25"
+            },
+            {
+              "label": "8 oz",
+              "price": "7.25"
+            }
+          ],
+          "add_ons": [
+            {
+              "name": "Turkey or Garden burger substitution",
+              "price": "1.00"
+            },
+            {
+              "name": "Fries",
+              "price": "3.00"
+            },
+            {
+              "name": "California burger cheese",
+              "price": "1.00"
+            },
+            {
+              "name": "Cowboy burger bacon",
+              "price": "2.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-28",
+          "name": "Cheeseburger",
+          "group": "Oasis Burger Zone",
+          "description": "",
+          "inclusions": "Kaiser roll.",
+          "price": null,
+          "variants": [
+            {
+              "label": "4 oz",
+              "price": "6.50"
+            },
+            {
+              "label": "8 oz",
+              "price": "8.95"
+            }
+          ],
+          "add_ons": [
+            {
+              "name": "Turkey or Garden burger substitution",
+              "price": "1.00"
+            },
+            {
+              "name": "Fries",
+              "price": "3.00"
+            },
+            {
+              "name": "California burger cheese",
+              "price": "1.00"
+            },
+            {
+              "name": "Cowboy burger bacon",
+              "price": "2.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-29",
+          "name": "Mushroom Swiss Burger",
+          "group": "Oasis Burger Zone",
+          "description": "",
+          "inclusions": "Kaiser roll.",
+          "price": null,
+          "variants": [
+            {
+              "label": "4 oz",
+              "price": "6.95"
+            },
+            {
+              "label": "8 oz",
+              "price": "8.95"
+            }
+          ],
+          "add_ons": [
+            {
+              "name": "Turkey or Garden burger substitution",
+              "price": "1.00"
+            },
+            {
+              "name": "Fries",
+              "price": "3.00"
+            },
+            {
+              "name": "California burger cheese",
+              "price": "1.00"
+            },
+            {
+              "name": "Cowboy burger bacon",
+              "price": "2.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-30",
+          "name": "California Burger",
+          "group": "Oasis Burger Zone",
+          "description": "Lettuce, tomato, onions and mayo.",
+          "inclusions": "Kaiser roll.",
+          "price": null,
+          "variants": [
+            {
+              "label": "4 oz",
+              "price": "6.95"
+            },
+            {
+              "label": "8 oz",
+              "price": "8.95"
+            }
+          ],
+          "add_ons": [
+            {
+              "name": "Turkey or Garden burger substitution",
+              "price": "1.00"
+            },
+            {
+              "name": "Fries",
+              "price": "3.00"
+            },
+            {
+              "name": "California burger cheese",
+              "price": "1.00"
+            },
+            {
+              "name": "Cowboy burger bacon",
+              "price": "2.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-31",
+          "name": "Swiss Burger Melt",
+          "group": "Oasis Burger Zone",
+          "description": "Onions, mushrooms and Swiss on grilled sourdough.",
+          "inclusions": "Kaiser roll.",
+          "price": null,
+          "variants": [
+            {
+              "label": "4 oz",
+              "price": "7.25"
+            },
+            {
+              "label": "8 oz",
+              "price": "9.75"
+            }
+          ],
+          "add_ons": [
+            {
+              "name": "Turkey or Garden burger substitution",
+              "price": "1.00"
+            },
+            {
+              "name": "Fries",
+              "price": "3.00"
+            },
+            {
+              "name": "California burger cheese",
+              "price": "1.00"
+            },
+            {
+              "name": "Cowboy burger bacon",
+              "price": "2.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-32",
+          "name": "Bacon Bleu Burger",
+          "group": "Oasis Burger Zone",
+          "description": "",
+          "inclusions": "Kaiser roll.",
+          "price": null,
+          "variants": [
+            {
+              "label": "4 oz",
+              "price": "7.25"
+            },
+            {
+              "label": "8 oz",
+              "price": "9.75"
+            }
+          ],
+          "add_ons": [
+            {
+              "name": "Turkey or Garden burger substitution",
+              "price": "1.00"
+            },
+            {
+              "name": "Fries",
+              "price": "3.00"
+            },
+            {
+              "name": "California burger cheese",
+              "price": "1.00"
+            },
+            {
+              "name": "Cowboy burger bacon",
+              "price": "2.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-33",
+          "name": "Oasis Burger",
+          "group": "Oasis Burger Zone",
+          "description": "Provolone, bacon, tomato, onions, pickles and mayo.",
+          "inclusions": "Kaiser roll.",
+          "price": null,
+          "variants": [
+            {
+              "label": "4 oz",
+              "price": "7.50"
+            },
+            {
+              "label": "8 oz",
+              "price": "9.75"
+            }
+          ],
+          "add_ons": [
+            {
+              "name": "Turkey or Garden burger substitution",
+              "price": "1.00"
+            },
+            {
+              "name": "Fries",
+              "price": "3.00"
+            },
+            {
+              "name": "California burger cheese",
+              "price": "1.00"
+            },
+            {
+              "name": "Cowboy burger bacon",
+              "price": "2.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-34",
+          "name": "Philly Burger",
+          "group": "Oasis Burger Zone",
+          "description": "Cheddar, fried onions and chili sauce.",
+          "inclusions": "Kaiser roll.",
+          "price": null,
+          "variants": [
+            {
+              "label": "4 oz",
+              "price": "6.95"
+            },
+            {
+              "label": "8 oz",
+              "price": "9.75"
+            }
+          ],
+          "add_ons": [
+            {
+              "name": "Turkey or Garden burger substitution",
+              "price": "1.00"
+            },
+            {
+              "name": "Fries",
+              "price": "3.00"
+            },
+            {
+              "name": "California burger cheese",
+              "price": "1.00"
+            },
+            {
+              "name": "Cowboy burger bacon",
+              "price": "2.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-35",
+          "name": "Cowboy Burger",
+          "group": "Oasis Burger Zone",
+          "description": "American cheese, BBQ sauce and onion rings.",
+          "inclusions": "Kaiser roll.",
+          "price": null,
+          "variants": [
+            {
+              "label": "4 oz",
+              "price": "7.25"
+            },
+            {
+              "label": "8 oz",
+              "price": "9.50"
+            }
+          ],
+          "add_ons": [
+            {
+              "name": "Turkey or Garden burger substitution",
+              "price": "1.00"
+            },
+            {
+              "name": "Fries",
+              "price": "3.00"
+            },
+            {
+              "name": "California burger cheese",
+              "price": "1.00"
+            },
+            {
+              "name": "Cowboy burger bacon",
+              "price": "2.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-36",
+          "name": "George’s Steak Sandwich",
+          "group": "Steaks & Hoagies",
+          "description": "",
+          "inclusions": "",
+          "price": "8.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Cheese (George’s Steak)",
+              "price": "1.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-37",
+          "name": "Deluxe Cheese Steak",
+          "group": "Steaks & Hoagies",
+          "description": "Mushrooms, onions, cheddar and steak sauce.",
+          "inclusions": "",
+          "price": "9.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Cheese (George’s Steak)",
+              "price": "1.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-38",
+          "name": "South Philly Steak",
+          "group": "Steaks & Hoagies",
+          "description": "French bread, onions and cheddar; chili sauce on the side.",
+          "inclusions": "",
+          "price": "9.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Cheese (George’s Steak)",
+              "price": "1.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-39",
+          "name": "Mushroom Swiss Steak",
+          "group": "Steaks & Hoagies",
+          "description": "Swiss, mushrooms, onions and pickles.",
+          "inclusions": "",
+          "price": "9.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Cheese (George’s Steak)",
+              "price": "1.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-40",
+          "name": "Steak Hoagie",
+          "group": "Steaks & Hoagies",
+          "description": "Cheese, steak sauce, lettuce, tomatoes and pickles.",
+          "inclusions": "",
+          "price": "10.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Cheese (George’s Steak)",
+              "price": "1.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-41",
+          "name": "Tuna Hoagie",
+          "group": "Steaks & Hoagies",
+          "description": "",
+          "inclusions": "",
+          "price": "9.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Cheese (George’s Steak)",
+              "price": "1.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-42",
+          "name": "Veggie Hoagie",
+          "group": "Steaks & Hoagies",
+          "description": "Lettuce, tomatoes, onions, cucumbers, green peppers, cheese and Italian dressing.",
+          "inclusions": "",
+          "price": "9.25",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Cheese (George’s Steak)",
+              "price": "1.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-43",
+          "name": "Mediterranean Hoagie",
+          "group": "Steaks & Hoagies",
+          "description": "Hot on grinder or French bread; ham, Genoa salami, capicola, provolone, lettuce, tomato, onion and Italian dressing.",
+          "inclusions": "",
+          "price": "10.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Cheese (George’s Steak)",
+              "price": "1.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-44",
+          "name": "Tortilla Chicken Wrap",
+          "group": "Wraps",
+          "description": "Chicken, lettuce, tomatoes, onions, bacon and ranch.",
+          "inclusions": "",
+          "price": "9.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Fries",
+              "price": "3.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-45",
+          "name": "Buffalo Chicken Wrap",
+          "group": "Wraps",
+          "description": "Chicken, buffalo sauce, lettuce, tomatoes and blue cheese.",
+          "inclusions": "",
+          "price": "9.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Fries",
+              "price": "3.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-46",
+          "name": "Grilled Chicken Caesar Wrap",
+          "group": "Wraps",
+          "description": "Chicken, lettuce, parmesan and Caesar dressing.",
+          "inclusions": "",
+          "price": "9.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Fries",
+              "price": "3.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-47",
+          "name": "California Cheese Steak Wrap",
+          "group": "Wraps",
+          "description": "Steak, American cheese, onions, lettuce, tomatoes and mayo.",
+          "inclusions": "",
+          "price": "9.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Fries",
+              "price": "3.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-48",
+          "name": "Grilled Vegetable Wrap",
+          "group": "Wraps",
+          "description": "Mushrooms, tomatoes, cucumber, green peppers and cheese; Italian dressing.",
+          "inclusions": "",
+          "price": "8.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Fries",
+              "price": "3.00"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-49",
+          "name": "Hot Dog on a Roll",
+          "group": "From the Grill",
+          "description": "",
+          "inclusions": "",
+          "price": "3.00",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Tomato or mushrooms",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-50",
+          "name": "Hot Dog with Cheese",
+          "group": "From the Grill",
+          "description": "",
+          "inclusions": "",
+          "price": "3.75",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Tomato or mushrooms",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-51",
+          "name": "Hot Dog with Sauerkraut or Chili",
+          "group": "From the Grill",
+          "description": "",
+          "inclusions": "",
+          "price": "4.25",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Tomato or mushrooms",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-52",
+          "name": "Grilled Cheese",
+          "group": "From the Grill",
+          "description": "",
+          "inclusions": "",
+          "price": "5.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Tomato or mushrooms",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-53",
+          "name": "Grilled Cheese with Ham or Bacon",
+          "group": "From the Grill",
+          "description": "",
+          "inclusions": "",
+          "price": "7.95",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Tomato or mushrooms",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-54",
+          "name": "French Fries",
+          "group": "Side Orders",
+          "description": "",
+          "inclusions": "",
+          "price": "3.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-55",
+          "name": "Sweet Potato Fries",
+          "group": "Side Orders",
+          "description": "",
+          "inclusions": "",
+          "price": "4.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-56",
+          "name": "Curly Fries",
+          "group": "Side Orders",
+          "description": "",
+          "inclusions": "",
+          "price": "4.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-57",
+          "name": "Pierogies",
+          "group": "Side Orders",
+          "description": "",
+          "inclusions": "",
+          "price": null,
+          "variants": [
+            {
+              "label": "2 pieces",
+              "price": "3.50"
+            },
+            {
+              "label": "4 pieces",
+              "price": "5.95"
+            }
+          ],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-58",
+          "name": "Onion Rings",
+          "group": "Side Orders",
+          "description": "",
+          "inclusions": "",
+          "price": "4.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-59",
+          "name": "Applesauce or Vegetable",
+          "group": "Side Orders",
+          "description": "",
+          "inclusions": "",
+          "price": "3.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-60",
+          "name": "Mashed Potatoes",
+          "group": "Side Orders",
+          "description": "",
+          "inclusions": "",
+          "price": "3.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-61",
+          "name": "Baked Potato",
+          "group": "Side Orders",
+          "description": "Sour cream.",
+          "inclusions": "",
+          "price": "3.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-62",
+          "name": "Side Salad",
+          "group": "Side Orders",
+          "description": "",
+          "inclusions": "",
+          "price": "4.75",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "2024-lunch-dinner-pg2-2025_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-63",
+          "name": "Breaded Fish Filet",
+          "group": "Hot Sandwiches",
+          "description": "Lettuce, tomato and mayonnaise.",
+          "inclusions": "",
+          "price": "8.25",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-64",
+          "name": "Pork Roll",
+          "group": "Hot Sandwiches",
+          "description": "",
+          "inclusions": "",
+          "price": "7.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-65",
+          "name": "Pork Roll with Cheese",
+          "group": "Hot Sandwiches",
+          "description": "",
+          "inclusions": "",
+          "price": "8.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-66",
+          "name": "Gyro (Greek Specialty)",
+          "group": "Hot Sandwiches",
+          "description": "",
+          "inclusions": "",
+          "price": "8.25",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-67",
+          "name": "Pulled Pork BBQ",
+          "group": "Hot Sandwiches",
+          "description": "House BBQ sauce, slaw and pickles.",
+          "inclusions": "",
+          "price": "9.25",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-68",
+          "name": "Sausage",
+          "group": "Hot Sandwiches",
+          "description": "Onions, peppers and marinara on a sub roll.",
+          "inclusions": "",
+          "price": "7.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-69",
+          "name": "The New Yorker",
+          "group": "Hot Sandwiches",
+          "description": "Corned beef, pastrami, Swiss and deli mustard on rye.",
+          "inclusions": "",
+          "price": "9.75",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-70",
+          "name": "Cuban",
+          "group": "Hot Sandwiches",
+          "description": "Pork BBQ, ham, pickles, Swiss and deli mustard on a sub roll.",
+          "inclusions": "",
+          "price": "9.25",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-71",
+          "name": "Hot Turkey",
+          "group": "Open-Face Hot Sandwiches",
+          "description": "",
+          "inclusions": "French fries or mashed potatoes and gravy. Source says no substitutions.",
+          "price": "10.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-72",
+          "name": "Hot Roast Beef",
+          "group": "Open-Face Hot Sandwiches",
+          "description": "",
+          "inclusions": "French fries or mashed potatoes and gravy. Source says no substitutions.",
+          "price": "10.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-73",
+          "name": "Hot Meatloaf",
+          "group": "Open-Face Hot Sandwiches",
+          "description": "",
+          "inclusions": "French fries or mashed potatoes and gravy. Source says no substitutions.",
+          "price": "10.25",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-74",
+          "name": "Chicken Parmesan Sandwich",
+          "group": "Chicken Sandwiches",
+          "description": "Breaded chicken, provolone and tomato sauce.",
+          "inclusions": "",
+          "price": "9.25",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-75",
+          "name": "Cajun Chicken Sandwich",
+          "group": "Chicken Sandwiches",
+          "description": "Cajun-seasoned grilled chicken, lettuce and tomato.",
+          "inclusions": "",
+          "price": "8.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-76",
+          "name": "Barbeque Chicken Sandwich",
+          "group": "Chicken Sandwiches",
+          "description": "Grilled chicken, house BBQ sauce, lettuce and tomato.",
+          "inclusions": "",
+          "price": "8.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-77",
+          "name": "Char-Grilled Lemon Chicken",
+          "group": "Chicken Sandwiches",
+          "description": "Lemon, oregano, lettuce and tomato.",
+          "inclusions": "",
+          "price": "8.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-78",
+          "name": "Chicken Souvlaki",
+          "group": "Chicken Sandwiches",
+          "description": "Chicken on pita, lettuce, tomato, onions; tzatziki or ranch.",
+          "inclusions": "",
+          "price": "8.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-79",
+          "name": "Chicken Fajitas",
+          "group": "Chicken Sandwiches",
+          "description": "Chicken, onions and green peppers on pita.",
+          "inclusions": "",
+          "price": "8.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "lunch-and-dinner-80",
+          "name": "Chicken Cheese Steak",
+          "group": "Chicken Sandwiches",
+          "description": "Chicken, onions, peppers and marinara on a sub roll.",
+          "inclusions": "",
+          "price": "9.25",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "children",
+      "name": "Children’s Menu",
+      "intro": "Explore the children’s selections on the current ordering menu.",
+      "photo": null,
+      "items": [
+        {
+          "id": "children-1",
+          "name": "Hot Dog",
+          "group": "Children’s Menu",
+          "description": "",
+          "inclusions": "Source: age 12 and under; fries or mashed potatoes and child-size beverage; no substitutions. Eligibility requires current owner review.",
+          "price": "4.75",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "children-2",
+          "name": "Hamburger or Cheeseburger",
+          "group": "Children’s Menu",
+          "description": "",
+          "inclusions": "Source: age 12 and under; fries or mashed potatoes and child-size beverage; no substitutions. Eligibility requires current owner review.",
+          "price": "5.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "children-3",
+          "name": "Chicken Fingers",
+          "group": "Children’s Menu",
+          "description": "",
+          "inclusions": "Source: age 12 and under; fries or mashed potatoes and child-size beverage; no substitutions. Eligibility requires current owner review.",
+          "price": "6.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "children-4",
+          "name": "Grilled Chicken Breast",
+          "group": "Children’s Menu",
+          "description": "",
+          "inclusions": "Source: age 12 and under; fries or mashed potatoes and child-size beverage; no substitutions. Eligibility requires current owner review.",
+          "price": "6.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "children-5",
+          "name": "Grilled Cheese",
+          "group": "Children’s Menu",
+          "description": "",
+          "inclusions": "Source: age 12 and under; fries or mashed potatoes and child-size beverage; no substitutions. Eligibility requires current owner review.",
+          "price": "4.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "children-6",
+          "name": "Fish Sandwich",
+          "group": "Children’s Menu",
+          "description": "",
+          "inclusions": "Source: age 12 and under; fries or mashed potatoes and child-size beverage; no substitutions. Eligibility requires current owner review.",
+          "price": "6.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "children-7",
+          "name": "Spaghetti with Marinara",
+          "group": "Children’s Pasta",
+          "description": "",
+          "inclusions": "Child-size beverage. Source: age 12 and under; review eligibility.",
+          "price": "5.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "children-8",
+          "name": "Spaghetti and Meatballs",
+          "group": "Children’s Pasta",
+          "description": "",
+          "inclusions": "Child-size beverage. Source: age 12 and under; review eligibility.",
+          "price": "6.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58737-page4-of-menu-proof5_orig.png",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "seniors",
+      "name": "Senior Selections",
+      "intro": "Ask about senior selections and applicable eligibility when ordering.",
+      "photo": null,
+      "items": []
+    },
+    {
+      "id": "ice-cream-and-desserts",
+      "name": "Ice Cream & Desserts",
+      "intro": "Cones, sundaes, shakes and a sweet finish to your meal.",
+      "photo": "georges_oasis_ice_cream.webp",
+      "items": [
+        {
+          "id": "ice-cream-and-desserts-1",
+          "name": "Chocolate Sundae",
+          "group": "Parlor Sundaes",
+          "description": "",
+          "inclusions": "",
+          "price": "5.75",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Other sundae topping (each)",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-2",
+          "name": "Strawberry Sundae",
+          "group": "Parlor Sundaes",
+          "description": "",
+          "inclusions": "",
+          "price": "5.75",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Other sundae topping (each)",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-3",
+          "name": "Cherry Sundae",
+          "group": "Parlor Sundaes",
+          "description": "",
+          "inclusions": "",
+          "price": "5.75",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Other sundae topping (each)",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-4",
+          "name": "Pineapple Sundae",
+          "group": "Parlor Sundaes",
+          "description": "",
+          "inclusions": "",
+          "price": "5.75",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Other sundae topping (each)",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-5",
+          "name": "Dusty Road Sundae",
+          "group": "Parlor Sundaes",
+          "description": "",
+          "inclusions": "",
+          "price": "5.75",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Other sundae topping (each)",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-6",
+          "name": "Caramel Sundae",
+          "group": "Parlor Sundaes",
+          "description": "",
+          "inclusions": "",
+          "price": "5.75",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Other sundae topping (each)",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-7",
+          "name": "Hot Fudge Sundae",
+          "group": "Parlor Sundaes",
+          "description": "",
+          "inclusions": "",
+          "price": "5.75",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Other sundae topping (each)",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-8",
+          "name": "Chocolate Peanut Sundae",
+          "group": "Parlor Sundaes",
+          "description": "",
+          "inclusions": "",
+          "price": "5.75",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Other sundae topping (each)",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-9",
+          "name": "Peanut Butter Sundae",
+          "group": "Parlor Sundaes",
+          "description": "",
+          "inclusions": "",
+          "price": "5.75",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Other sundae topping (each)",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-10",
+          "name": "Cookie Dough Sundae",
+          "group": "Parlor Sundaes",
+          "description": "",
+          "inclusions": "",
+          "price": "5.75",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Other sundae topping (each)",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-11",
+          "name": "Wet Walnut Sundae",
+          "group": "Parlor Sundaes",
+          "description": "",
+          "inclusions": "",
+          "price": "6.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Other sundae topping (each)",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-12",
+          "name": "Toddler Sundae",
+          "group": "Parlor Sundaes",
+          "description": "",
+          "inclusions": "",
+          "price": "4.75",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Other sundae topping (each)",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-13",
+          "name": "Mint Chocolate Chip Sundae",
+          "group": "Parlor Sundaes",
+          "description": "Hot fudge and marshmallow.",
+          "inclusions": "",
+          "price": "6.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Other sundae topping (each)",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-14",
+          "name": "CMP Sundae",
+          "group": "Parlor Sundaes",
+          "description": "Chocolate, marshmallow and peanuts.",
+          "inclusions": "",
+          "price": "6.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Other sundae topping (each)",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-15",
+          "name": "Oreo Cookie Sundae",
+          "group": "Parlor Sundaes",
+          "description": "",
+          "inclusions": "",
+          "price": "6.25",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Other sundae topping (each)",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-16",
+          "name": "Hot Apple Cobbler",
+          "group": "Parlor Sundaes",
+          "description": "",
+          "inclusions": "",
+          "price": "7.50",
+          "variants": [],
+          "add_ons": [
+            {
+              "name": "Other sundae topping (each)",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-17",
+          "name": "Brownie Sundae",
+          "group": "Oasis Delights",
+          "description": "",
+          "inclusions": "",
+          "price": "7.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-18",
+          "name": "Strawberries and Cream",
+          "group": "Oasis Delights",
+          "description": "Strawberry and vanilla ice cream, strawberry glaze, marshmallow, whipped cream and cherry.",
+          "inclusions": "",
+          "price": "7.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-19",
+          "name": "Banana Split",
+          "group": "Oasis Delights",
+          "description": "",
+          "inclusions": "",
+          "price": "7.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-20",
+          "name": "Chocolate Funky Monkey",
+          "group": "Oasis Delights",
+          "description": "Chocolate ice cream, bananas, peanut butter, chocolate, whipped cream and cherry.",
+          "inclusions": "",
+          "price": "7.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-21",
+          "name": "Ultimate Peanut Butter Cup",
+          "group": "Triple Scoop Super Sundaes",
+          "description": "Vanilla peanut-butter ice cream, peanut butter, chocolate, whipped cream and peanut-butter drizzle.",
+          "inclusions": "Whipped cream and cherry.",
+          "price": "7.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-22",
+          "name": "Oasis Super Sundae",
+          "group": "Triple Scoop Super Sundaes",
+          "description": "Mint chocolate chip, vanilla peanut butter, cookies-and-cream ice cream, hot fudge, sprinkles, marshmallow and Oreos.",
+          "inclusions": "Whipped cream and cherry.",
+          "price": "8.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-23",
+          "name": "Chocolate Obsession",
+          "group": "Triple Scoop Super Sundaes",
+          "description": "Chocolate-fudge-brownie ice cream, brownies, caramel, hot fudge, cookies, whipped cream and cherry.",
+          "inclusions": "Whipped cream and cherry.",
+          "price": "7.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-24",
+          "name": "Oreo Mocha Mudslide",
+          "group": "Triple Scoop Super Sundaes",
+          "description": "Coffee ice cream, crushed Oreos, hot fudge, marshmallow and chocolate drizzle.",
+          "inclusions": "Whipped cream and cherry.",
+          "price": "7.50",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-25",
+          "name": "Shake",
+          "group": "Fountain Favorites",
+          "description": "",
+          "inclusions": "",
+          "price": null,
+          "variants": [
+            {
+              "label": "Regular",
+              "price": "4.95"
+            },
+            {
+              "label": "Thick",
+              "price": "5.50"
+            },
+            {
+              "label": "Takeout small",
+              "price": "5.50"
+            },
+            {
+              "label": "Takeout large",
+              "price": "6.95"
+            }
+          ],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-26",
+          "name": "Float",
+          "group": "Fountain Favorites",
+          "description": "",
+          "inclusions": "",
+          "price": null,
+          "variants": [
+            {
+              "label": "Regular",
+              "price": "5.50"
+            },
+            {
+              "label": "Thick",
+              "price": "5.75"
+            },
+            {
+              "label": "Takeout small",
+              "price": "5.50"
+            },
+            {
+              "label": "Takeout large",
+              "price": "6.95"
+            }
+          ],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-27",
+          "name": "Malt",
+          "group": "Fountain Favorites",
+          "description": "",
+          "inclusions": "",
+          "price": null,
+          "variants": [
+            {
+              "label": "Regular",
+              "price": "5.50"
+            },
+            {
+              "label": "Thick",
+              "price": "5.95"
+            },
+            {
+              "label": "Takeout small",
+              "price": "5.75"
+            },
+            {
+              "label": "Takeout large",
+              "price": "5.75"
+            }
+          ],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-28",
+          "name": "Soda",
+          "group": "Fountain Favorites",
+          "description": "",
+          "inclusions": "",
+          "price": null,
+          "variants": [
+            {
+              "label": "Regular",
+              "price": "2.95"
+            },
+            {
+              "label": "Takeout small",
+              "price": "2.25"
+            },
+            {
+              "label": "Takeout large",
+              "price": "3.25"
+            }
+          ],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-29",
+          "name": "Hard Ice Cream",
+          "group": "Ice Cream Servings",
+          "description": "",
+          "inclusions": "",
+          "price": null,
+          "variants": [
+            {
+              "label": "Toddler",
+              "price": "3.95"
+            },
+            {
+              "label": "Small",
+              "price": "4.50"
+            },
+            {
+              "label": "Large",
+              "price": "5.95"
+            }
+          ],
+          "add_ons": [
+            {
+              "name": "Rainbow or chocolate sprinkles",
+              "price": "0.75"
+            },
+            {
+              "name": "Nuts, Oreo, cookie dough, M&Ms or wet walnuts",
+              "price": "0.90"
+            },
+            {
+              "name": "Whipped cream",
+              "price": "0.50"
+            },
+            {
+              "name": "Other toppings",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "ice-cream-and-desserts-30",
+          "name": "Soft Ice Cream",
+          "group": "Ice Cream Servings",
+          "description": "",
+          "inclusions": "",
+          "price": null,
+          "variants": [
+            {
+              "label": "Toddler",
+              "price": "4.25"
+            },
+            {
+              "label": "Small",
+              "price": "4.70"
+            },
+            {
+              "label": "Large",
+              "price": "6.50"
+            }
+          ],
+          "add_ons": [
+            {
+              "name": "Rainbow or chocolate sprinkles",
+              "price": "0.75"
+            },
+            {
+              "name": "Nuts, Oreo, cookie dough, M&Ms or wet walnuts",
+              "price": "0.90"
+            },
+            {
+              "name": "Whipped cream",
+              "price": "0.50"
+            },
+            {
+              "name": "Other toppings",
+              "price": "0.75"
+            }
+          ],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "bakery-and-custom-pies",
+      "name": "Bakery & Greek Desserts",
+      "intro": "Ask about pies, baked goods and Greek dessert selections for your visit.",
+      "photo": null,
+      "items": [
+        {
+          "id": "bakery-and-custom-pies-1",
+          "name": "Pie Slice",
+          "group": "Fresh Pies",
+          "description": "",
+          "inclusions": "",
+          "price": "3.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        },
+        {
+          "id": "bakery-and-custom-pies-2",
+          "name": "Pie à la Mode",
+          "group": "Fresh Pies",
+          "description": "",
+          "inclusions": "",
+          "price": "6.95",
+          "variants": [],
+          "add_ons": [],
+          "metadata": {
+            "status": "draft",
+            "source": "58884b-dessertmenu-proof3_orig.jpg",
+            "reviewed_at": "2026-10-07",
+            "transcription": "Visual transcription; owner/current-price review still required",
+            "valid_from": null,
+            "valid_until": null
+          }
+        }
+      ]
+    }
+  ],
+  "golf": {
+    "metadata": {
+      "status": "draft",
+      "source": "October 7 Astra specification / public website observation",
+      "reviewed_at": "2026-10-07",
+      "valid_from": null,
+      "valid_until": null,
+      "notes": "Confirm the OR wording and whether height or age controls eligibility."
+    },
+    "adult_price": "8.00",
+    "child_price": "6.00",
+    "child_definition": "58 inches and under or under 12 years old",
+    "last_start_minutes": 45,
+    "source_note": "Observed rates, not approved current prices."
+  },
+  "story": {
+    "metadata": {
+      "status": "draft",
+      "source": "October 7 Astra specification / public website observation",
+      "reviewed_at": "2026-10-07",
+      "valid_from": null,
+      "valid_until": null,
+      "notes": "Confirm names, current roles, dates and public wording with the owner."
+    },
+    "paragraphs": [
+      "George’s Oasis takes its name from George Sitaras. The public website describes a family tradition continued by the children and later generations of George and Harriet Sitaras.",
+      "John, Debbie, and Kelly are part of the family story described on the restaurant’s existing website. The family’s connection to food and time together is central to the Oasis tradition."
+    ]
+  },
+  "offers": [
+    {
+      "id": "tuesday-apps",
+      "title": "Tuesday appetizers",
+      "metadata": {
+        "status": "draft",
+        "source": "October 7 Astra specification / public website observation",
+        "reviewed_at": "2026-10-07",
+        "valid_from": null,
+        "valid_until": null
+      },
+      "weekday": 1,
+      "start_time": null,
+      "end_time": null,
+      "price": null,
+      "terms": "Summer-only eligibility and time require review.",
+      "cta": "visit"
+    },
+    {
+      "id": "burger-night",
+      "title": "Wednesday Burger Night",
+      "metadata": {
+        "status": "draft",
+        "source": "October 7 Astra specification / public website observation",
+        "reviewed_at": "2026-10-07",
+        "valid_from": null,
+        "valid_until": null
+      },
+      "weekday": 2,
+      "start_time": null,
+      "end_time": null,
+      "price": null,
+      "terms": "Conflicting source prices: $10 and $11–$13. Confirm inclusions and eligibility.",
+      "cta": "visit"
+    },
+    {
+      "id": "thursday-apps",
+      "title": "Thursday appetizers",
+      "metadata": {
+        "status": "draft",
+        "source": "October 7 Astra specification / public website observation",
+        "reviewed_at": "2026-10-07",
+        "valid_from": null,
+        "valid_until": null
+      },
+      "weekday": 3,
+      "start_time": null,
+      "end_time": null,
+      "price": null,
+      "terms": "Confirm discount, eligible items and dine-in restrictions.",
+      "cta": "visit"
+    },
+    {
+      "id": "friday-crab",
+      "title": "Friday crab offering",
+      "metadata": {
+        "status": "draft",
+        "source": "October 7 Astra specification / public website observation",
+        "reviewed_at": "2026-10-07",
+        "valid_from": null,
+        "valid_until": null
+      },
+      "weekday": 4,
+      "start_time": null,
+      "end_time": null,
+      "price": null,
+      "terms": "Confirm the exact $15 offering; do not combine crab cakes and crab mac and cheese.",
+      "cta": "visit"
+    },
+    {
+      "id": "brunch",
+      "title": "Breakfast / brunch specials",
+      "metadata": {
+        "status": "draft",
+        "source": "October 7 Astra specification / public website observation",
+        "reviewed_at": "2026-10-07",
+        "valid_from": null,
+        "valid_until": null
+      },
+      "weekday": null,
+      "start_time": null,
+      "end_time": null,
+      "price": null,
+      "terms": "Confirm current dishes, prices and schedule.",
+      "cta": "visit"
+    }
+  ],
+  "media": [
+    {
+      "file": "signature_food.webp",
+      "subject": "Restaurant food",
+      "caption": "A meal at the Oasis.",
+      "group": "Food",
+      "metadata": {
+        "status": "existing_design",
+        "source": "Existing homepage asset selected by user",
+        "reviewed_at": "2026-10-07",
+        "rights": "Owner review required before launch"
+      }
+    },
+    {
+      "file": "georges_burger.jpg",
+      "subject": "Burger and fries",
+      "caption": "Burger and fries.",
+      "group": "Food",
+      "metadata": {
+        "status": "existing_design",
+        "source": "Existing homepage asset selected by user",
+        "reviewed_at": "2026-10-07",
+        "rights": "Owner review required before launch"
+      }
+    },
+    {
+      "file": "georges_oasis_ice_cream.webp",
+      "subject": "Ice cream sundae",
+      "caption": "Something sweet to finish.",
+      "group": "Ice Cream",
+      "metadata": {
+        "status": "existing_design",
+        "source": "Existing homepage asset selected by user",
+        "reviewed_at": "2026-10-07",
+        "rights": "Owner review required before launch"
+      }
+    },
+    {
+      "file": "mini_golf_card.webp",
+      "subject": "Mini golf water feature",
+      "caption": "A closer look at the course.",
+      "group": "Mini Golf",
+      "metadata": {
+        "status": "existing_design",
+        "source": "Existing homepage asset selected by user",
+        "reviewed_at": "2026-10-07",
+        "rights": "Owner review required before launch"
+      }
+    },
+    {
+      "file": "mini_golf.webp",
+      "subject": "Mini golf course",
+      "caption": "Outdoor mini golf at the Oasis.",
+      "group": "Mini Golf",
+      "metadata": {
+        "status": "existing_design",
+        "source": "Existing homepage asset selected by user",
+        "reviewed_at": "2026-10-07",
+        "rights": "Owner review required before launch"
+      }
+    },
+    {
+      "file": "families_and_events.png",
+      "subject": "Dining and gathering spaces",
+      "caption": "Dining and gathering spaces.",
+      "group": "Gatherings",
+      "metadata": {
+        "status": "existing_design",
+        "source": "Existing homepage asset selected by user",
+        "reviewed_at": "2026-10-07",
+        "rights": "Owner review required before launch"
+      }
+    },
+    {
+      "file": "main_exterior_oasis.jpg",
+      "subject": "Restaurant exterior",
+      "caption": "Look for George’s Oasis on Schoenersville Road.",
+      "group": "The Oasis",
+      "metadata": {
+        "status": "existing_design",
+        "source": "Existing homepage asset selected by user",
+        "reviewed_at": "2026-10-07",
+        "rights": "Owner review required before launch"
+      }
+    },
+    {
+      "file": "georges_history.jpeg",
+      "subject": "Historic family photograph",
+      "caption": "A photograph from the Oasis collection.",
+      "group": "The Oasis",
+      "metadata": {
+        "status": "existing_design",
+        "source": "Existing homepage asset selected by user",
+        "reviewed_at": "2026-10-07",
+        "rights": "Owner review required before launch"
+      }
+    }
+  ],
+  "pie_campaign": {
+    "metadata": {
+      "status": "draft",
+      "source": "October 7 Astra specification / public website observation",
+      "reviewed_at": "2026-10-07",
+      "valid_from": null,
+      "valid_until": null
+    },
+    "state": "draft",
+    "year": 2025,
+    "note": "Expired 2025 campaign remains archived. No new campaign authorized."
+  },
+  "dessert_flavors": {
+    "metadata": {
+      "status": "draft",
+      "source": "58884b-dessertmenu-proof3_orig.jpg",
+      "reviewed_at": "2026-10-07"
+    },
+    "hard_ice_cream": [
+      "Vanilla",
+      "Chocolate",
+      "Strawberry",
+      "Butter Pecan",
+      "Cookies & Cream",
+      "Black Raspberry",
+      "Moose Trail",
+      "Mint Chocolate Chip",
+      "Coffee",
+      "Orange Creamsicle",
+      "Vanilla Peanut Butter",
+      "Chocolate Fudge Brownie",
+      "Cappuccino Chunk"
+    ],
+    "other_source_options": [
+      "Peach Yogurt",
+      "Chocolate Peanut Butter Lowfat Yogurt"
+    ],
+    "notes": "Source also mentions no-sugar-added ice cream and lowfat yogurt; exact current selections require owner review."
+  },
+  "consumer_advisory": {
+    "metadata": {
+      "status": "draft",
+      "source": "Breakfast page 2 and lunch/dinner page 4",
+      "reviewed_at": "2026-10-07"
+    },
+    "text": "Consuming raw or undercooked meats, poultry, seafood, shellfish, or eggs may increase your risk of foodborne illness."
+  },
+  "source_gaps": [
+    "The inventory document and seventh menu image were not supplied.",
+    "Six source images visually transcribed; prices and eligibility remain drafts.",
+    "Malt takeout small and large both show 5.75; verify source printing.",
+    "Omelet meat/topping rules need review.",
+    "No senior menu image or complete dinner-plate source recovered."
+  ]
+}

@@ -283,3 +283,12 @@ a, button, summary { -webkit-tap-highlight-color: transparent; }
   .footer-sitemap li a { min-height:40px; display:inline-flex; align-items:center; font-size:13px; }
   .footer-bottom-links a { min-height:44px; display:inline-flex; align-items:center; }
 }
+/* Secondary destinations stay findable without crowding the main masthead. */
+.nav-more { position:relative; }
+.nav-more > summary { cursor:pointer; list-style:none; gap:7px; }
+.nav-more > summary::-webkit-details-marker { display:none; }
+.nav-more-panel { position:absolute; top:calc(100% + 12px); right:0; width:180px; padding:9px; border:1px solid #c9d5bd; border-radius:7px; background:#fffaf0; box-shadow:0 10px 30px #073b2e22; }
+.nav-more-panel a { display:block; padding:12px; font-size:14px; border-radius:4px; }
+.nav-more-panel a:hover,.nav-more-panel a[aria-current] { background:#e9edda; }
+@media(min-width:1200px) { .site-navigation { gap:13px; } .site-header .nav-link { font-size:12px; } }
+@media(max-width:1199px) { .mobile-menu-panel { max-height:calc(100dvh - var(--header-height) - 88px); } }

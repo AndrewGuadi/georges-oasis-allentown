@@ -4,7 +4,7 @@
     <div class="footer-intro">
       <div>
         <a class="site-brand" href="{{ url_for('public.home') }}" aria-label="George’s Oasis home">{{ palm() }}<span class="brand-type">George’s Oasis<span class="brand-tagline">GOOD FOOD. GREAT TIMES. FOR EVERYONE.</span></span></a>
-        <p>2355 Schoenersville Road · Allentown, PA 18109<br>Food, ice cream, mini golf, and time well spent.</p>
+        <p>{{ business.address }} · {{ business.city }}<br>Food, ice cream, mini golf, and time well spent.</p>
       </div>
       <a class="footer-social" href="{{ external_links.facebook }}" target="_blank" rel="noopener noreferrer">{{ icon('facebook') }} A little more Oasis on Facebook <span aria-hidden="true">↗</span></a>
     </div>
@@ -19,7 +19,7 @@
       <p>© {{ current_year }} George’s Oasis. Come as you are.</p>
       <div class="footer-bottom-links">
         {{ external_action('table_reservation', 'Reserve a Table', '') }}
-        {{ external_action('group_reservation', 'Group Reservation', '') }}
+        <a href="{{ url_for('public.gatherings',_anchor='event-inquiry') }}">Group Inquiry</a>
         {{ external_action('hiring', 'Join Our Team', '') }}
       </div>
     </div>

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>{{ url_for('public.home',_external=True) }}</loc></url>{% for page in pages %}<url><loc>{{ url_for('public.' ~ page.key,_external=True) }}</loc></url>{% endfor %}</urlset>

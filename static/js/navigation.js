@@ -32,3 +32,11 @@
   });
   desktop.addEventListener('change', () => menus.forEach(menu => closeMenu(menu)));
 })();
+// The compact desktop "More" menu follows the same keyboard and outside-click rules.
+(() => {
+  document.querySelectorAll('.nav-more').forEach(menu => {
+    document.addEventListener('click', event => { if (!menu.contains(event.target)) menu.open = false; });
+    document.addEventListener('focusin', event => { if (!menu.contains(event.target)) menu.open = false; });
+    menu.addEventListener('keydown', event => { if (event.key === 'Escape') { menu.open = false; menu.querySelector('summary').focus(); } });
+  });
+})();
