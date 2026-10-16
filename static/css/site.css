@@ -326,3 +326,17 @@ img { max-width:100%; }
 .dining-hours-note { font-size:14px; margin:12px 0; }
 .restaurant-schedule { max-width:900px; margin-bottom:36px; }
 @media(max-width:420px) { .dining-hours-table { font-size:12px; } .dining-hours-table th,.dining-hours-table td { padding:12px 4px; } }
+
+/* HP07: one recurring-offer treatment shared by the kitchen and Specials page. */
+.weekly-offer { padding:20px 0; border-bottom:1px solid #b9bea6; }
+.weekly-offer h3 { font:600 28px/1.2 'Cormorant Garamond',Georgia,serif; }
+.weekly-offer p { margin:8px 0; line-height:1.6; }
+.weekly-day,.weekly-price { font-weight:700; }
+.weekly-state { font-size:13px; color:#425740; }
+.footer-contact a { display:inline-block; padding:5px 0; overflow-wrap:anywhere; }
+.visit-address a { overflow-wrap:anywhere; max-width:100%; }
+.dining-hours-table { table-layout:fixed; }
+.dining-hours-table th,.dining-hours-table td { overflow-wrap:anywhere; }
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after { transition:none!important; scroll-behavior:auto!important; }
+}

@@ -1,3 +1,4 @@
+{% set golf_service = service_facts|selectattr('key', 'equalto', 'golf')|first %}
 <section id="golf" class="grid lg:grid-cols-2">
       <div class="min-h-[380px] lg:min-h-[560px]">
         <img width="615" height="1024" decoding="async" src="{{ url_for('static', filename='images/optimized/mini_golf.webp') }}"
@@ -13,21 +14,23 @@
             More <span class="italic text-oasis-gold">tee</span> time.
           </h2>
           <p class="mt-7 max-w-lg text-base leading-7 text-white/80">
-            Plan a little time outdoors with a round of mini golf. Check the course schedule before your visit, then make a day of food and time together.
+            Follow the course past greenery and water features, with a little friendly competition along the way. Come for a round on its own, or leave time for a meal or something sweet.
           </p>
 
           <div class="mt-7 grid gap-4 border-y border-white/15 py-5 sm:grid-cols-2">
             <div>
               <div class="text-xs font-bold uppercase tracking-[.18em] text-white/75">Outdoor mini golf</div>
-              <div class="mt-1 text-sm">{{ service_facts[1].label }}</div>
+              <div class="mt-1 text-sm">{{ golf_service.label }}</div>
             </div>
             <div>
-              <div class="text-xs font-bold uppercase tracking-[.18em] text-white/75">Make it a group outing</div>
-              <div class="mt-1 text-sm">{{ service_facts[1].note }}</div>
+              <div class="text-xs font-bold uppercase tracking-[.18em] text-white/75">Before you play</div>
+              <div class="mt-1 text-sm">{{ golf_service.note }}</div>
             </div>
           </div>
 
           <a href="{{ url_for('public.mini_golf') }}" class="btn btn-gold mt-7">Explore Mini Golf <span>→</span></a>
+        <a href="{{ url_for('public.visit', _anchor='mini-golf-hours') }}" class="text-link golf-schedule">Course schedule →</a>
+          {% if golf_service.state == 'unknown' %}<p><a class="text-link golf-schedule" href="{{ business.phone_uri }}">Call {{ business.phone }} for current course hours</a></p>{% endif %}
         </div>
       </div>
     </section>

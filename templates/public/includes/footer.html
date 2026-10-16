@@ -4,6 +4,7 @@
     <div class="footer-intro">
       <div>
         <a class="site-brand" href="{{ url_for('public.home') }}" aria-label="George’s Oasis home">{{ palm() }}<span class="brand-type">George’s Oasis<span class="brand-tagline">GOOD FOOD. GREAT TIMES. FOR EVERYONE.</span></span></a>
+        <p class="footer-contact"><a href="{{ business.phone_uri }}">{{ business.phone }}</a>{% if business.email %}<br><a href="mailto:{{ business.email }}">{{ business.email }}</a>{% endif %}</p>
         <p>{{ business.address }} · {{ business.city }}<br>Food, ice cream, mini golf, and time well spent.</p>
       </div>
       <a class="footer-social" href="{{ external_links.facebook }}" target="_blank" rel="noopener noreferrer">{{ icon('facebook') }} A little more Oasis on Facebook <span aria-hidden="true">↗</span></a>

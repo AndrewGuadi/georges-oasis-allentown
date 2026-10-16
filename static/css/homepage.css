@@ -8,7 +8,7 @@
 .hero-content { max-width:1000px; margin:auto; padding:74px 24px 0; }
 .hero .hero-eyebrow { display:inline-block; font-size:11px; font-weight:700; letter-spacing:.23em; margin:0 0 22px; padding:9px 15px; border:1px solid #fff7de66; border-radius:3px; background:#0b302947; }
 .hero h1 { font-family:'Kaushan Script',cursive; font-size:clamp(62px,6.4vw,94px); font-weight:400; line-height:1.2; letter-spacing:-2px; margin:0; text-shadow:0 3px 20px #031b1ac7; }
-.hero h2 { font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(30px,3vw,44px); font-weight:600; line-height:1.2; margin:12px 0 18px; text-shadow:0 2px 12px #031b1ac7; }
+.hero .hero-subtitle { font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(30px,3vw,44px); font-weight:600; line-height:1.2; margin:12px 0 18px; text-shadow:0 2px 12px #031b1ac7; }
 .hero .hero-description { font-size:18px; line-height:1.7; margin:0; text-shadow:0 1px 8px #031b1a; }
 .hero-actions { display:flex; justify-content:center; gap:14px; margin-top:30px; }
 .hero-actions .btn { min-width:180px; min-height:54px; font-size:15px; }
@@ -85,7 +85,7 @@
   .hero-content { padding:58px 20px 0; }
   .hero .hero-eyebrow { font-size:9px; letter-spacing:.12em; padding:8px 10px; margin-bottom:23px; }
   .hero h1 { font-size:clamp(41px,9.6vw,62px); letter-spacing:-1px; }
-  .hero h2 { font-size:30px; margin-top:15px; }
+  .hero .hero-subtitle { font-size:30px; margin-top:15px; }
   .hero .hero-description { font-size:15px; line-height:1.7; }
   .mobile-break { display:block; }
   .hero-actions { gap:10px; margin-top:25px; flex-wrap:wrap; }
@@ -123,3 +123,23 @@
   .experience-action { align-items:flex-start; }
   .hero-actions .btn { padding-inline:12px; }
 }
+
+/* HP03/HP14: let longer copy and enlarged text determine the hero height. */
+.homepage-design .hero { height:auto; min-height:665px; padding-bottom:40px; }
+.hero-location { position:static; transform:none; width:fit-content; max-width:calc(100% - 32px); margin:56px auto 24px; white-space:normal; }
+.hero .hero-subtitle { font-family:'Cormorant Garamond',Georgia,serif; }
+.history-caption { padding:12px 4px 4px; font-size:13px; line-height:1.6; color:#536454; }
+.golf-schedule { color:#f2d88b; display:inline-flex; margin:20px 16px 0 0; }
+.kitchen-specials { border-top:1px solid #b9bea6; margin-top:30px; padding-top:24px; }
+.kitchen-specials > h3 { font:600 30px/1.2 'Cormorant Garamond',Georgia,serif; }
+.homepage-design .kitchen-specials p { font-size:14px!important; line-height:1.6!important; margin-top:8px; }
+.kitchen-specials .special-days { font-weight:700; }
+.kitchen-specials > .text-link { margin-top:16px; }
+@media(max-width:760px) {
+  .homepage-design .hero { min-height:560px; }
+  .desktop-break { display:none; }
+}
+@media(max-width:380px) { .features { grid-template-columns:1fr; } .experience-photo img { aspect-ratio:4/3; } }
+/* Allow the visit grid to shrink when text is enlarged. */
+.homepage-design #visit > div > div { min-width:0; }
+.homepage-design .visit-address { overflow-wrap:anywhere; }

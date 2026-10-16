@@ -12,12 +12,14 @@
       "reviewed_at": "2026-10-07",
       "valid_from": null,
       "valid_until": null
-    }
+    },
+    "email": "gsitaras90@gmail.com",
+    "email_source": "Existing group_reservation mailto; October 16 homepage plan confirms public contact and inquiry recipient are the same."
   },
   "services": [
     {
       "key": "restaurant",
-      "name": "General",
+      "name": "Restaurant hours",
       "metadata": {
         "status": "approved",
         "source": "User-provided General and Dinner hours, October 14, 2026",
@@ -4518,11 +4520,12 @@
       "id": "tuesday-apps",
       "title": "Tuesday appetizers",
       "metadata": {
-        "status": "draft",
+        "status": "archived",
         "source": "October 7 Astra specification / public website observation",
-        "reviewed_at": "2026-10-07",
+        "reviewed_at": "2026-10-16",
         "valid_from": null,
-        "valid_until": null
+        "valid_until": null,
+        "notes": "October 16 homepage plan: Wednesday, Thursday and Friday only."
       },
       "weekday": 1,
       "start_time": null,
@@ -4751,5 +4754,10 @@
     "Malt takeout small and large both show 5.75; verify source printing.",
     "Omelet meat/topping rules need review.",
     "No senior menu image or complete dinner-plate source recovered."
+  ],
+  "weekly_special_days": [
+    2,
+    3,
+    4
   ]
 }

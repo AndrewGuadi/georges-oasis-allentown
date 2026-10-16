@@ -1,0 +1,8 @@
+<article class="weekly-offer">
+  <p class="weekly-day">{{ ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'][offer.weekday] }}</p>
+  <h3>{{ offer.title }}</h3>
+  {% if offer.formatted_price %}<p class="weekly-price">{{ offer.formatted_price }}</p>{% endif %}
+  <p>{{ offer.start_time|clock_time }}–{{ offer.end_time|clock_time }}</p>
+  <p>{{ offer.terms }}</p>
+  <p class="weekly-state">{{ {'available_now':'Available now','later_today':'Later today','upcoming':'Upcoming'}.get(offer.state,'Scheduled') }}</p>
+</article>

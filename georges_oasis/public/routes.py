@@ -1,5 +1,5 @@
 from datetime import datetime, timezone
-from flask import abort, make_response, redirect, render_template, request, session, url_for
+from flask import current_app, abort, make_response, redirect, render_template, request, session, url_for
 from . import public_bp
 from .sitemap import PAGES, LEGACY
 from ..content import public_content, clock_time, money
@@ -77,4 +77,6 @@ def sitemap_xml():
 
 @public_bp.get('/robots.txt')
 def robots():
+    if not current_app.config['PRODUCTION']:
+        return 'User-agent: *\nDisallow: /\n', 200, {'Content-Type':'text/plain'}
     return 'User-agent: *\nDisallow: /admin\nDisallow: /inquiry-received/\nSitemap: '+url_for('public.sitemap_xml',_external=True)+'\n',200,{'Content-Type':'text/plain'}

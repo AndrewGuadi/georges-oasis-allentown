@@ -6,7 +6,7 @@
       <h2 class="mt-4 max-w-xl font-display text-5xl font-semibold text-oasis-950">Make your way over.</h2>
       <address class="visit-address mt-6 text-lg leading-8 text-oasis-ink/75">
         {{ business.address }}<br>{{ business.city }}<br>
-        <a href="{{ business.phone_uri }}">{{ icon('phone') }} {{ business.phone }}</a>
+        <a href="{{ business.phone_uri }}">{{ icon('phone') }} {{ business.phone }}</a>{% if business.email %}<br><a href="mailto:{{ business.email }}">{{ business.email }}</a>{% endif %}
       </address>
       <div class="mt-7 flex flex-wrap gap-3">
         <a class="btn btn-primary" href="{{ external_links.directions }}" target="_blank" rel="noopener noreferrer">Get Directions {{ icon('arrow') }}</a>
@@ -17,13 +17,13 @@
     <div class="rounded-xl border border-oasis-950/10 bg-[#faf6ed] p-6 md:p-8 shadow-soft">
       <div class="section-eyebrow">Make yourself at home</div>
       <h3 class="mt-4 font-display text-3xl font-semibold text-oasis-950">A little planning goes a long way.</h3>
-      <p class="mt-3 text-sm leading-6 text-oasis-ink/75">General restaurant hours and dinner service are listed separately. All times are local to Allentown.</p>
+      <p class="mt-3 text-sm leading-6 text-oasis-ink/75">Restaurant hours and dinner service are listed separately. All times are local to Allentown.</p>
       {% include 'public/includes/dining_hours.html' %}
       <dl class="mt-5 divide-y divide-oasis-950/10 text-sm">
-        <div class="flex justify-between gap-5 py-4"><dt class="font-bold">Mini golf</dt><dd class="text-right text-oasis-ink/75"><a href="{{ url_for('public.visit') }}" target="_blank" rel="noopener noreferrer">Seasonal schedule ↗</a></dd></div>
+        <div class="flex justify-between gap-5 py-4"><dt class="font-bold">Mini golf</dt><dd class="text-right text-oasis-ink/75"><a href="{{ url_for('public.visit', _anchor='mini-golf-hours') }}">Course schedule →</a></dd></div>
         <div class="flex justify-between gap-5 py-4"><dt class="font-bold">Bringing a group?</dt><dd class="text-right text-oasis-ink/75"><a href="{{ url_for('public.gatherings') }}">Plan your gathering →</a></dd></div>
       </dl>
-      <a href="{{ url_for('public.visit') }}" target="_blank" rel="noopener noreferrer" class="btn btn-primary mt-6 w-full">View Opening Hours {{ icon('clock') }}</a>
+      <a href="{{ url_for('public.visit', _anchor='restaurant-hours') }}" class="btn btn-primary mt-6 w-full">View Opening Hours {{ icon('clock') }}</a>
     </div>
   </div>
 </section>

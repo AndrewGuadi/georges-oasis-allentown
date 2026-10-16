@@ -15,6 +15,8 @@ def configure_security(app):
         response.headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
         response.headers.setdefault("Permissions-Policy", "camera=(), microphone=(), geolocation=()")
         response.headers.setdefault("Content-Security-Policy", "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'")
+        if not app.config["PRODUCTION"]:
+            response.headers.setdefault("X-Robots-Tag", "noindex, nofollow")
         if app.config["PRODUCTION"]:
             response.headers.setdefault("Strict-Transport-Security", "max-age=31536000")
         return response

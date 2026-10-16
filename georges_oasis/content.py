@@ -95,7 +95,13 @@ def service_status(service, now=None):
                     if service.get("cutoff_minutes") and utc_now >= cutoff:
                         state,label = "cutoff_passed", "Last start has passed" if service["key"] == "golf" else "Kitchen closed"
                     return result | {"state":state,"label":label,"note":f"Until {end.strftime('%-I:%M %p')} Eastern","cutoff":cutoff.astimezone(LOCAL).strftime('%-I:%M %p') if service.get("cutoff_minutes") else None}
-        return result | {"state":"closed","label":"Closed now","note":"See the schedule below."}
+        future_starts = [service_boundary(current.date(), opens) for opens, closes in windows
+                         if service_boundary(current.date(), opens).astimezone(timezone.utc) > utc_now]
+        note = "View service hours."
+        if future_starts:
+            next_start = min(future_starts).strftime('%-I:%M %p').replace(':00', '')
+            note = f"{'Dinner begins' if service['key'] == 'dinner' else 'Opens'} at {next_start} today."
+        return result | {"state":"closed","label":"Closed now","note":note}
     except (ValueError,TypeError,OverflowError):
         return result | {"state":"unknown","label":"Check hours","schedule":[]}
 
@@ -131,9 +137,11 @@ def public_content(now=None, include_drafts=False):
     offers = []
     for offer in data.get("offers", []):
         state = offer_state(offer,now)
-        if state != "hidden":
-            offers.append(offer | {"state":state,"formatted_price":money(offer["price"]) if offer.get("price") else None})
-    return {"has_menu_items":any(c["items"] for c in categories),"consumer_advisory":data.get("consumer_advisory",{}).get("text"),"dessert_flavors":data.get("dessert_flavors") if include_drafts or publishable(data.get("dessert_flavors",{}),now) else None,"menu_download_url":data.get("menu_download",{}).get("url") if publishable(data.get("menu_download",{}),now) else None,"business":data["business"],"menu_categories":categories,"service_facts":service_facts,"dining_services":[s for s in service_facts if s["key"] in ("restaurant", "dinner")],"editorial_offers":offers,"golf_rates":data["golf"] if include_drafts or publishable(data["golf"],now) else None,"story_record":data["story"] if include_drafts or publishable(data["story"],now) else None,"media":data["media"]}
+        if state != "hidden" and offer.get("weekday") in data.get("weekly_special_days", [2, 3, 4]):
+            offers.append(offer | {"state":state,"formatted_price":money(offer["price"]) if offer.get("price") is not None else None})
+    offers.sort(key=lambda offer: offer['weekday'])
+    business = data['business'] | {'email': current_app.config.get('INQUIRY_RECIPIENT') or data['business'].get('email')}
+    return {"weekly_special_days": data.get("weekly_special_days", [2, 3, 4]), "has_menu_items":any(c["items"] for c in categories),"consumer_advisory":data.get("consumer_advisory",{}).get("text"),"dessert_flavors":data.get("dessert_flavors") if include_drafts or publishable(data.get("dessert_flavors",{}),now) else None,"menu_download_url":data.get("menu_download",{}).get("url") if publishable(data.get("menu_download",{}),now) else None,"business":business,"menu_categories":categories,"service_facts":service_facts,"dining_services":[s for s in service_facts if s["key"] in ("restaurant", "dinner")],"editorial_offers":offers,"golf_rates":data["golf"] if include_drafts or publishable(data["golf"],now) else None,"story_record":data["story"] if include_drafts or publishable(data["story"],now) else None,"media":data["media"]}
 
 
 def clock_time(value):

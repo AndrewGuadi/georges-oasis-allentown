@@ -30,6 +30,7 @@
         <p class="small-label">Make a day of it</p>
         <nav aria-label="Mobile navigation">{% with mobile_navigation=true %}{% include 'public/includes/nav_links.html' %}{% endwith %}</nav>
         {% include 'public/includes/actions.html' %}
+        <a class="text-link" href="{{ business.phone_uri }}">{{ icon('phone') }} {{ business.phone }}</a>
         <a class="mobile-directions text-link" href="{{ external_links.directions }}" target="_blank" rel="noopener noreferrer">{{ icon('pin') }} Get directions {{ icon('arrow') }}</a>
       </div>
     </details>
