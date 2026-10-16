@@ -1,4 +1,5 @@
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
+import hmac
 from functools import wraps
 from pathlib import Path
 from uuid import uuid4
@@ -6,7 +7,7 @@ from zoneinfo import ZoneInfo
 from flask import Blueprint, abort, current_app, flash, redirect, render_template, request, send_from_directory, session, url_for
 from PIL import Image, UnidentifiedImageError
 from werkzeug.security import check_password_hash, generate_password_hash
-from .models import db, Promotion, DisplaySettings, Inquiry
+from .models import db, Promotion, DisplaySettings, Inquiry, LoginAttempt
 from .content import load_content, public_content
 from .public.sitemap import PAGES
 from .inquiries import notify, OCCASIONS, INTERESTS, FLEXIBILITY, new_submission_token
@@ -28,9 +29,20 @@ def login_required(view):
 @admin_bp.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        if request.form.get("username") == current_app.config["OWNER_USERNAME"] and check_password_hash(current_app.config.get("OWNER_PASSWORD_HASH") or DEMO_PASSWORD_HASH, request.form.get("password", "")):
+        now = datetime.now(timezone.utc).replace(tzinfo=None)
+        key = hmac.new(current_app.secret_key.encode(), (request.remote_addr or "unknown").encode(), "sha256").hexdigest()
+        recent = LoginAttempt.attempted_at >= now - timedelta(minutes=15)
+        count = db.session.scalar(db.select(db.func.count()).select_from(LoginAttempt).where(LoginAttempt.client_key == key, recent))
+        if count >= 10:
+            return render_template("admin/login.html", throttled=True), 429, {"Retry-After": "900"}
+        db.session.execute(db.delete(LoginAttempt).where(LoginAttempt.attempted_at < now - timedelta(days=1)))
+        db.session.add(LoginAttempt(client_key=key, attempted_at=now))
+        db.session.commit()
+        password_valid = check_password_hash(current_app.config.get("OWNER_PASSWORD_HASH") or DEMO_PASSWORD_HASH, request.form.get("password", ""))
+        if request.form.get("username") == current_app.config["OWNER_USERNAME"] and password_valid:
             session.clear()
             session["owner"] = True
+            session.permanent = True
             return redirect(url_for("admin.dashboard"))
         flash("The username or password is incorrect.", "error")
     return render_template("admin/login.html")

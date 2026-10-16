@@ -5,6 +5,8 @@ __pycache__/
 *$py.class
 build_docs/
 migrations/
+build_docs/
+
 
 
 # C extensions
@@ -238,4 +240,6 @@ build_docs/*
 !build_docs/source_menu_images/**
 !build_docs/OWNER_REVIEW.md
 !build_docs/IMPLEMENTATION.md
+!build_docs/CLIENT_LAUNCH_MEETING.md
+!build_docs/OWNER_LAUNCH_WORKSHEET.md
 migrations/**/__pycache__/

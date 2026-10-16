@@ -17,14 +17,14 @@
   "services": [
     {
       "key": "restaurant",
-      "name": "Restaurant",
+      "name": "General",
       "metadata": {
-        "status": "draft",
-        "source": "https://www.georgesoasis.com/hours--info.html",
-        "reviewed_at": "2026-10-07",
+        "status": "approved",
+        "source": "User-provided General and Dinner hours, October 14, 2026",
+        "reviewed_at": "2026-10-14",
         "valid_from": null,
         "valid_until": null,
-        "notes": "Summer 2026 schedule was still displayed October 7. Do not approve as year-round without owner review."
+        "notes": "General and dinner schedules approved by user. Previous kitchen and breakfast cutoffs are not part of this approval."
       },
       "weekly": {
         "0": [
@@ -59,7 +59,7 @@
         ],
         "5": [
           [
-            "07:00",
+            "08:00",
             "21:00"
           ]
         ],
@@ -67,9 +67,9 @@
       },
       "exceptions": {},
       "season": "unknown",
-      "cutoff_minutes": 30,
-      "breakfast_cutoff": "14:00",
-      "note": "Check dining hours before your visit."
+      "cutoff_minutes": null,
+      "breakfast_cutoff": null,
+      "note": "General restaurant hours. Dinner follows its own schedule."
     },
     {
       "key": "golf",
@@ -124,7 +124,7 @@
       "exceptions": {},
       "season": "unknown",
       "cutoff_minutes": 45,
-      "note": "Outdoor play is seasonal. Call for current availability."
+      "note": "Season runs from April into November. Start play at least 45 minutes before closing; call for current course hours."
     },
     {
       "key": "soft_serve",
@@ -141,6 +141,56 @@
       "season": "unknown",
       "cutoff_minutes": null,
       "note": "Ask about seasonal soft-serve availability."
+    },
+    {
+      "key": "dinner",
+      "name": "Dinner",
+      "metadata": {
+        "status": "approved",
+        "source": "User-provided General and Dinner hours, October 14, 2026",
+        "reviewed_at": "2026-10-14",
+        "valid_from": null,
+        "valid_until": null,
+        "notes": "General and dinner schedules approved by user. Previous kitchen and breakfast cutoffs are not part of this approval."
+      },
+      "weekly": {
+        "0": [],
+        "1": [
+          [
+            "15:00",
+            "19:00"
+          ]
+        ],
+        "2": [
+          [
+            "15:00",
+            "19:30"
+          ]
+        ],
+        "3": [
+          [
+            "15:00",
+            "19:30"
+          ]
+        ],
+        "4": [
+          [
+            "15:00",
+            "20:00"
+          ]
+        ],
+        "5": [
+          [
+            "08:00",
+            "21:00"
+          ]
+        ],
+        "6": []
+      },
+      "exceptions": {},
+      "season": "unknown",
+      "cutoff_minutes": null,
+      "note": "Dinner service hours. Closed Monday and Sunday."
     }
   ],
   "menu_categories": [
@@ -4428,18 +4478,26 @@
   ],
   "golf": {
     "metadata": {
-      "status": "draft",
-      "source": "October 7 Astra specification / public website observation",
-      "reviewed_at": "2026-10-07",
+      "status": "approved",
+      "source": "User-provided mini golf information, October 14, 2026",
+      "reviewed_at": "2026-10-14",
       "valid_from": null,
       "valid_until": null,
-      "notes": "Confirm the OR wording and whether height or age controls eligibility."
+      "notes": "User approved admission prices, child eligibility, season, last-start rule and group package options. Daily golf hours remain unconfirmed."
     },
     "adult_price": "8.00",
     "child_price": "6.00",
     "child_definition": "58 inches and under or under 12 years old",
     "last_start_minutes": 45,
-    "source_note": "Observed rates, not approved current prices."
+    "source_note": "User-approved admission rates.",
+    "season_text": "April into November",
+    "package_options": [
+      "Ice cream",
+      "Meal",
+      "Cake/desserts",
+      "Indoor/Outdoor seating",
+      "Entire course reservation (groups of 20 or more)"
+    ]
   },
   "story": {
     "metadata": {

@@ -127,12 +127,13 @@ def public_content(now=None, include_drafts=False):
                 item["formatted_price"] = money(item["price"])
             for variant in item.get("variants", []):
                 variant["formatted_price"] = money(variant["price"])
+    service_facts = [service_status(s, now) for s in data["services"]]
     offers = []
     for offer in data.get("offers", []):
         state = offer_state(offer,now)
         if state != "hidden":
             offers.append(offer | {"state":state,"formatted_price":money(offer["price"]) if offer.get("price") else None})
-    return {"has_menu_items":any(c["items"] for c in categories),"consumer_advisory":data.get("consumer_advisory",{}).get("text"),"dessert_flavors":data.get("dessert_flavors") if include_drafts or publishable(data.get("dessert_flavors",{}),now) else None,"menu_download_url":data.get("menu_download",{}).get("url") if publishable(data.get("menu_download",{}),now) else None,"business":data["business"],"menu_categories":categories,"service_facts":[service_status(s,now) for s in data["services"]],"editorial_offers":offers,"golf_rates":data["golf"] if include_drafts or publishable(data["golf"],now) else None,"story_record":data["story"] if include_drafts or publishable(data["story"],now) else None,"media":data["media"]}
+    return {"has_menu_items":any(c["items"] for c in categories),"consumer_advisory":data.get("consumer_advisory",{}).get("text"),"dessert_flavors":data.get("dessert_flavors") if include_drafts or publishable(data.get("dessert_flavors",{}),now) else None,"menu_download_url":data.get("menu_download",{}).get("url") if publishable(data.get("menu_download",{}),now) else None,"business":data["business"],"menu_categories":categories,"service_facts":service_facts,"dining_services":[s for s in service_facts if s["key"] in ("restaurant", "dinner")],"editorial_offers":offers,"golf_rates":data["golf"] if include_drafts or publishable(data["golf"],now) else None,"story_record":data["story"] if include_drafts or publishable(data["story"],now) else None,"media":data["media"]}
 
 
 def clock_time(value):

@@ -296,3 +296,20 @@ body:has(.inquiry-form :focus) .mobile-dock,body:has(dialog[open]) .mobile-dock 
  .receipt h1 { font-size:45px; }
 }
 @media(prefers-reduced-motion:reduce) { .interior-page *, .interior-page *::before { scroll-behavior:auto!important; transition:none!important; } }
+
+.menu-availability { display:flex; align-items:center; justify-content:space-between; gap:32px; padding:30px; margin-bottom:36px; border:1px solid #c7d1b8; border-left:4px solid #b39548; background:#e9eddd; border-radius:8px; }
+.menu-availability h2 { font-size:32px; margin:10px 0; }
+.menu-availability p:not(.small-label) { max-width:650px; font-size:15px; line-height:1.75; color:#506450; }
+.menu-availability .page-actions { flex-shrink:0; flex-direction:column; margin:0; align-items:flex-start; }
+.field:has(>input:focus-visible),.field:has(>textarea:focus-visible) { scroll-margin-bottom:120px; }
+.gallery-grid a:focus-visible { outline-offset:6px; border-radius:8px; }
+@media(max-width:760px) {
+ .menu-availability { flex-direction:column; align-items:flex-start; padding:24px; }
+ .interior-page h1 { font-size:clamp(36px,10.8vw,46px); }
+ .page-intro-copy,.two-column > *, .order-card { min-width:0; }
+ .page-actions .btn { max-width:100%; }
+ .service-card-title { align-items:flex-start; }
+ .menu-category-heading h2 { overflow-wrap:normal; hyphens:auto; }
+}
+/* Maintain caption contrast against the darker course section. */
+.course-story figcaption { color:#46513f; }

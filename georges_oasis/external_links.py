@@ -1,9 +1,9 @@
 """Single source of truth for the restaurant's external action destinations."""
 EXTERNAL_LINKS = {
-    "menus": "https://www.georgesoasis.com/menus.html",
-    "golf": "https://www.georgesoasis.com/mini-golf.html",
+    "menus": "/food-and-ice-cream",
+    "golf": "/mini-golf",
     "facebook": "https://www.facebook.com/GeorgesOasisRestaurant",
-    "hours": "https://www.georgesoasis.com/hours--info.html",
+    "hours": "/visit",
     "directions": "https://www.google.com/maps/search/?api=1&query=Georges+Oasis+2355+Schoenersville+Road+Allentown+PA",
     "food_ordering": "https://www.foodbooking.com/ordering/restaurant/menu?restaurant_uid=09ba3e4c-ea05-4d65-9653-b79805afb083",
     "delivery": "https://www.grubhub.com/restaurant/georges-oasis-restaurant-2355-schoenersville-rd-bethlehem/5997112",

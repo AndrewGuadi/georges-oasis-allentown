@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-{% block title %}George's Oasis — Home{% endblock %}
+{% block title %}George’s Oasis | Restaurant, Ice Cream & Mini Golf in Allentown{% endblock %}
 {% block extra_head %}
+<link rel="preload" as="image" href="{{ url_for('static', filename='images/optimized/main_exterior_oasis.webp') }}" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
 <link href="{{ url_for('static', filename='css/homepage.css') }}" rel="stylesheet">
 {% endblock %}

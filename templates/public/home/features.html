@@ -9,7 +9,7 @@
   {% for photo, alt, number, title, description, label, href in experiences %}
   <article class="experience-card">
     <a class="experience-link" href="{{ href }}">
-      <div class="experience-photo"><img src="{{ url_for('static', filename='images/' ~ photo) }}" alt="{{ alt }}" loading="lazy" width="500" height="500"><span class="experience-number" aria-hidden="true">{{ number }}</span></div>
+      <div class="experience-photo"><img src="{{ url_for('static', filename='images/optimized/' ~ (photo|optimized_image)) }}" alt="{{ alt }}" loading="lazy" width="500" height="500"><span class="experience-number" aria-hidden="true">{{ number }}</span></div>
       <div class="experience-body"><h3>{{ title }}</h3><p>{{ description }}</p><span class="experience-action">{{ label }} {{ icon('arrow') }}</span></div>
     </a>
   </article>
