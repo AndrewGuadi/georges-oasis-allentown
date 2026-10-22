@@ -1,0 +1,6 @@
+<dialog class="photo-viewer {{ viewer_class|default('') }}" id="{{ viewer_id }}" aria-labelledby="{{ viewer_id }}-caption" data-photo-viewer data-photo-links="{{ viewer_links }}" data-photo-label="{{ viewer_label|default('Photo') }}">
+  <div class="photo-viewer-top"><span data-photo-count aria-live="polite"></span><button class="btn btn-light-outline" type="button" data-photo-close autofocus>Close ×</button></div>
+  <img class="photo-viewer-image" data-viewer-image src="{{ url_for('static', filename='favicon.svg') }}" alt="" width="900" height="675" loading="lazy" decoding="async">
+  <p class="photo-viewer-error" role="status" data-photo-error hidden>This photo could not be loaded. Try another photo or <a data-photo-original href="{{ url_for('public.gallery') }}">open the original image</a>.</p>
+  <div class="photo-viewer-bottom"><button class="btn btn-light-outline" type="button" data-photo-prev aria-label="Previous photo">←</button><p id="{{ viewer_id }}-caption" data-photo-caption aria-live="polite">{{ viewer_title }}</p><button class="btn btn-light-outline" type="button" data-photo-next aria-label="Next photo">→</button></div>
+</dialog>

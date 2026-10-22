@@ -1,10 +1,11 @@
 {% from 'public/includes/icons.html' import icon %}
-<section class="hero" style="--hero-photo: url('{{ url_for('static', filename='images/main_exterior_oasis.jpg') }}')" aria-labelledby="hero-title">
+<section class="hero" aria-labelledby="hero-title">
+  {{ site_image(photo_placements.home_hero, alt='', sizes='100vw', priority=true, class_name='home-hero-photo') }}
   <div class="hero-content">
-    <p class="hero-eyebrow">YOUR EVERYDAY GETAWAY · ALLENTOWN, PA</p>
+    <p class="hero-eyebrow">A family tradition in Allentown</p>
     <h1 id="hero-title">More Than a Meal</h1>
-    <h2>A full day of family fun.</h2>
-    <p class="hero-description">Great food. Ice cream. Mini golf.<br class="mobile-break"> A little something for everyone.</p>
+    <p class="hero-subtitle">Family recipes, passed down and made with care.</p>
+    <p class="hero-description">A little time to slow down, together.</p>
     <div class="hero-actions">
       <a class="btn btn-gold" href="{{ url_for('public.food') }}">View Menu {{ icon('arrow') }}</a>
       <a class="btn btn-glass" href="{{ url_for('public.visit') }}">Plan Your Visit {{ icon('pin') }}</a>

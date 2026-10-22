@@ -1,0 +1,4 @@
+{% extends 'base.html' %}
+{% block title %}{{ error_title }} | George’s Oasis{% endblock %}
+{% block extra_head %}<meta name="robots" content="noindex, nofollow"><link rel="stylesheet" href="{{ url_for('static',filename='css/pages.css') }}">{% endblock %}
+{% block content %}<div class="interior-page"><section class="page-shell receipt"><p class="section-eyebrow">George’s Oasis · {{ error_code }}</p><h1>{{ error_title }}</h1><p>{{ error_message }}</p><div class="page-actions"><a class="btn btn-primary" href="{{ url_for('public.home') }}">Back to Home</a><a class="btn btn-outline" href="{{ business.phone_uri }}">Call {{ business.phone }}</a></div></section></div>{% endblock %}

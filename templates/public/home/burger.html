@@ -1,11 +1,9 @@
 <section id="specials" class="grid bg-[#f1ead9] lg:grid-cols-2">
       <div class="relative min-h-[350px] overflow-hidden lg:min-h-[520px]">
-        <img src="{{ url_for('static', filename='images/georges_burger.jpg') }}"
-             alt="George's Oasis burger" loading="lazy"
-             class="absolute inset-0 h-full w-full object-cover" />
+        {{ site_image(photo_placements.home_kitchen, 'Window-side tables in the Oasis dining room', sizes='(max-width: 1023px) 100vw, 50vw', class_name='home-kitchen-photo') }}
         <div class="absolute left-5 top-5 grid h-36 w-36 rotate-[-8deg] place-items-center rounded-full bg-oasis-gold p-5 text-center font-black uppercase leading-tight text-oasis-950 shadow-xl md:left-12 md:top-10">
           <div>
-            <div class="text-[.65rem] tracking-[.22em]">A local favorite</div>
+            <div class="text-[.65rem] tracking-[.22em]">From the kitchen</div>
             <div class="mt-2 text-lg">A good<br>meal awaits</div>
           </div>
         </div>
@@ -15,12 +13,16 @@
         <div class="max-w-xl">
           <div class="section-eyebrow">From the Oasis kitchen</div>
           <h2 class="mt-4 font-display text-5xl font-semibold leading-[.92] tracking-[-.035em] text-oasis-950 md:text-6xl">
-            Made for your next meal.
+            Family recipes. Familiar favorites.
           </h2>
           <p class="mt-6 text-base leading-7 text-oasis-ink/70">
-            Find a favorite, bring your appetite, and take a little time together. Explore the restaurant menu and plan your next visit to the Oasis.
+            Family recipes are part of the welcome at George’s Oasis. Explore breakfast favorites, Greek specialties and a full menu for lunch and dinner, prepared with care in our kitchen.
           </p>
-          {{ external_action('food_ordering', 'Order Online', 'btn btn-outline mt-7') }}
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a class="btn btn-primary" href="{{ url_for('public.food') }}">View Menu</a>
+            {{ external_action('food_ordering', 'Order Online', 'btn btn-outline') }}
+          </div>
+          {% include 'public/home/weekly_specials.html' %}
         </div>
       </div>
     </section>

@@ -1,10 +1,11 @@
 <section id="story" class="paper-noise px-5 py-16 md:py-24 lg:px-8">
       <div class="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[300px_1fr_260px]">
-        <div class="rotate-[-2deg] rounded-sm bg-white p-3 shadow-soft">
-          <img src="{{ url_for('static', filename='images/georges_history.jpeg') }}"
+        <figure class="rotate-[-2deg] rounded-sm bg-white p-3 shadow-soft">
+          <img width="960" height="720" decoding="async" src="{{ url_for('static', filename='images/optimized/georges_history.webp') }}"
                alt="Historic George's Oasis" loading="lazy"
                class="aspect-[4/3] w-full object-cover sepia-[.2]" />
-        </div>
+          <figcaption class="history-caption">A photograph from the Oasis collection.</figcaption>
+        </figure>
 
         <div>
           <div class="section-eyebrow">The Oasis tradition</div>
@@ -12,15 +13,15 @@
             Food, Family & Time Together.
           </h2>
           <p class="mt-5 max-w-2xl text-base leading-7 text-oasis-ink/70">
-            A meal with friends. A round of mini golf. A sweet finish to the day. Explore the personal side of George’s Oasis and make a little time for the people you enjoy.
+            {% if story_record %}{{ story_record.paragraphs[0] }}{% else %}Family recipes and a personal welcome are at the heart of George’s Oasis. The photographs and keepsakes around the dining room offer a glimpse of the people behind the restaurant.{% endif %}
           </p>
           <a href="{{ url_for('public.story') }}" class="btn btn-outline mt-7">Our Story <span>→</span></a>
         </div>
 
         <aside class="rounded-md bg-[#efe7cf] p-7 shadow-soft">
-          <div class="small-label">The best part?</div>
-          <p class="mt-4 font-display text-3xl italic leading-8 text-oasis-950">There’s a little something for everyone.</p>
-          <a class="text-link mt-4" href="{{ url_for('public.visit') }}">Make a day of it <span aria-hidden="true">→</span></a>
+          <div class="small-label">A personal touch</div>
+          <p class="mt-4 font-display text-3xl italic leading-8 text-oasis-950">Family photographs. Familiar places.</p>
+          <a class="text-link mt-4" href="{{ url_for('public.gallery', _anchor='the-oasis') }}">Take a look around <span aria-hidden="true">→</span></a>
         </aside>
       </div>
     </section>

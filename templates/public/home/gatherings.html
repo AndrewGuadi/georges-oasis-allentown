@@ -3,12 +3,12 @@
     <div class="max-w-xl">
       <div class="section-eyebrow">Bring everyone together</div>
       <h2 class="mt-4 font-display text-4xl leading-tight md:text-5xl">Celebrate at the Oasis.</h2>
-      <p class="mt-6 text-base leading-7">Birthdays, celebrations, company outings and more. Let us help make your next event special.</p>
+      <p class="mt-6 text-base leading-7">A birthday around the table, a family celebration, or a team lunch away from the office. Explore a welcoming place to gather in the Allentown–Bethlehem area, with food and time to reconnect.</p>
       <div class="mt-7 flex flex-wrap gap-3">
         <a class="btn btn-primary" href="{{ url_for('public.gatherings',_anchor='event-inquiry') }}">Plan a Group Event</a>
         <a class="btn btn-outline" href="{{ url_for('public.gatherings') }}">Explore Gatherings</a>
       </div>
     </div>
   </div>
-  <img class="h-full min-h-[320px] max-h-[560px] w-full object-cover" src="{{ url_for('static', filename='images/families_and_events.png') }}" alt="Families and events at George's Oasis" loading="lazy">
+  <figure class="home-gathering-photo">{{ site_image(photo_placements.home_gatherings, 'Guests gathered around a table outside George’s Oasis', sizes='(max-width: 1023px) 100vw, 50vw') }}<figcaption>An afternoon around the table at the Oasis.</figcaption></figure>
 </section>

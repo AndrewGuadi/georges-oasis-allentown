@@ -10,7 +10,7 @@ import smtplib
 from flask import current_app, request, session
 from itsdangerous import BadSignature, SignatureExpired, URLSafeTimedSerializer
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
-from .content import local_now
+from .content import local_now, load_content
 from .models import db, Inquiry, InquiryAttempt
 
 OCCASIONS = ["Birthday", "Family celebration", "Shower", "Company gathering", "School trip", "Fundraiser", "Other", "Not sure yet"]
@@ -32,6 +32,8 @@ def notify(inquiry):
     """No delivery occurs unless a notifier or approved SMTP recipient is configured."""
     callback = current_app.config.get("INQUIRY_NOTIFIER")
     recipient = current_app.config.get("INQUIRY_RECIPIENT")
+    if not recipient and current_app.config.get("INQUIRY_SENDER"):
+        recipient = load_content()['business'].get('email')
     if callback is None and not recipient:
         inquiry.notification_state = "not_configured"
         try:

@@ -3,6 +3,7 @@ from html.parser import HTMLParser
 from urllib.parse import urlsplit
 from georges_oasis import create_app
 from georges_oasis.models import db
+from georges_oasis.content import load_content
 from georges_oasis.public.sitemap import PAGES, LEGACY
 
 class Document(HTMLParser):
@@ -45,7 +46,8 @@ class PublicPagesTest(unittest.TestCase):
                     continue
                 self.assertIn(target,documents,link)
                 if url.fragment:self.assertIn(url.fragment,documents[target].ids,link)
-        self.assertEqual(len(documents['/'].images),8)
+        # The former CSS hero background is now a responsive image element.
+        self.assertEqual(len(documents['/'].images),9)
     def test_providers_are_configurable_and_missing_provider_has_fallback(self):
         actions={'order-foodbooking':'food_ordering','order-grubhub':'delivery','reserve-google':'table_reservation','hiring-facebook':'hiring'}
         for key in actions.values():self.app.config['EXTERNAL_LINKS'][key]='https://provider.example.test/'+key
@@ -70,6 +72,10 @@ class PublicPagesTest(unittest.TestCase):
         for path in ['/about','/missing','/homepage.html','/pies']:
             self.assertEqual(self.client.get(path).status_code,404)
     def test_drafts_hidden_and_owner_preview_authenticated(self):
+        with self.app.app_context():
+            source=load_content()
+        source['menu_categories'][0]['items'][0]['metadata']['status']='draft'
+        self.app.config['SITE_CONTENT']=source
         self.assertNotIn('Monte Cristo',self.client.get('/food-and-ice-cream').get_data(as_text=True))
         self.assertNotIn('Burger Night',self.client.get('/specials').get_data(as_text=True))
         self.assertNotIn('18 holes',self.client.get('/').get_data(as_text=True))

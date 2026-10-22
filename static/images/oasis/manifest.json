@@ -1,0 +1,2436 @@
+{
+  "schema_version": 1,
+  "format": "webp",
+  "quality": 82,
+  "target_widths": {
+    "mobile": 640,
+    "tablet": 1280,
+    "desktop": 1920
+  },
+  "assets": {
+    "george-oasis-french-toast": {
+      "key": "george-oasis-french-toast",
+      "alt": "French toast dusted with powdered sugar",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-french-toast-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 36848
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-french-toast-tablet.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 83300
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-french-toast-desktop.webp",
+          "width": 1600,
+          "height": 1200,
+          "bytes": 108778
+        }
+      }
+    },
+    "george-oasis-outside-group": {
+      "key": "george-oasis-outside-group",
+      "alt": "Guests gathered around an outdoor table beneath a canopy",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-outside-group-mobile.webp",
+          "width": 640,
+          "height": 853,
+          "bytes": 83894
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-outside-group-tablet.webp",
+          "width": 1200,
+          "height": 1600,
+          "bytes": 204522
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-outside-group-desktop.webp",
+          "width": 1200,
+          "height": 1600,
+          "bytes": 204522
+        }
+      }
+    },
+    "george-oasis-cornhole-games": {
+      "key": "george-oasis-cornhole-games",
+      "alt": "Cornhole boards and a large four-in-a-row game beside outdoor seating",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-cornhole-games-mobile.webp",
+          "width": 640,
+          "height": 360,
+          "bytes": 50522
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-cornhole-games-tablet.webp",
+          "width": 1280,
+          "height": 720,
+          "bytes": 202466
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-cornhole-games-desktop.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 453652
+        }
+      }
+    },
+    "george-oasis-french-toast-02": {
+      "key": "george-oasis-french-toast-02",
+      "alt": "French toast dusted with powdered sugar",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-french-toast-02-mobile.webp",
+          "width": 640,
+          "height": 853,
+          "bytes": 48848
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-french-toast-02-tablet.webp",
+          "width": 1200,
+          "height": 1600,
+          "bytes": 103072
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-french-toast-02-desktop.webp",
+          "width": 1200,
+          "height": 1600,
+          "bytes": 103072
+        }
+      }
+    },
+    "george-oasis-waffle-breakfast-sandwich": {
+      "key": "george-oasis-waffle-breakfast-sandwich",
+      "alt": "Waffle breakfast sandwiches dusted with powdered sugar",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-waffle-breakfast-sandwich-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 56030
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-waffle-breakfast-sandwich-tablet.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 166052
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-waffle-breakfast-sandwich-desktop.webp",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 317066
+        }
+      }
+    },
+    "george-oasis-waffle-breakfast-sandwich-02": {
+      "key": "george-oasis-waffle-breakfast-sandwich-02",
+      "alt": "Waffle breakfast sandwiches dusted with powdered sugar",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-waffle-breakfast-sandwich-02-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 51296
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-waffle-breakfast-sandwich-02-tablet.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 143256
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-waffle-breakfast-sandwich-02-desktop.webp",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 261278
+        }
+      }
+    },
+    "george-oasis-chicken-and-waffles": {
+      "key": "george-oasis-chicken-and-waffles",
+      "alt": "Chicken and waffles on a plate",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-chicken-and-waffles-mobile.webp",
+          "width": 640,
+          "height": 360,
+          "bytes": 34896
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-chicken-and-waffles-tablet.webp",
+          "width": 1280,
+          "height": 720,
+          "bytes": 95128
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-chicken-and-waffles-desktop.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 163880
+        }
+      }
+    },
+    "george-oasis-macaroni-and-cheese": {
+      "key": "george-oasis-macaroni-and-cheese",
+      "alt": "Baked macaroni and cheese in a serving dish",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-macaroni-and-cheese-mobile.webp",
+          "width": 640,
+          "height": 360,
+          "bytes": 20688
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-macaroni-and-cheese-tablet.webp",
+          "width": 1280,
+          "height": 720,
+          "bytes": 52236
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-macaroni-and-cheese-desktop.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 91866
+        }
+      }
+    },
+    "george-oasis-barbecue-sandwich-and-fries": {
+      "key": "george-oasis-barbecue-sandwich-and-fries",
+      "alt": "Barbecue sandwich served with French fries",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-barbecue-sandwich-and-fries-mobile.webp",
+          "width": 640,
+          "height": 360,
+          "bytes": 27410
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-barbecue-sandwich-and-fries-tablet.webp",
+          "width": 1280,
+          "height": 720,
+          "bytes": 69378
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-barbecue-sandwich-and-fries-desktop.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 117488
+        }
+      }
+    },
+    "george-oasis-easter-counter-decor": {
+      "key": "george-oasis-easter-counter-decor",
+      "alt": "Flowers and Easter decorations along the restaurant counter",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-easter-counter-decor-mobile.webp",
+          "width": 640,
+          "height": 360,
+          "bytes": 38938
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-easter-counter-decor-tablet.webp",
+          "width": 1280,
+          "height": 720,
+          "bytes": 103902
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-easter-counter-decor-desktop.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 184272
+        }
+      }
+    },
+    "george-oasis-easter-counter-decor-02": {
+      "key": "george-oasis-easter-counter-decor-02",
+      "alt": "Flowers and Easter decorations along the restaurant counter",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-easter-counter-decor-02-mobile.webp",
+          "width": 640,
+          "height": 360,
+          "bytes": 38574
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-easter-counter-decor-02-tablet.webp",
+          "width": 1280,
+          "height": 720,
+          "bytes": 103552
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-easter-counter-decor-02-desktop.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 184410
+        }
+      }
+    },
+    "george-oasis-mini-golf-players-waterfall": {
+      "key": "george-oasis-mini-golf-players-waterfall",
+      "alt": "Two people playing mini golf beside a waterfall and flowers",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-mini-golf-players-waterfall-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 112372
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-mini-golf-players-waterfall-tablet.webp",
+          "width": 1280,
+          "height": 854,
+          "bytes": 341894
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-mini-golf-players-waterfall-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 598910
+        }
+      }
+    },
+    "george-oasis-fruit-and-granola-parfait": {
+      "key": "george-oasis-fruit-and-granola-parfait",
+      "alt": "Fruit and granola layered in a tall parfait glass",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-fruit-and-granola-parfait-mobile.webp",
+          "width": 640,
+          "height": 1138,
+          "bytes": 44640
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-fruit-and-granola-parfait-tablet.webp",
+          "width": 1280,
+          "height": 2276,
+          "bytes": 110832
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-fruit-and-granola-parfait-desktop.webp",
+          "width": 1920,
+          "height": 3413,
+          "bytes": 200746
+        }
+      }
+    },
+    "george-oasis-strawberry-nutella-pancakes": {
+      "key": "george-oasis-strawberry-nutella-pancakes",
+      "alt": "Pancakes topped with strawberries, chocolate spread and whipped cream",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-strawberry-nutella-pancakes-mobile.webp",
+          "width": 640,
+          "height": 360,
+          "bytes": 36048
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-strawberry-nutella-pancakes-tablet.webp",
+          "width": 1280,
+          "height": 720,
+          "bytes": 101720
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-strawberry-nutella-pancakes-desktop.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 183324
+        }
+      }
+    },
+    "george-oasis-gyro-wrap": {
+      "key": "george-oasis-gyro-wrap",
+      "alt": "A gyro wrap with lettuce, tomatoes and onions",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-gyro-wrap-mobile.webp",
+          "width": 640,
+          "height": 360,
+          "bytes": 25882
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-gyro-wrap-tablet.webp",
+          "width": 1280,
+          "height": 720,
+          "bytes": 67374
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-gyro-wrap-desktop.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 117644
+        }
+      }
+    },
+    "george-oasis-gyro-wrap-02": {
+      "key": "george-oasis-gyro-wrap-02",
+      "alt": "A gyro wrap with lettuce, tomatoes and onions",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-gyro-wrap-02-mobile.webp",
+          "width": 640,
+          "height": 360,
+          "bytes": 26120
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-gyro-wrap-02-tablet.webp",
+          "width": 1280,
+          "height": 720,
+          "bytes": 68434
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-gyro-wrap-02-desktop.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 119098
+        }
+      }
+    },
+    "george-oasis-gyro-wrap-03": {
+      "key": "george-oasis-gyro-wrap-03",
+      "alt": "A gyro wrap with lettuce, tomatoes and onions",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-gyro-wrap-03-mobile.webp",
+          "width": 640,
+          "height": 360,
+          "bytes": 26126
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-gyro-wrap-03-tablet.webp",
+          "width": 1280,
+          "height": 720,
+          "bytes": 62634
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-gyro-wrap-03-desktop.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 105434
+        }
+      }
+    },
+    "george-oasis-bacon-cheeseburger-and-fries": {
+      "key": "george-oasis-bacon-cheeseburger-and-fries",
+      "alt": "Bacon cheeseburger served with French fries",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-bacon-cheeseburger-and-fries-mobile.webp",
+          "width": 640,
+          "height": 360,
+          "bytes": 31454
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-bacon-cheeseburger-and-fries-tablet.webp",
+          "width": 1280,
+          "height": 720,
+          "bytes": 84690
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-bacon-cheeseburger-and-fries-desktop.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 151272
+        }
+      }
+    },
+    "george-oasis-cornhole-games-02": {
+      "key": "george-oasis-cornhole-games-02",
+      "alt": "Cornhole boards and a large four-in-a-row game beside outdoor seating",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-cornhole-games-02-mobile.webp",
+          "width": 640,
+          "height": 360,
+          "bytes": 46188
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-cornhole-games-02-tablet.webp",
+          "width": 1280,
+          "height": 720,
+          "bytes": 174870
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-cornhole-games-02-desktop.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 386372
+        }
+      }
+    },
+    "george-oasis-outdoor-party-gift-table": {
+      "key": "george-oasis-outdoor-party-gift-table",
+      "alt": "Wrapped gifts and decorations on an outdoor party table",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-outdoor-party-gift-table-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 46408
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-outdoor-party-gift-table-tablet.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 145706
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-outdoor-party-gift-table-desktop.webp",
+          "width": 1600,
+          "height": 1200,
+          "bytes": 219810
+        }
+      }
+    },
+    "george-oasis-indoor-party-buffet-balloons": {
+      "key": "george-oasis-indoor-party-buffet-balloons",
+      "alt": "An indoor party buffet with a pink balloon display",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-indoor-party-buffet-balloons-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 46352
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-indoor-party-buffet-balloons-tablet.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 113254
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-indoor-party-buffet-balloons-desktop.webp",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 177388
+        }
+      }
+    },
+    "george-oasis-chocolate-sundae": {
+      "key": "george-oasis-chocolate-sundae",
+      "alt": "A chocolate sundae topped with whipped cream and a cherry",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-chocolate-sundae-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 29596
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-chocolate-sundae-tablet.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 72570
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-chocolate-sundae-desktop.webp",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 125998
+        }
+      }
+    },
+    "george-oasis-chocolate-sundae-02": {
+      "key": "george-oasis-chocolate-sundae-02",
+      "alt": "A tall sundae with whipped cream, chocolate sauce and a cherry",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-chocolate-sundae-02-mobile.webp",
+          "width": 640,
+          "height": 853,
+          "bytes": 39226
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-chocolate-sundae-02-tablet.webp",
+          "width": 1280,
+          "height": 1707,
+          "bytes": 103170
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-chocolate-sundae-02-desktop.webp",
+          "width": 1920,
+          "height": 2560,
+          "bytes": 194644
+        }
+      }
+    },
+    "george-oasis-chocolate-sundae-03": {
+      "key": "george-oasis-chocolate-sundae-03",
+      "alt": "A chocolate sundae topped with whipped cream and a cherry",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-chocolate-sundae-03-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 48236
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-chocolate-sundae-03-tablet.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 139478
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-chocolate-sundae-03-desktop.webp",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 276426
+        }
+      }
+    },
+    "george-oasis-menu-food-spread": {
+      "key": "george-oasis-menu-food-spread",
+      "alt": "A spread of sandwiches, salad, pasta, fries and crab cakes",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-menu-food-spread-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 43716
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-menu-food-spread-tablet.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 106986
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-menu-food-spread-desktop.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 182556
+        }
+      }
+    },
+    "george-oasis-menu-food-spread-02": {
+      "key": "george-oasis-menu-food-spread-02",
+      "alt": "Several restaurant dishes arranged together on a table",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-menu-food-spread-02-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 36032
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-menu-food-spread-02-tablet.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 90800
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-menu-food-spread-02-desktop.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 152472
+        }
+      }
+    },
+    "george-oasis-crab-cakes": {
+      "key": "george-oasis-crab-cakes",
+      "alt": "Two crab cakes with lemon and garnish",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-crab-cakes-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 41760
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-crab-cakes-tablet.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 111066
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-crab-cakes-desktop.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 192464
+        }
+      }
+    },
+    "george-oasis-greek-salad-wrap-and-fries": {
+      "key": "george-oasis-greek-salad-wrap-and-fries",
+      "alt": "Greek salad beside a wrapped sandwich and fries",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-greek-salad-wrap-and-fries-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 23900
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-greek-salad-wrap-and-fries-tablet.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 60088
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-greek-salad-wrap-and-fries-desktop.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 100794
+        }
+      }
+    },
+    "george-oasis-menu-food-spread-03": {
+      "key": "george-oasis-menu-food-spread-03",
+      "alt": "A spread of sandwiches, salad, pasta, fries and crab cakes",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-menu-food-spread-03-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 43716
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-menu-food-spread-03-tablet.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 106986
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-menu-food-spread-03-desktop.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 182556
+        }
+      }
+    },
+    "george-oasis-menu-food-spread-04": {
+      "key": "george-oasis-menu-food-spread-04",
+      "alt": "Several restaurant dishes arranged together on a table",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-menu-food-spread-04-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 36032
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-menu-food-spread-04-tablet.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 90800
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-menu-food-spread-04-desktop.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 152472
+        }
+      }
+    },
+    "george-oasis-crab-cakes-02": {
+      "key": "george-oasis-crab-cakes-02",
+      "alt": "Two crab cakes with lemon and garnish",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-crab-cakes-02-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 41760
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-crab-cakes-02-tablet.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 111066
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-crab-cakes-02-desktop.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 192464
+        }
+      }
+    },
+    "george-oasis-crab-cakes-03": {
+      "key": "george-oasis-crab-cakes-03",
+      "alt": "Two crab cakes with lemon and garnish",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-crab-cakes-03-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 41760
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-crab-cakes-03-tablet.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 111066
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-crab-cakes-03-desktop.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 192464
+        }
+      }
+    },
+    "george-oasis-greek-salad-wrap-and-fries-02": {
+      "key": "george-oasis-greek-salad-wrap-and-fries-02",
+      "alt": "Greek salad beside a wrapped sandwich and fries",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-greek-salad-wrap-and-fries-02-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 23900
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-greek-salad-wrap-and-fries-02-tablet.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 60088
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-greek-salad-wrap-and-fries-02-desktop.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 100794
+        }
+      }
+    },
+    "george-oasis-menu-food-spread-05": {
+      "key": "george-oasis-menu-food-spread-05",
+      "alt": "A table of restaurant dishes including sandwiches, salad and pasta",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-menu-food-spread-05-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 40990
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-menu-food-spread-05-tablet.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 101080
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-menu-food-spread-05-desktop.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 165770
+        }
+      }
+    },
+    "george-oasis-menu-food-spread-06": {
+      "key": "george-oasis-menu-food-spread-06",
+      "alt": "A table of restaurant dishes including sandwiches, salad and pasta",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-menu-food-spread-06-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 40990
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-menu-food-spread-06-tablet.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 101080
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-menu-food-spread-06-desktop.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 165770
+        }
+      }
+    },
+    "george-oasis-bacon-cheeseburger-and-fries-02": {
+      "key": "george-oasis-bacon-cheeseburger-and-fries-02",
+      "alt": "A bacon cheeseburger with fries and sliced vegetables",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-bacon-cheeseburger-and-fries-02-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 40812
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-bacon-cheeseburger-and-fries-02-tablet.webp",
+          "width": 1280,
+          "height": 853,
+          "bytes": 103336
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-bacon-cheeseburger-and-fries-02-desktop.webp",
+          "width": 1920,
+          "height": 1280,
+          "bytes": 176200
+        }
+      }
+    },
+    "george-oasis-catering-salad-tray": {
+      "key": "george-oasis-catering-salad-tray",
+      "alt": "A large salad tray with cucumber, tomato, onions and olives",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-catering-salad-tray-mobile.webp",
+          "width": 640,
+          "height": 853,
+          "bytes": 86064
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-catering-salad-tray-tablet.webp",
+          "width": 1280,
+          "height": 1707,
+          "bytes": 231528
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-catering-salad-tray-desktop.webp",
+          "width": 1920,
+          "height": 2560,
+          "bytes": 406096
+        }
+      }
+    },
+    "george-oasis-mini-golf-players-pond": {
+      "key": "george-oasis-mini-golf-players-pond",
+      "alt": "People playing mini golf beyond the course pond",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-mini-golf-players-pond-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 67188
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-mini-golf-players-pond-tablet.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 238594
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-mini-golf-players-pond-desktop.webp",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 482818
+        }
+      }
+    },
+    "george-oasis-mini-golf-players-pond-02": {
+      "key": "george-oasis-mini-golf-players-pond-02",
+      "alt": "People playing mini golf beyond the course pond",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-mini-golf-players-pond-02-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 68474
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-mini-golf-players-pond-02-tablet.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 247306
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-mini-golf-players-pond-02-desktop.webp",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 473296
+        }
+      }
+    },
+    "george-oasis-mini-golf-players-pond-03": {
+      "key": "george-oasis-mini-golf-players-pond-03",
+      "alt": "An adult and child near a putting green and water feature",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-mini-golf-players-pond-03-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 96906
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-mini-golf-players-pond-03-tablet.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 301996
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-mini-golf-players-pond-03-desktop.webp",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 497954
+        }
+      }
+    },
+    "george-oasis-catering-buffet": {
+      "key": "george-oasis-catering-buffet",
+      "alt": "Platters and plates arranged for a buffet beside the dining room windows",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-catering-buffet-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 36936
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-catering-buffet-tablet.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 103600
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-catering-buffet-desktop.webp",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 189718
+        }
+      }
+    },
+    "george-oasis-catering-buffet-02": {
+      "key": "george-oasis-catering-buffet-02",
+      "alt": "Platters and plates arranged for a buffet beside the dining room windows",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-catering-buffet-02-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 35208
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-catering-buffet-02-tablet.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 100228
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-catering-buffet-02-desktop.webp",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 178532
+        }
+      }
+    },
+    "george-oasis-chicken-tenders-platter": {
+      "key": "george-oasis-chicken-tenders-platter",
+      "alt": "A platter of breaded chicken tenders",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-chicken-tenders-platter-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 55736
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-chicken-tenders-platter-tablet.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 166144
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-chicken-tenders-platter-desktop.webp",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 293216
+        }
+      }
+    },
+    "george-oasis-catering-buffet-03": {
+      "key": "george-oasis-catering-buffet-03",
+      "alt": "Platters and plates arranged for a buffet beside the dining room windows",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-catering-buffet-03-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 35244
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-catering-buffet-03-tablet.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 103098
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-catering-buffet-03-desktop.webp",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 199158
+        }
+      }
+    },
+    "george-oasis-counter-farmhouse-decor": {
+      "key": "george-oasis-counter-farmhouse-decor",
+      "alt": "Farmhouse-style milk jug and decorations on the restaurant counter",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-counter-farmhouse-decor-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 28964
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-counter-farmhouse-decor-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 70558
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-counter-farmhouse-decor-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 118414
+        }
+      }
+    },
+    "george-oasis-counter-flowers-and-faith-sign": {
+      "key": "george-oasis-counter-flowers-and-faith-sign",
+      "alt": "Flowers and a faith sign on the restaurant counter",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-counter-flowers-and-faith-sign-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 47618
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-counter-flowers-and-faith-sign-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 139064
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-counter-flowers-and-faith-sign-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 255018
+        }
+      }
+    },
+    "george-oasis-family-and-coffee-wall-decor": {
+      "key": "george-oasis-family-and-coffee-wall-decor",
+      "alt": "Family, coffee and prayer decorations on a dining room wall",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-family-and-coffee-wall-decor-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 31768
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-family-and-coffee-wall-decor-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 77322
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-family-and-coffee-wall-decor-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 131558
+        }
+      }
+    },
+    "george-oasis-dining-room-window-tables": {
+      "key": "george-oasis-dining-room-window-tables",
+      "alt": "Dining tables and wooden chairs beside large windows",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-dining-room-window-tables-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 36304
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-dining-room-window-tables-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 112924
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-dining-room-window-tables-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 214568
+        }
+      }
+    },
+    "george-oasis-dining-room-window-tables-02": {
+      "key": "george-oasis-dining-room-window-tables-02",
+      "alt": "Dining tables and wooden chairs beside large windows",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-dining-room-window-tables-02-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 35678
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-dining-room-window-tables-02-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 109350
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-dining-room-window-tables-02-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 201092
+        }
+      }
+    },
+    "george-oasis-family-and-coffee-wall-decor-02": {
+      "key": "george-oasis-family-and-coffee-wall-decor-02",
+      "alt": "Family, coffee and prayer decorations on a dining room wall",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-family-and-coffee-wall-decor-02-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 34136
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-family-and-coffee-wall-decor-02-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 82524
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-family-and-coffee-wall-decor-02-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 136500
+        }
+      }
+    },
+    "george-oasis-counter-grateful-heart-sign": {
+      "key": "george-oasis-counter-grateful-heart-sign",
+      "alt": "A grateful-heart sign on the restaurant counter",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-counter-grateful-heart-sign-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 27496
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-counter-grateful-heart-sign-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 76820
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-counter-grateful-heart-sign-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 136256
+        }
+      }
+    },
+    "george-oasis-dining-room-lords-prayer": {
+      "key": "george-oasis-dining-room-lords-prayer",
+      "alt": "A prayer board and decorative wreath in the dining room",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-dining-room-lords-prayer-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 22734
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-dining-room-lords-prayer-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 63494
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-dining-room-lords-prayer-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 110466
+        }
+      }
+    },
+    "george-oasis-dining-room-flower-photo-wall": {
+      "key": "george-oasis-dining-room-flower-photo-wall",
+      "alt": "A flower-photo display above dining room tables",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-dining-room-flower-photo-wall-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 30382
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-dining-room-flower-photo-wall-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 91542
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-dining-room-flower-photo-wall-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 180540
+        }
+      }
+    },
+    "george-oasis-dining-room-lords-prayer-02": {
+      "key": "george-oasis-dining-room-lords-prayer-02",
+      "alt": "A prayer board and decorative wreath in the dining room",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-dining-room-lords-prayer-02-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 29962
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-dining-room-lords-prayer-02-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 77122
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-dining-room-lords-prayer-02-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 126172
+        }
+      }
+    },
+    "george-oasis-dining-room-flower-photo-wall-02": {
+      "key": "george-oasis-dining-room-flower-photo-wall-02",
+      "alt": "A flower-photo display above dining room tables",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-dining-room-flower-photo-wall-02-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 35770
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-dining-room-flower-photo-wall-02-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 117298
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-dining-room-flower-photo-wall-02-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 230166
+        }
+      }
+    },
+    "george-oasis-daily-specials-chalkboard": {
+      "key": "george-oasis-daily-specials-chalkboard",
+      "alt": "A photographed specials chalkboard on the restaurant wall",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-daily-specials-chalkboard-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 24442
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-daily-specials-chalkboard-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 92278
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-daily-specials-chalkboard-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 201306
+        }
+      }
+    },
+    "george-oasis-dining-room-lords-prayer-03": {
+      "key": "george-oasis-dining-room-lords-prayer-03",
+      "alt": "A prayer board and decorative wreath in the dining room",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-dining-room-lords-prayer-03-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 27382
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-dining-room-lords-prayer-03-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 70820
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-dining-room-lords-prayer-03-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 117024
+        }
+      }
+    },
+    "george-oasis-family-and-coffee-wall-decor-03": {
+      "key": "george-oasis-family-and-coffee-wall-decor-03",
+      "alt": "Family, coffee and prayer decorations on a dining room wall",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-family-and-coffee-wall-decor-03-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 25010
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-family-and-coffee-wall-decor-03-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 66802
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-family-and-coffee-wall-decor-03-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 131086
+        }
+      }
+    },
+    "george-oasis-oasis-lettering-wall-decor": {
+      "key": "george-oasis-oasis-lettering-wall-decor",
+      "alt": "Oasis lettering, photographs and decorations above a booth",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-oasis-lettering-wall-decor-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 32006
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-oasis-lettering-wall-decor-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 89374
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-oasis-lettering-wall-decor-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 156232
+        }
+      }
+    },
+    "george-oasis-table-menu-display": {
+      "key": "george-oasis-table-menu-display",
+      "alt": "A printed menu and condiments on a dining table",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-table-menu-display-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 24262
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-table-menu-display-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 79186
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-table-menu-display-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 148722
+        }
+      }
+    },
+    "george-oasis-oasis-lettering-wall-decor-02": {
+      "key": "george-oasis-oasis-lettering-wall-decor-02",
+      "alt": "Oasis lettering, photographs and decorations above a booth",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-oasis-lettering-wall-decor-02-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 26658
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-oasis-lettering-wall-decor-02-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 78598
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-oasis-lettering-wall-decor-02-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 143606
+        }
+      }
+    },
+    "george-oasis-table-menu-display-02": {
+      "key": "george-oasis-table-menu-display-02",
+      "alt": "A printed menu and condiments on a dining table",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-table-menu-display-02-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 19494
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-table-menu-display-02-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 71650
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-table-menu-display-02-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 152816
+        }
+      }
+    },
+    "george-oasis-counter-flowers-and-faith-sign-02": {
+      "key": "george-oasis-counter-flowers-and-faith-sign-02",
+      "alt": "Flowers and a faith sign on the restaurant counter",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-counter-flowers-and-faith-sign-02-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 45700
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-counter-flowers-and-faith-sign-02-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 127652
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-counter-flowers-and-faith-sign-02-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 226308
+        }
+      }
+    },
+    "george-oasis-counter-farmhouse-decor-02": {
+      "key": "george-oasis-counter-farmhouse-decor-02",
+      "alt": "Farmhouse-style milk jug and decorations on the restaurant counter",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-counter-farmhouse-decor-02-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 35394
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-counter-farmhouse-decor-02-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 95456
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-counter-farmhouse-decor-02-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 165700
+        }
+      }
+    },
+    "george-oasis-dining-room-lords-prayer-04": {
+      "key": "george-oasis-dining-room-lords-prayer-04",
+      "alt": "A prayer board and decorative wreath in the dining room",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-dining-room-lords-prayer-04-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 23990
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-dining-room-lords-prayer-04-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 65226
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-dining-room-lords-prayer-04-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 110170
+        }
+      }
+    },
+    "george-oasis-table-menu-display-03": {
+      "key": "george-oasis-table-menu-display-03",
+      "alt": "A printed menu and condiments on a dining table",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-table-menu-display-03-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 20616
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-table-menu-display-03-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 71136
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-table-menu-display-03-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 144802
+        }
+      }
+    },
+    "george-oasis-oasis-lettering-wall-decor-03": {
+      "key": "george-oasis-oasis-lettering-wall-decor-03",
+      "alt": "Oasis lettering, photographs and decorations above a booth",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-oasis-lettering-wall-decor-03-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 31230
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-oasis-lettering-wall-decor-03-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 81426
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-oasis-lettering-wall-decor-03-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 138196
+        }
+      }
+    },
+    "george-oasis-oasis-lettering-wall-decor-04": {
+      "key": "george-oasis-oasis-lettering-wall-decor-04",
+      "alt": "Oasis lettering, photographs and decorations above a booth",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-oasis-lettering-wall-decor-04-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 30740
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-oasis-lettering-wall-decor-04-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 84276
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-oasis-lettering-wall-decor-04-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 145554
+        }
+      }
+    },
+    "george-oasis-oasis-lettering-wall-decor-05": {
+      "key": "george-oasis-oasis-lettering-wall-decor-05",
+      "alt": "Oasis lettering, photographs and decorations above a booth",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-oasis-lettering-wall-decor-05-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 31260
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-oasis-lettering-wall-decor-05-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 83236
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-oasis-lettering-wall-decor-05-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 142874
+        }
+      }
+    },
+    "george-oasis-counter-flowers-and-faith-sign-03": {
+      "key": "george-oasis-counter-flowers-and-faith-sign-03",
+      "alt": "Flowers and a faith sign on the restaurant counter",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-counter-flowers-and-faith-sign-03-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 47058
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-counter-flowers-and-faith-sign-03-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 153758
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-counter-flowers-and-faith-sign-03-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 292482
+        }
+      }
+    },
+    "george-oasis-outdoor-picnic-tables-umbrellas": {
+      "key": "george-oasis-outdoor-picnic-tables-umbrellas",
+      "alt": "Outdoor picnic tables with green umbrellas and flower planters",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-outdoor-picnic-tables-umbrellas-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 75328
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-outdoor-picnic-tables-umbrellas-tablet.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 289118
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-outdoor-picnic-tables-umbrellas-desktop.webp",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 580016
+        }
+      }
+    },
+    "george-oasis-triangle-pastries-platter": {
+      "key": "george-oasis-triangle-pastries-platter",
+      "alt": "Triangular pastries arranged on a white platter",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-triangle-pastries-platter-mobile.webp",
+          "width": 600,
+          "height": 800,
+          "bytes": 58960
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-triangle-pastries-platter-tablet.webp",
+          "width": 600,
+          "height": 800,
+          "bytes": 58960
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-triangle-pastries-platter-desktop.webp",
+          "width": 600,
+          "height": 800,
+          "bytes": 58960
+        }
+      }
+    },
+    "george-oasis-pastry-rolls-platter": {
+      "key": "george-oasis-pastry-rolls-platter",
+      "alt": "Pastry rolls arranged on a white platter",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-pastry-rolls-platter-mobile.webp",
+          "width": 480,
+          "height": 640,
+          "bytes": 67558
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-pastry-rolls-platter-tablet.webp",
+          "width": 480,
+          "height": 640,
+          "bytes": 67558
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-pastry-rolls-platter-desktop.webp",
+          "width": 480,
+          "height": 640,
+          "bytes": 67558
+        }
+      }
+    },
+    "george-oasis-vegetable-topped-bread": {
+      "key": "george-oasis-vegetable-topped-bread",
+      "alt": "Bread topped with cucumber, tomato and greens",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-vegetable-topped-bread-mobile.webp",
+          "width": 600,
+          "height": 800,
+          "bytes": 84276
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-vegetable-topped-bread-tablet.webp",
+          "width": 600,
+          "height": 800,
+          "bytes": 84276
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-vegetable-topped-bread-desktop.webp",
+          "width": 600,
+          "height": 800,
+          "bytes": 84276
+        }
+      }
+    },
+    "george-oasis-mini-golf-bridge-and-pond": {
+      "key": "george-oasis-mini-golf-bridge-and-pond",
+      "alt": "A wooden bridge over the mini golf pond, with trees and a waterfall beyond",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-mini-golf-bridge-and-pond-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 99212
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-mini-golf-bridge-and-pond-tablet.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 378116
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-mini-golf-bridge-and-pond-desktop.webp",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 817958
+        }
+      }
+    },
+    "george-oasis-soft-serve-twist-cone": {
+      "key": "george-oasis-soft-serve-twist-cone",
+      "alt": "A chocolate-and-vanilla twist soft-serve cone",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-soft-serve-twist-cone-mobile.webp",
+          "width": 640,
+          "height": 853,
+          "bytes": 28916
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-soft-serve-twist-cone-tablet.webp",
+          "width": 1280,
+          "height": 1707,
+          "bytes": 79402
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-soft-serve-twist-cone-desktop.webp",
+          "width": 1920,
+          "height": 2560,
+          "bytes": 155694
+        }
+      }
+    },
+    "george-oasis-dining-room-booths-night-psd-source": {
+      "key": "george-oasis-dining-room-booths-night-psd-source",
+      "alt": "Green dining booths and pendant lights at night",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-dining-room-booths-night-psd-source-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 37402
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-dining-room-booths-night-psd-source-tablet.webp",
+          "width": 960,
+          "height": 720,
+          "bytes": 66300
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-dining-room-booths-night-psd-source-desktop.webp",
+          "width": 960,
+          "height": 720,
+          "bytes": 66300
+        }
+      }
+    },
+    "george-oasis-mini-golf-bridge-and-pond-02": {
+      "key": "george-oasis-mini-golf-bridge-and-pond-02",
+      "alt": "A wide view of the mini golf bridge, pond and landscaped course",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-mini-golf-bridge-and-pond-02-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 71858
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-mini-golf-bridge-and-pond-02-tablet.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 289796
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-mini-golf-bridge-and-pond-02-desktop.webp",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 648756
+        }
+      }
+    },
+    "george-oasis-dining-room-booths-night": {
+      "key": "george-oasis-dining-room-booths-night",
+      "alt": "Green dining booths and pendant lights at night",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-dining-room-booths-night-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 29170
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-dining-room-booths-night-tablet.webp",
+          "width": 960,
+          "height": 720,
+          "bytes": 51994
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-dining-room-booths-night-desktop.webp",
+          "width": 960,
+          "height": 720,
+          "bytes": 51994
+        }
+      }
+    },
+    "george-oasis-restaurant-exterior-sign": {
+      "key": "george-oasis-restaurant-exterior-sign",
+      "alt": "George\u2019s Oasis exterior sign beside outdoor seating and parking",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-restaurant-exterior-sign-mobile.webp",
+          "width": 640,
+          "height": 480,
+          "bytes": 46626
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-restaurant-exterior-sign-tablet.webp",
+          "width": 1280,
+          "height": 960,
+          "bytes": 181502
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-restaurant-exterior-sign-desktop.webp",
+          "width": 1920,
+          "height": 1440,
+          "bytes": 372576
+        }
+      }
+    },
+    "george-oasis-dining-room-booths-day": {
+      "key": "george-oasis-dining-room-booths-day",
+      "alt": "Green booths and dining tables along the restaurant windows",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-dining-room-booths-day-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 36326
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-dining-room-booths-day-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 103518
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-dining-room-booths-day-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 185754
+        }
+      }
+    },
+    "george-oasis-pray-more-worry-less-sign": {
+      "key": "george-oasis-pray-more-worry-less-sign",
+      "alt": "A Pray More Worry Less sign near the dining booths",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-pray-more-worry-less-sign-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 30872
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-pray-more-worry-less-sign-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 80672
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-pray-more-worry-less-sign-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 139420
+        }
+      }
+    },
+    "george-oasis-pray-more-worry-less-sign-02": {
+      "key": "george-oasis-pray-more-worry-less-sign-02",
+      "alt": "A Pray More Worry Less sign near the dining booths",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-pray-more-worry-less-sign-02-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 30326
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-pray-more-worry-less-sign-02-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 83414
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-pray-more-worry-less-sign-02-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 146450
+        }
+      }
+    },
+    "george-oasis-flower-photo-wall": {
+      "key": "george-oasis-flower-photo-wall",
+      "alt": "Framed flower photographs and a floral collage on the wall",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-flower-photo-wall-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 36660
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-flower-photo-wall-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 114418
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-flower-photo-wall-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 214480
+        }
+      }
+    },
+    "george-oasis-rustic-wall-rack": {
+      "key": "george-oasis-rustic-wall-rack",
+      "alt": "A rustic wall rack with hooks, a wire basket and flowers",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-rustic-wall-rack-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 29950
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-rustic-wall-rack-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 89128
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-rustic-wall-rack-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 156660
+        }
+      }
+    },
+    "george-oasis-rustic-wall-rack-02": {
+      "key": "george-oasis-rustic-wall-rack-02",
+      "alt": "A rustic wall rack with hooks, a wire basket and flowers",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-rustic-wall-rack-02-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 24302
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-rustic-wall-rack-02-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 86552
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-rustic-wall-rack-02-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 169454
+        }
+      }
+    },
+    "george-oasis-floral-wall-art": {
+      "key": "george-oasis-floral-wall-art",
+      "alt": "Floral wall art and small wall-mounted planters",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-floral-wall-art-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 18622
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-floral-wall-art-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 61318
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-floral-wall-art-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 143434
+        }
+      }
+    },
+    "george-oasis-floral-wall-art-02": {
+      "key": "george-oasis-floral-wall-art-02",
+      "alt": "Floral wall art and small wall-mounted planters",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-floral-wall-art-02-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 16930
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-floral-wall-art-02-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 54076
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-floral-wall-art-02-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 121160
+        }
+      }
+    },
+    "george-oasis-floral-wall-art-03": {
+      "key": "george-oasis-floral-wall-art-03",
+      "alt": "Floral wall art and small wall-mounted planters",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-floral-wall-art-03-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 19972
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-floral-wall-art-03-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 59948
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-floral-wall-art-03-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 110914
+        }
+      }
+    },
+    "george-oasis-floral-wall-art-04": {
+      "key": "george-oasis-floral-wall-art-04",
+      "alt": "Floral wall art and small wall-mounted planters",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-floral-wall-art-04-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 18324
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-floral-wall-art-04-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 56438
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-floral-wall-art-04-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 113344
+        }
+      }
+    },
+    "george-oasis-dining-room-window-tables-03": {
+      "key": "george-oasis-dining-room-window-tables-03",
+      "alt": "A view across dining room tables beside the windows",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-dining-room-window-tables-03-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 30404
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-dining-room-window-tables-03-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 78344
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-dining-room-window-tables-03-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 134654
+        }
+      }
+    },
+    "george-oasis-grateful-heart-sign-closeup": {
+      "key": "george-oasis-grateful-heart-sign-closeup",
+      "alt": "A sign reading Start each day with a grateful heart",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-grateful-heart-sign-closeup-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 27226
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-grateful-heart-sign-closeup-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 71526
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-grateful-heart-sign-closeup-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 126014
+        }
+      }
+    },
+    "george-oasis-counter-plants-and-prayer-sign": {
+      "key": "george-oasis-counter-plants-and-prayer-sign",
+      "alt": "Potted greenery and a prayer sign along the dining room divider",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-counter-plants-and-prayer-sign-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 40216
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-counter-plants-and-prayer-sign-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 115956
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-counter-plants-and-prayer-sign-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 204370
+        }
+      }
+    },
+    "george-oasis-counter-plants-and-prayer-sign-02": {
+      "key": "george-oasis-counter-plants-and-prayer-sign-02",
+      "alt": "Potted greenery and a prayer sign along the dining room divider",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-counter-plants-and-prayer-sign-02-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 40474
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-counter-plants-and-prayer-sign-02-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 104168
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-counter-plants-and-prayer-sign-02-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 172264
+        }
+      }
+    },
+    "george-oasis-counter-plants-and-prayer-sign-03": {
+      "key": "george-oasis-counter-plants-and-prayer-sign-03",
+      "alt": "Potted greenery and a prayer sign along the dining room divider",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-counter-plants-and-prayer-sign-03-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 41226
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-counter-plants-and-prayer-sign-03-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 106804
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-counter-plants-and-prayer-sign-03-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 177756
+        }
+      }
+    },
+    "george-oasis-entrance-menu-rack": {
+      "key": "george-oasis-entrance-menu-rack",
+      "alt": "A wall-mounted menu rack beside the entrance and booths",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-entrance-menu-rack-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 41760
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-entrance-menu-rack-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 108548
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-entrance-menu-rack-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 183812
+        }
+      }
+    },
+    "george-oasis-entrance-menu-rack-02": {
+      "key": "george-oasis-entrance-menu-rack-02",
+      "alt": "A wall-mounted menu rack beside the entrance and booths",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-entrance-menu-rack-02-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 35742
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-entrance-menu-rack-02-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 96830
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-entrance-menu-rack-02-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 169314
+        }
+      }
+    },
+    "george-oasis-entrance-menu-rack-03": {
+      "key": "george-oasis-entrance-menu-rack-03",
+      "alt": "A wall-mounted menu rack beside the entrance and booths",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-entrance-menu-rack-03-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 33730
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-entrance-menu-rack-03-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 91990
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-entrance-menu-rack-03-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 166114
+        }
+      }
+    },
+    "george-oasis-entrance-welcome-sign-and-flowers": {
+      "key": "george-oasis-entrance-welcome-sign-and-flowers",
+      "alt": "A welcome sign and colorful flowers beside the entrance seating",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-entrance-welcome-sign-and-flowers-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 37326
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-entrance-welcome-sign-and-flowers-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 100888
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-entrance-welcome-sign-and-flowers-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 176304
+        }
+      }
+    },
+    "george-oasis-entrance-welcome-sign-and-flowers-02": {
+      "key": "george-oasis-entrance-welcome-sign-and-flowers-02",
+      "alt": "A welcome sign and colorful flowers beside the entrance seating",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-entrance-welcome-sign-and-flowers-02-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 38118
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-entrance-welcome-sign-and-flowers-02-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 103444
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-entrance-welcome-sign-and-flowers-02-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 183002
+        }
+      }
+    },
+    "george-oasis-thankful-sign-and-wreath": {
+      "key": "george-oasis-thankful-sign-and-wreath",
+      "alt": "A wreath above a sign about reasons to be thankful",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-thankful-sign-and-wreath-mobile.webp",
+          "width": 640,
+          "height": 427,
+          "bytes": 27860
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-thankful-sign-and-wreath-tablet.webp",
+          "width": 1280,
+          "height": 855,
+          "bytes": 97364
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-thankful-sign-and-wreath-desktop.webp",
+          "width": 1920,
+          "height": 1282,
+          "bytes": 214706
+        }
+      }
+    }
+  }
+}

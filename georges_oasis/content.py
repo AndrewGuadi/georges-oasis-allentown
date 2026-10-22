@@ -95,7 +95,13 @@ def service_status(service, now=None):
                     if service.get("cutoff_minutes") and utc_now >= cutoff:
                         state,label = "cutoff_passed", "Last start has passed" if service["key"] == "golf" else "Kitchen closed"
                     return result | {"state":state,"label":label,"note":f"Until {end.strftime('%-I:%M %p')} Eastern","cutoff":cutoff.astimezone(LOCAL).strftime('%-I:%M %p') if service.get("cutoff_minutes") else None}
-        return result | {"state":"closed","label":"Closed now","note":"See the schedule below."}
+        future_starts = [service_boundary(current.date(), opens) for opens, closes in windows
+                         if service_boundary(current.date(), opens).astimezone(timezone.utc) > utc_now]
+        note = "View service hours."
+        if future_starts:
+            next_start = min(future_starts).strftime('%-I:%M %p').replace(':00', '')
+            note = f"{'Dinner begins' if service['key'] == 'dinner' else 'Opens'} at {next_start} today."
+        return result | {"state":"closed","label":"Closed now","note":note}
     except (ValueError,TypeError,OverflowError):
         return result | {"state":"unknown","label":"Check hours","schedule":[]}
 
@@ -127,12 +133,22 @@ def public_content(now=None, include_drafts=False):
                 item["formatted_price"] = money(item["price"])
             for variant in item.get("variants", []):
                 variant["formatted_price"] = money(variant["price"])
+    service_facts = [service_status(s, now) for s in data["services"]]
     offers = []
     for offer in data.get("offers", []):
         state = offer_state(offer,now)
-        if state != "hidden":
-            offers.append(offer | {"state":state,"formatted_price":money(offer["price"]) if offer.get("price") else None})
-    return {"has_menu_items":any(c["items"] for c in categories),"consumer_advisory":data.get("consumer_advisory",{}).get("text"),"dessert_flavors":data.get("dessert_flavors") if include_drafts or publishable(data.get("dessert_flavors",{}),now) else None,"menu_download_url":data.get("menu_download",{}).get("url") if publishable(data.get("menu_download",{}),now) else None,"business":data["business"],"menu_categories":categories,"service_facts":[service_status(s,now) for s in data["services"]],"editorial_offers":offers,"golf_rates":data["golf"] if include_drafts or publishable(data["golf"],now) else None,"story_record":data["story"] if include_drafts or publishable(data["story"],now) else None,"media":data["media"]}
+        if state != "hidden" and offer.get("weekday") in data.get("weekly_special_days", [2, 3, 4]):
+            offers.append(offer | {"state":state,"formatted_price":money(offer["price"]) if offer.get("price") is not None else None})
+    offers.sort(key=lambda offer: offer['weekday'])
+    business = data['business'] | {'email': current_app.config.get('INQUIRY_RECIPIENT') or data['business'].get('email')}
+    items_by_id = {item['id']: item | {'category_id': category['id']}
+                   for category in categories for item in category['items']}
+    def features(key):
+        return [items_by_id[feature['item_id']] | feature
+                for feature in data.get(key, []) if feature['item_id'] in items_by_id]
+    return {"featured_menu_items":features('menu_features'), "featured_desserts":features('dessert_features'),
+            "visit_details":data.get('visit_details', {}), "ice_cream_experience":data.get('ice_cream_experience', {}),
+            "ordering_details":data.get('ordering_details', {}), "photo_placements":data.get("photo_placements", {}), "menu_sources":data.get("menu_sources", []), "menu_item_count":sum(len(c["items"]) for c in categories), "weekly_special_days": data.get("weekly_special_days", [2, 3, 4]), "has_menu_items":any(c["items"] for c in categories),"consumer_advisory":data.get("consumer_advisory",{}).get("text"),"dessert_flavors":data.get("dessert_flavors") if include_drafts or publishable(data.get("dessert_flavors",{}),now) else None,"menu_download_url":data.get("menu_download",{}).get("url") if publishable(data.get("menu_download",{}),now) else None,"business":business,"menu_categories":categories,"service_facts":service_facts,"dining_services":[s for s in service_facts if s["key"] in ("restaurant", "dinner")],"editorial_offers":offers,"golf_rates":data["golf"] if include_drafts or publishable(data["golf"],now) else None,"story_record":data["story"] if include_drafts or publishable(data["story"],now) else None,"media":data["media"]}
 
 
 def clock_time(value):
@@ -158,7 +174,7 @@ def validate_content(data):
         for item in category.get('items',[]):
             label=item.get('id','Menu item');metadata(item,label)
             if not item.get('name'):issues.append(f'{label}: a name is required.')
-            if item.get('price') is None and not item.get('variants'):issues.append(f'{label}: a price or priced variants are required.')
+            if item.get('price') is None and not item.get('variants') and not item.get('price_note'):issues.append(f'{label}: a price, priced variants or explicit price note is required.')
             for value in ([item['price']] if item.get('price') is not None else [])+[v.get('price') for v in item.get('variants',[])]+[v.get('price') for v in item.get('add_ons',[])]:
                 try:money(value)
                 except ValueError:issues.append(f'{label}: invalid currency value.')

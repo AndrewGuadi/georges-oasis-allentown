@@ -1,5 +1,5 @@
 from datetime import datetime, timezone
-from flask import abort, make_response, redirect, render_template, request, session, url_for
+from flask import current_app, abort, make_response, redirect, render_template, request, session, url_for
 from . import public_bp
 from .sitemap import PAGES, LEGACY
 from ..content import public_content, clock_time, money
@@ -25,7 +25,7 @@ def page_view(page):
         if page["key"] == "specials":
             context.update(current_promotions())
         if page["key"] == "gatherings":
-            values = {"contact_method":"email","date_flexibility":"Not sure yet","interests":[request.args['interest']] if request.args.get('interest') in INTERESTS else []}
+            values = {"occasion":request.args.get("occasion", "") if request.args.get("occasion") in OCCASIONS else "", "contact_method":"email","date_flexibility":"Not sure yet","interests":[request.args['interest']] if request.args.get('interest') in INTERESTS else []}
             errors, status = {},200
             if request.method == "POST":
                 values = form_values()
@@ -77,4 +77,6 @@ def sitemap_xml():
 
 @public_bp.get('/robots.txt')
 def robots():
+    if not current_app.config['PRODUCTION']:
+        return 'User-agent: *\nDisallow: /\n', 200, {'Content-Type':'text/plain'}
     return 'User-agent: *\nDisallow: /admin\nDisallow: /inquiry-received/\nSitemap: '+url_for('public.sitemap_xml',_external=True)+'\n',200,{'Content-Type':'text/plain'}

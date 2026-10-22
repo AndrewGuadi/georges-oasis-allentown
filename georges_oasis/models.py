@@ -80,3 +80,9 @@ class InquiryAttempt(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     client_key = db.Column(db.String(64), nullable=False, index=True)
     attempted_at = db.Column(db.DateTime, nullable=False, index=True)
+
+
+class LoginAttempt(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    client_key = db.Column(db.String(64), nullable=False, index=True)
+    attempted_at = db.Column(db.DateTime, nullable=False, index=True)
