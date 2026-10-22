@@ -1,10 +1,12 @@
 """Homepage launch rules: shared offers, contact details and service boundaries."""
 import unittest
+import re
 from copy import deepcopy
 from datetime import datetime
 from georges_oasis import create_app
 from georges_oasis.content import load_content, service_status
 from georges_oasis.models import db
+from georges_oasis.public.sitemap import PAGES
 
 
 class HomepageReviewTest(unittest.TestCase):
@@ -53,9 +55,11 @@ class HomepageReviewTest(unittest.TestCase):
 
     def test_contact_is_shared_and_preview_is_not_indexed(self):
         self.app.config['INQUIRY_RECIPIENT'] = 'restaurant@example.test'
-        for route in ['/', '/visit']:
+        for route in ['/'] + [page['path'] for page in PAGES]:
             response = self.client.get(route)
-            self.assertIn('mailto:restaurant@example.test', response.get_data(as_text=True))
+            html = response.get_data(as_text=True)
+            self.assertIn('mailto:georgesoasisrestaurant@gmail.com', html)
+            self.assertEqual(set(re.findall(r'[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}', html)), {'georgesoasisrestaurant@gmail.com'})
             self.assertEqual(response.headers['X-Robots-Tag'], 'noindex, nofollow')
         self.assertIn('Disallow: /\n', self.client.get('/robots.txt').get_data(as_text=True))
 
