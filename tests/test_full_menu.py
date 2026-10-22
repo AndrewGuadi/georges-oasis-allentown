@@ -1,5 +1,4 @@
 import unittest
-from pathlib import Path
 from html import unescape
 from georges_oasis import create_app
 from georges_oasis.content import load_content, public_content, validate_content
@@ -29,8 +28,11 @@ class FullMenuTest(unittest.TestCase):
             self.assertTrue(category['items'], category['id'])
             for item in category['items']:
                 self.assertIn('<h4>'+item['name']+'</h4>', html)
-            photo = Path(category['photo']).stem+'.webp'
-            with self.client.get('/static/images/optimized/'+photo) as response:
+            with self.app.test_request_context():
+                context = {}
+                self.app.update_template_context(context)
+                photo = context['photo_url'](category['photo'])
+            with self.client.get(photo) as response:
                 self.assertEqual(response.status_code, 200)
         for source in self.content['menu_sources']:
             with self.client.get('/static/images/menu/'+source['file']) as response:

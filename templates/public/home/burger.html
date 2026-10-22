@@ -1,8 +1,6 @@
 <section id="specials" class="grid bg-[#f1ead9] lg:grid-cols-2">
       <div class="relative min-h-[350px] overflow-hidden lg:min-h-[520px]">
-        <img width="1067" height="800" decoding="async" src="{{ url_for('static', filename='images/optimized/georges_burger.webp') }}"
-             alt="George's Oasis burger" loading="lazy"
-             class="absolute inset-0 h-full w-full object-cover" />
+        {{ site_image(photo_placements.home_kitchen, 'Window-side tables in the Oasis dining room', sizes='(max-width: 1023px) 100vw, 50vw', class_name='home-kitchen-photo') }}
         <div class="absolute left-5 top-5 grid h-36 w-36 rotate-[-8deg] place-items-center rounded-full bg-oasis-gold p-5 text-center font-black uppercase leading-tight text-oasis-950 shadow-xl md:left-12 md:top-10">
           <div>
             <div class="text-[.65rem] tracking-[.22em]">From the kitchen</div>

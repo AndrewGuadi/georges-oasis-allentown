@@ -1,5 +1,6 @@
 {% from 'public/includes/icons.html' import icon %}
-<section class="hero" style="--hero-photo: url('{{ url_for('static', filename='images/optimized/main_exterior_oasis.webp') }}')" aria-labelledby="hero-title">
+<section class="hero" aria-labelledby="hero-title">
+  {{ site_image(photo_placements.home_hero, alt='', sizes='100vw', priority=true, class_name='home-hero-photo') }}
   <div class="hero-content">
     <p class="hero-eyebrow">A family tradition in Allentown</p>
     <h1 id="hero-title">More Than a Meal</h1>

@@ -1,9 +1,7 @@
 {% set golf_service = service_facts|selectattr('key', 'equalto', 'golf')|first %}
 <section id="golf" class="grid lg:grid-cols-2">
       <div class="min-h-[380px] lg:min-h-[560px]">
-        <img width="615" height="1024" decoding="async" src="{{ url_for('static', filename='images/optimized/mini_golf.webp') }}"
-             alt="George's Oasis mini golf course" loading="lazy"
-             class="h-full w-full max-h-[100vh] object-cover" />
+        {{ site_image(photo_placements.home_golf, 'Golfers beside the waterfall and greenery at George’s Oasis', sizes='(max-width: 1023px) 100vw, 50vw', class_name='home-golf-photo') }}
       </div>
 
       <div class="flex items-center bg-oasis-950 px-6 py-14 text-white md:px-12 lg:px-16">

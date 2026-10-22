@@ -1,0 +1,24 @@
+{# Import with context so oasis_images is available. #}
+{% macro oasis_image(key, alt=none, sizes='100vw', priority=false, class_name='') -%}
+  {%- set asset = oasis_images[key] -%}
+  {%- set desktop = asset.variants.desktop -%}
+  {%- set ns = namespace(widths=[], sources=[]) -%}
+  {%- for label in ['mobile', 'tablet', 'desktop'] -%}
+    {%- set variant = asset.variants[label] -%}
+    {%- if variant.width not in ns.widths -%}
+      {%- set ns.widths = ns.widths + [variant.width] -%}
+      {%- set ns.sources = ns.sources + [url_for('static', filename=variant.path) ~ ' ' ~ variant.width ~ 'w'] -%}
+    {%- endif -%}
+  {%- endfor -%}
+  <img
+    src="{{ url_for('static', filename=asset.variants.mobile.path) }}"
+    srcset="{{ ns.sources | join(', ') }}"
+    sizes="{{ sizes }}"
+    width="{{ desktop.width }}"
+    height="{{ desktop.height }}"
+    alt="{{ asset.alt if alt is none else alt }}"
+    class="oasis-photo {{ class_name }}"
+    loading="{{ 'eager' if priority else 'lazy' }}"
+    decoding="async"
+    {% if priority %}fetchpriority="high"{% endif %}>
+{%- endmacro %}

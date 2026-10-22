@@ -42,6 +42,8 @@ def create_app(test_config=None):
 
     if test_config:
         app.config.update(test_config)
+    from .oasis_images import init_oasis_images
+    init_oasis_images(app)
     if app.config["PRODUCTION"]:
         app.config["SESSION_COOKIE_SECURE"] = True
         if not app.config.get("OWNER_PASSWORD_HASH") or app.config["OWNER_USERNAME"] == "username":

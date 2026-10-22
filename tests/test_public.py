@@ -46,7 +46,8 @@ class PublicPagesTest(unittest.TestCase):
                     continue
                 self.assertIn(target,documents,link)
                 if url.fragment:self.assertIn(url.fragment,documents[target].ids,link)
-        self.assertEqual(len(documents['/'].images),8)
+        # The former CSS hero background is now a responsive image element.
+        self.assertEqual(len(documents['/'].images),9)
     def test_providers_are_configurable_and_missing_provider_has_fallback(self):
         actions={'order-foodbooking':'food_ordering','order-grubhub':'delivery','reserve-google':'table_reservation','hiring-facebook':'hiring'}
         for key in actions.values():self.app.config['EXTERNAL_LINKS'][key]='https://provider.example.test/'+key

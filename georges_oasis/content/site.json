@@ -200,7 +200,7 @@
       "id": "breakfast",
       "name": "Breakfast",
       "intro": "Find your morning favorite, from eggs and omelets to pancakes and breakfast sandwiches.",
-      "photo": "menu-breakfast-omelet.webp",
+      "photo": "george-oasis-french-toast",
       "items": [
         {
           "id": "breakfast-1",
@@ -1423,14 +1423,14 @@
           }
         }
       ],
-      "photo_alt": "An omelet with home fries and toast at George’s Oasis",
-      "photo_source": "https://www.georgesoasis.com/uploads/1/6/6/2/16623478/20220120-115912.jpg"
+      "photo_alt": "French toast dusted with powdered sugar",
+      "photo_source": "Georges-Oasis-Responsive-Photos.zip"
     },
     {
       "id": "lunch-and-dinner",
       "name": "Lunch & Dinner",
       "intro": "Explore sandwiches, burgers and dinner plates for your next meal at the Oasis.",
-      "photo": "georges_burger.jpg",
+      "photo": "george-oasis-gyro-wrap",
       "items": [
         {
           "id": "lunch-and-dinner-1",
@@ -3227,13 +3227,14 @@
           }
         }
       ],
-      "photo_alt": "A burger and fries from the Oasis kitchen"
+      "photo_alt": "A gyro wrap with lettuce, tomatoes and onions",
+      "photo_source": "Georges-Oasis-Responsive-Photos.zip"
     },
     {
       "id": "dinner-entrees",
       "name": "Dinner Entrées",
       "intro": "Chicken, seafood, Italian favorites, steaks and chops. See the separate dinner-service hours when planning your visit.",
-      "photo": "menu-breaded-shrimp.webp",
+      "photo": "george-oasis-crab-cakes",
       "items": [
         {
           "id": "dinner-char-grilled-lemon-chicken-breast",
@@ -3653,14 +3654,14 @@
           }
         }
       ],
-      "photo_alt": "Breaded shrimp and French fries at George’s Oasis",
-      "photo_source": "https://www.georgesoasis.com/uploads/1/6/6/2/16623478/20200729-193430.jpg"
+      "photo_alt": "Two crab cakes with lemon and garnish",
+      "photo_source": "Georges-Oasis-Responsive-Photos.zip"
     },
     {
       "id": "children",
       "name": "Children’s Menu",
       "intro": "Smaller meals for guests age 12 and under, with a child-size beverage.",
-      "photo": "families_and_events.png",
+      "photo": "george-oasis-dining-room-booths-day",
       "items": [
         {
           "id": "children-1",
@@ -3807,13 +3808,14 @@
           }
         }
       ],
-      "photo_alt": "Dining and gathering spaces at George’s Oasis"
+      "photo_alt": "Green booths and dining tables along the restaurant windows",
+      "photo_source": "Georges-Oasis-Responsive-Photos.zip"
     },
     {
       "id": "seniors",
       "name": "Senior Selections",
       "intro": "Senior dinner selections, with sides or soup and salad as listed below.",
-      "photo": "families_and_events.png",
+      "photo": "george-oasis-dining-room-window-tables",
       "items": [
         {
           "id": "seniors-shrimp-in-a-basket",
@@ -4053,13 +4055,14 @@
           }
         }
       ],
-      "photo_alt": "Dining and gathering spaces at George’s Oasis"
+      "photo_alt": "Dining tables and wooden chairs beside large windows",
+      "photo_source": "Georges-Oasis-Responsive-Photos.zip"
     },
     {
       "id": "ice-cream-and-desserts",
       "name": "Ice Cream & Desserts",
       "intro": "Cones, sundaes, shakes and a sweet finish to your meal.",
-      "photo": "georges_oasis_ice_cream.webp",
+      "photo": "george-oasis-chocolate-sundae",
       "items": [
         {
           "id": "ice-cream-and-desserts-1",
@@ -4804,12 +4807,13 @@
             "valid_from": null,
             "valid_until": null
           },
-          "photo": "menu-soft-serve.webp",
-          "photo_alt": "A soft-serve cone at George’s Oasis",
-          "photo_source": "https://www.georgesoasis.com/uploads/1/6/6/2/16623478/20200601-192939.jpg"
+          "photo": "george-oasis-soft-serve-twist-cone",
+          "photo_alt": "A chocolate-and-vanilla twist soft-serve cone",
+          "photo_source": "Georges-Oasis-Responsive-Photos.zip"
         }
       ],
-      "photo_alt": "An ice cream sundae from George’s Oasis"
+      "photo_alt": "A chocolate sundae topped with whipped cream and a cherry",
+      "photo_source": "Georges-Oasis-Responsive-Photos.zip"
     },
     {
       "id": "bakery-and-custom-pies",
@@ -5045,99 +5049,278 @@
   ],
   "media": [
     {
-      "file": "signature_food.webp",
-      "subject": "Restaurant food",
-      "caption": "A meal at the Oasis.",
+      "file": "george-oasis-french-toast",
+      "subject": "French toast dusted with powdered sugar",
+      "caption": "French toast finished with powdered sugar.",
       "group": "Food",
       "metadata": {
-        "status": "existing_design",
-        "source": "Existing homepage asset selected by user",
-        "reviewed_at": "2026-10-07",
-        "rights": "Owner review required before launch"
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
       }
     },
     {
-      "file": "georges_burger.jpg",
-      "subject": "Burger and fries",
-      "caption": "Burger and fries.",
+      "file": "george-oasis-gyro-wrap",
+      "subject": "A gyro wrap with lettuce, tomatoes and onions",
+      "caption": "A gyro wrap, ready for lunch.",
       "group": "Food",
       "metadata": {
-        "status": "existing_design",
-        "source": "Existing homepage asset selected by user",
-        "reviewed_at": "2026-10-07",
-        "rights": "Owner review required before launch"
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
       }
     },
     {
-      "file": "georges_oasis_ice_cream.webp",
-      "subject": "Ice cream sundae",
-      "caption": "Something sweet to finish.",
+      "file": "george-oasis-bacon-cheeseburger-and-fries-02",
+      "subject": "A bacon cheeseburger with fries and sliced vegetables",
+      "caption": "A burger and fries from the Oasis kitchen.",
+      "group": "Food",
+      "metadata": {
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
+      }
+    },
+    {
+      "file": "george-oasis-crab-cakes",
+      "subject": "Two crab cakes with lemon and garnish",
+      "caption": "Crab cakes served with lemon.",
+      "group": "Food",
+      "metadata": {
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
+      }
+    },
+    {
+      "file": "george-oasis-fruit-and-granola-parfait",
+      "subject": "Fruit and granola layered in a tall parfait glass",
+      "caption": "Fruit and granola in a tall parfait glass.",
+      "group": "Food",
+      "metadata": {
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
+      }
+    },
+    {
+      "file": "george-oasis-strawberry-nutella-pancakes",
+      "subject": "Pancakes topped with strawberries, chocolate spread and whipped cream",
+      "caption": "Pancakes topped with strawberries, chocolate spread and whipped cream.",
+      "group": "Food",
+      "metadata": {
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
+      }
+    },
+    {
+      "file": "george-oasis-menu-food-spread",
+      "subject": "A spread of sandwiches, salad, pasta, fries and crab cakes",
+      "caption": "Sandwiches, salad and more from the Oasis kitchen.",
+      "group": "Food",
+      "metadata": {
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
+      }
+    },
+    {
+      "file": "george-oasis-chocolate-sundae",
+      "subject": "A chocolate sundae topped with whipped cream and a cherry",
+      "caption": "A sundae with whipped cream and a cherry.",
       "group": "Ice Cream",
       "metadata": {
-        "status": "existing_design",
-        "source": "Existing homepage asset selected by user",
-        "reviewed_at": "2026-10-07",
-        "rights": "Owner review required before launch"
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
       }
     },
     {
-      "file": "mini_golf_card.webp",
-      "subject": "Mini golf water feature",
-      "caption": "A closer look at the course.",
+      "file": "george-oasis-soft-serve-twist-cone",
+      "subject": "A chocolate-and-vanilla twist soft-serve cone",
+      "caption": "A soft-serve twist cone for a sweet stop.",
+      "group": "Ice Cream",
+      "metadata": {
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
+      }
+    },
+    {
+      "file": "george-oasis-mini-golf-bridge-and-pond",
+      "subject": "A wooden bridge over the mini golf pond, with trees and a waterfall beyond",
+      "caption": "A bridge over the pond, surrounded by greenery.",
       "group": "Mini Golf",
       "metadata": {
-        "status": "existing_design",
-        "source": "Existing homepage asset selected by user",
-        "reviewed_at": "2026-10-07",
-        "rights": "Owner review required before launch"
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
       }
     },
     {
-      "file": "mini_golf.webp",
-      "subject": "Mini golf course",
-      "caption": "Outdoor mini golf at the Oasis.",
+      "file": "george-oasis-mini-golf-players-waterfall",
+      "subject": "Two people playing mini golf beside a waterfall and flowers",
+      "caption": "A round together beside the waterfall.",
       "group": "Mini Golf",
       "metadata": {
-        "status": "existing_design",
-        "source": "Existing homepage asset selected by user",
-        "reviewed_at": "2026-10-07",
-        "rights": "Owner review required before launch"
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
       }
     },
     {
-      "file": "families_and_events.png",
-      "subject": "Dining and gathering spaces",
-      "caption": "Dining and gathering spaces.",
+      "file": "george-oasis-mini-golf-players-pond",
+      "subject": "People playing mini golf beyond the course pond",
+      "caption": "Golfers making their way around the pond.",
+      "group": "Mini Golf",
+      "metadata": {
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
+      }
+    },
+    {
+      "file": "george-oasis-outside-group",
+      "subject": "Guests gathered around an outdoor table beneath a canopy",
+      "caption": "Guests gathered around an outdoor table.",
       "group": "Gatherings",
       "metadata": {
-        "status": "existing_design",
-        "source": "Existing homepage asset selected by user",
-        "reviewed_at": "2026-10-07",
-        "rights": "Owner review required before launch"
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
       }
     },
     {
-      "file": "main_exterior_oasis.jpg",
-      "subject": "Restaurant exterior",
-      "caption": "Look for George’s Oasis on Schoenersville Road.",
+      "file": "george-oasis-indoor-party-buffet-balloons",
+      "subject": "An indoor party buffet with a pink balloon display",
+      "caption": "An indoor celebration with balloons and a buffet table.",
+      "group": "Gatherings",
+      "metadata": {
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
+      }
+    },
+    {
+      "file": "george-oasis-catering-buffet",
+      "subject": "Platters and plates arranged for a buffet beside the dining room windows",
+      "caption": "Food arranged for a gathering beside the dining-room windows.",
+      "group": "Gatherings",
+      "metadata": {
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
+      }
+    },
+    {
+      "file": "george-oasis-dining-room-booths-day",
+      "subject": "Green booths and dining tables along the restaurant windows",
+      "caption": "Comfortable booths and a sunny view of the dining room.",
       "group": "The Oasis",
       "metadata": {
-        "status": "existing_design",
-        "source": "Existing homepage asset selected by user",
-        "reviewed_at": "2026-10-07",
-        "rights": "Owner review required before launch"
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
+      }
+    },
+    {
+      "file": "george-oasis-outdoor-picnic-tables-umbrellas",
+      "subject": "Outdoor picnic tables with green umbrellas and flower planters",
+      "caption": "Picnic tables, umbrellas and flowers outside the restaurant.",
+      "group": "The Oasis",
+      "metadata": {
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
+      }
+    },
+    {
+      "file": "george-oasis-dining-room-window-tables",
+      "subject": "Dining tables and wooden chairs beside large windows",
+      "caption": "Window-side tables with room to gather.",
+      "group": "The Oasis",
+      "metadata": {
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
+      }
+    },
+    {
+      "file": "george-oasis-entrance-welcome-sign-and-flowers",
+      "subject": "A welcome sign and colorful flowers beside the entrance seating",
+      "caption": "A welcome sign and flowers by the entrance.",
+      "group": "The Oasis",
+      "metadata": {
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
+      }
+    },
+    {
+      "file": "george-oasis-family-and-coffee-wall-decor",
+      "subject": "Family, coffee and prayer decorations on a dining room wall",
+      "caption": "Family photographs and personal touches on the wall.",
+      "group": "The Oasis",
+      "metadata": {
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
+      }
+    },
+    {
+      "file": "george-oasis-flower-photo-wall",
+      "subject": "Framed flower photographs and a floral collage on the wall",
+      "caption": "Flowers and family photographs in the dining room.",
+      "group": "The Oasis",
+      "metadata": {
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
+      }
+    },
+    {
+      "file": "george-oasis-counter-farmhouse-decor",
+      "subject": "Farmhouse-style milk jug and decorations on the restaurant counter",
+      "caption": "Plants and farmhouse details along the counter.",
+      "group": "The Oasis",
+      "metadata": {
+        "status": "approved",
+        "source": "Georges-Oasis-Responsive-Photos.zip",
+        "reviewed_at": "2026-10-22",
+        "notes": "Selected from user-supplied responsive photo bundle for website integration."
       }
     },
     {
       "file": "georges_history.jpeg",
-      "subject": "Historic family photograph",
-      "caption": "A photograph from the Oasis collection.",
+      "subject": "Historic family photograph from the Oasis collection",
+      "caption": "A family gathering from the Oasis photograph collection.",
       "group": "The Oasis",
       "metadata": {
         "status": "existing_design",
-        "source": "Existing homepage asset selected by user",
-        "reviewed_at": "2026-10-07",
-        "rights": "Owner review required before launch"
+        "source": "Existing homepage asset",
+        "reviewed_at": "2026-10-22"
       }
     }
   ],
@@ -5260,5 +5443,12 @@
     "source": "https://www.georgesoasis.com/menus.html",
     "basis": "User requested every published menu item on the menu page, with imagery. Seven live menu images visually reviewed.",
     "item_count": 212
+  },
+  "photo_placements": {
+    "home_hero": "george-oasis-dining-room-booths-day",
+    "home_kitchen": "george-oasis-dining-room-window-tables",
+    "home_gatherings": "george-oasis-outside-group",
+    "home_golf": "george-oasis-mini-golf-players-waterfall",
+    "social": "george-oasis-dining-room-booths-day"
   }
 }

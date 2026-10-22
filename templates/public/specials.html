@@ -1,5 +1,5 @@
 {% extends 'public/section_page.html' %}
-{% block page_intro %}{{ intro('A reason to come back', 'Good things at the Oasis.', 'Find current offers and plan your next meal or outing. Look for the dates, times and terms on each offer before making your plans.', 'georges_burger.jpg', 'Burger and fries from the Oasis kitchen', 'See Current Offers', '#current-specials', 'View Menu', url_for('public.food')) }}{% endblock %}
+{% block page_intro %}{{ intro('A reason to come back', 'Good things at the Oasis.', 'Find current offers and plan your next meal or outing. Look for the dates, times and terms on each offer before making your plans.', 'george-oasis-bacon-cheeseburger-and-fries-02', 'A burger and French fries from the Oasis kitchen', 'See Current Offers', '#current-specials', 'View Menu', url_for('public.food')) }}{% endblock %}
 {% block page_body %}
 <section class="page-shell page-section" id="current-specials">{{ section_heading('A little something to look forward to', 'Current specials.') }}
 {% if editorial_offers or deals %}<div class="offer-grid">{% for offer in editorial_offers %}{% include 'public/includes/weekly_offer.html' %}{% endfor %}{% for offer in deals %}{% include 'public/offer_card.html' %}{% endfor %}</div>

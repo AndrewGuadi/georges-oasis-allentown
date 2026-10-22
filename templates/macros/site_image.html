@@ -1,0 +1,8 @@
+{% from 'macros/oasis_image.html' import oasis_image with context %}
+{% macro site_image(photo, alt=none, sizes='100vw', priority=false, class_name='', width=900, height=675) -%}
+  {% if photo in oasis_images %}
+    {{ oasis_image(photo, alt=alt, sizes=sizes, priority=priority, class_name=class_name) }}
+  {% else %}
+    <img src="{{ photo_url(photo) }}" alt="{{ alt if alt is not none else '' }}" width="{{ width }}" height="{{ height }}" class="{{ class_name }}" loading="{{ 'eager' if priority else 'lazy' }}" decoding="async"{% if priority %} fetchpriority="high"{% endif %}>
+  {% endif %}
+{%- endmacro %}
