@@ -140,7 +140,7 @@ def public_content(now=None, include_drafts=False):
         if state != "hidden" and offer.get("weekday") in data.get("weekly_special_days", [2, 3, 4]):
             offers.append(offer | {"state":state,"formatted_price":money(offer["price"]) if offer.get("price") is not None else None})
     offers.sort(key=lambda offer: offer['weekday'])
-    business = data['business'] | {'email': current_app.config.get('INQUIRY_RECIPIENT') or data['business'].get('email')}
+    business = data['business']
     items_by_id = {item['id']: item | {'category_id': category['id']}
                    for category in categories for item in category['items']}
     def features(key):
