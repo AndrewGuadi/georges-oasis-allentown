@@ -50,7 +50,8 @@ class OwnerWorkflowTest(unittest.TestCase):
         with self.app.app_context():
             offer = db.session.execute(db.select(Promotion)).scalar_one()
             offer_id, filename = offer.id, offer.image
-        self.assertEqual(self.client.get('/admin/images/' + filename).status_code, 200)
+        with self.client.get('/admin/images/' + filename) as image_response:
+            self.assertEqual(image_response.status_code, 200)
         self.client.post('/admin/display', data={"csrf_token": self.token('/admin'), "deals_enabled": "on"})
         self.assertNotIn(b'Test family coupon', self.client.get('/').data)
         self.client.post('/admin/display', data={"csrf_token": self.token('/admin'), "coupons_enabled": "on", "deals_enabled": "on"})
@@ -59,17 +60,17 @@ class OwnerWorkflowTest(unittest.TestCase):
             offer.kind = 'deal'
             offer.starts_at = datetime.now(timezone.utc).replace(tzinfo=None) + timedelta(days=1)
             db.session.commit()
-        self.assertNotIn(b'id="weekly-deals"', self.client.get('/').data)
+        self.assertNotIn(b'id="current-offers"', self.client.get('/').data)
         with self.app.app_context():
             offer = db.session.get(Promotion, offer_id)
             offer.starts_at = None
             db.session.commit()
-        self.assertIn(b'id="weekly-deals"', self.client.get('/').data)
+        self.assertIn(b'id="current-offers"', self.client.get('/').data)
         with self.app.app_context():
             offer = db.session.get(Promotion, offer_id)
             offer.ends_at = datetime.now(timezone.utc).replace(tzinfo=None) - timedelta(seconds=1)
             db.session.commit()
-        self.assertNotIn(b'id="weekly-deals"', self.client.get('/').data)
+        self.assertNotIn(b'id="current-offers"', self.client.get('/').data)
         invalid = self.client.post('/admin/promotions/new', data={"csrf_token": self.token('/admin'), "kind": "coupon", "title": "Bad dates", "starts_at": "2026-09-23T12:00", "ends_at": "2026-09-22T12:00"})
         self.assertIn(b'end must be later', invalid.data)
         with self.app.app_context():

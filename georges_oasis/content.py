@@ -141,7 +141,7 @@ def public_content(now=None, include_drafts=False):
             offers.append(offer | {"state":state,"formatted_price":money(offer["price"]) if offer.get("price") is not None else None})
     offers.sort(key=lambda offer: offer['weekday'])
     business = data['business'] | {'email': current_app.config.get('INQUIRY_RECIPIENT') or data['business'].get('email')}
-    return {"weekly_special_days": data.get("weekly_special_days", [2, 3, 4]), "has_menu_items":any(c["items"] for c in categories),"consumer_advisory":data.get("consumer_advisory",{}).get("text"),"dessert_flavors":data.get("dessert_flavors") if include_drafts or publishable(data.get("dessert_flavors",{}),now) else None,"menu_download_url":data.get("menu_download",{}).get("url") if publishable(data.get("menu_download",{}),now) else None,"business":business,"menu_categories":categories,"service_facts":service_facts,"dining_services":[s for s in service_facts if s["key"] in ("restaurant", "dinner")],"editorial_offers":offers,"golf_rates":data["golf"] if include_drafts or publishable(data["golf"],now) else None,"story_record":data["story"] if include_drafts or publishable(data["story"],now) else None,"media":data["media"]}
+    return {"menu_sources":data.get("menu_sources", []), "menu_item_count":sum(len(c["items"]) for c in categories), "weekly_special_days": data.get("weekly_special_days", [2, 3, 4]), "has_menu_items":any(c["items"] for c in categories),"consumer_advisory":data.get("consumer_advisory",{}).get("text"),"dessert_flavors":data.get("dessert_flavors") if include_drafts or publishable(data.get("dessert_flavors",{}),now) else None,"menu_download_url":data.get("menu_download",{}).get("url") if publishable(data.get("menu_download",{}),now) else None,"business":business,"menu_categories":categories,"service_facts":service_facts,"dining_services":[s for s in service_facts if s["key"] in ("restaurant", "dinner")],"editorial_offers":offers,"golf_rates":data["golf"] if include_drafts or publishable(data["golf"],now) else None,"story_record":data["story"] if include_drafts or publishable(data["story"],now) else None,"media":data["media"]}
 
 
 def clock_time(value):
@@ -167,7 +167,7 @@ def validate_content(data):
         for item in category.get('items',[]):
             label=item.get('id','Menu item');metadata(item,label)
             if not item.get('name'):issues.append(f'{label}: a name is required.')
-            if item.get('price') is None and not item.get('variants'):issues.append(f'{label}: a price or priced variants are required.')
+            if item.get('price') is None and not item.get('variants') and not item.get('price_note'):issues.append(f'{label}: a price, priced variants or explicit price note is required.')
             for value in ([item['price']] if item.get('price') is not None else [])+[v.get('price') for v in item.get('variants',[])]+[v.get('price') for v in item.get('add_ons',[])]:
                 try:money(value)
                 except ValueError:issues.append(f'{label}: invalid currency value.')

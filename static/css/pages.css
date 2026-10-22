@@ -313,3 +313,38 @@ body:has(.inquiry-form :focus) .mobile-dock,body:has(dialog[open]) .mobile-dock 
 }
 /* Maintain caption contrast against the darker course section. */
 .course-story figcaption { color:#46513f; }
+
+/* The full published menu: readable dishes, genuine food photography and source pages. */
+.menu-overview { margin-block:0 30px; padding-block:24px; border-block:1px solid #ccd3bd; }
+.menu-overview p { line-height:1.7; margin-bottom:8px; }
+.menu-overview p + p { color:#53644f; font-size:14px; }
+.menu-sidebar nav a span { font-size:12px; background:#e9eddd; border-radius:20px; padding:3px 8px; }
+.menu-category-heading { align-items:start; }
+.menu-category-photo { width:38%; flex-shrink:0; }
+.menu-category-photo img { width:100%; height:auto; aspect-ratio:3/2; object-fit:cover; border-radius:8px; }
+.menu-category-photo figcaption { font-size:11px; line-height:1.5; color:#53644f; margin-top:6px; }
+.menu-items { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:30px; align-items:start; }
+.menu-group { grid-column:1/-1; }
+.menu-item { min-width:0; height:100%; }
+.menu-dish-photo { width:100%; height:auto; max-height:200px; object-fit:cover; aspect-ratio:4/3; border-radius:7px; margin-bottom:16px; }
+.menu-item-top { gap:12px; }
+.menu-item h4 { line-height:1.5; }
+.menu-item .menu-price-note { font-weight:700; }
+.menu-addons li span { white-space:nowrap; }
+.printed-menu-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; }
+.printed-menu { padding:12px; background:#fffaf0; border:1px solid #ccd3bd; border-radius:8px; }
+.printed-menu > img { width:100%; height:auto; aspect-ratio:17/22; object-fit:contain; background:white; }
+.printed-menu > span { display:block; margin:14px 4px 4px; font-size:14px; line-height:1.6; font-weight:700; }
+@media(max-width:1100px) { .menu-items { grid-template-columns:1fr; } .printed-menu-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media(max-width:760px) {
+ .menu-category-heading { flex-direction:column-reverse; gap:22px; }
+ .menu-category-photo { width:100%; }
+ .menu-category-photo img { max-height:240px; }
+ .printed-menu-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+ .printed-menu { padding:8px; }
+ .menu-sidebar nav { grid-template-columns:1fr 1fr; }
+ .menu-item-top { align-items:start; }
+}
+@media(max-width:360px) { .menu-item-top { flex-wrap:wrap; gap:5px 12px; } }
+
+.menu-section-return { margin-top:26px; font-size:13px; }

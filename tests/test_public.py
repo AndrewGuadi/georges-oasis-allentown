@@ -3,6 +3,7 @@ from html.parser import HTMLParser
 from urllib.parse import urlsplit
 from georges_oasis import create_app
 from georges_oasis.models import db
+from georges_oasis.content import load_content
 from georges_oasis.public.sitemap import PAGES, LEGACY
 
 class Document(HTMLParser):
@@ -70,6 +71,10 @@ class PublicPagesTest(unittest.TestCase):
         for path in ['/about','/missing','/homepage.html','/pies']:
             self.assertEqual(self.client.get(path).status_code,404)
     def test_drafts_hidden_and_owner_preview_authenticated(self):
+        with self.app.app_context():
+            source=load_content()
+        source['menu_categories'][0]['items'][0]['metadata']['status']='draft'
+        self.app.config['SITE_CONTENT']=source
         self.assertNotIn('Monte Cristo',self.client.get('/food-and-ice-cream').get_data(as_text=True))
         self.assertNotIn('Burger Night',self.client.get('/specials').get_data(as_text=True))
         self.assertNotIn('18 holes',self.client.get('/').get_data(as_text=True))

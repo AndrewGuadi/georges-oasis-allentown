@@ -52,6 +52,7 @@ class ContentRulesTest(unittest.TestCase):
         app=create_app({'TESTING':True})
         with app.app_context():
             source=load_content(); category=next(c for c in source['menu_categories'] if c['id']=='ice-cream-and-desserts')
+            for item in category['items']:item['metadata']['status']='draft'
             category['items'][0]['metadata']=deepcopy(META);app.config['SITE_CONTENT']=source
             dessert=next(c for c in public_content()['menu_categories'] if c['id']=='ice-cream-and-desserts')
             self.assertEqual(len(dessert['items']),1)
