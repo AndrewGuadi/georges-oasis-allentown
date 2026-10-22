@@ -25,7 +25,7 @@ def page_view(page):
         if page["key"] == "specials":
             context.update(current_promotions())
         if page["key"] == "gatherings":
-            values = {"contact_method":"email","date_flexibility":"Not sure yet","interests":[request.args['interest']] if request.args.get('interest') in INTERESTS else []}
+            values = {"occasion":request.args.get("occasion", "") if request.args.get("occasion") in OCCASIONS else "", "contact_method":"email","date_flexibility":"Not sure yet","interests":[request.args['interest']] if request.args.get('interest') in INTERESTS else []}
             errors, status = {},200
             if request.method == "POST":
                 values = form_values()

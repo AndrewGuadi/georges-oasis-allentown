@@ -13,15 +13,15 @@
             Food, Family & Time Together.
           </h2>
           <p class="mt-5 max-w-2xl text-base leading-7 text-oasis-ink/70">
-            {% if story_record %}{{ story_record.paragraphs[0] }}{% else %}The family feeling at George’s Oasis starts around the table: catching up over breakfast, sharing a meal, and making time for one another. Take a look at the photographs from the Oasis collection and explore the personal side of the place.{% endif %}
+            {% if story_record %}{{ story_record.paragraphs[0] }}{% else %}Family recipes and a personal welcome are at the heart of George’s Oasis. The photographs and keepsakes around the dining room offer a glimpse of the people behind the restaurant.{% endif %}
           </p>
           <a href="{{ url_for('public.story') }}" class="btn btn-outline mt-7">Our Story <span>→</span></a>
         </div>
 
         <aside class="rounded-md bg-[#efe7cf] p-7 shadow-soft">
-          <div class="small-label">The best part?</div>
-          <p class="mt-4 font-display text-3xl italic leading-8 text-oasis-950">Time around the table. Time for each other.</p>
-          <a class="text-link mt-4" href="{{ url_for('public.visit') }}">Make a day of it <span aria-hidden="true">→</span></a>
+          <div class="small-label">A personal touch</div>
+          <p class="mt-4 font-display text-3xl italic leading-8 text-oasis-950">Family photographs. Familiar places.</p>
+          <a class="text-link mt-4" href="{{ url_for('public.gallery', _anchor='the-oasis') }}">Take a look around <span aria-hidden="true">→</span></a>
         </aside>
       </div>
     </section>

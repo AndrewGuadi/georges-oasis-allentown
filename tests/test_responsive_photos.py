@@ -81,6 +81,6 @@ class ResponsivePhotosTest(unittest.TestCase):
                         self.assertEqual(picture.width, int(width[:-1]), route)
         home = self.client.get('/').get_data(as_text=True)
         self.assertNotIn('--hero-photo:', home)
-        self.assertIn('Our Homemade Tomato Soup', home)
+        self.assertNotIn('Homemade Tomato Soup', home)
         self.assertIn('georges_history.webp', home)
         self.assertEqual(self.client.get('/static/images/oasis/SOURCE-MANIFEST.json').status_code, 404)

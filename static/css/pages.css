@@ -368,3 +368,50 @@ body:has(.inquiry-form :focus) .mobile-dock,body:has(dialog[open]) .mobile-dock 
  .bundle-photo-frame > img { height:360px; }
  .gallery-grid .gallery-photo { height:300px; }
 }
+
+/* A few real dishes introduce the menu without hiding the full list. */
+.food-features { padding-block:24px 40px; }
+.featured-food-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); gap:24px; }
+.featured-food-card { min-width:0; border:1px solid #d4dac5; background:#fffaf0; border-radius:10px; overflow:hidden; }
+.featured-food-card > img { width:100%; height:240px; object-fit:contain; background:#eeeadd; }
+.featured-food-card > div { padding:24px; }
+.featured-food-card h3 { font-size:30px; line-height:1.2; margin-top:12px; }
+.featured-food-card p:not(.small-label) { font-size:15px; line-height:1.7; margin-top:12px; color:#536454; }
+.featured-food-card .featured-price { font-weight:700; color:#173d30; }
+.featured-food-card .text-link { margin-top:18px; }
+.treat-facts { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; margin-top:24px; }
+.treat-facts > div { padding:22px; background:#e9eddd; border:1px solid #cbd4bd; border-radius:8px; }
+.treat-facts h3 { font-size:26px; }
+.treat-facts p { font-size:15px; line-height:1.7; margin-top:12px; }
+.access-note { border:1px solid #cbd4bd; background:#e9eddd; padding:26px; border-radius:10px; }
+.access-note h2 { font-size:32px; }
+.access-note p { line-height:1.8; margin-top:12px; }
+.visit-ideas .text-link { margin-top:18px; }
+.compact-order-intro { padding-block:40px 28px; }
+.ordering-schedule { margin-block:0 28px; max-width:700px; padding:22px; border:1px solid #cbd4bd; background:#e9eddd; border-radius:8px; }
+.ordering-schedule > p { line-height:1.7; font-size:14px; }
+.ordering-schedule summary { cursor:pointer; padding:16px 0 4px; font-weight:700; }
+.ordering-schedule .dining-hours-table { margin-bottom:0; }
+.order-dine-in { padding-block:24px 48px; border-top:1px solid #cbd4bd; }
+.order-dine-in p { line-height:1.8; }
+.photo-viewer { position:fixed; inset:0; width:min(1000px,calc(100% - 28px)); max-height:calc(100dvh - 28px); padding:20px; background:#073b2e; color:#fff7e3; border:1px solid #839880; border-radius:12px; margin:auto; }
+.photo-viewer::backdrop { background:#061e18e8; }
+.photo-viewer-top,.photo-viewer-bottom { display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.photo-viewer-image { display:block; width:100%; height:min(65dvh,700px); object-fit:contain; margin:18px 0; }
+.photo-viewer-bottom p { text-align:center; font-size:14px; line-height:1.6; }
+.photo-viewer-top > span { font-size:13px; }
+.photo-viewer button { cursor:pointer; }
+.photo-viewer :focus-visible { outline-color:#f2c453; }
+.photo-viewer-error { font-size:14px; line-height:1.7; margin-bottom:18px; }
+.photo-viewer-error a { text-decoration:underline; }
+@media(max-width:760px) {
+ .treat-facts { grid-template-columns:1fr; }
+ .featured-food-card > img { height:220px; }
+ .photo-viewer { padding:14px; }
+ .photo-viewer-bottom { gap:10px; }
+ .photo-viewer-bottom .btn { padding:10px 14px; }
+}
+/* Reserve room for navigation and captions even on short phone screens. */
+.photo-viewer[open] { display:flex; flex-direction:column; height:min(760px,calc(100dvh - 28px)); }
+.photo-viewer .photo-viewer-image { flex:1 1 0; min-height:0; height:0; }
+.photo-viewer-top,.photo-viewer-bottom,.photo-viewer-error { flex-shrink:0; }

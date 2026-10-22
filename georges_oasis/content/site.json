@@ -82,51 +82,13 @@
         "reviewed_at": "2026-10-07",
         "valid_from": null,
         "valid_until": null,
-        "notes": "Summer 2026 schedule was still displayed October 7. Do not approve as year-round without owner review."
+        "notes": "User requested blank course hours pending a confirmed schedule, October 22, 2026. Do not reuse the old summer schedule."
       },
-      "weekly": {
-        "0": [
-          [
-            "09:00",
-            "15:00"
-          ]
-        ],
-        "1": [
-          [
-            "09:00",
-            "20:00"
-          ]
-        ],
-        "2": [
-          [
-            "09:00",
-            "20:00"
-          ]
-        ],
-        "3": [
-          [
-            "09:00",
-            "20:00"
-          ]
-        ],
-        "4": [
-          [
-            "09:00",
-            "21:00"
-          ]
-        ],
-        "5": [
-          [
-            "09:00",
-            "21:00"
-          ]
-        ],
-        "6": []
-      },
+      "weekly": {},
       "exceptions": {},
       "season": "unknown",
       "cutoff_minutes": 45,
-      "note": "Season runs from April into November. Start play at least 45 minutes before closing; call for current course hours."
+      "note": "Course hours have not been posted. Season runs from April into November; start play at least 45 minutes before closing."
     },
     {
       "key": "soft_serve",
@@ -142,7 +104,7 @@
       "exceptions": {},
       "season": "unknown",
       "cutoff_minutes": null,
-      "note": "Ask about seasonal soft-serve availability."
+      "note": "Soft serve is seasonal; ask at the counter about current availability."
     },
     {
       "key": "dinner",
@@ -4716,7 +4678,7 @@
           "id": "ice-cream-and-desserts-29",
           "name": "Hard Ice Cream",
           "group": "Ice Cream Servings",
-          "description": "Flavors: Vanilla, Chocolate, Strawberry, Butter Pecan, Cookies & Cream, Black Raspberry, Moose Trail, Mint Chocolate Chip, Coffee, Orange Creamsicle, Vanilla Peanut Butter, Chocolate Fudge Brownie, Cappuccino Chunk. Also listed: peach yogurt and chocolate peanut butter lowfat yogurt. Ask about no-sugar-added ice cream and lowfat yogurt, and today’s available flavors.",
+          "description": "Ask at the counter for today’s available flavors.",
           "inclusions": "",
           "price": null,
           "variants": [
@@ -4765,7 +4727,7 @@
           "name": "Soft Ice Cream",
           "group": "Ice Cream Servings",
           "description": "",
-          "inclusions": "Seasonal availability; check before making a special trip.",
+          "inclusions": "Seasonal selection. See ice-cream availability for details.",
           "price": null,
           "variants": [
             {
@@ -5338,9 +5300,10 @@
   },
   "dessert_flavors": {
     "metadata": {
-      "status": "approved",
+      "status": "draft",
       "source": "https://www.georgesoasis.com/uploads/1/6/6/2/16623478/58884b-dessertmenu-proof3_orig.jpg",
-      "reviewed_at": "2026-10-16"
+      "reviewed_at": "2026-10-16",
+      "notes": "User will supply the current flavor list. Keep source observations unpublished until then."
     },
     "hard_ice_cream": [
       "Vanilla",
@@ -5450,5 +5413,116 @@
     "home_gatherings": "george-oasis-outside-group",
     "home_golf": "george-oasis-mini-golf-players-waterfall",
     "social": "george-oasis-dining-room-booths-day"
-  }
+  },
+  "visit_details": {
+    "restaurant_wheelchair_accessible": true,
+    "accessibility_text": "The restaurant is wheelchair accessible.",
+    "metadata": {
+      "status": "approved",
+      "source": "User approved page plan and supplied visit/ice-cream/ordering facts, October 22, 2026",
+      "reviewed_at": "2026-10-22"
+    }
+  },
+  "ice_cream_experience": {
+    "ordering_text": "Order at the counter inside the restaurant, then settle into a seat and enjoy your ice cream.",
+    "visit_text": "Come in just for ice cream, or finish your meal with something sweet.",
+    "flavor_text": "Ask at the counter for today’s flavors.",
+    "metadata": {
+      "status": "approved",
+      "source": "User approved page plan and supplied visit/ice-cream/ordering facts, October 22, 2026",
+      "reviewed_at": "2026-10-22"
+    }
+  },
+  "ordering_details": {
+    "same_restaurant_menu": true,
+    "hours_service_key": "restaurant",
+    "foodbooking_fulfillment": null,
+    "metadata": {
+      "status": "approved",
+      "source": "User approved page plan and supplied visit/ice-cream/ordering facts, October 22, 2026",
+      "reviewed_at": "2026-10-22"
+    }
+  },
+  "menu_features": [
+    {
+      "item_id": "breakfast-37",
+      "photo": "george-oasis-french-toast",
+      "eyebrow": "A breakfast favorite",
+      "summary": "Golden brown French toast, served with butter and syrup."
+    },
+    {
+      "item_id": "lunch-and-dinner-66",
+      "photo": "george-oasis-gyro-wrap",
+      "eyebrow": "A Greek specialty",
+      "summary": "A gyro for lunch, with more Greek specialties throughout the menu."
+    }
+  ],
+  "dessert_features": [
+    {
+      "item_id": "ice-cream-and-desserts-1",
+      "photo": "george-oasis-chocolate-sundae",
+      "title": "Parlor sundaes",
+      "eyebrow": "A spoonful of something sweet",
+      "summary": "Explore the sundae menu and choose your favorite finish.",
+      "show_price": false
+    },
+    {
+      "item_id": "ice-cream-and-desserts-30",
+      "photo": "george-oasis-soft-serve-twist-cone",
+      "title": "A soft-serve cone",
+      "eyebrow": "A seasonal favorite",
+      "summary": "A simple treat when soft serve is in season.",
+      "show_price": false
+    },
+    {
+      "item_id": "bakery-homemade-baklava",
+      "photo": "menu-baklava.webp",
+      "title": "Greek pastries",
+      "eyebrow": "From the dessert menu",
+      "summary": "Ask at the counter about baklava and today’s pastry selection.",
+      "show_price": false
+    }
+  ],
+  "editorial_followups": [
+    {
+      "topic": "Tomato soup",
+      "status": "Deferred",
+      "note": "Set aside the homepage/featured-menu soup story and photo for now; retain the published general soup menu item."
+    },
+    {
+      "topic": "Course hours",
+      "status": "Pending",
+      "note": "Hours intentionally blank at user request. User will provide the current schedule."
+    },
+    {
+      "topic": "Ice cream",
+      "status": "Pending",
+      "note": "User will supply current flavors, seasonal schedule and counter photographs. Counter ordering and seated visits are confirmed."
+    },
+    {
+      "topic": "Family story",
+      "status": "Pending",
+      "note": "User will provide Section 8 names, history, recipe accounts and photo identification. Do not infer a timeline."
+    },
+    {
+      "topic": "Weekly specials",
+      "status": "Next pass",
+      "note": "Wednesday, Thursday and Friday confirmed. Exact offers, prices and times remain unresolved; defer the weekly editor/content work until those arrive."
+    },
+    {
+      "topic": "Event arrangements",
+      "status": "Pending",
+      "note": "Confirm capacities, terms and response expectations. Corporate gatherings and team bonding in the Allentown–Bethlehem area are priorities."
+    },
+    {
+      "topic": "Breakfast cutoff",
+      "status": "Pending",
+      "note": "No current cutoff approved."
+    },
+    {
+      "topic": "FoodBooking",
+      "status": "Pending",
+      "note": "Same restaurant menu and operating hours confirmed. Pickup/delivery fulfillment mode still unspecified; retain a neutral ordering action."
+    }
+  ]
 }

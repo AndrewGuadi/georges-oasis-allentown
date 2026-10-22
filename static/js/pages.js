@@ -26,7 +26,7 @@
     };
     input.addEventListener('input', filter);
     document.getElementById('reset-menu').addEventListener('click', () => { input.value = ''; filter(); input.focus(); });
-    document.querySelectorAll('.menu-sidebar nav a').forEach(link => link.addEventListener('click', () => { input.value = ''; filter(); }));
+    document.querySelectorAll('.menu-sidebar nav a, .food-features a').forEach(link => link.addEventListener('click', () => { input.value = ''; filter(); }));
   }
   const form = document.getElementById('inquiry-form');
   if (form) {

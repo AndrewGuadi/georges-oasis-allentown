@@ -141,7 +141,14 @@ def public_content(now=None, include_drafts=False):
             offers.append(offer | {"state":state,"formatted_price":money(offer["price"]) if offer.get("price") is not None else None})
     offers.sort(key=lambda offer: offer['weekday'])
     business = data['business'] | {'email': current_app.config.get('INQUIRY_RECIPIENT') or data['business'].get('email')}
-    return {"photo_placements":data.get("photo_placements", {}), "menu_sources":data.get("menu_sources", []), "menu_item_count":sum(len(c["items"]) for c in categories), "weekly_special_days": data.get("weekly_special_days", [2, 3, 4]), "has_menu_items":any(c["items"] for c in categories),"consumer_advisory":data.get("consumer_advisory",{}).get("text"),"dessert_flavors":data.get("dessert_flavors") if include_drafts or publishable(data.get("dessert_flavors",{}),now) else None,"menu_download_url":data.get("menu_download",{}).get("url") if publishable(data.get("menu_download",{}),now) else None,"business":business,"menu_categories":categories,"service_facts":service_facts,"dining_services":[s for s in service_facts if s["key"] in ("restaurant", "dinner")],"editorial_offers":offers,"golf_rates":data["golf"] if include_drafts or publishable(data["golf"],now) else None,"story_record":data["story"] if include_drafts or publishable(data["story"],now) else None,"media":data["media"]}
+    items_by_id = {item['id']: item | {'category_id': category['id']}
+                   for category in categories for item in category['items']}
+    def features(key):
+        return [items_by_id[feature['item_id']] | feature
+                for feature in data.get(key, []) if feature['item_id'] in items_by_id]
+    return {"featured_menu_items":features('menu_features'), "featured_desserts":features('dessert_features'),
+            "visit_details":data.get('visit_details', {}), "ice_cream_experience":data.get('ice_cream_experience', {}),
+            "ordering_details":data.get('ordering_details', {}), "photo_placements":data.get("photo_placements", {}), "menu_sources":data.get("menu_sources", []), "menu_item_count":sum(len(c["items"]) for c in categories), "weekly_special_days": data.get("weekly_special_days", [2, 3, 4]), "has_menu_items":any(c["items"] for c in categories),"consumer_advisory":data.get("consumer_advisory",{}).get("text"),"dessert_flavors":data.get("dessert_flavors") if include_drafts or publishable(data.get("dessert_flavors",{}),now) else None,"menu_download_url":data.get("menu_download",{}).get("url") if publishable(data.get("menu_download",{}),now) else None,"business":business,"menu_categories":categories,"service_facts":service_facts,"dining_services":[s for s in service_facts if s["key"] in ("restaurant", "dinner")],"editorial_offers":offers,"golf_rates":data["golf"] if include_drafts or publishable(data["golf"],now) else None,"story_record":data["story"] if include_drafts or publishable(data["story"],now) else None,"media":data["media"]}
 
 
 def clock_time(value):

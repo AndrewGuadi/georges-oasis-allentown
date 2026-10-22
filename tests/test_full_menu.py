@@ -58,6 +58,8 @@ class FullMenuTest(unittest.TestCase):
 
     def test_dessert_page_reuses_published_menu(self):
         html = self.client.get('/ice-cream').get_data(as_text=True)
-        for name in ['Chocolate Sundae','Oasis Super Sundae','Homemade Baklava','Moose Trail']:
+        for name in ['Chocolate Sundae','Oasis Super Sundae','Homemade Baklava']:
             self.assertIn(name, html)
         self.assertIn('$5.75', html)
+        self.assertNotIn('Moose Trail', html)
+        self.assertIn('Ask at the counter for today’s flavors.', html)
