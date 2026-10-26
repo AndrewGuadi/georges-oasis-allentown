@@ -239,6 +239,15 @@
             "transcription": "Checked against the restaurant’s published menu image on October 16, 2026. Publication requested by user; not a separate owner price confirmation.",
             "valid_from": null,
             "valid_until": null
+          },
+          "photo": "george-oasis-fruit-and-granola-parfait",
+          "photo_alt": "Fruit and granola layered in a tall parfait glass",
+          "photo_caption": "Fruit, granola and yogurt layered in a glass.",
+          "photo_review": {
+            "source": "Owner-supplied responsive photo collection; visual comparison with menu descriptions",
+            "reviewed_at": "2026-10-26",
+            "match": "dish-type",
+            "notes": "Photo illustrates the dish type, not guaranteed portion, ingredients or included sides."
           }
         },
         {
@@ -925,6 +934,15 @@
             "transcription": "Checked against the restaurant’s published menu image on October 16, 2026. Publication requested by user; not a separate owner price confirmation.",
             "valid_from": null,
             "valid_until": null
+          },
+          "photo": "george-oasis-strawberry-nutella-pancakes",
+          "photo_alt": "Pancakes topped with strawberries, chocolate spread and whipped cream",
+          "photo_caption": "Strawberry and Nutella pancakes from the Oasis kitchen.",
+          "photo_review": {
+            "source": "Owner-supplied responsive photo collection; visual comparison with menu descriptions",
+            "reviewed_at": "2026-10-26",
+            "match": "dish-type",
+            "notes": "Photo illustrates the dish type, not guaranteed portion, ingredients or included sides."
           }
         },
         {
@@ -979,8 +997,7 @@
             "transcription": "Checked against the restaurant’s published menu image on October 16, 2026. Publication requested by user; not a separate owner price confirmation.",
             "valid_from": null,
             "valid_until": null
-          },
-          "photo": "george-oasis-french-toast"
+          }
         },
         {
           "id": "breakfast-38",
@@ -1038,9 +1055,16 @@
             "valid_from": null,
             "valid_until": null
           },
-          "photo": "menu-vegan-flatbread.webp",
-          "photo_alt": "Flatbread with vegetables from George’s Oasis",
-          "photo_source": "https://www.georgesoasis.com/uploads/1/6/6/2/16623478/pxl-20210416-164907644.jpg"
+          "photo": "george-oasis-vegetable-topped-bread",
+          "photo_alt": "Bread topped with cucumber, tomato and greens",
+          "photo_source": "https://www.georgesoasis.com/uploads/1/6/6/2/16623478/pxl-20210416-164907644.jpg",
+          "photo_caption": "Vegetable-topped flatbread with cucumber, tomato and greens.",
+          "photo_review": {
+            "source": "Owner-supplied responsive photo collection; visual comparison with menu descriptions",
+            "reviewed_at": "2026-10-26",
+            "match": "dish-type",
+            "notes": "Photo illustrates the dish type, not guaranteed portion, ingredients or included sides."
+          }
         },
         {
           "id": "breakfast-41",
@@ -1386,7 +1410,7 @@
           }
         }
       ],
-      "photo_alt": "French toast dusted with powdered sugar",
+      "photo_alt": "French toast with powdered sugar and a visible cream filling",
       "photo_source": "Georges-Oasis-Responsive-Photos.zip"
     },
     {
@@ -1801,6 +1825,15 @@
             "transcription": "Checked against the restaurant’s published menu image on October 16, 2026. Publication requested by user; not a separate owner price confirmation.",
             "valid_from": null,
             "valid_until": null
+          },
+          "photo": "george-oasis-greek-salad-wrap-and-fries",
+          "photo_alt": "Greek salad beside a wrapped sandwich and fries",
+          "photo_caption": "Greek salad pictured beside a separate sandwich and fries.",
+          "photo_review": {
+            "source": "Owner-supplied responsive photo collection; visual comparison with menu descriptions",
+            "reviewed_at": "2026-10-26",
+            "match": "dish-type",
+            "notes": "Photo illustrates the dish type, not guaranteed portion, ingredients or included sides."
           }
         },
         {
@@ -2936,7 +2969,27 @@
             "valid_from": null,
             "valid_until": null
           },
-          "photo": "george-oasis-gyro-wrap"
+          "photo": "george-oasis-gyro-wrap",
+          "photo_alt": "A gyro wrap with lettuce, tomatoes and onions",
+          "photo_caption": "Gyro pictured with lettuce, tomato and onion.",
+          "photo_review": {
+            "source": "Owner-supplied responsive photo collection; visual comparison with menu descriptions",
+            "reviewed_at": "2026-10-26",
+            "match": "dish-type",
+            "notes": "Photo illustrates the dish type, not guaranteed portion, ingredients or included sides."
+          },
+          "additional_photos": [
+            {
+              "photo": "george-oasis-gyro-wrap-02",
+              "alt": "A gyro wrap with lettuce, tomatoes and onions",
+              "caption": "Another view of the gyro from the Oasis kitchen."
+            },
+            {
+              "photo": "george-oasis-gyro-wrap-03",
+              "alt": "A gyro wrap with lettuce, tomatoes and onions",
+              "caption": "Another view of the gyro from the Oasis kitchen."
+            }
+          ]
         },
         {
           "id": "lunch-and-dinner-67",
@@ -2954,6 +3007,15 @@
             "transcription": "Checked against the restaurant’s published menu image on October 16, 2026. Publication requested by user; not a separate owner price confirmation.",
             "valid_from": null,
             "valid_until": null
+          },
+          "photo": "george-oasis-barbecue-sandwich-and-fries",
+          "photo_alt": "Barbecue sandwich served with French fries",
+          "photo_caption": "Pulled pork BBQ sandwich pictured with fries.",
+          "photo_review": {
+            "source": "Owner-supplied responsive photo collection; visual comparison with menu descriptions",
+            "reviewed_at": "2026-10-26",
+            "match": "dish-type",
+            "notes": "Photo illustrates the dish type, not guaranteed portion, ingredients or included sides."
           }
         },
         {
@@ -3192,7 +3254,21 @@
         }
       ],
       "photo_alt": "A bacon cheeseburger with French fries from the Oasis kitchen",
-      "photo_source": "Georges-Oasis-Responsive-Photos.zip"
+      "photo_source": "Georges-Oasis-Responsive-Photos.zip",
+      "group_photos": {
+        "Oasis Burger Zone": [
+          {
+            "photo": "george-oasis-bacon-cheeseburger-and-fries",
+            "alt": "Bacon cheeseburger served with French fries",
+            "caption": "A bacon cheeseburger from the Oasis kitchen. Toppings and sides depend on your selection."
+          },
+          {
+            "photo": "george-oasis-bacon-cheeseburger-and-fries-02",
+            "alt": "A bacon cheeseburger with fries and sliced vegetables",
+            "caption": "A bacon cheeseburger from the Oasis kitchen. Toppings and sides depend on your selection."
+          }
+        ]
+      }
     },
     {
       "id": "dinner-entrees",
@@ -3399,6 +3475,15 @@
             "valid_from": null,
             "valid_until": null,
             "transcription": "Visual transcription of the live menu image; publication requested by user October 16, 2026."
+          },
+          "photo": "george-oasis-crab-cakes",
+          "photo_alt": "Two crab cakes with lemon and garnish",
+          "photo_caption": "Crab cakes pictured with lemon. Preparation and sides may vary.",
+          "photo_review": {
+            "source": "Owner-supplied responsive photo collection; visual comparison with menu descriptions",
+            "reviewed_at": "2026-10-26",
+            "match": "dish-type",
+            "notes": "Photo illustrates the dish type, not guaranteed portion, ingredients or included sides."
           }
         },
         {
@@ -3625,7 +3710,6 @@
       "id": "children",
       "name": "Children’s Menu",
       "intro": "Smaller meals for guests age 12 and under, with a child-size beverage.",
-      "photo": "george-oasis-dining-room-booths-day",
       "items": [
         {
           "id": "children-1",
@@ -3772,14 +3856,13 @@
           }
         }
       ],
-      "photo_alt": "Green booths and dining tables along the restaurant windows",
       "photo_source": "Georges-Oasis-Responsive-Photos.zip"
     },
     {
       "id": "seniors",
       "name": "Senior Selections",
       "intro": "Senior dinner selections, with sides or soup and salad as listed below.",
-      "photo": "george-oasis-dining-room-window-tables",
+      "photo": "george-oasis-crab-cakes",
       "items": [
         {
           "id": "seniors-shrimp-in-a-basket",
@@ -4019,8 +4102,9 @@
           }
         }
       ],
-      "photo_alt": "Dining tables and wooden chairs beside large windows",
-      "photo_source": "Georges-Oasis-Responsive-Photos.zip"
+      "photo_alt": "Crab cakes from the Oasis kitchen",
+      "photo_source": "Georges-Oasis-Responsive-Photos.zip",
+      "photo_caption": "Kitchen photo; senior portions and sides may differ."
     },
     {
       "id": "ice-cream-and-desserts",
@@ -4773,17 +4857,43 @@
           },
           "photo": "george-oasis-soft-serve-twist-cone",
           "photo_alt": "A chocolate-and-vanilla twist soft-serve cone",
-          "photo_source": "Georges-Oasis-Responsive-Photos.zip"
+          "photo_source": "Georges-Oasis-Responsive-Photos.zip",
+          "photo_caption": "Chocolate-and-vanilla twist pictured. Ask about seasonal availability.",
+          "photo_review": {
+            "source": "Owner-supplied responsive photo collection; visual comparison with menu descriptions",
+            "reviewed_at": "2026-10-26",
+            "match": "dish-type",
+            "notes": "Photo illustrates the dish type, not guaranteed portion, ingredients or included sides."
+          }
         }
       ],
       "photo_alt": "A chocolate sundae topped with whipped cream and a cherry",
-      "photo_source": "Georges-Oasis-Responsive-Photos.zip"
+      "photo_source": "Georges-Oasis-Responsive-Photos.zip",
+      "group_photos": {
+        "Parlor Sundaes": [
+          {
+            "photo": "george-oasis-chocolate-sundae",
+            "alt": "A sundae with dark sauce and whipped cream in a glass dish",
+            "caption": "A sundae from the Oasis collection. Flavors, toppings and sizes vary by selection."
+          },
+          {
+            "photo": "george-oasis-chocolate-sundae-02",
+            "alt": "A tall sundae with whipped cream, chocolate sauce and a cherry",
+            "caption": "A sundae from the Oasis collection. Flavors, toppings and sizes vary by selection."
+          },
+          {
+            "photo": "george-oasis-chocolate-sundae-03",
+            "alt": "A chocolate sundae topped with whipped cream and a cherry",
+            "caption": "A sundae from the Oasis collection. Flavors, toppings and sizes vary by selection."
+          }
+        ]
+      }
     },
     {
       "id": "bakery-and-custom-pies",
       "name": "Bakery & Greek Desserts",
       "intro": "A slice of pie, pie with ice cream, or a Greek pastry. Ask about today’s flavors and selection.",
-      "photo": "menu-baklava.webp",
+      "photo": "george-oasis-pastry-rolls-platter",
       "items": [
         {
           "id": "bakery-and-custom-pies-1",
@@ -4860,7 +4970,23 @@
             "valid_until": null,
             "transcription": "Visual transcription of the live menu image; publication requested by user October 16, 2026."
           },
-          "price_note": "Ask for today’s price"
+          "price_note": "Ask for today’s price",
+          "photo": "george-oasis-pastry-rolls-platter",
+          "photo_alt": "Pastry rolls arranged on a white platter",
+          "photo_caption": "Pastry rolls from the Oasis photo collection. Ask about today’s selection.",
+          "photo_review": {
+            "source": "Owner-supplied responsive photo collection; visual comparison with menu descriptions",
+            "reviewed_at": "2026-10-26",
+            "match": "dish-type",
+            "notes": "Photo illustrates the dish type, not guaranteed portion, ingredients or included sides."
+          },
+          "additional_photos": [
+            {
+              "photo": "george-oasis-triangle-pastries-platter",
+              "alt": "Triangular pastries arranged on a white platter",
+              "caption": "Triangular pastries from the Oasis collection. Fillings and availability vary."
+            }
+          ]
         },
         {
           "id": "bakery-vegan-baklava",
@@ -4882,7 +5008,7 @@
           "price_note": "Ask for today’s price"
         }
       ],
-      "photo_alt": "Baklava from George’s Oasis",
+      "photo_alt": "A platter of pastry rolls from the Oasis collection",
       "photo_source": "https://www.georgesoasis.com/uploads/1/6/6/2/16623478/20220122-081118.jpg"
     }
   ],
@@ -5447,16 +5573,28 @@
   },
   "menu_features": [
     {
-      "item_id": "breakfast-37",
-      "photo": "george-oasis-french-toast",
-      "eyebrow": "A breakfast favorite",
-      "summary": "Golden brown French toast, served with butter and syrup."
+      "item_id": "breakfast-35",
+      "photo": "george-oasis-strawberry-nutella-pancakes",
+      "eyebrow": "Something sweet to start",
+      "summary": "Strawberries and Nutella on pancakes, from our breakfast menu."
+    },
+    {
+      "item_id": "breakfast-4",
+      "photo": "george-oasis-fruit-and-granola-parfait",
+      "eyebrow": "Fruit & granola",
+      "summary": "Explore Kelly’s Breakfast Sundae, with yogurt, fruit and granola."
     },
     {
       "item_id": "lunch-and-dinner-66",
-      "photo": "george-oasis-gyro-wrap",
+      "photo": "george-oasis-gyro-wrap-02",
       "eyebrow": "A Greek specialty",
       "summary": "A gyro for lunch, with more Greek specialties throughout the menu."
+    },
+    {
+      "item_id": "lunch-and-dinner-67",
+      "photo": "george-oasis-barbecue-sandwich-and-fries",
+      "eyebrow": "A lunch favorite",
+      "summary": "Pulled pork BBQ, with house BBQ sauce, slaw and pickles."
     }
   ],
   "dessert_features": [

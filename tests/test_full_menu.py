@@ -28,12 +28,13 @@ class FullMenuTest(unittest.TestCase):
             self.assertTrue(category['items'], category['id'])
             for item in category['items']:
                 self.assertIn('<h4>'+item['name']+'</h4>', html)
-            with self.app.test_request_context():
-                context = {}
-                self.app.update_template_context(context)
-                photo = context['photo_url'](category['photo'])
-            with self.client.get(photo) as response:
-                self.assertEqual(response.status_code, 200)
+            if category.get('photo'):
+                with self.app.test_request_context():
+                    context = {}
+                    self.app.update_template_context(context)
+                    photo = context['photo_url'](category['photo'])
+                with self.client.get(photo) as response:
+                    self.assertEqual(response.status_code, 200)
         self.assertNotIn('id="printed-menus"', html)
         self.assertNotIn('/static/images/menu/', html)
         for internal_copy in ['owner review', 'Source says', 'Eligibility requires', 'independently verified']:

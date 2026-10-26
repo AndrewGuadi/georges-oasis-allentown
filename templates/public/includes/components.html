@@ -27,24 +27,37 @@
 {% if service.exception_note %}<p class="service-detail">{{ service.exception_note }}</p>{% endif %}
 <a class="text-link" href="{{ business.phone_uri }}">{{ icon('phone') }} Call for visit information</a></article>
 {% endmacro %}
+{% macro menu_photo(photo, alt, caption, compact=false) %}
+<figure class="menu-photo{{ ' menu-photo--compact' if compact else '' }}">
+  <a href="{{ photo_url(photo) }}" class="menu-photo-link" data-menu-photo data-caption="{{ caption }}" aria-label="Enlarge photo: {{ alt }}">
+    {{ site_image(photo, alt, sizes='(max-width: 600px) calc(100vw - 80px), (max-width: 1100px) 60vw, 380px', class_name='menu-dish-photo') }}
+    <span class="menu-photo-zoom" aria-hidden="true">View photo ↗</span>
+  </a>
+  <figcaption>{{ caption }}</figcaption>
+</figure>
+{% endmacro %}
 {% macro menu_category(category) %}
 <section class="menu-category" id="{{ category.id }}" aria-labelledby="{{ category.id }}-heading">
   <div class="menu-category-heading">
     <div><p class="small-label">From the Oasis kitchen</p><h2 id="{{ category.id }}-heading">{{ category.name }}</h2><p>{{ category.intro }}</p></div>
-    {% if category.photo %}<figure class="menu-category-photo">{{ site_image(category.photo, category.photo_alt or category.name ~ ' at George’s Oasis', sizes='(max-width: 760px) calc(100vw - 80px), 320px') }}<figcaption>From the Oasis collection</figcaption></figure>{% endif %}
+    {% if category.photo %}<figure class="menu-category-photo">{{ site_image(category.photo, category.photo_alt or category.name ~ ' at George’s Oasis', sizes='(max-width: 760px) calc(100vw - 80px), 320px') }}<figcaption>{{ category.photo_caption or 'From the Oasis collection' }}</figcaption></figure>{% endif %}
   </div>
   {% if category['items'] %}<div class="menu-items">
     {% set ns=namespace(group='') %}
     {% for item in category['items'] %}
-      {% if item.group != ns.group %}<h3 class="menu-group">{{ item.group }}</h3>{% set ns.group=item.group %}{% endif %}
-      <article class="menu-item" id="menu-item-{{ item.id }}" data-menu-item data-search="{{ (category.name ~ ' ' ~ item.group ~ ' ' ~ item.name ~ ' ' ~ item.description)|lower }}">
-        {% if item.photo %}{{ site_image(item.photo, item.photo_alt, sizes='(max-width: 760px) calc(100vw - 80px), 400px', class_name='menu-dish-photo') }}{% endif %}
-        <div class="menu-item-top"><h4>{{ item.name }}</h4>{% if item.formatted_price %}<strong class="menu-price">{{ item.formatted_price }}</strong>{% endif %}</div>
+      {% if item.group != ns.group %}<h3 class="menu-group">{{ item.group }}</h3>
+      {% if category.group_photos and category.group_photos.get(item.group) %}<div class="menu-group-photos" data-menu-group-photos>{% for photo in category.group_photos[item.group] %}{{ menu_photo(photo.photo, photo.alt, photo.caption, compact=true) }}{% endfor %}</div>{% endif %}
+      {% set ns.group=item.group %}{% endif %}
+      <article class="menu-item{% if item.photo %} menu-item--pictured{% endif %}" id="menu-item-{{ item.id }}" data-menu-item data-search="{{ (category.name ~ ' ' ~ item.group ~ ' ' ~ item.name ~ ' ' ~ item.description)|lower }}">
+        {% if item.photo %}{{ menu_photo(item.photo, item.photo_alt or item.name, item.photo_caption or (item.name ~ ' from the Oasis menu.')) }}{% endif %}
+        <div class="menu-item-body"><div class="menu-item-top"><h4>{{ item.name }}</h4>{% if item.formatted_price %}<strong class="menu-price">{{ item.formatted_price }}</strong>{% endif %}</div>
         {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+        {% if item.additional_photos %}<div class="menu-photo-angles" aria-label="More photos of {{ item.name }}">{% for photo in item.additional_photos %}{{ menu_photo(photo.photo, photo.alt, photo.caption, compact=true) }}{% endfor %}</div>{% endif %}
         {% if show_menu_prices and item.price_note %}<p class="menu-price-note">{{ item.price_note }}</p>{% endif %}
         {% if item.variants %}<dl class="price-variants">{% for variant in item.variants %}<div><dt>{{ variant.label }}</dt>{% if show_menu_prices %}<dd>{{ variant.formatted_price }}</dd>{% endif %}</div>{% endfor %}</dl>{% endif %}
         {% if item.inclusions %}<p class="menu-inclusions">{{ item.inclusions }}</p>{% endif %}
         {% if item.add_ons %}<details class="menu-addons"><summary>Options & additions</summary><ul>{% for extra in item.add_ons %}<li>{{ extra.name }} {% if show_menu_prices %}<span>+{{ extra.price|money }}</span>{% endif %}</li>{% endfor %}</ul></details>{% endif %}
+        </div>
       </article>
     {% endfor %}
   </div>{% else %}<div class="menu-source"><p>Browse the ordering menu for current {{ category.name|lower }} selections and prices. For questions about a dish, give us a call.</p>{{ external_action('food_ordering', 'Browse Ordering Menu', 'text-link') }}</div>{% endif %}

@@ -1,5 +1,7 @@
 # George’s October 26 website feedback
 
+**Latest follow-up:** [expanded photo-menu trial, matching audit, screenshots and updated test results](menu-photo-trial.md).
+
 Source: George’s email received October 26, 2026 at 12:27 PM Eastern.
 Based on main `ab7d2d0813a6083adb1f212c33b5f12d72963427`; the prior post-meeting branch was three commits behind main.
 

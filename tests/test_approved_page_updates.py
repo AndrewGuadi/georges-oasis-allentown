@@ -23,17 +23,17 @@ class ApprovedPageUpdatesTest(unittest.TestCase):
             db.engine.dispose()
 
     def test_featured_food_hides_outdated_prices_and_draft_dishes(self):
-        toast = next(i for c in self.source['menu_categories'] for i in c['items'] if i['id']=='breakfast-37')
+        toast = next(i for c in self.source['menu_categories'] for i in c['items'] if i['id']=='breakfast-35')
         toast['variants'][0]['price'] = '7.10'
         self.app.config['SITE_CONTENT'] = self.source
         html = self.client.get('/food-and-ice-cream').get_data(as_text=True)
         self.assertNotIn('$7.10', html)
-        self.assertIn('href="/food-and-ice-cream#menu-item-breakfast-37"', html)
+        self.assertIn('href="/food-and-ice-cream#menu-item-breakfast-35"', html)
         toast['metadata']['status'] = 'draft'
         self.app.config['SITE_CONTENT'] = self.source
         with self.app.app_context():
             featured = public_content()['featured_menu_items']
-        self.assertNotIn('breakfast-37', [i['id'] for i in featured])
+        self.assertNotIn('breakfast-35', [i['id'] for i in featured])
         self.assertNotIn('$7.10', self.client.get('/food-and-ice-cream').get_data(as_text=True))
 
     def test_coupons_are_absent_unless_live(self):

@@ -4,5 +4,7 @@
 {% block title %}{{ page.title }} | George’s Oasis, Allentown{% endblock %}
 {% block description %}{{ page.description }}{% endblock %}
 {% block extra_head %}<link rel="stylesheet" href="{{ url_for('static',filename='css/pages.css') }}">{% endblock %}
-{% block content %}<div class="interior-page">{% if review_mode %}<div class="review-banner"><strong>Owner preview · Draft content</strong> Source observations below require review. <a href="{{ url_for('admin.content_review') }}">Back to review checklist →</a></div>{% endif %}{% block page_intro %}{% endblock %}{% block page_body %}{% endblock %}</div>{% endblock %}
-{% block scripts %}<script src="{{ url_for('static',filename='js/pages.js') }}" defer></script>{% endblock %}
+{% block content %}<div class="interior-page">{% if review_mode %}<div class="review-banner"><strong>Owner preview · Draft content</strong> Source observations below require review. <a href="{{ url_for('admin.content_review') }}">Back to review checklist →</a></div>{% endif %}{% block page_intro %}{% endblock %}{% block page_body %}{% endblock %}
+{% if page.key in ['food', 'ice_cream'] %}{% with viewer_id='menu-photo-viewer', viewer_links='[data-menu-photo]', viewer_label='Menu photo', viewer_title='From the Oasis kitchen' %}{% include 'public/includes/photo_viewer.html' %}{% endwith %}{% endif %}</div>{% endblock %}
+{% block scripts %}<script src="{{ url_for('static',filename='js/pages.js') }}" defer></script>{% if page.key in ['food','ice_cream'] %}<script src="{{ url_for('static',filename='js/photo-viewer.js') }}" defer></script>{% endif %}{% endblock %}
+
