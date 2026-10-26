@@ -125,14 +125,20 @@ def offer_state(offer, now=None):
 
 def public_content(now=None, include_drafts=False):
     data = load_content()
+    pricing = data.get("menu_pricing", {})
+    show_menu_prices = pricing.get("show_prices") is True and publishable(pricing, now)
     categories = deepcopy(data["menu_categories"])
     for category in categories:
         category["items"] = [item for item in category["items"] if include_drafts or publishable(item,now)]
         for item in category["items"]:
-            if item.get("price") is not None:
+            if show_menu_prices and item.get("price") is not None:
                 item["formatted_price"] = money(item["price"])
             for variant in item.get("variants", []):
-                variant["formatted_price"] = money(variant["price"])
+                if show_menu_prices:
+                    variant["formatted_price"] = money(variant["price"])
+            if not show_menu_prices:
+                # Free-text price notes can also contain stale dollar amounts.
+                item.pop("price_note", None)
     service_facts = [service_status(s, now) for s in data["services"]]
     offers = []
     for offer in data.get("offers", []):
@@ -140,15 +146,28 @@ def public_content(now=None, include_drafts=False):
         if state != "hidden" and offer.get("weekday") in data.get("weekly_special_days", [2, 3, 4]):
             offers.append(offer | {"state":state,"formatted_price":money(offer["price"]) if offer.get("price") is not None else None})
     offers.sort(key=lambda offer: offer['weekday'])
+    special_menus = []
+    day_names = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    for weekday in data.get("weekly_special_days", [2, 3, 4]):
+        record = next((m for m in data.get("special_menus", []) if m.get("weekday") == weekday), {})
+        approved = include_drafts or publishable(record, now)
+        special_menus.append({
+            "id": day_names[weekday].lower(), "day": day_names[weekday],
+            "title": record.get("title") if approved else day_names[weekday] + " specials",
+            "photo": record.get("photo") if approved else {2: "george-oasis-menu-food-spread", 3: "george-oasis-menu-food-spread-02", 4: "george-oasis-menu-food-spread-04"}.get(weekday, "george-oasis-menu-food-spread"),
+            "photo_alt": record.get("photo_alt", "Food from the Oasis kitchen") if approved else "A selection of food from the Oasis kitchen",
+            "items": [item for item in record.get("items", []) if include_drafts or publishable(item, now)] if approved else [],
+            "note": record.get("note", "") if approved else "",
+        })
     business = data['business']
     items_by_id = {item['id']: item | {'category_id': category['id']}
                    for category in categories for item in category['items']}
     def features(key):
         return [items_by_id[feature['item_id']] | feature
                 for feature in data.get(key, []) if feature['item_id'] in items_by_id]
-    return {"featured_menu_items":features('menu_features'), "featured_desserts":features('dessert_features'),
+    return {"show_menu_prices":show_menu_prices, "special_menus":special_menus, "featured_menu_items":features('menu_features'), "featured_desserts":features('dessert_features'),
             "visit_details":data.get('visit_details', {}), "ice_cream_experience":data.get('ice_cream_experience', {}),
-            "ordering_details":data.get('ordering_details', {}), "photo_placements":data.get("photo_placements", {}), "menu_sources":data.get("menu_sources", []), "menu_item_count":sum(len(c["items"]) for c in categories), "weekly_special_days": data.get("weekly_special_days", [2, 3, 4]), "has_menu_items":any(c["items"] for c in categories),"consumer_advisory":data.get("consumer_advisory",{}).get("text"),"dessert_flavors":data.get("dessert_flavors") if include_drafts or publishable(data.get("dessert_flavors",{}),now) else None,"menu_download_url":data.get("menu_download",{}).get("url") if publishable(data.get("menu_download",{}),now) else None,"business":business,"menu_categories":categories,"service_facts":service_facts,"dining_services":[s for s in service_facts if s["key"] in ("restaurant", "dinner")],"editorial_offers":offers,"golf_rates":data["golf"] if include_drafts or publishable(data["golf"],now) else None,"story_record":data["story"] if include_drafts or publishable(data["story"],now) else None,"media":data["media"]}
+            "ordering_details":data.get('ordering_details', {}), "photo_placements":data.get("photo_placements", {}), "menu_sources":data.get("menu_sources", []) if show_menu_prices else [], "menu_item_count":sum(len(c["items"]) for c in categories), "weekly_special_days": data.get("weekly_special_days", [2, 3, 4]), "has_menu_items":any(c["items"] for c in categories),"consumer_advisory":data.get("consumer_advisory",{}).get("text"),"dessert_flavors":data.get("dessert_flavors") if include_drafts or publishable(data.get("dessert_flavors",{}),now) else None,"menu_download_url":data.get("menu_download",{}).get("url") if show_menu_prices and publishable(data.get("menu_download",{}),now) else None,"business":business,"menu_categories":categories,"service_facts":service_facts,"dining_services":[s for s in service_facts if s["key"] in ("restaurant", "dinner")],"editorial_offers":offers,"golf_rates":data["golf"] if include_drafts or publishable(data["golf"],now) else None,"story_record":data["story"] if include_drafts or publishable(data["story"],now) else None,"media":data["media"]}
 
 
 def clock_time(value):
@@ -197,6 +216,25 @@ def validate_content(data):
                 if offer.get('weekday') not in range(7) or not offer.get('terms'):raise ValueError()
                 if time.fromisoformat(offer['start_time']) >= time.fromisoformat(offer['end_time']):raise ValueError()
             except (ValueError,TypeError,KeyError):issues.append(f'{offer["title"]}: complete the day, times and terms before approval.')
+    if "menu_pricing" in data:
+        metadata(data["menu_pricing"], "Menu pricing")
+        if not isinstance(data["menu_pricing"].get("show_prices"), bool):
+            issues.append("Menu pricing: show_prices must be true or false.")
+    seen_days = set()
+    for menu in data.get("special_menus", []):
+        label = menu.get("id", "Specials menu")
+        metadata(menu, label)
+        weekday = menu.get("weekday")
+        if weekday not in data.get("weekly_special_days", [2, 3, 4]) or weekday in seen_days:
+            issues.append(f"{label}: use one menu per confirmed specials day.")
+        seen_days.add(weekday)
+        if menu.get("metadata", {}).get("status") == "approved" and (not menu.get("title") or not menu.get("photo") or not menu.get("items")):
+            issues.append(f"{label}: approved specials menus need a title, photo and dishes.")
+        for item in menu.get("items", []):
+            metadata(item, label + " dish")
+            if not item.get("name"):
+                issues.append(f"{label}: each dish needs a name.")
     for name in ['golf','story','dessert_flavors','consumer_advisory','pie_campaign']:
         if name in data:metadata(data[name],name)
     return issues
+

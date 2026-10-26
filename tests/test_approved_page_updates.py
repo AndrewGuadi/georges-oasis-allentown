@@ -22,12 +22,12 @@ class ApprovedPageUpdatesTest(unittest.TestCase):
             db.drop_all()
             db.engine.dispose()
 
-    def test_featured_food_uses_published_menu_prices_and_hides_drafts(self):
+    def test_featured_food_hides_outdated_prices_and_draft_dishes(self):
         toast = next(i for c in self.source['menu_categories'] for i in c['items'] if i['id']=='breakfast-37')
         toast['variants'][0]['price'] = '7.10'
         self.app.config['SITE_CONTENT'] = self.source
         html = self.client.get('/food-and-ice-cream').get_data(as_text=True)
-        self.assertEqual(html.count('$7.10'), 2)
+        self.assertNotIn('$7.10', html)
         self.assertIn('href="/food-and-ice-cream#menu-item-breakfast-37"', html)
         toast['metadata']['status'] = 'draft'
         self.app.config['SITE_CONTENT'] = self.source
@@ -84,3 +84,4 @@ class ApprovedPageUpdatesTest(unittest.TestCase):
         self.assertIn('Order at the counter', html)
         self.assertIn('settle into a seat', html)
         self.assertIn('just for ice cream', html)
+

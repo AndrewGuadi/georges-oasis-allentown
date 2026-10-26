@@ -34,9 +34,8 @@ class FullMenuTest(unittest.TestCase):
                 photo = context['photo_url'](category['photo'])
             with self.client.get(photo) as response:
                 self.assertEqual(response.status_code, 200)
-        for source in self.content['menu_sources']:
-            with self.client.get('/static/images/menu/'+source['file']) as response:
-                self.assertEqual(response.status_code, 200)
+        self.assertNotIn('id="printed-menus"', html)
+        self.assertNotIn('/static/images/menu/', html)
         for internal_copy in ['owner review', 'Source says', 'Eligibility requires', 'independently verified']:
             self.assertNotIn(internal_copy, html)
 
@@ -54,12 +53,13 @@ class FullMenuTest(unittest.TestCase):
         with self.app.app_context():
             bakery = next(c for c in public_content()['menu_categories'] if c['id']=='bakery-and-custom-pies')
         self.assertNotIn('formatted_price', next(i for i in bakery['items'] if i['name']=='Homemade Baklava'))
-        self.assertIn('Ask for today’s price', self.client.get('/food-and-ice-cream').get_data(as_text=True))
+        self.assertIn('For current prices', self.client.get('/food-and-ice-cream').get_data(as_text=True))
 
     def test_dessert_page_reuses_published_menu(self):
         html = self.client.get('/ice-cream').get_data(as_text=True)
         for name in ['Chocolate Sundae','Oasis Super Sundae','Homemade Baklava']:
             self.assertIn(name, html)
-        self.assertIn('$5.75', html)
+        self.assertNotIn('$5.75', html)
         self.assertNotIn('Moose Trail', html)
         self.assertIn('Ask at the counter for today’s flavors.', html)
+
