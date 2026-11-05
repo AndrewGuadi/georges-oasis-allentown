@@ -1,0 +1,9 @@
+{# Adapted from gharsh11032000 / UIverse loud-chicken-53. See THIRD_PARTY_NOTICES.md. #}
+{% macro oasis_button(label, href, variant='') %}
+<a class="oasis-button {{ variant }}" href="{{ href }}">
+  <span class="oasis-button-arrow oasis-button-arrow--in" aria-hidden="true">→</span>
+  <span class="oasis-button-label">{{ label }}</span>
+  <span class="oasis-button-fill" aria-hidden="true"></span>
+  <span class="oasis-button-arrow oasis-button-arrow--out" aria-hidden="true">→</span>
+</a>
+{% endmacro %}

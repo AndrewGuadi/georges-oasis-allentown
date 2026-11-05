@@ -20,6 +20,8 @@
             sibling = sibling.nextElementSibling;
           }
           heading.hidden = !visible;
+          const groupPhotos = heading.nextElementSibling;
+          if (groupPhotos?.matches('[data-menu-group-photos]')) groupPhotos.hidden = !visible;
         });
       });
       status.textContent = query ? count ? `${count} matching ${count === 1 ? 'dish' : 'dishes'}.` : 'No matching dishes. Clear the search to browse every category.' : '';
@@ -62,3 +64,4 @@
     });
   }
 })();
+

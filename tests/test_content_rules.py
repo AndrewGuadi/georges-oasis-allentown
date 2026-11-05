@@ -51,10 +51,11 @@ class ContentRulesTest(unittest.TestCase):
             with self.assertRaises(ValueError):money(value)
         app=create_app({'TESTING':True})
         with app.app_context():
-            source=load_content(); category=next(c for c in source['menu_categories'] if c['id']=='ice-cream-and-desserts')
+            source=load_content(); source['menu_pricing']={'show_prices':True,'metadata':deepcopy(META)}; category=next(c for c in source['menu_categories'] if c['id']=='ice-cream-and-desserts')
             for item in category['items']:item['metadata']['status']='draft'
             category['items'][0]['metadata']=deepcopy(META);app.config['SITE_CONTENT']=source
             dessert=next(c for c in public_content()['menu_categories'] if c['id']=='ice-cream-and-desserts')
             self.assertEqual(len(dessert['items']),1)
             self.assertEqual(dessert['items'][0]['formatted_price'],'$5.75')
 if __name__=='__main__':unittest.main()
+

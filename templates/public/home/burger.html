@@ -1,10 +1,10 @@
 <section id="specials" class="grid bg-[#f1ead9] lg:grid-cols-2">
       <div class="relative min-h-[350px] overflow-hidden lg:min-h-[520px]">
-        {{ site_image(photo_placements.home_kitchen, 'Window-side tables in the Oasis dining room', sizes='(max-width: 1023px) 100vw, 50vw', class_name='home-kitchen-photo') }}
+        {{ site_image(photo_placements.home_kitchen, 'Bacon cheeseburger and French fries from the Oasis kitchen', sizes='(max-width: 1023px) 100vw, 50vw', class_name='home-kitchen-photo') }}
         <div class="absolute left-5 top-5 grid h-36 w-36 rotate-[-8deg] place-items-center rounded-full bg-oasis-gold p-5 text-center font-black uppercase leading-tight text-oasis-950 shadow-xl md:left-12 md:top-10">
           <div>
-            <div class="text-[.65rem] tracking-[.22em]">From the kitchen</div>
-            <div class="mt-2 text-lg">A good<br>meal awaits</div>
+            <div class="text-[.65rem] tracking-[.22em]">From the grill</div>
+            <div class="mt-2 text-lg">Char-grilled<br>burgers</div>
           </div>
         </div>
       </div>
@@ -13,16 +13,17 @@
         <div class="max-w-xl">
           <div class="section-eyebrow">From the Oasis kitchen</div>
           <h2 class="mt-4 font-display text-5xl font-semibold leading-[.92] tracking-[-.035em] text-oasis-950 md:text-6xl">
-            Family recipes. Familiar favorites.
+            A burger worth slowing down for.
           </h2>
           <p class="mt-6 text-base leading-7 text-oasis-ink/70">
-            Family recipes are part of the welcome at George’s Oasis. Explore breakfast favorites, Greek specialties and a full menu for lunch and dinner, prepared with care in our kitchen.
+            We take pride in our char-grilled burgers. Pull up a chair, find your favorite, and make a little time for a good meal. There’s plenty more to explore, from breakfast favorites to Greek specialties.
           </p>
           <div class="mt-7 flex flex-wrap gap-3">
-            <a class="btn btn-primary" href="{{ url_for('public.food') }}">View Menu</a>
+            {{ oasis_button('Explore Our Burgers', url_for('public.food', _anchor='menu-item-lunch-and-dinner-27')) }}
             {{ external_action('food_ordering', 'Order Online', 'btn btn-outline') }}
           </div>
           {% include 'public/home/weekly_specials.html' %}
         </div>
       </div>
     </section>
+

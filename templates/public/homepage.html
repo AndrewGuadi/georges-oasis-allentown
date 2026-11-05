@@ -1,4 +1,6 @@
 {% extends 'base.html' %}
+{% from 'public/includes/oasis_button.html' import oasis_button %}
+{% from 'public/includes/icons.html' import icon %}
 {% block title %}George’s Oasis | Restaurant, Ice Cream & Mini Golf in Allentown{% endblock %}
 {% block extra_head %}
 <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet">
@@ -7,9 +9,11 @@
 {% block content %}
 <div class="homepage-design">
   {% include 'public/home/hero.html' %}
+  {% include 'public/home/quick_hours.html' %}
+  {% include 'public/home/burger.html' %}
+  {% include 'public/home/food_gallery.html' %}
   {% include 'public/home/features.html' %}
   {% include 'public/home/welcome.html' %}
-  {% include 'public/home/burger.html' %}
   {% include 'public/home/gatherings.html' %}
   {% include 'public/home/golf.html' %}
   {% include 'public/home/story.html' %}
@@ -17,3 +21,4 @@
   {% include 'public/promotions.html' %}
 </div>
 {% endblock %}
+
