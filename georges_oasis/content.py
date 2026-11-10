@@ -151,13 +151,22 @@ def public_content(now=None, include_drafts=False):
     for weekday in data.get("weekly_special_days", [2, 3, 4]):
         record = next((m for m in data.get("special_menus", []) if m.get("weekday") == weekday), {})
         approved = include_drafts or publishable(record, now)
+        items = record.get("items", [])
+        visible_items = [
+            item | {"formatted_price": money(item["price"]).removesuffix(".00") if item.get("price") is not None else None}
+            for item in items if approved and (include_drafts or publishable(item, now))
+        ]
+        flyer = record.get("flyer") if visible_items and len(visible_items) == len(items) else None
         special_menus.append({
             "id": day_names[weekday].lower(), "day": day_names[weekday],
             "title": record.get("title") if approved else day_names[weekday] + " specials",
             "photo": record.get("photo") if approved else {2: "george-oasis-menu-food-spread", 3: "george-oasis-menu-food-spread-02", 4: "george-oasis-menu-food-spread-04"}.get(weekday, "george-oasis-menu-food-spread"),
             "photo_alt": record.get("photo_alt", "Food from the Oasis kitchen") if approved else "A selection of food from the Oasis kitchen",
-            "items": [item for item in record.get("items", []) if include_drafts or publishable(item, now)] if approved else [],
+            "items": visible_items,
+            "summary": record.get("summary", "") if visible_items else "",
             "note": record.get("note", "") if approved else "",
+            "flyer": flyer,
+            "flyer_cover": flyer and record.get("flyer_cover", False),
         })
     business = data['business']
     items_by_id = {item['id']: item | {'category_id': category['id']}
@@ -234,6 +243,11 @@ def validate_content(data):
             metadata(item, label + " dish")
             if not item.get("name"):
                 issues.append(f"{label}: each dish needs a name.")
+            if item.get("price") is not None:
+                try:
+                    money(item["price"])
+                except ValueError:
+                    issues.append(f"{label}: invalid dish price.")
     for name in ['golf','story','dessert_flavors','consumer_advisory','pie_campaign']:
         if name in data:metadata(data[name],name)
     return issues

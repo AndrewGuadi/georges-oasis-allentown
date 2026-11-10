@@ -1,17 +1,51 @@
 {% extends 'public/section_page.html' %}
-{% block page_intro %}{{ intro('A reason to come back', 'Good things at the Oasis.', 'Our weekly specials run Wednesday, Thursday and Friday. Make a midweek visit part of your routine. Find your specials day below, or call for this week’s selections.', 'george-oasis-bacon-cheeseburger-and-fries-02', 'A burger and French fries from the Oasis kitchen', 'Explore Weekly Specials', '#weekly-menus', 'View Menu', url_for('public.food')) }}{% endblock %}
+{% block page_intro %}{{ intro('A reason to come back', 'Good things at the Oasis.', 'Our weekly specials run Wednesday, Thursday and Friday. Find your favorite night and see what’s on the menu.', 'george-oasis-bacon-cheeseburger-and-fries-02', 'A burger and French fries from the Oasis kitchen', 'Explore Weekly Specials', '#weekly-menus', 'View Menu', url_for('public.food')) }}{% endblock %}
 {% block page_body %}
 <section class="page-shell page-section weekly-menus" id="current-specials" aria-labelledby="weekly-menus-title">
   <span id="weekly-menus"></span>
-  <div class="section-heading"><p class="section-eyebrow">Three days to make a little time</p><h2 id="weekly-menus-title">Your week, with a little Oasis.</h2><p>Wednesday, Thursday & Friday. Ask us about this week’s dishes, serving times and prices.</p></div>
+  <div class="section-heading">
+    <p class="section-eyebrow">Three days to make a little time</p>
+    <h2 id="weekly-menus-title">Your week, with a little Oasis.</h2>
+    <p>Explore the dishes and details for each specials night.</p>
+  </div>
   <div class="special-menu-grid">
-  {% for menu in special_menus %}<article class="special-menu-card">
-    <figure>{{ site_image(menu.photo, menu.photo_alt, sizes='(max-width: 760px) calc(100vw - 40px), 400px') }}<figcaption>From the Oasis kitchen</figcaption></figure>
-    <div class="special-menu-copy"><p class="small-label">{{ menu.day }}</p><h3>{{ menu.title }}</h3>
-    {% if menu['items'] %}<details open><summary>Explore the {{ menu.day }} menu <span aria-hidden="true">+</span></summary><ul>{% for item in menu['items'] %}<li><h4>{{ item.name }}</h4>{% if item.description %}<p>{{ item.description }}</p>{% endif %}</li>{% endfor %}</ul>{% if menu.note %}<p>{{ menu.note }}</p>{% endif %}</details>
-    {% else %}<p>Call us for the {{ menu.day }} specials menu and current prices.</p>{% endif %}
-    <a class="text-link" href="{{ business.phone_uri }}">Ask about {{ menu.day }} {{ icon('arrow') }}</a></div>
-  </article>{% endfor %}
+  {% for menu in special_menus %}
+    <article class="special-menu-card" id="special-{{ menu.id }}">
+      {% if menu.flyer %}{% set flyer_url = url_for('static', filename='images/specials/' ~ menu.flyer ~ '.webp') %}{% endif %}
+      <figure>
+        {% if menu.flyer_cover %}
+          <img class="special-flyer-cover" src="{{ flyer_url }}" alt="" width="500" height="750" loading="lazy" decoding="async">
+          <figcaption>Appetizer night flyer</figcaption>
+        {% else %}
+          {{ site_image(menu.photo, menu.photo_alt, sizes='(max-width: 760px) calc(100vw - 40px), 400px') }}
+          <figcaption>From the Oasis kitchen</figcaption>
+        {% endif %}
+      </figure>
+      <div class="special-menu-copy">
+        <p class="small-label">{{ menu.day }}</p>
+        <h3>{{ menu.title }}</h3>
+        {% if menu['items'] %}
+          {% if menu.summary %}<p>{{ menu.summary }}</p>{% endif %}
+          <details>
+            <summary>View the {{ menu.day }} special menu <span aria-hidden="true">+</span></summary>
+            <ul>
+              {% for item in menu['items'] %}
+                <li>
+                  <h4>{{ item.name }}{% if item.formatted_price %} <span>{{ item.formatted_price }}</span>{% endif %}</h4>
+                  {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+            {% if menu.note %}<p>{{ menu.note }}</p>{% endif %}
+            {% if menu.flyer %}<a class="text-link" href="{{ flyer_url }}">View the {{ menu.day }} flyer {{ icon('arrow') }}</a>{% endif %}
+          </details>
+        {% else %}
+          <p>Call us for the {{ menu.day }} specials menu and current prices.</p>
+        {% endif %}
+        <a class="text-link special-call" href="{{ business.phone_uri }}">Ask about {{ menu.day }} {{ icon('arrow') }}</a>
+      </div>
+    </article>
+  {% endfor %}
   </div>
 </section>
 
@@ -21,4 +55,3 @@
 {% if coupons %}<section class="page-shell page-section" id="coupons-offers">{{ section_heading('A little extra to enjoy','Coupons for your visit.') }}<div class="offer-grid">{% for offer in coupons %}{% include 'public/offer_card.html' %}{% endfor %}</div></section>{% endif %}
 {{ final_cta('Good food. Good company.', 'Make your next visit an Oasis visit.', 'Find your favorite meal and take a little time for yourself.', 'View Menu', url_for('public.food'), 'Get Directions', external_links.directions) }}
 {% endblock %}
-

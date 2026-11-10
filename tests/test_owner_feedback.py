@@ -45,6 +45,7 @@ class OwnerFeedbackTest(unittest.TestCase):
     def test_specials_require_menu_and_dish_approval_and_preserve_preview(self):
         menu = self.source['special_menus'][0]
         menu['title'] = 'Confirmed menu fixture'
+        menu['metadata']['status'] = 'draft'
         menu['items'] = [{'name':'Confirmed dish fixture', 'description':'A test dish.', 'metadata':deepcopy(APPROVED)}]
         self.app.config['SITE_CONTENT'] = self.source
         self.assertNotIn('Confirmed dish fixture', self.client.get('/specials').get_data(as_text=True))
@@ -54,12 +55,30 @@ class OwnerFeedbackTest(unittest.TestCase):
         self.app.config['SITE_CONTENT'] = self.source
         html = self.client.get('/specials').get_data(as_text=True)
         self.assertIn('Confirmed dish fixture', html)
-        self.assertIn('<details open>', html)
+        self.assertIn('View the Wednesday special menu', html)
         menu['items'][0]['metadata']['status'] = 'paused'
         self.app.config['SITE_CONTENT'] = self.source
         self.assertNotIn('Confirmed dish fixture', self.client.get('/specials').get_data(as_text=True))
+        self.assertNotIn('images/specials/burger-night.webp', self.client.get('/specials').get_data(as_text=True))
         menu['weekday'] = 1
         self.assertTrue(validate_content(self.source))
+
+    def test_weekly_specials_use_the_same_records_on_home_and_specials(self):
+        home = self.client.get('/').get_data(as_text=True)
+        specials = self.client.get('/specials').get_data(as_text=True)
+        for day, title, flyer in (
+            ('wednesday', 'Burger Night', 'burger-night'),
+            ('thursday', 'Half-Price Appetizers', 'half-price-appetizers'),
+            ('friday', 'Crabcake Fridays', 'crabcake-fridays'),
+        ):
+            self.assertIn(f'href="/specials#special-{day}"', home)
+            self.assertIn(title, home)
+            self.assertIn(f'id="special-{day}"', specials)
+            self.assertIn(title, specials)
+            with self.client.get(f'/static/images/specials/{flyer}.webp') as response:
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response.mimetype, 'image/webp')
+        self.assertNotIn('special-tuesday', specials)
 
     def test_home_hours_and_burgers_precede_experience_cards(self):
         html = self.client.get('/').get_data(as_text=True)

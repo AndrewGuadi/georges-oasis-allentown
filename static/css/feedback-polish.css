@@ -35,17 +35,23 @@
 .home-food-tile>span { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:20px; font-weight:700; }
 .homepage-design .features { margin:0 auto; padding-top:10px; padding-bottom:30px; }
 .special-menu-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
-.special-menu-card { overflow:hidden; border:1px solid #dcdcca; border-radius:14px; background:#fffaf0; }
+.special-menu-card { overflow:hidden; scroll-margin-top:8rem; border:1px solid #dcdcca; border-radius:14px; background:#fffaf0; }
 .special-menu-card figure { margin:0; position:relative; }
 .special-menu-card img { width:100%; aspect-ratio:4/3; display:block; object-fit:cover; }
+.special-menu-card .special-flyer-cover { height:auto; object-position:center top; }
 .special-menu-card figcaption { padding:8px 14px; font-size:11px; color:#4b604f; background:#f0ebdc; }
 .special-menu-copy { padding:26px; }
 .special-menu-copy h3 { font:600 34px/1.1 'Cormorant Garamond',Georgia,serif; margin:10px 0 18px; }
 .special-menu-copy p { line-height:1.8; font-size:14px; color:#485c4e; }
-.special-menu-copy .text-link { margin-top:22px; }
-.special-menu-copy summary { padding:16px 0; cursor:pointer; font-weight:700; }
+.special-menu-copy .text-link { margin-top:12px; }
+.special-menu-copy .special-call { font-size:13px; }
+.special-menu-copy summary { padding:16px 0 8px; cursor:pointer; font-weight:700; }
 .special-menu-copy li { border-top:1px solid #dcdcca; padding:14px 0; }
-.special-menu-copy h4 { font-weight:700; }
+.special-menu-copy h4 { display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px 12px; font-weight:700; }
+.special-menu-copy h4 span { white-space:nowrap; }
+.home-special-links { display:grid; gap:6px; margin:10px 0; }
+.home-special-links .text-link { display:inline-flex; flex-wrap:wrap; gap:4px 8px; }
+.home-special-links .text-link span { font-weight:400; }
 .special-menu-copy details[open] summary>span { display:inline-block; transform:rotate(45deg); }
 .quick-hours summary:focus-visible,.home-food-tile:focus-visible,.special-menu-copy summary:focus-visible { outline:3px solid #9b6a1a; outline-offset:4px; }
 @media (hover:hover) and (pointer:fine) {
