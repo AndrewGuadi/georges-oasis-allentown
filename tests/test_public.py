@@ -75,6 +75,7 @@ class PublicPagesTest(unittest.TestCase):
         with self.app.app_context():
             source=load_content()
         source['menu_categories'][0]['items'][0]['metadata']['status']='draft'
+        source['special_menus'][0]['metadata']['status']='draft'
         self.app.config['SITE_CONTENT']=source
         self.assertNotIn('Monte Cristo',self.client.get('/food-and-ice-cream').get_data(as_text=True))
         self.assertNotIn('Burger Night',self.client.get('/specials').get_data(as_text=True))
