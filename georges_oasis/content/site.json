@@ -4979,14 +4979,7 @@
             "reviewed_at": "2026-10-26",
             "match": "dish-type",
             "notes": "Photo illustrates the dish type, not guaranteed portion, ingredients or included sides."
-          },
-          "additional_photos": [
-            {
-              "photo": "george-oasis-triangle-pastries-platter",
-              "alt": "Triangular pastries arranged on a white platter",
-              "caption": "Triangular pastries from the Oasis collection. Fillings and availability vary."
-            }
-          ]
+          }
         },
         {
           "id": "bakery-vegan-baklava",
@@ -5416,15 +5409,50 @@
   ],
   "pie_campaign": {
     "metadata": {
-      "status": "draft",
-      "source": "October 7 Astra specification / public website observation",
-      "reviewed_at": "2026-10-07",
-      "valid_from": null,
-      "valid_until": null
+      "status": "approved",
+      "source": "George’s Oasis November 11, 2026 website update and supplied holiday pie order form.",
+      "reviewed_at": "2026-11-11",
+      "valid_from": "2026-11-11"
     },
-    "state": "draft",
-    "year": 2025,
-    "note": "Expired 2025 campaign remains archived. No new campaign authorized."
+    "order_deadline": "2026-11-22",
+    "pickup_dates": [
+      "2026-11-24",
+      "2026-11-25"
+    ],
+    "pies": [
+      {
+        "name": "Apple Crumb",
+        "price": "21"
+      },
+      {
+        "name": "Old-Fashion Apple",
+        "price": "21"
+      },
+      {
+        "name": "Blueberry Crumb",
+        "price": "22"
+      },
+      {
+        "name": "Cherry Crumb",
+        "price": "26"
+      },
+      {
+        "name": "Coconut Custard",
+        "price": "25"
+      },
+      {
+        "name": "Pear Crumb",
+        "price": "22"
+      },
+      {
+        "name": "Old-Fashion Pear",
+        "price": "22"
+      },
+      {
+        "name": "Pumpkin",
+        "price": "21"
+      }
+    ]
   },
   "dessert_flavors": {
     "metadata": {
@@ -5559,7 +5587,45 @@
       "status": "approved",
       "source": "User approved page plan and supplied visit/ice-cream/ordering facts, October 22, 2026",
       "reviewed_at": "2026-10-22"
-    }
+    },
+    "topping_groups": [
+      {
+        "name": "Fruit",
+        "items": [
+          "Crushed cherry",
+          "Pineapple",
+          "Strawberry"
+        ]
+      },
+      {
+        "name": "Crunch & candy",
+        "items": [
+          "Wet walnuts",
+          "Peanuts",
+          "M&M’s",
+          "Crushed Oreo",
+          "Cookie dough",
+          "Rainbow sprinkles",
+          "Chocolate sprinkles"
+        ]
+      },
+      {
+        "name": "Sauces & finishes",
+        "items": [
+          "Hot fudge",
+          "Chocolate",
+          "Peanut butter",
+          "Marshmallow",
+          "Whipped cream",
+          "Malt"
+        ]
+      }
+    ],
+    "homemade_desserts": [
+      "Homemade cheesecake",
+      "Coconut custard pie",
+      "Cherry crumb pie"
+    ]
   },
   "ordering_details": {
     "same_restaurant_menu": true,
@@ -5612,14 +5678,6 @@
       "title": "A soft-serve cone",
       "eyebrow": "A seasonal favorite",
       "summary": "A simple treat when soft serve is in season.",
-      "show_price": false
-    },
-    {
-      "item_id": "bakery-homemade-baklava",
-      "photo": "menu-baklava.webp",
-      "title": "Greek pastries",
-      "eyebrow": "From the dessert menu",
-      "summary": "Ask at the counter about baklava and today’s pastry selection.",
       "show_price": false
     }
   ],

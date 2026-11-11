@@ -2,6 +2,7 @@
 import unittest
 from datetime import datetime, timedelta, timezone
 from html import unescape
+from unittest.mock import patch
 
 from georges_oasis import create_app
 from georges_oasis.content import load_content, public_content
@@ -84,4 +85,31 @@ class ApprovedPageUpdatesTest(unittest.TestCase):
         self.assertIn('Order at the counter', html)
         self.assertIn('settle into a seat', html)
         self.assertIn('just for ice cream', html)
+
+    def test_holiday_pie_order_and_pickup_switch_on_eastern_dates(self):
+        def page_at(instant):
+            now = datetime.fromisoformat(instant)
+            with patch('georges_oasis.content.datetime') as clock:
+                clock.now.return_value = now
+                clock.fromisoformat.side_effect = datetime.fromisoformat
+                return self.client.get('/ice-cream').get_data(as_text=True)
+
+        self.assertNotIn('id="holiday-pies"', page_at('2026-11-11T04:59:00+00:00'))
+        ordering = page_at('2026-11-23T04:59:00+00:00')
+        self.assertIn('id="holiday-pies"', ordering)
+        self.assertIn(self.app.config['EXTERNAL_LINKS']['pie_order'], ordering)
+        self.assertIn('datetime="2026-11-22"', ordering)
+        self.assertIn('datetime="2026-11-24"', ordering)
+        self.assertIn('datetime="2026-11-25"', ordering)
+        for name, price in (
+            ('Apple Crumb', 21), ('Old-Fashion Apple', 21), ('Blueberry Crumb', 22),
+            ('Cherry Crumb', 26), ('Coconut Custard', 25), ('Pear Crumb', 22),
+            ('Old-Fashion Pear', 22), ('Pumpkin', 21),
+        ):
+            self.assertIn(f'<span>{name}</span><strong>${price}</strong>', ordering)
+        pickup = page_at('2026-11-23T05:00:00+00:00')
+        self.assertIn('Pie orders are closed.', pickup)
+        self.assertNotIn(self.app.config['EXTERNAL_LINKS']['pie_order'], pickup)
+        self.assertIn('id="holiday-pies"', page_at('2026-11-26T04:59:00+00:00'))
+        self.assertNotIn('id="holiday-pies"', page_at('2026-11-26T05:00:00+00:00'))
 

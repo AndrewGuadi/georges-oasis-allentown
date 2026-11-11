@@ -1,6 +1,6 @@
 """Versioned editorial data and conservative publication / service-time rules."""
 from copy import deepcopy
-from datetime import datetime, time, timedelta, timezone
+from datetime import date, datetime, time, timedelta, timezone
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from zoneinfo import ZoneInfo
@@ -45,6 +45,27 @@ def money(value):
         return f"${amount:.2f}"
     except (InvalidOperation, TypeError) as exc:
         raise ValueError("Invalid currency value") from exc
+
+
+def pie_campaign_dates(record):
+    deadline = date.fromisoformat(record["order_deadline"])
+    pickups = [date.fromisoformat(value) for value in record["pickup_dates"]]
+    if not pickups or deadline >= pickups[0] or pickups != sorted(set(pickups)):
+        raise ValueError("Pickup dates must be distinct, in order, and after the order deadline.")
+    return deadline, pickups
+
+
+def current_pie_campaign(record, now=None):
+    if not publishable(record, now):
+        return None
+    try:
+        deadline, pickups = pie_campaign_dates(record)
+    except (KeyError, TypeError, ValueError):
+        return None
+    today = local_now(now).date()
+    if today > pickups[-1]:
+        return None
+    return record | {"deadline": deadline, "pickups": pickups, "accepting_orders": today <= deadline}
 
 def service_boundary(day, clock, closing=False):
     """Open on the first repeated clock time; close on the second. Spring gaps move forward."""
@@ -175,6 +196,7 @@ def public_content(now=None, include_drafts=False):
         return [items_by_id[feature['item_id']] | feature
                 for feature in data.get(key, []) if feature['item_id'] in items_by_id]
     return {"show_menu_prices":show_menu_prices, "special_menus":special_menus, "featured_menu_items":features('menu_features'), "featured_desserts":features('dessert_features'),
+            "pie_campaign": current_pie_campaign(data.get("pie_campaign", {}), now),
             "visit_details":data.get('visit_details', {}), "ice_cream_experience":data.get('ice_cream_experience', {}),
             "ordering_details":data.get('ordering_details', {}), "photo_placements":data.get("photo_placements", {}), "menu_sources":data.get("menu_sources", []) if show_menu_prices else [], "menu_item_count":sum(len(c["items"]) for c in categories), "weekly_special_days": data.get("weekly_special_days", [2, 3, 4]), "has_menu_items":any(c["items"] for c in categories),"consumer_advisory":data.get("consumer_advisory",{}).get("text"),"dessert_flavors":data.get("dessert_flavors") if include_drafts or publishable(data.get("dessert_flavors",{}),now) else None,"menu_download_url":data.get("menu_download",{}).get("url") if show_menu_prices and publishable(data.get("menu_download",{}),now) else None,"business":business,"menu_categories":categories,"service_facts":service_facts,"dining_services":[s for s in service_facts if s["key"] in ("restaurant", "dinner")],"editorial_offers":offers,"golf_rates":data["golf"] if include_drafts or publishable(data["golf"],now) else None,"story_record":data["story"] if include_drafts or publishable(data["story"],now) else None,"media":data["media"]}
 
@@ -185,7 +207,6 @@ def clock_time(value):
 
 def validate_content(data):
     """Validate the editable file before review or deployment; never infer approval."""
-    from datetime import date
     issues = []
     def metadata(record, label):
         meta = record.get('metadata', {})
@@ -250,5 +271,21 @@ def validate_content(data):
                     issues.append(f"{label}: invalid dish price.")
     for name in ['golf','story','dessert_flavors','consumer_advisory','pie_campaign']:
         if name in data:metadata(data[name],name)
+    campaign = data.get("pie_campaign", {})
+    if campaign.get("metadata", {}).get("status") == "approved":
+        try:
+            pie_campaign_dates(campaign)
+        except (KeyError, TypeError, ValueError):
+            issues.append("Holiday pie orders: set a deadline and distinct pickup dates after it.")
+        pies = campaign.get("pies", [])
+        if not pies:
+            issues.append("Holiday pie orders: add at least one pie.")
+        for pie in pies:
+            try:
+                if not pie.get("name"):
+                    raise ValueError("Missing pie name.")
+                money(pie["price"])
+            except (KeyError, ValueError):
+                issues.append("Holiday pie orders: every pie needs a name and valid price.")
     return issues
 

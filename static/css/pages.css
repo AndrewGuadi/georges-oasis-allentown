@@ -128,6 +128,15 @@ figcaption { font-size:12px; line-height:1.65; color:#617057; margin-top:14px; }
 .framed-photo img { width:100%; height:360px; object-fit:cover; border-radius:3px; }
 .framed-photo figcaption { padding:0 8px 6px; }
 .dessert-menu { padding-bottom:50px; max-width:1020px; }
+.ice-cream-parlor .page-intro-photo { padding:10px; border-radius:18px; }
+.ice-cream-parlor .page-intro-photo > .oasis-photo { height:auto; border-radius:10px; }
+.holiday-pies { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.3fr); gap:24px 40px; align-items:start; margin-bottom:36px; padding:clamp(20px,4vw,44px); border:1px solid #cdd5bf; border-top:4px solid #b99a4e; border-radius:12px; background:#fffaf0; }
+.holiday-pies-dates { margin:14px 0 20px; line-height:1.7; }
+.holiday-pie-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:20px; }
+.holiday-pie-list li { display:flex; justify-content:space-between; align-items:baseline; gap:10px; padding:9px 0; border-bottom:1px solid #d9dcca; font-size:14px; }
+.holiday-pie-list strong { white-space:nowrap; }
+@media(max-width:760px) { .holiday-pies { grid-template-columns:1fr; } }
+@media(max-width:480px) { .holiday-pie-list { grid-template-columns:1fr; } }
 .flavor-section { padding:28px 0; }
 .flavor-list { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
 .flavor-list li { font-size:14px; padding:10px 16px; border:1px solid #d3d8c3; border-radius:5px; background:#fffaf0; }

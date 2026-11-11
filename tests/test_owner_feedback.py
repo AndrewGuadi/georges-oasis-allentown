@@ -24,7 +24,8 @@ class OwnerFeedbackTest(unittest.TestCase):
     def test_prices_and_old_downloads_are_absent_but_dishes_remain(self):
         for path in ['/food-and-ice-cream', '/ice-cream']:
             html = self.client.get(path).get_data(as_text=True)
-            self.assertNotIn('$', html)
+            menu_html = html.split('id="desserts"', 1)[1] if path == '/ice-cream' else html
+            self.assertNotIn('$', menu_html)
             self.assertNotIn('/static/images/menu/', html)
         html = self.client.get('/food-and-ice-cream').get_data(as_text=True)
         self.assertEqual(html.count('data-menu-item '), 212)
