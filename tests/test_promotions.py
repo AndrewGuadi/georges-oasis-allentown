@@ -44,7 +44,7 @@ class OwnerWorkflowTest(unittest.TestCase):
         picture = io.BytesIO()
         Image.new('RGB', (30, 30), 'green').save(picture, 'PNG')
         picture.seek(0)
-        response = self.client.post('/admin/promotions/new', data={"csrf_token": self.token('/admin/promotions/new'), "kind": "coupon", "title": "Test family coupon", "description": "Test terms", "code": "FAMILY", "enabled": "on", "image": (picture, 'photo.png')})
+        response = self.client.post('/admin/promotions/new', data={"csrf_token": self.token('/admin/promotions/new'), "kind": "coupon", "title": "Test family coupon", "description": "Test terms", "code": "FAMILY", "enabled": "on", "action":"publish", "image": (picture, 'photo.png')})
         self.assertEqual(response.status_code, 302)
         self.assertIn(b'Test family coupon', self.client.get('/').data)
         with self.app.app_context():

@@ -5,14 +5,23 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from zoneinfo import ZoneInfo
 import json
-from flask import current_app
+from functools import lru_cache
+from flask import current_app, g, has_request_context
 
 LOCAL = ZoneInfo("America/New_York")
 DATA_PATH = Path(__file__).with_name("content") / "site.json"
 
+@lru_cache(maxsize=4)
+def _read_content(path, modified, size):
+    return json.loads(Path(path).read_text())
+
+
 def load_content():
     override = current_app.config.get("SITE_CONTENT")
-    return deepcopy(override) if override is not None else json.loads(DATA_PATH.read_text())
+    if override is not None:
+        return deepcopy(override)
+    stat = DATA_PATH.stat()
+    return deepcopy(_read_content(str(DATA_PATH), stat.st_mtime_ns, stat.st_size))
 
 def local_now(now=None):
     value = now or datetime.now(timezone.utc)
@@ -124,7 +133,20 @@ def offer_state(offer, now=None):
         return "hidden"
 
 def public_content(now=None, include_drafts=False):
-    data = load_content()
+    if not has_request_context():
+        return _public_content(now, include_drafts)
+    cache_key = (now, include_drafts, bool(g.get('error_render')))
+    request_cache = g.setdefault('public_content_cache', {})
+    if cache_key in request_cache:
+        return request_cache[cache_key]
+    result = _public_content(now, include_drafts)
+    request_cache[cache_key] = result
+    return result
+
+
+def _public_content(now=None, include_drafts=False):
+    from .services.catalog import apply_catalog
+    data = load_content() if g.get("error_render") else apply_catalog(load_content(), include_drafts)
     pricing = data.get("menu_pricing", {})
     show_menu_prices = pricing.get("show_prices") is True and publishable(pricing, now)
     categories = deepcopy(data["menu_categories"])
@@ -134,7 +156,7 @@ def public_content(now=None, include_drafts=False):
             if show_menu_prices and item.get("price") is not None:
                 item["formatted_price"] = money(item["price"])
             for variant in item.get("variants", []):
-                if show_menu_prices:
+                if show_menu_prices and variant.get("price") is not None:
                     variant["formatted_price"] = money(variant["price"])
             if not show_menu_prices:
                 # Free-text price notes can also contain stale dollar amounts.
@@ -151,12 +173,17 @@ def public_content(now=None, include_drafts=False):
     for weekday in data.get("weekly_special_days", [2, 3, 4]):
         record = next((m for m in data.get("special_menus", []) if m.get("weekday") == weekday), {})
         approved = include_drafts or publishable(record, now)
+        visible_items = [item for item in record.get('items', []) if include_drafts or publishable(item, now)] if approved else []
+        if record.get('prices_reviewed'):
+            for item in visible_items:
+                if item.get('price') is not None:
+                    item['formatted_price'] = money(item['price'])
         special_menus.append({
             "id": day_names[weekday].lower(), "day": day_names[weekday],
             "title": record.get("title") if approved else day_names[weekday] + " specials",
             "photo": record.get("photo") if approved else {2: "george-oasis-menu-food-spread", 3: "george-oasis-menu-food-spread-02", 4: "george-oasis-menu-food-spread-04"}.get(weekday, "george-oasis-menu-food-spread"),
             "photo_alt": record.get("photo_alt", "Food from the Oasis kitchen") if approved else "A selection of food from the Oasis kitchen",
-            "items": [item for item in record.get("items", []) if include_drafts or publishable(item, now)] if approved else [],
+            "items": visible_items,
             "note": record.get("note", "") if approved else "",
         })
     business = data['business']
@@ -165,7 +192,7 @@ def public_content(now=None, include_drafts=False):
     def features(key):
         return [items_by_id[feature['item_id']] | feature
                 for feature in data.get(key, []) if feature['item_id'] in items_by_id]
-    return {"show_menu_prices":show_menu_prices, "special_menus":special_menus, "featured_menu_items":features('menu_features'), "featured_desserts":features('dessert_features'),
+    return {"uploaded_images":data.get("uploaded_images",{}), "show_menu_prices":show_menu_prices, "special_menus":special_menus, "featured_menu_items":features('menu_features'), "featured_desserts":features('dessert_features'),
             "visit_details":data.get('visit_details', {}), "ice_cream_experience":data.get('ice_cream_experience', {}),
             "ordering_details":data.get('ordering_details', {}), "photo_placements":data.get("photo_placements", {}), "menu_sources":data.get("menu_sources", []) if show_menu_prices else [], "menu_item_count":sum(len(c["items"]) for c in categories), "weekly_special_days": data.get("weekly_special_days", [2, 3, 4]), "has_menu_items":any(c["items"] for c in categories),"consumer_advisory":data.get("consumer_advisory",{}).get("text"),"dessert_flavors":data.get("dessert_flavors") if include_drafts or publishable(data.get("dessert_flavors",{}),now) else None,"menu_download_url":data.get("menu_download",{}).get("url") if show_menu_prices and publishable(data.get("menu_download",{}),now) else None,"business":business,"menu_categories":categories,"service_facts":service_facts,"dining_services":[s for s in service_facts if s["key"] in ("restaurant", "dinner")],"editorial_offers":offers,"golf_rates":data["golf"] if include_drafts or publishable(data["golf"],now) else None,"story_record":data["story"] if include_drafts or publishable(data["story"],now) else None,"media":data["media"]}
 

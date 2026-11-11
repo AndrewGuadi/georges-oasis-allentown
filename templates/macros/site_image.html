@@ -2,6 +2,10 @@
 {% macro site_image(photo, alt=none, sizes='100vw', priority=false, class_name='', width=900, height=675) -%}
   {% if photo in oasis_images %}
     {{ oasis_image(photo, alt=alt, sizes=sizes, priority=priority, class_name=class_name) }}
+  {% elif photo in uploaded_images %}
+    {% set asset = uploaded_images[photo] %}{% set ns = namespace(widths=[], sources=[]) %}
+    {% for size in ['400','800','1600'] %}{% set variant=asset.variants[size] %}{% if variant.width not in ns.widths %}{% set ns.widths=ns.widths+[variant.width] %}{% set ns.sources=ns.sources+[url_for('backend.media_file',media_id=asset.id,size=size) ~ ' ' ~ variant.width ~ 'w'] %}{% endif %}{% endfor %}
+    <img src="{{ url_for('backend.media_file',media_id=asset.id,size='400') }}" srcset="{{ ns.sources|join(', ') }}" sizes="{{ sizes }}" alt="{{ alt if alt is not none else asset.alt }}" width="{{ asset.variants['1600'].width }}" height="{{ asset.variants['1600'].height }}" class="{{ class_name }}" loading="{{ 'eager' if priority else 'lazy' }}" decoding="async"{% if priority %} fetchpriority="high"{% endif %}>
   {% else %}
     <img src="{{ photo_url(photo) }}" alt="{{ alt if alt is not none else '' }}" width="{{ width }}" height="{{ height }}" class="{{ class_name }}" loading="{{ 'eager' if priority else 'lazy' }}" decoding="async"{% if priority %} fetchpriority="high"{% endif %}>
   {% endif %}

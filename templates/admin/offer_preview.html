@@ -1,0 +1,1 @@
+{% extends 'admin/base.html' %}{% block content %}<h1>Offer preview</h1><p>This is the saved draft. Publication and schedule controls still apply.</p>{% include 'public/offer_card.html' %}<a href="{{ url_for('admin.edit',promotion_id=offer.id) }}">Back to editor</a>{% endblock %}
