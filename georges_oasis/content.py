@@ -145,6 +145,7 @@ def offer_state(offer, now=None):
         return "hidden"
 
 def public_content(now=None, include_drafts=False):
+    now = local_now(now)
     data = load_content()
     pricing = data.get("menu_pricing", {})
     show_menu_prices = pricing.get("show_prices") is True and publishable(pricing, now)
@@ -168,6 +169,7 @@ def public_content(now=None, include_drafts=False):
             offers.append(offer | {"state":state,"formatted_price":money(offer["price"]) if offer.get("price") is not None else None})
     offers.sort(key=lambda offer: offer['weekday'])
     special_menus = []
+    today_special = None
     day_names = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     for weekday in data.get("weekly_special_days", [2, 3, 4]):
         record = next((m for m in data.get("special_menus", []) if m.get("weekday") == weekday), {})
@@ -178,7 +180,7 @@ def public_content(now=None, include_drafts=False):
             for item in items if approved and (include_drafts or publishable(item, now))
         ]
         flyer = record.get("flyer") if visible_items and len(visible_items) == len(items) else None
-        special_menus.append({
+        menu = {
             "id": day_names[weekday].lower(), "day": day_names[weekday],
             "title": record.get("title") if approved else day_names[weekday] + " specials",
             "photo": record.get("photo") if approved else {2: "george-oasis-menu-food-spread", 3: "george-oasis-menu-food-spread-02", 4: "george-oasis-menu-food-spread-04"}.get(weekday, "george-oasis-menu-food-spread"),
@@ -188,7 +190,11 @@ def public_content(now=None, include_drafts=False):
             "note": record.get("note", "") if approved else "",
             "flyer": flyer,
             "flyer_cover": flyer and record.get("flyer_cover", False),
-        })
+        }
+        special_menus.append(menu)
+        if weekday == now.weekday() and visible_items and not include_drafts:
+            next_day = (now + timedelta(days=1)).replace(hour=0, minute=0, second=0, microsecond=0)
+            today_special = menu | {"date": now.date().isoformat(), "expires_ms": int(next_day.timestamp() * 1000)}
     business = data['business']
     items_by_id = {item['id']: item | {'category_id': category['id']}
                    for category in categories for item in category['items']}
@@ -196,6 +202,7 @@ def public_content(now=None, include_drafts=False):
         return [items_by_id[feature['item_id']] | feature
                 for feature in data.get(key, []) if feature['item_id'] in items_by_id]
     return {"show_menu_prices":show_menu_prices, "special_menus":special_menus, "featured_menu_items":features('menu_features'), "featured_desserts":features('dessert_features'),
+            "today_special": today_special,
             "pie_campaign": current_pie_campaign(data.get("pie_campaign", {}), now),
             "visit_details":data.get('visit_details', {}), "ice_cream_experience":data.get('ice_cream_experience', {}),
             "ordering_details":data.get('ordering_details', {}), "photo_placements":data.get("photo_placements", {}), "menu_sources":data.get("menu_sources", []) if show_menu_prices else [], "menu_item_count":sum(len(c["items"]) for c in categories), "weekly_special_days": data.get("weekly_special_days", [2, 3, 4]), "has_menu_items":any(c["items"] for c in categories),"consumer_advisory":data.get("consumer_advisory",{}).get("text"),"dessert_flavors":data.get("dessert_flavors") if include_drafts or publishable(data.get("dessert_flavors",{}),now) else None,"menu_download_url":data.get("menu_download",{}).get("url") if show_menu_prices and publishable(data.get("menu_download",{}),now) else None,"business":business,"menu_categories":categories,"service_facts":service_facts,"dining_services":[s for s in service_facts if s["key"] in ("restaurant", "dinner")],"editorial_offers":offers,"golf_rates":data["golf"] if include_drafts or publishable(data["golf"],now) else None,"story_record":data["story"] if include_drafts or publishable(data["story"],now) else None,"media":data["media"]}

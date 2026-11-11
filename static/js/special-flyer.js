@@ -1,4 +1,13 @@
 (() => {
+  function revealLinkedMenu() {
+    const section = document.getElementById(window.location.hash.slice(1));
+    if (!section?.matches('.special-menu-card')) return;
+    const menu = section.querySelector('details');
+    if (menu) menu.open = true;
+  }
+  revealLinkedMenu();
+  window.addEventListener('hashchange', revealLinkedMenu);
+
   const dialog = document.getElementById('special-flyer-viewer');
   if (!dialog || typeof dialog.showModal !== 'function') return;
   const image = dialog.querySelector('[data-flyer-image]');
