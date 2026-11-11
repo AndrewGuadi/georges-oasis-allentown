@@ -32,26 +32,11 @@
   }
   const form = document.getElementById('inquiry-form');
   if (form) {
-    const updateContact = () => {
-      const selected = form.querySelector('[name=contact_method]:checked')?.value;
-      form.querySelectorAll('[data-contact]').forEach(field => {
-        field.hidden = !!selected && field.dataset.contact !== selected;
-        field.querySelector('input').required = field.dataset.contact === selected;
-      });
-    };
-    form.querySelectorAll('[name=contact_method]').forEach(input => input.addEventListener('change', updateContact));
-    updateContact();
     const errors = document.getElementById('form-errors');
     if (errors) window.addEventListener('pageshow', () => requestAnimationFrame(() => errors.focus()));
     errors?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-      const target = document.getElementById(link.hash.slice(1));
-      (target?.matches('fieldset') ? target.querySelector('input') : target)?.focus();
+      document.getElementById(link.hash.slice(1))?.focus();
     }));
-    const datePlan = form.querySelector('[name=date_flexibility]');
-    const dateInput = form.querySelector('[name=preferred_date]');
-    const updateDate = () => { dateInput.required = datePlan.value === 'Preferred date'; };
-    datePlan.addEventListener('change', updateDate);
-    updateDate();
     form.addEventListener('submit', () => {
       const button = form.querySelector('[type=submit]');
       button.disabled = true;

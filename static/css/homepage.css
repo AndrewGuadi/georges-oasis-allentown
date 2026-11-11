@@ -12,6 +12,22 @@
 .hero .hero-description { font-size:18px; line-height:1.7; margin:0; text-shadow:0 1px 8px #031b1a; }
 .hero-actions { display:flex; justify-content:center; gap:14px; margin-top:30px; }
 .hero-actions .btn { min-width:180px; min-height:54px; font-size:15px; }
+.hero .hero-visit-options { margin-top:14px; font-size:clamp(12px, 2.8vw, 14px); font-weight:700; text-shadow:0 1px 8px #031b1a; }
+.plan-visit-dialog { position:fixed; inset:0; margin:auto; width:min(680px, calc(100% - 24px)); max-height:calc(100dvh - 24px); padding:clamp(18px, 4vw, 32px); overflow:auto; overscroll-behavior:contain; border:1px solid #cdd5bf; border-radius:14px; background:#fffbf2; color:#173d30; box-shadow:0 16px 64px #031b1a66; }
+.plan-visit-dialog::backdrop { background:#031b1abf; }
+body:has(.plan-visit-dialog[open]) { overflow:hidden; }
+.plan-visit-dialog h2,.plan-visit-card h3 { font-family:'Cormorant Garamond',Georgia,serif; font-weight:700; }
+.plan-visit-dialog h2 { margin:0 48px 16px 0; font-size:clamp(30px, 5vw, 44px); line-height:1.15; }
+.plan-visit-close { position:absolute; top:12px; right:12px; }
+.plan-visit-close button { display:grid; place-items:center; width:44px; height:44px; border:1px solid #cdd5bf; border-radius:50%; font-size:26px; line-height:1; cursor:pointer; }
+.plan-visit-close button:hover { background:#f1ead9; }
+.plan-visit-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; }
+.plan-visit-card { padding:16px; border:1px solid #dedbca; border-radius:10px; background:#f7f2e6; }
+.plan-visit-card h3 { font-size:26px; line-height:1.15; }
+.plan-visit-card p { margin:6px 0; font-size:14px; line-height:1.55; }
+.plan-visit-card .text-link,.plan-visit-hours { display:flex; width:fit-content; min-height:44px; align-items:center; gap:8px; }
+.plan-visit-hours { margin-top:8px; }
+@media(max-width:520px) { .plan-visit-grid { grid-template-columns:1fr; } }
 .btn-glass { background:#073b2edb; color:white; border-color:#ffffff8c; }
 .btn-glass:hover { background:#073b2e; }
 .hero-location { position:absolute; bottom:64px; left:50%; transform:translateX(-50%); display:flex; align-items:center; justify-content:center; gap:8px; font-size:12px; white-space:nowrap; padding:10px 15px; border-radius:4px; background:#082d26d6; }

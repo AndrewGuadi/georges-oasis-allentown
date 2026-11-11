@@ -9,6 +9,7 @@
 {% block content %}
 <div class="homepage-design">
   {% include 'public/home/hero.html' %}
+  {% include 'public/home/plan_visit.html' %}
   {% include 'public/home/quick_hours.html' %}
   {% include 'public/home/burger.html' %}
   {% include 'public/home/food_gallery.html' %}
@@ -21,4 +22,5 @@
   {% include 'public/promotions.html' %}
 </div>
 {% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/plan-visit.js') }}" defer></script>{% endblock %}
 

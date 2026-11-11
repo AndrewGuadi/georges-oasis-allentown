@@ -144,17 +144,14 @@ figcaption { font-size:12px; line-height:1.65; color:#617057; margin-top:14px; }
 .inquiry-aside .fine-copy { max-width:330px; border-top:1px solid #bdcbaa; margin-top:30px; padding-top:24px; }
 .inquiry-form-card { background:#fffbf2; border:1px solid #cdd5bf; border-radius:12px; padding:36px; box-shadow:0 8px 32px #173d3008; }
 .field { margin-bottom:24px; min-width:0; }
-.field label:not(.radio-options label):not(.interest-options label),.field legend { display:block; width:100%; font-size:14px; font-weight:700; line-height:1.5; margin-bottom:9px; }
-.field label > span,.field legend > span { font-size:11px; color:#607156; font-weight:400; margin-left:5px; }
+.field label,.inquiry-contact legend { display:block; width:100%; font-size:14px; font-weight:700; line-height:1.5; margin-bottom:9px; }
+.field label > span,.inquiry-contact legend > span { font-size:12px; color:#607156; font-weight:400; margin-left:5px; }
 .field input:not([type=checkbox]):not([type=radio]),.field select,.field textarea { display:block; width:100%; padding:12px 13px; min-height:48px; border:1px solid #acb99b; border-radius:5px; background:#fffdf8; color:#173d30; font-size:16px; line-height:1.5; }
 .field input[aria-invalid],.field select[aria-invalid],.field textarea[aria-invalid] { border:2px solid #ad4439!important; }
 .field textarea { resize:vertical; min-height:125px; }
 .field input::placeholder,.field textarea::placeholder { color:#788471; font-size:13px; }
 .field-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
-.radio-options { display:flex; flex-wrap:wrap; gap:12px; }
-.radio-options label,.interest-options label { min-height:44px; display:flex; align-items:center; gap:9px; padding:10px 14px; background:#f4f2e7; border:1px solid #d2dac3; border-radius:5px; font-size:14px; cursor:pointer; }
-.interest-options { display:flex; flex-wrap:wrap; gap:10px; }
-.radio-options input,.interest-options input { width:17px; height:17px; accent-color:#174f37; flex-shrink:0; }
+.inquiry-contact { min-width:0; }
 .field-help { font-size:11px; color:#65755d; margin-top:7px; line-height:1.6; }
 .field-error { color:#973d34; font-weight:700; font-size:12px; line-height:1.7; margin-top:7px; }
 .error-summary { padding:24px; background:#fff0e8; border:1px solid #b45143; border-radius:7px; margin-bottom:28px; }
