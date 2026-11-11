@@ -10,6 +10,7 @@
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const readingTime = 5500;
   let currentSlide = 0;
+  let started = false;
   let paused = false;
   let timer;
   let animation;
@@ -52,19 +53,30 @@
   }
 
   function schedule() {
-    if (paused || reducedMotion.matches || document.hidden) return;
+    if (!started || paused || reducedMotion.matches || document.hidden) return;
     timer = window.setTimeout(advance, readingTime);
+  }
+
+  function start() {
+    if (reducedMotion.matches || document.hidden || document.querySelector('dialog[open]')) return;
+    started = true;
+    window.removeEventListener('click', start, true);
+    window.removeEventListener('scroll', start);
+    toggle.hidden = false;
+    advance();
   }
 
   function syncMotionPreference() {
     stop();
     const reduce = reducedMotion.matches;
     messages.toggleAttribute('data-rotating', !reduce);
-    toggle.hidden = reduce;
+    toggle.hidden = reduce || !started;
     if (reduce) showSlide(0);
     schedule();
   }
 
+  window.addEventListener('click', start, true);
+  window.addEventListener('scroll', start, { passive: true });
   toggle.addEventListener('click', () => {
     paused = !paused;
     toggle.textContent = paused ? 'Play messages' : 'Pause messages';

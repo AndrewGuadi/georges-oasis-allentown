@@ -33,6 +33,23 @@ body:has(.plan-visit-dialog[open]) { overflow:hidden; }
 .plan-visit-card p { margin:6px 0; font-size:14px; line-height:1.55; }
 .plan-visit-card .text-link,.plan-visit-hours { display:flex; width:fit-content; min-height:44px; align-items:center; gap:8px; }
 .plan-visit-hours { margin-top:8px; }
+.hero-secondary-actions { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; }
+.hero-special-trigger { display:inline-flex; align-items:center; gap:7px; color:#ffdb80; font-weight:700; }
+.hero-special-trigger .icon { width:16px; height:16px; }
+.today-special-dialog { position:fixed; inset:0; margin:auto; width:min(500px, calc(100% - 24px)); max-height:calc(100dvh - 24px); overflow:auto; overscroll-behavior:contain; border:1px solid #cdd5bf; border-radius:16px; background:#fffbf2; color:#173d30; box-shadow:0 16px 64px #031b1a66; }
+.today-special-dialog::backdrop { background:#031b1abf; }
+body:has(.today-special-dialog[open]) { overflow:hidden; }
+.today-special-dialog .plan-visit-close { z-index:1; }
+.today-special-dialog .plan-visit-close button { background:#fffbf2; }
+.today-special-dialog .plan-visit-close button:hover { background:#f1ead9; }
+.today-special-dialog .today-special-photo { display:block; width:100%; height:clamp(132px, 32dvh, 250px); object-fit:cover; }
+.today-special-copy { padding:clamp(20px, 5vw, 32px); }
+.today-special-copy .section-eyebrow { color:#69521e; padding-right:42px; }
+.today-special-copy h2 { margin:6px 0 10px; font:700 clamp(34px, 7vw, 48px)/1.05 'Cormorant Garamond',Georgia,serif; }
+.today-special-copy p { line-height:1.5; }
+.today-special-picks { margin-top:12px; font-size:14px; font-weight:700; }
+.today-special-actions { display:flex; align-items:center; flex-wrap:wrap; gap:4px 18px; margin-top:18px; }
+.today-special-actions .text-link { text-decoration:underline; }
 @media(max-width:520px) { .plan-visit-grid { grid-template-columns:1fr; } }
 .btn-glass { background:#073b2edb; color:white; border-color:#ffffff8c; }
 .btn-glass:hover { background:#073b2e; }
