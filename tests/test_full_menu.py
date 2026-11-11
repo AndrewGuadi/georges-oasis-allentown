@@ -35,7 +35,14 @@ class FullMenuTest(unittest.TestCase):
                     photo = context['photo_url'](category['photo'])
                 with self.client.get(photo) as response:
                     self.assertEqual(response.status_code, 200)
-        self.assertNotIn('id="printed-menus"', html)
+        self.assertIn('id="printed-menus"', html)
+        for filename in ['Breakfast_Menu.pdf', 'Lunch_and_Dinner_Menu.pdf', 'Ice_Cream_and_Desserts_Menu.pdf']:
+            self.assertIn(f'href="/static/menus/{filename}" target="_blank"', html)
+            self.assertIn(f'download="{filename}"', html)
+            with self.client.get(f'/static/menus/{filename}') as response:
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response.mimetype, 'application/pdf')
+                self.assertTrue(response.data.startswith(b'%PDF-'))
         self.assertNotIn('/static/images/menu/', html)
         for internal_copy in ['owner review', 'Source says', 'Eligibility requires', 'independently verified']:
             self.assertNotIn(internal_copy, html)
