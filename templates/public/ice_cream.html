@@ -35,14 +35,6 @@
 </section>
 {% endif %}
 {{ food_features(featured_desserts, 'Ice cream counter favorites.', 'Sundaes & cones', 'sweet-favorites') }}
-<section class="page-shell page-section" id="sundae-toppings" aria-labelledby="sundae-toppings-title">
-  <h2 id="sundae-toppings-title">Make your sundae your own.</h2>
-  <div class="treat-facts">
-    {% for group in ice_cream_experience.topping_groups %}
-      <div><h3>{{ group.name }}</h3><p>{{ group['items']|join(' · ') }}</p></div>
-    {% endfor %}
-  </div>
-</section>
 <section class="page-shell page-section" id="homemade-desserts" aria-labelledby="homemade-desserts-title">
   <h2 id="homemade-desserts-title">Homemade desserts</h2>
   <p class="body-copy">Ask at the counter which pies and desserts are available today.</p>

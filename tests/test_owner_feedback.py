@@ -27,9 +27,12 @@ class OwnerFeedbackTest(unittest.TestCase):
             menu_html = html.split('id="desserts"', 1)[1] if path == '/ice-cream' else html
             self.assertNotIn('$', menu_html)
             self.assertNotIn('/static/images/menu/', html)
+            self.assertNotIn('class="menu-addons"', html)
+            self.assertEqual(html.count('id="sundae-toppings"'), 1)
+            self.assertIn('Whipped cream · Malt', html)
         html = self.client.get('/food-and-ice-cream').get_data(as_text=True)
         self.assertEqual(html.count('data-menu-item '), 212)
-        self.assertIn('Turkey or Garden burger substitution', html)
+        self.assertNotIn('Turkey or Garden burger substitution', html)
         self.assertIn('Check Ordering Menu', html)
 
     def test_price_switch_also_requires_current_approval(self):

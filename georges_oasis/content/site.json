@@ -5622,9 +5622,11 @@
       }
     ],
     "homemade_desserts": [
-      "Homemade cheesecake",
       "Coconut custard pie",
-      "Cherry crumb pie"
+      "Homemade cheesecake",
+      "Homemade cherry crumb pie",
+      "Homemade blueberry pie",
+      "Homemade apple crumb pie"
     ]
   },
   "ordering_details": {

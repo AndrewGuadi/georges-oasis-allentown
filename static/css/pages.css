@@ -89,10 +89,8 @@
 .price-variants { margin-top:10px; display:flex; flex-wrap:wrap; gap:8px 20px; font-size:13px; }
 .price-variants > div { display:flex; gap:8px; }
 .price-variants dd { font-weight:700; }
-.menu-addons { font-size:12px; margin-top:10px; }
-.menu-addons summary { cursor:pointer; padding:7px 0; font-weight:700; }
-.menu-addons ul { padding:10px 16px; background:#f4f0e3; border-radius:5px; }
-.menu-addons li { display:flex; justify-content:space-between; gap:20px; padding:5px 0; }
+.menu-toppings { margin-bottom:28px; }
+.menu-toppings h4 { font-size:17px; font-weight:700; }
 .menu-search { padding:24px; background:#e8ecd9; border-radius:8px; margin-bottom:28px; }
 .menu-search label { font-weight:700; display:block; margin-bottom:10px; }
 .menu-search > div { display:flex; gap:10px; }
@@ -336,7 +334,6 @@ body:has(.inquiry-form :focus) .mobile-dock,body:has(dialog[open]) .mobile-dock 
 .menu-item-top { gap:12px; }
 .menu-item h4 { line-height:1.5; }
 .menu-item .menu-price-note { font-weight:700; }
-.menu-addons li span { white-space:nowrap; }
 .printed-menu-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:24px; }
 .printed-menu { padding:12px; background:#fffaf0; border:1px solid #ccd3bd; border-radius:8px; }
 .printed-menu > img { width:100%; height:auto; aspect-ratio:17/22; object-fit:contain; background:white; }
