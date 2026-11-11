@@ -25,6 +25,7 @@ class HomepageReviewTest(unittest.TestCase):
 
     def test_shared_offers_exclude_tuesday_and_unapproved_details(self):
         source = deepcopy(self.source)
+        source['special_menus'] = []
         source['offers'] = [dict(id=str(day), title=f'Approved offer {day}', weekday=day,
             start_time='15:00', end_time='20:00', price=None, terms='Dine in only.',
             metadata={'status':'approved','source':'Test fixture','reviewed_at':'2026-10-16'}) for day in [1,2,3,4]]
@@ -45,11 +46,14 @@ class HomepageReviewTest(unittest.TestCase):
             self.assertNotIn('Approved offer 3', html)
 
     def test_draft_specials_are_not_claimed_absent(self):
+        for menu in self.source['special_menus']:
+            menu['metadata']['status'] = 'draft'
+        self.app.config['SITE_CONTENT'] = self.source
         for route in ['/', '/specials']:
             html = self.client.get(route).get_data(as_text=True)
             self.assertNotIn('no current specials', html)
             self.assertNotIn('Conflicting source prices', html)
-            self.assertNotIn('Wednesday Burger Night', html)
+            self.assertNotIn('Burger Night', html)
             for day in ['Wednesday','Thursday','Friday']:
                 self.assertIn(day, html)
 

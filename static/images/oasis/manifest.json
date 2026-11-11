@@ -8,6 +8,30 @@
     "desktop": 1920
   },
   "assets": {
+    "george-oasis-banana-split": {
+      "key": "george-oasis-banana-split",
+      "alt": "George’s Oasis banana split in a long glass dish with whipped cream, chocolate sauce and nuts",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-banana-split-mobile.webp",
+          "width": 640,
+          "height": 360,
+          "bytes": 52834
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-banana-split-tablet.webp",
+          "width": 1280,
+          "height": 720,
+          "bytes": 140336
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-banana-split-desktop.webp",
+          "width": 1672,
+          "height": 941,
+          "bytes": 193570
+        }
+      }
+    },
     "george-oasis-french-toast": {
       "key": "george-oasis-french-toast",
       "alt": "French toast dusted with powdered sugar",

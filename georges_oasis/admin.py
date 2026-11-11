@@ -10,7 +10,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from .models import db, Promotion, DisplaySettings, Inquiry, LoginAttempt
 from .content import load_content, public_content
 from .public.sitemap import PAGES
-from .inquiries import notify, OCCASIONS, INTERESTS, FLEXIBILITY, new_submission_token
+from .inquiries import notify, new_submission_token
 
 admin_bp = Blueprint("admin", __name__, url_prefix="/admin")
 DEMO_PASSWORD_HASH = generate_password_hash("password")
@@ -218,7 +218,7 @@ def preview(key):
     page=next((p for p in PAGES if p['key']==key),None)
     if page is None:
         abort(404)
-    return render_template('public/'+key+'.html',page=page,review_mode=True,site_pages=PAGES,current_year=datetime.now().year,**public_content(include_drafts=True),deals=[],coupons=[],values={'submission_token':new_submission_token(),'contact_method':'email','date_flexibility':'Not sure yet','interests':[]},errors={},occasions=OCCASIONS,interests=INTERESTS,flexibilities=FLEXIBILITY)
+    return render_template('public/'+key+'.html',page=page,review_mode=True,site_pages=PAGES,current_year=datetime.now().year,**public_content(include_drafts=True),deals=[],coupons=[],values={'submission_token':new_submission_token()},errors={})
 
 
 @admin_bp.get('/source-menu/<filename>')

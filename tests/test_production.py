@@ -56,8 +56,10 @@ class ProductionTest(unittest.TestCase):
             db.session.add(Promotion(kind='deal', title='Approved test offer', approval_status='approved', enabled=True))
             db.session.commit()
         response = self.client.get('/')
-        self.assertIn(b'Approved test offer', response.data)
-        self.assertNotIn(b'<dialog', response.data)
+        offers = re.search(rb'<section id="current-offers"[^>]*>.*?</section>', response.data, re.DOTALL)
+        self.assertIsNotNone(offers)
+        self.assertIn(b'Approved test offer', offers.group())
+        self.assertNotIn(b'<dialog', offers.group())
         self.assertNotIn(b'js/deals.js', response.data)
 
     def test_production_hosts_and_secure_sessions(self):

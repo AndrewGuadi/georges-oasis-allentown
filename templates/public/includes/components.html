@@ -42,6 +42,16 @@
     <div><p class="small-label">From the Oasis kitchen</p><h2 id="{{ category.id }}-heading">{{ category.name }}</h2><p>{{ category.intro }}</p></div>
     {% if category.photo %}<figure class="menu-category-photo">{{ site_image(category.photo, category.photo_alt or category.name ~ ' at George’s Oasis', sizes='(max-width: 760px) calc(100vw - 80px), 320px') }}<figcaption>{{ category.photo_caption or 'From the Oasis collection' }}</figcaption></figure>{% endif %}
   </div>
+  {% if category.id == 'ice-cream-and-desserts' and ice_cream_experience.topping_groups %}
+    <section class="menu-toppings" id="sundae-toppings" aria-labelledby="sundae-toppings-title">
+      <h3 id="sundae-toppings-title">Sundae toppings</h3>
+      <div class="treat-facts">
+        {% for group in ice_cream_experience.topping_groups %}
+          <div><h4>{{ group.name }}</h4><p>{{ group['items']|join(' · ') }}</p></div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
   {% if category['items'] %}<div class="menu-items">
     {% set ns=namespace(group='') %}
     {% for item in category['items'] %}
@@ -56,7 +66,6 @@
         {% if show_menu_prices and item.price_note %}<p class="menu-price-note">{{ item.price_note }}</p>{% endif %}
         {% if item.variants %}<dl class="price-variants">{% for variant in item.variants %}<div><dt>{{ variant.label }}</dt>{% if show_menu_prices %}<dd>{{ variant.formatted_price }}</dd>{% endif %}</div>{% endfor %}</dl>{% endif %}
         {% if item.inclusions %}<p class="menu-inclusions">{{ item.inclusions }}</p>{% endif %}
-        {% if item.add_ons %}<details class="menu-addons"><summary>Options & additions</summary><ul>{% for extra in item.add_ons %}<li>{{ extra.name }} {% if show_menu_prices %}<span>+{{ extra.price|money }}</span>{% endif %}</li>{% endfor %}</ul></details>{% endif %}
         </div>
       </article>
     {% endfor %}

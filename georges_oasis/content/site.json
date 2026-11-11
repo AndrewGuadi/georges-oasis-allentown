@@ -4979,14 +4979,7 @@
             "reviewed_at": "2026-10-26",
             "match": "dish-type",
             "notes": "Photo illustrates the dish type, not guaranteed portion, ingredients or included sides."
-          },
-          "additional_photos": [
-            {
-              "photo": "george-oasis-triangle-pastries-platter",
-              "alt": "Triangular pastries arranged on a white platter",
-              "caption": "Triangular pastries from the Oasis collection. Fillings and availability vary."
-            }
-          ]
+          }
         },
         {
           "id": "bakery-vegan-baklava",
@@ -5416,15 +5409,50 @@
   ],
   "pie_campaign": {
     "metadata": {
-      "status": "draft",
-      "source": "October 7 Astra specification / public website observation",
-      "reviewed_at": "2026-10-07",
-      "valid_from": null,
-      "valid_until": null
+      "status": "approved",
+      "source": "George’s Oasis November 11, 2026 website update and supplied holiday pie order form.",
+      "reviewed_at": "2026-11-11",
+      "valid_from": "2026-11-11"
     },
-    "state": "draft",
-    "year": 2025,
-    "note": "Expired 2025 campaign remains archived. No new campaign authorized."
+    "order_deadline": "2026-11-22",
+    "pickup_dates": [
+      "2026-11-24",
+      "2026-11-25"
+    ],
+    "pies": [
+      {
+        "name": "Apple Crumb",
+        "price": "21"
+      },
+      {
+        "name": "Old-Fashion Apple",
+        "price": "21"
+      },
+      {
+        "name": "Blueberry Crumb",
+        "price": "22"
+      },
+      {
+        "name": "Cherry Crumb",
+        "price": "26"
+      },
+      {
+        "name": "Coconut Custard",
+        "price": "25"
+      },
+      {
+        "name": "Pear Crumb",
+        "price": "22"
+      },
+      {
+        "name": "Old-Fashion Pear",
+        "price": "22"
+      },
+      {
+        "name": "Pumpkin",
+        "price": "21"
+      }
+    ]
   },
   "dessert_flavors": {
     "metadata": {
@@ -5559,7 +5587,47 @@
       "status": "approved",
       "source": "User approved page plan and supplied visit/ice-cream/ordering facts, October 22, 2026",
       "reviewed_at": "2026-10-22"
-    }
+    },
+    "topping_groups": [
+      {
+        "name": "Fruit",
+        "items": [
+          "Crushed cherry",
+          "Pineapple",
+          "Strawberry"
+        ]
+      },
+      {
+        "name": "Crunch & candy",
+        "items": [
+          "Wet walnuts",
+          "Peanuts",
+          "M&M’s",
+          "Crushed Oreo",
+          "Cookie dough",
+          "Rainbow sprinkles",
+          "Chocolate sprinkles"
+        ]
+      },
+      {
+        "name": "Sauces & finishes",
+        "items": [
+          "Hot fudge",
+          "Chocolate",
+          "Peanut butter",
+          "Marshmallow",
+          "Whipped cream",
+          "Malt"
+        ]
+      }
+    ],
+    "homemade_desserts": [
+      "Coconut custard pie",
+      "Homemade cheesecake",
+      "Homemade cherry crumb pie",
+      "Homemade blueberry pie",
+      "Homemade apple crumb pie"
+    ]
   },
   "ordering_details": {
     "same_restaurant_menu": true,
@@ -5612,14 +5680,6 @@
       "title": "A soft-serve cone",
       "eyebrow": "A seasonal favorite",
       "summary": "A simple treat when soft serve is in season.",
-      "show_price": false
-    },
-    {
-      "item_id": "bakery-homemade-baklava",
-      "photo": "menu-baklava.webp",
-      "title": "Greek pastries",
-      "eyebrow": "From the dessert menu",
-      "summary": "Ask at the counter about baklava and today’s pastry selection.",
       "show_price": false
     }
   ],
@@ -5678,40 +5738,194 @@
     {
       "id": "wednesday",
       "weekday": 2,
-      "title": "Wednesday specials",
-      "photo": "george-oasis-menu-food-spread",
-      "photo_alt": "A selection of food from the Oasis kitchen",
-      "items": [],
+      "title": "Burger Night",
+      "summary": "Char-grilled burgers from $11, starting at 3 PM. Fries and a milkshake are included.",
+      "photo": "george-oasis-bacon-cheeseburger-and-fries-02",
+      "photo_alt": "A bacon cheeseburger and fries from the Oasis kitchen",
+      "flyer": "burger-night",
+      "items": [
+        {
+          "name": "Plain Burger",
+          "description": "Lettuce, tomato or onion. Add cheese for $0.75.",
+          "price": "11",
+          "metadata": {
+            "status": "approved",
+            "source": "November 10 website update and supplied Burger Night flyers. Pricing follows burger-wednesday-two.jpg, the detailed menu.",
+            "reviewed_at": "2026-11-10"
+          }
+        },
+        {
+          "name": "Cali Burger",
+          "description": "Lettuce, tomato, raw onions and mayo. Add cheese for $0.75.",
+          "price": "11",
+          "metadata": {
+            "status": "approved",
+            "source": "November 10 website update and supplied Burger Night flyers. Pricing follows burger-wednesday-two.jpg, the detailed menu.",
+            "reviewed_at": "2026-11-10"
+          }
+        },
+        {
+          "name": "Pizza Burger",
+          "description": "Provolone cheese and marinara sauce.",
+          "price": "11",
+          "metadata": {
+            "status": "approved",
+            "source": "November 10 website update and supplied Burger Night flyers. Pricing follows burger-wednesday-two.jpg, the detailed menu.",
+            "reviewed_at": "2026-11-10"
+          }
+        },
+        {
+          "name": "Cowboy Burger",
+          "description": "BBQ sauce, onion rings and pepper jack on a brioche bun.",
+          "price": "13",
+          "metadata": {
+            "status": "approved",
+            "source": "November 10 website update and supplied Burger Night flyers. Pricing follows burger-wednesday-two.jpg, the detailed menu.",
+            "reviewed_at": "2026-11-10"
+          }
+        },
+        {
+          "name": "Mushroom Swiss Burger",
+          "description": "Melted Swiss and sautéed mushrooms.",
+          "price": "13",
+          "metadata": {
+            "status": "approved",
+            "source": "November 10 website update and supplied Burger Night flyers. Pricing follows burger-wednesday-two.jpg, the detailed menu.",
+            "reviewed_at": "2026-11-10"
+          }
+        },
+        {
+          "name": "Oasis Burger",
+          "description": "Provolone, bacon, tomato, raw onions, pickles and mayo.",
+          "price": "13",
+          "metadata": {
+            "status": "approved",
+            "source": "November 10 website update and supplied Burger Night flyers. Pricing follows burger-wednesday-two.jpg, the detailed menu.",
+            "reviewed_at": "2026-11-10"
+          }
+        },
+        {
+          "name": "Philly Burger",
+          "description": "Melted cheddar and fried onions, with chili sauce on the side.",
+          "price": "13",
+          "metadata": {
+            "status": "approved",
+            "source": "November 10 website update and supplied Burger Night flyers. Pricing follows burger-wednesday-two.jpg, the detailed menu.",
+            "reviewed_at": "2026-11-10"
+          }
+        },
+        {
+          "name": "Bleu Cheese Bacon Burger",
+          "description": "Crispy bacon and bleu cheese.",
+          "price": "13",
+          "metadata": {
+            "status": "approved",
+            "source": "November 10 website update and supplied Burger Night flyers. Pricing follows burger-wednesday-two.jpg, the detailed menu.",
+            "reviewed_at": "2026-11-10"
+          }
+        }
+      ],
+      "note": "Upgrade to an 8 oz burger for $3, add bacon for $2, substitute grilled chicken for $3 or upgrade to an Oreo milkshake for $1.50. Additional toppings are $0.75 each.",
       "metadata": {
-        "status": "draft",
-        "source": "George owner feedback, October 26, 2026; dedicated menus requested.",
-        "reviewed_at": "2026-10-26"
+        "status": "approved",
+        "source": "November 10 website update and supplied Burger Night flyers. Pricing follows burger-wednesday-two.jpg, the detailed menu.",
+        "reviewed_at": "2026-11-10"
       }
     },
     {
       "id": "thursday",
       "weekday": 3,
-      "title": "Thursday specials",
-      "photo": "george-oasis-menu-food-spread",
+      "title": "Half-Price Appetizers",
+      "summary": "Six appetizer choices after 3 PM.",
+      "photo": "george-oasis-menu-food-spread-02",
       "photo_alt": "A selection of food from the Oasis kitchen",
-      "items": [],
+      "flyer": "half-price-appetizers",
+      "flyer_cover": true,
+      "items": [
+        {
+          "name": "Jalapeño Poppers",
+          "description": "Breaded jalapeños stuffed with cheese.",
+          "metadata": {
+            "status": "approved",
+            "source": "November 10 supplied thursday-specials.png; weekday corroborated by the restaurant Specials page.",
+            "reviewed_at": "2026-11-10"
+          }
+        },
+        {
+          "name": "Mozzarella Sticks",
+          "description": "Served on lettuce with marinara sauce.",
+          "metadata": {
+            "status": "approved",
+            "source": "November 10 supplied thursday-specials.png; weekday corroborated by the restaurant Specials page.",
+            "reviewed_at": "2026-11-10"
+          }
+        },
+        {
+          "name": "Potato Skins",
+          "description": "Topped with cheese, bacon and scallions.",
+          "metadata": {
+            "status": "approved",
+            "source": "November 10 supplied thursday-specials.png; weekday corroborated by the restaurant Specials page.",
+            "reviewed_at": "2026-11-10"
+          }
+        },
+        {
+          "name": "Nachos",
+          "description": "Homemade chips with beef, melted cheddar and sour cream.",
+          "metadata": {
+            "status": "approved",
+            "source": "November 10 supplied thursday-specials.png; weekday corroborated by the restaurant Specials page.",
+            "reviewed_at": "2026-11-10"
+          }
+        },
+        {
+          "name": "Pretzel Sticks",
+          "description": "With house cheese sauce or mustard.",
+          "metadata": {
+            "status": "approved",
+            "source": "November 10 supplied thursday-specials.png; weekday corroborated by the restaurant Specials page.",
+            "reviewed_at": "2026-11-10"
+          }
+        },
+        {
+          "name": "Spanakopita Bites",
+          "description": "Baked spinach and cheese puffs with tzatziki.",
+          "metadata": {
+            "status": "approved",
+            "source": "November 10 supplied thursday-specials.png; weekday corroborated by the restaurant Specials page.",
+            "reviewed_at": "2026-11-10"
+          }
+        }
+      ],
       "metadata": {
-        "status": "draft",
-        "source": "George owner feedback, October 26, 2026; dedicated menus requested.",
-        "reviewed_at": "2026-10-26"
+        "status": "approved",
+        "source": "November 10 supplied thursday-specials.png; weekday corroborated by the restaurant Specials page.",
+        "reviewed_at": "2026-11-10"
       }
     },
     {
       "id": "friday",
       "weekday": 4,
-      "title": "Friday specials",
-      "photo": "george-oasis-menu-food-spread",
-      "photo_alt": "A selection of food from the Oasis kitchen",
-      "items": [],
+      "title": "Crabcake Fridays",
+      "summary": "Crabcakes with your choice of a side.",
+      "photo": "george-oasis-crab-cakes",
+      "photo_alt": "Two crab cakes served with lemon and garnish",
+      "flyer": "crabcake-fridays",
+      "items": [
+        {
+          "name": "Crabcakes",
+          "description": "",
+          "metadata": {
+            "status": "approved",
+            "source": "November 10 website update and supplied friday-specials-crabcakes.jpg.",
+            "reviewed_at": "2026-11-10"
+          }
+        }
+      ],
       "metadata": {
-        "status": "draft",
-        "source": "George owner feedback, October 26, 2026; dedicated menus requested.",
-        "reviewed_at": "2026-10-26"
+        "status": "approved",
+        "source": "November 10 website update and supplied friday-specials-crabcakes.jpg.",
+        "reviewed_at": "2026-11-10"
       }
     }
   ]

@@ -26,7 +26,11 @@ def new_submission_token():
     return signer().dumps({"actor":session["inquiry_actor"],"nonce":secrets.token_hex(24)})
 
 def form_values():
-    return {key:request.form.get(key, "").strip() for key in ["name","contact_method","email","phone","occasion","guest_count","preferred_date","date_flexibility","notes","submission_token"]} | {"interests":request.form.getlist("interests")}
+    return {
+        key: request.form.get(key, "").strip()
+        for key in ("name", "contact_method", "email", "phone", "occasion",
+                    "guest_count", "preferred_date", "date_flexibility", "notes", "submission_token")
+    } | {"interests": request.form.getlist("interests")}
 
 def notify(inquiry):
     """No delivery occurs unless a notifier or approved SMTP recipient is configured."""
@@ -106,15 +110,23 @@ def submit_inquiry(values):
         errors["form"] = "We couldn’t accept this request. Please call us to discuss your event."
     if not 1 <= len(values["name"]) <= 100:
         errors["name"] = "Enter your name (up to 100 characters)."
-    if values["contact_method"] not in ["email","phone"]:
+    email, phone = values["email"], values["phone"]
+    valid_email = len(email) <= 254 and bool(EMAIL.fullmatch(email))
+    valid_phone = 7 <= len(re.sub(r"\D", "", phone)) <= 15 and len(phone) <= 40 and not any(c in phone for c in "\r\n")
+    contact_method = values["contact_method"]
+    if not contact_method:
+        contact_method = "email" if valid_email or not phone else "phone"
+    if contact_method not in ("email", "phone"):
         errors["contact_method"] = "Choose how you’d like us to contact you."
-    contact = values.get(values["contact_method"], "") if values["contact_method"] in ["email","phone"] else ""
-    if values["contact_method"] == "email" and (len(contact)>254 or not EMAIL.fullmatch(contact)):
+    elif not email and not phone:
+        errors["email"] = "Enter an email address or phone number so we can reach you."
+    elif contact_method == "email" and not valid_email:
         errors["email"] = "Enter a valid email address."
-    if values["contact_method"] == "phone" and (not 7 <= len(re.sub(r"\D","",contact)) <= 15 or len(contact)>40 or any(c in contact for c in "\r\n")):
+    elif contact_method == "phone" and not valid_phone:
         errors["phone"] = "Enter a phone number we can reach you on."
-    if values["occasion"] not in OCCASIONS:
-        errors["occasion"] = "Choose an occasion, or select Not sure yet."
+    occasion = values["occasion"] or "Not sure yet"
+    if occasion not in OCCASIONS:
+        errors["occasion"] = "The event type wasn’t recognized. Review your request and send it again."
     guest_count = None
     if values["guest_count"]:
         try:
@@ -131,17 +143,30 @@ def submit_inquiry(values):
                 raise ValueError()
         except ValueError:
             errors["preferred_date"] = "Choose today or a future date."
-    if values["date_flexibility"] not in FLEXIBILITY:
+    date_flexibility = values["date_flexibility"] or "Not sure yet"
+    if date_flexibility not in FLEXIBILITY:
         errors["date_flexibility"] = "Choose a date preference."
-    elif values["date_flexibility"] == "Preferred date" and not preferred_date:
+    elif date_flexibility == "Preferred date" and not preferred_date:
         errors.setdefault("preferred_date","Enter a preferred date, or choose Flexible date / Not sure yet.")
-    if not values["interests"] or any(value not in INTERESTS for value in values["interests"]):
-        errors["interests"] = "Choose at least one interest, or Not sure yet."
+    if any(value not in INTERESTS for value in values["interests"]):
+        errors["interests"] = "The package interest wasn’t recognized. Review your request and send it again."
     if len(values["notes"])>2000:
         errors["notes"] = "Keep your notes to 2,000 characters or fewer."
     if errors:
         return None,errors,400
-    inquiry = Inquiry(reference="GO-"+uuid4().hex[:12].upper(),submission_key=submission_key,name=values["name"],contact_method=values["contact_method"],contact_detail=contact,occasion=values["occasion"],guest_count=guest_count,preferred_date=preferred_date,date_flexibility=values["date_flexibility"],interests=list(dict.fromkeys(values["interests"])),notes=values["notes"])
+    inquiry = Inquiry(
+        reference="GO-" + uuid4().hex[:12].upper(),
+        submission_key=submission_key,
+        name=values["name"],
+        contact_method=contact_method,
+        contact_detail=values[contact_method],
+        occasion=occasion,
+        guest_count=guest_count,
+        preferred_date=preferred_date,
+        date_flexibility=date_flexibility,
+        interests=list(dict.fromkeys(values["interests"])),
+        notes=values["notes"],
+    )
     try:
         db.session.add(inquiry)
         db.session.commit()

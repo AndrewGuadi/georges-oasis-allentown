@@ -9,9 +9,31 @@
 .hero .hero-eyebrow { display:inline-block; font-size:11px; font-weight:700; letter-spacing:.23em; margin:0 0 22px; padding:9px 15px; border:1px solid #fff7de66; border-radius:3px; background:#0b302947; }
 .hero h1 { font-family:'Kaushan Script',cursive; font-size:clamp(62px,6.4vw,94px); font-weight:400; line-height:1.2; letter-spacing:-2px; margin:0; text-shadow:0 3px 20px #031b1ac7; }
 .hero .hero-subtitle { font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(30px,3vw,44px); font-weight:600; line-height:1.2; margin:12px 0 18px; text-shadow:0 2px 12px #031b1ac7; }
+.hero-messages [data-hero-slide]:not([data-active]) { display:none; }
+/* Overlap the messages so the longest one reserves space for all four. */
+.hero-messages[data-rotating] > :is(h1, p) { display:grid; align-items:center; }
+.hero-messages[data-rotating] [data-hero-slide] { grid-area:1 / 1; }
+.hero-messages[data-rotating] [data-hero-slide]:not([data-active]) { display:block; visibility:hidden; }
+.hero-messages-toggle { min-height:44px; padding:0 12px; color:inherit; font-size:13px; text-decoration:underline; text-underline-offset:3px; text-shadow:0 1px 8px #031b1a; cursor:pointer; }
 .hero .hero-description { font-size:18px; line-height:1.7; margin:0; text-shadow:0 1px 8px #031b1a; }
 .hero-actions { display:flex; justify-content:center; gap:14px; margin-top:30px; }
 .hero-actions .btn { min-width:180px; min-height:54px; font-size:15px; }
+.hero .hero-visit-options { margin-top:14px; font-size:clamp(12px, 2.8vw, 14px); font-weight:700; text-shadow:0 1px 8px #031b1a; }
+.plan-visit-dialog { position:fixed; inset:0; margin:auto; width:min(680px, calc(100% - 24px)); max-height:calc(100dvh - 24px); padding:clamp(18px, 4vw, 32px); overflow:auto; overscroll-behavior:contain; border:1px solid #cdd5bf; border-radius:14px; background:#fffbf2; color:#173d30; box-shadow:0 16px 64px #031b1a66; }
+.plan-visit-dialog::backdrop { background:#031b1abf; }
+body:has(.plan-visit-dialog[open]) { overflow:hidden; }
+.plan-visit-dialog h2,.plan-visit-card h3 { font-family:'Cormorant Garamond',Georgia,serif; font-weight:700; }
+.plan-visit-dialog h2 { margin:0 48px 16px 0; font-size:clamp(30px, 5vw, 44px); line-height:1.15; }
+.plan-visit-close { position:absolute; top:12px; right:12px; }
+.plan-visit-close button { display:grid; place-items:center; width:44px; height:44px; border:1px solid #cdd5bf; border-radius:50%; font-size:26px; line-height:1; cursor:pointer; }
+.plan-visit-close button:hover { background:#f1ead9; }
+.plan-visit-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px; }
+.plan-visit-card { padding:16px; border:1px solid #dedbca; border-radius:10px; background:#f7f2e6; }
+.plan-visit-card h3 { font-size:26px; line-height:1.15; }
+.plan-visit-card p { margin:6px 0; font-size:14px; line-height:1.55; }
+.plan-visit-card .text-link,.plan-visit-hours { display:flex; width:fit-content; min-height:44px; align-items:center; gap:8px; }
+.plan-visit-hours { margin-top:8px; }
+@media(max-width:520px) { .plan-visit-grid { grid-template-columns:1fr; } }
 .btn-glass { background:#073b2edb; color:white; border-color:#ffffff8c; }
 .btn-glass:hover { background:#073b2e; }
 .hero-location { position:absolute; bottom:64px; left:50%; transform:translateX(-50%); display:flex; align-items:center; justify-content:center; gap:8px; font-size:12px; white-space:nowrap; padding:10px 15px; border-radius:4px; background:#082d26d6; }
@@ -153,6 +175,16 @@
 
 .homepage-design .hero > .home-hero-photo { position:absolute; inset:0; z-index:-2; width:100%; height:100%; object-fit:cover; object-position:50% 50%; }
 .home-kitchen-photo { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.home-ice-cream { background:#e9eddd; }
+.home-ice-cream-inner { display:grid; grid-template-columns:minmax(0, 4fr) minmax(0, 6fr); gap:clamp(24px, 4vw, 56px); align-items:center; width:calc(100% - 80px); max-width:1240px; margin-inline:auto; padding-block:clamp(32px, 5vw, 68px); }
+.home-ice-cream-inner > .home-banana-split-photo { grid-column:2; grid-row:1; display:block; width:100%; height:auto; border-radius:12px; }
+.home-ice-cream-copy { grid-column:1; grid-row:1; }
+.home-ice-cream-copy h2 { margin:12px 0 16px; font:600 clamp(38px, 4.3vw, 60px)/1 'Cormorant Garamond',Georgia,serif; }
+.home-ice-cream-copy p:not(.section-eyebrow) { max-width:37ch; margin-bottom:20px; line-height:1.7; }
+@media(max-width:760px) {
+  .home-ice-cream-inner { grid-template-columns:minmax(0, 1fr); width:calc(100% - 40px); }
+  .home-ice-cream-inner > .home-banana-split-photo,.home-ice-cream-copy { grid-column:auto; grid-row:auto; }
+}
 .home-gathering-photo { display:grid; grid-template-rows:1fr auto; min-width:0; background:#e7eadb; padding:24px; }
 .home-gathering-photo > img { width:100%; height:540px; object-fit:contain; }
 .home-gathering-photo figcaption { text-align:center; padding-top:14px; font-size:13px; line-height:1.6; color:#536454; }

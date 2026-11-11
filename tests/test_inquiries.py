@@ -27,12 +27,35 @@ class InquiryTest(unittest.TestCase):
         form=self.form();form.update(name='<script>alert(1)</script>',email='invalid',guest_count='-3')
         response=self.client.post('/gatherings',data=form);self.assertEqual(response.status_code,400)
         html=response.get_data(as_text=True);self.assertIn('Enter a valid email',html);self.assertIn('&lt;script&gt;',html);self.assertNotIn('<script>alert(1)</script>',html)
-        self.assertIn('value="Mini golf" checked',html);self.assertEqual(self.notifications,[])
+        self.assertIn('name="interests" value="Mini golf"',html);self.assertEqual(self.notifications,[])
     def test_phone_only_flexible_inquiry(self):
         form=self.form();form.update(contact_method='phone',email='',phone='610 555 0100',guest_count='',date_flexibility='Flexible date')
         self.assertEqual(self.client.post('/gatherings',data=form).status_code,303)
         with self.app.app_context():
             inquiry=db.session.execute(db.select(Inquiry)).scalar_one();self.assertEqual(inquiry.contact_detail,'610 555 0100');self.assertIsNone(inquiry.guest_count)
+    def test_short_inquiry_accepts_either_contact_method_without_event_details(self):
+        for method, contact in (('email', 'organizer@example.test'), ('phone', '610 555 0100')):
+            with self.subTest(method=method):
+                original = self.form()
+                form = {key: original[key] for key in ('csrf_token', 'submission_token', 'name')}
+                form[method] = contact
+                response = self.client.post('/gatherings', data=form)
+                self.assertEqual(response.status_code, 303)
+                with self.app.app_context():
+                    inquiry = db.session.execute(db.select(Inquiry).filter_by(contact_method=method)).scalar_one()
+                    self.assertEqual(inquiry.contact_detail, contact)
+                    self.assertEqual(inquiry.occasion, 'Not sure yet')
+                    self.assertEqual(inquiry.date_flexibility, 'Not sure yet')
+                    self.assertEqual(inquiry.notes, '')
+                    self.assertEqual(inquiry.interests, [])
+
+    def test_short_inquiry_requires_a_way_to_follow_up(self):
+        original = self.form()
+        form = {key: original[key] for key in ('csrf_token', 'submission_token', 'name')}
+        response = self.client.post('/gatherings', data=form)
+        self.assertEqual(response.status_code, 400)
+        self.assertIn('Enter an email address or phone number', response.get_data(as_text=True))
+        self.assertEqual(self.notifications, [])
     def test_notification_outage_keeps_receipt_and_owner_alert(self):
         def fail(inquiry):raise RuntimeError('Test mail outage')
         self.app.config['INQUIRY_NOTIFIER']=fail
