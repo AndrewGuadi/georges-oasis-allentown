@@ -9,6 +9,12 @@
 .hero .hero-eyebrow { display:inline-block; font-size:11px; font-weight:700; letter-spacing:.23em; margin:0 0 22px; padding:9px 15px; border:1px solid #fff7de66; border-radius:3px; background:#0b302947; }
 .hero h1 { font-family:'Kaushan Script',cursive; font-size:clamp(62px,6.4vw,94px); font-weight:400; line-height:1.2; letter-spacing:-2px; margin:0; text-shadow:0 3px 20px #031b1ac7; }
 .hero .hero-subtitle { font-family:'Cormorant Garamond',Georgia,serif; font-size:clamp(30px,3vw,44px); font-weight:600; line-height:1.2; margin:12px 0 18px; text-shadow:0 2px 12px #031b1ac7; }
+.hero-messages [data-hero-slide]:not([data-active]) { display:none; }
+/* Overlap the messages so the longest one reserves space for all four. */
+.hero-messages[data-rotating] > :is(h1, p) { display:grid; align-items:center; }
+.hero-messages[data-rotating] [data-hero-slide] { grid-area:1 / 1; }
+.hero-messages[data-rotating] [data-hero-slide]:not([data-active]) { display:block; visibility:hidden; }
+.hero-messages-toggle { min-height:44px; padding:0 12px; color:inherit; font-size:13px; text-decoration:underline; text-underline-offset:3px; text-shadow:0 1px 8px #031b1a; cursor:pointer; }
 .hero .hero-description { font-size:18px; line-height:1.7; margin:0; text-shadow:0 1px 8px #031b1a; }
 .hero-actions { display:flex; justify-content:center; gap:14px; margin-top:30px; }
 .hero-actions .btn { min-width:180px; min-height:54px; font-size:15px; }
