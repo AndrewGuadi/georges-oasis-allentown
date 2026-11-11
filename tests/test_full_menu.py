@@ -35,17 +35,20 @@ class FullMenuTest(unittest.TestCase):
                     photo = context['photo_url'](category['photo'])
                 with self.client.get(photo) as response:
                     self.assertEqual(response.status_code, 200)
-        self.assertIn('id="printed-menus"', html)
-        for filename in ['Breakfast_Menu.pdf', 'Lunch_and_Dinner_Menu.pdf', 'Ice_Cream_and_Desserts_Menu.pdf']:
-            self.assertIn(f'href="/static/menus/{filename}" target="_blank"', html)
-            self.assertIn(f'download="{filename}"', html)
-            with self.client.get(f'/static/menus/{filename}') as response:
-                self.assertEqual(response.status_code, 200)
-                self.assertEqual(response.mimetype, 'application/pdf')
-                self.assertTrue(response.data.startswith(b'%PDF-'))
         self.assertNotIn('/static/images/menu/', html)
         for internal_copy in ['owner review', 'Source says', 'Eligibility requires', 'independently verified']:
             self.assertNotIn(internal_copy, html)
+
+    def test_pdf_menu_is_a_secondary_action_above_the_online_menu(self):
+        html = self.client.get('/food-and-ice-cream').get_data(as_text=True)
+        self.assertEqual(html.count('Open/Download PDF Menu'), 1)
+        self.assertIn('aria-haspopup="dialog" aria-controls="printed-menus"', html)
+        self.assertIn('<dialog class="menu-pdf-dialog" id="printed-menus"', html)
+        self.assertLess(html.index('id="menu-pdf-trigger"'), html.index('class="page-shell menu-layout"'))
+        for filename in ['Breakfast_Menu.pdf', 'Lunch_and_Dinner_Menu.pdf', 'Ice_Cream_and_Desserts_Menu.pdf']:
+            self.assertEqual(html.count(f'href="/static/menus/{filename}"'), 1)
+            self.assertIn(f'href="/static/menus/{filename}" target="_blank" rel="noopener"', html)
+        self.assertNotRegex(html, r'<a\b[^>]*\bdownload(?:[\s=>])')
 
     def test_source_options_and_unpriced_items_remain_accurate(self):
         items = {item['name']:item for c in self.content['menu_categories'] for item in c['items']}

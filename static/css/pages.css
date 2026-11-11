@@ -419,19 +419,23 @@ body:has(.inquiry-form :focus) .mobile-dock,body:has(dialog[open]) .mobile-dock 
 .photo-viewer .photo-viewer-image { flex:1 1 0; min-height:0; height:0; }
 .photo-viewer-top,.photo-viewer-bottom,.photo-viewer-error { flex-shrink:0; }
 
-/* Family history and printed menus share the Oasis palette. */
+/* Family history */
 .story-anniversary { background:#e8ecdf; border-block:1px solid #ccd3bd; }
 .story-anniversary-mark { display:flex; align-items:center; gap:20px; color:#073b2e; margin-bottom:26px; }
 .story-anniversary-mark svg { width:64px; height:64px; }
 .story-anniversary-mark>span { font:600 80px/.95 'Cormorant Garamond',Georgia,serif; }
 .story-anniversary-mark small { display:block; margin-top:10px; font:700 12px/1.5 'Lato',sans-serif; text-transform:uppercase; letter-spacing:.16em; }
-.menu-pdf-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
-.menu-pdf-card { display:flex; flex-direction:column; gap:14px; padding:28px; border:1px solid #ccd3bd; border-top:4px solid #b88d3e; border-radius:12px; background:#fffaf0; }
-.menu-pdf-card h3 { font:600 32px/1.15 'Cormorant Garamond',Georgia,serif; }
-.menu-pdf-card>p { line-height:1.7; }
-.menu-pdf-actions { display:flex; flex-wrap:wrap; align-items:center; gap:16px; margin-top:auto; padding-top:12px; }
+.menu-pdf-tools > button { margin-bottom:12px; }
+.menu-pdf-dialog { position:fixed; inset:0; width:min(400px,calc(100% - 32px)); max-height:calc(100dvh - 32px); overflow:auto; margin:auto; padding:20px; border:1px solid #b6c0b0; border-radius:12px; background:#fffaf0; color:#173d30; }
+.menu-pdf-dialog::backdrop { background:#061e1899; }
+body:has(.menu-pdf-dialog[open]) { overflow:hidden; }
+.menu-pdf-header { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.menu-pdf-header h2 { font:600 30px/1.15 'Cormorant Garamond',Georgia,serif; }
+.menu-pdf-close { display:grid; place-items:center; min-width:44px; min-height:44px; border-radius:6px; font-size:26px; line-height:1; }
+.menu-pdf-dialog > p { margin-bottom:16px; font-size:14px; }
+.menu-pdf-links a { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:48px; padding:8px 12px; border-top:1px solid #ccd3bd; font-weight:700; }
+.menu-pdf-close:hover,.menu-pdf-links a:hover { background:#e8ecdf; }
 .special-flyer-viewer { width:min(800px,calc(100% - 28px)); }
 .special-flyer-viewer .photo-viewer-top p { font-weight:700; }
 .special-flyer-viewer .photo-viewer-top button { flex-shrink:0; }
 body:has(.special-flyer-viewer[open]) { overflow:hidden; }
-@media(max-width:900px) { .menu-pdf-grid { grid-template-columns:1fr; } }
