@@ -1,4 +1,12 @@
 (() => {
+  const menuPdfTrigger = document.getElementById('menu-pdf-trigger');
+  const menuPdfDialog = document.getElementById('printed-menus');
+  if (menuPdfTrigger && typeof menuPdfDialog?.showModal === 'function') {
+    menuPdfTrigger.addEventListener('click', () => menuPdfDialog.showModal());
+    menuPdfDialog.addEventListener('close', () => menuPdfTrigger.focus({ preventScroll: true }));
+    menuPdfTrigger.hidden = false;
+  }
+
   const searchPanel = document.querySelector('[data-menu-search]');
   if (searchPanel) {
     searchPanel.hidden = false;
