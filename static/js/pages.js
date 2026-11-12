@@ -45,15 +45,23 @@
     errors?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
       document.getElementById(link.hash.slice(1))?.focus();
     }));
+    const occasion = form.elements.occasion;
+    const notesPrompt = document.getElementById('inquiry-notes-prompt');
+    const button = form.querySelector('[type=submit]');
+    const submitLabel = button.querySelector('[data-inquiry-submit-label]');
+    function syncInquiryCopy() {
+      const option = occasion.selectedOptions[0];
+      notesPrompt.textContent = option.dataset.notesPrompt;
+      submitLabel.textContent = option.dataset.submitLabel;
+    }
+    occasion.addEventListener('change', syncInquiryCopy);
     form.addEventListener('submit', () => {
-      const button = form.querySelector('[type=submit]');
       button.disabled = true;
-      button.textContent = 'Sending your request…';
+      submitLabel.textContent = 'Sending your inquiry…';
     });
     window.addEventListener('pageshow', () => {
-      const button = form.querySelector('[type=submit]');
       button.disabled = false;
-      button.textContent = 'Send Event Inquiry →';
+      syncInquiryCopy();
     });
   }
 })();
