@@ -21,7 +21,7 @@ class FullMenuTest(unittest.TestCase):
 
     def test_complete_published_inventory_and_original_pages(self):
         html = unescape(self.client.get('/food-and-ice-cream').get_data(as_text=True))
-        self.assertEqual(html.count('data-menu-item '), 212)
+        self.assertEqual(html.count('data-menu-item '), 216)
         self.assertEqual(len(self.content['menu_sources']), 7)
         self.assertEqual(validate_content(self.content), [])
         for category in self.content['menu_categories']:
@@ -52,14 +52,29 @@ class FullMenuTest(unittest.TestCase):
 
     def test_source_options_and_unpriced_items_remain_accurate(self):
         items = {item['name']:item for c in self.content['menu_categories'] for item in c['items']}
-        self.assertEqual(items['Monte Cristo']['add_ons'], [])
-        self.assertEqual(items['Eggs Benedict']['add_ons'][0]['price'], '3.00')
-        self.assertEqual(items['Greek Omelet']['add_ons'], [])
-        self.assertEqual(items['Carnitas Especial']['add_ons'][0]['price'], '2.50')
-        self.assertEqual(items['Plain Burger']['add_ons'], [
-            {'name':'Turkey or Garden burger substitution','price':'1.00'}, {'name':'Fries','price':'3.00'}])
-        self.assertEqual(items['Hot Dog on a Roll']['add_ons'], [])
-        self.assertEqual(items['Vegan Flatbread']['description'], 'Hummus, tomato, cucumber, arugula and olive oil.')
+        for name in [
+            'NY Steak and Eggs', 'Greek Goodness Burrito', 'Brotherly Love Burrito',
+            'Apple Cinnamon Pancakes', 'Bang Bang Shrimp', 'Build Your Own Rice Bowl',
+            'Pizza Burger', 'Chesapeake Burger', 'Southwest Chicken Sandwich',
+            'Grilled Salmon Teriyaki', 'Crispy Buffalo Chicken Cobb Salad',
+            'Honey Dipped Fried Chicken',
+        ]:
+            self.assertIn(name, items)
+            self.assertIsNone(items[name]['price'])
+        for name in [
+            'John’s Greek Wrap', 'Cheesesteak Egg Rolls', 'Buffalo Chicken Quesadilla',
+            'Mushroom Swiss Burger', 'Mushroom Swiss Steak', 'Hot Dog on a Roll',
+            'Cajun Chicken Sandwich', 'Char-Grilled Teriyaki Chicken',
+        ]:
+            self.assertNotIn(name, items)
+        self.assertIn('pulled pork or smoked salmon', items['Eggs Benedict']['description'])
+        self.assertIn('Avocado available', items['Carnitas Especial']['description'])
+        self.assertIn('Fries available', items['Plain Burger']['inclusions'])
+        self.assertEqual(items['Vegan Flatbread']['description'], 'Hummus, tomato, cucumber, arugula and olives.')
+        self.assertEqual(
+            items['Apple Cinnamon Pancakes']['variants'],
+            [{'label': '2 pancakes', 'price': None}, {'label': '3 pancakes', 'price': None}],
+        )
         self.assertIsNone(items['Homemade Baklava']['price'])
         with self.app.app_context():
             bakery = next(c for c in public_content()['menu_categories'] if c['id']=='bakery-and-custom-pies')
