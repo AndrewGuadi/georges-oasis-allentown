@@ -64,7 +64,7 @@
         {% if item.description %}<p>{{ item.description }}</p>{% endif %}
         {% if item.additional_photos %}<div class="menu-photo-angles" aria-label="More photos of {{ item.name }}">{% for photo in item.additional_photos %}{{ menu_photo(photo.photo, photo.alt, photo.caption, compact=true) }}{% endfor %}</div>{% endif %}
         {% if show_menu_prices and item.price_note %}<p class="menu-price-note">{{ item.price_note }}</p>{% endif %}
-        {% if item.variants %}<dl class="price-variants">{% for variant in item.variants %}<div><dt>{{ variant.label }}</dt>{% if show_menu_prices %}<dd>{{ variant.formatted_price }}</dd>{% endif %}</div>{% endfor %}</dl>{% endif %}
+        {% if item.variants %}<dl class="price-variants">{% for variant in item.variants %}<div><dt>{{ variant.label }}</dt>{% if show_menu_prices and variant.formatted_price %}<dd>{{ variant.formatted_price }}</dd>{% endif %}</div>{% endfor %}</dl>{% endif %}
         {% if item.inclusions %}<p class="menu-inclusions">{{ item.inclusions }}</p>{% endif %}
         </div>
       </article>

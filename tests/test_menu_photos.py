@@ -36,7 +36,7 @@ class MenuPhotosTest(unittest.TestCase):
                 self.assertTrue((Path(self.app.static_folder)/variant['path']).is_file())
     def test_all_dishes_and_price_policy_survive_photo_enhancement(self):
         html=self.client.get('/food-and-ice-cream').get_data(as_text=True)
-        self.assertEqual(html.count('data-menu-item '),212)
+        self.assertEqual(html.count('data-menu-item '),216)
         self.assertNotIn('$',html)
         self.assertEqual(html.count('class="menu-item menu-item--pictured"'),14)
         self.assertIn('data-menu-group-photos',html)

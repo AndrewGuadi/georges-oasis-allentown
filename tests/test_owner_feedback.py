@@ -31,12 +31,13 @@ class OwnerFeedbackTest(unittest.TestCase):
             self.assertEqual(html.count('id="sundae-toppings"'), 1)
             self.assertIn('Whipped cream · Malt', html)
         html = self.client.get('/food-and-ice-cream').get_data(as_text=True)
-        self.assertEqual(html.count('data-menu-item '), 212)
-        self.assertNotIn('Turkey or Garden burger substitution', html)
+        self.assertEqual(html.count('data-menu-item '), 216)
+        self.assertIn('Turkey or garden burger substitution available for the 4 oz burger.', html)
         self.assertIn('Check Ordering Menu', html)
 
     def test_price_switch_also_requires_current_approval(self):
         self.source['menu_pricing']['show_prices'] = True
+        self.source['menu_categories'][0]['items'][0]['price'] = '10.95'
         self.app.config['SITE_CONTENT'] = self.source
         self.assertNotIn('$', self.client.get('/food-and-ice-cream').get_data(as_text=True))
         self.source['menu_pricing']['metadata'] = deepcopy(APPROVED)

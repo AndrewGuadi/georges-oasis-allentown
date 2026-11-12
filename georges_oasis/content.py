@@ -156,7 +156,7 @@ def public_content(now=None, include_drafts=False):
             if show_menu_prices and item.get("price") is not None:
                 item["formatted_price"] = money(item["price"])
             for variant in item.get("variants", []):
-                if show_menu_prices:
+                if show_menu_prices and variant.get("price") is not None:
                     variant["formatted_price"] = money(variant["price"])
             if not show_menu_prices:
                 # Free-text price notes can also contain stale dollar amounts.
@@ -226,12 +226,16 @@ def validate_content(data):
             start,end=boundary(meta.get('valid_from')),boundary(meta.get('valid_until'))
             if start and end and end <= start:raise ValueError()
         except (ValueError,TypeError):issues.append(f'{label}: invalid review date or validity window.')
+    pricing_enabled = data.get('menu_pricing', {}).get('show_prices', False)
     for category in data.get('menu_categories',[]):
         for item in category.get('items',[]):
             label=item.get('id','Menu item');metadata(item,label)
             if not item.get('name'):issues.append(f'{label}: a name is required.')
-            if item.get('price') is None and not item.get('variants') and not item.get('price_note'):issues.append(f'{label}: a price, priced variants or explicit price note is required.')
-            for value in ([item['price']] if item.get('price') is not None else [])+[v.get('price') for v in item.get('variants',[])]+[v.get('price') for v in item.get('add_ons',[])]:
+            variant_prices = [v.get('price') for v in item.get('variants', [])]
+            if pricing_enabled and item.get('price') is None and not any(v is not None for v in variant_prices) and not item.get('price_note'):
+                issues.append(f'{label}: a price, priced variants or explicit price note is required when menu prices are enabled.')
+            prices = [item.get('price'), *variant_prices, *(v.get('price') for v in item.get('add_ons', []))]
+            for value in (price for price in prices if price is not None):
                 try:money(value)
                 except ValueError:issues.append(f'{label}: invalid currency value.')
     for service in data.get('services',[]):
