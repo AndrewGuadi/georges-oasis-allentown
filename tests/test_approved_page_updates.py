@@ -76,9 +76,13 @@ class ApprovedPageUpdatesTest(unittest.TestCase):
 
     def test_corporate_inquiry_prefill_is_allowlisted_and_visit_facts_are_visible(self):
         html = self.client.get('/gatherings?occasion=Company+gathering').get_data(as_text=True)
-        self.assertIn('name="occasion" value="Company gathering"', html)
+        self.assertIn('<option value="Company gathering" selected', html)
+        self.assertIn('Request a Team Lunch', html)
+        html = self.client.get('/gatherings?interest=Mini+golf').get_data(as_text=True)
+        self.assertIn('<option value="Mini golf outing" selected', html)
+        self.assertIn('Ask About a Golf Outing', html)
         html = self.client.get('/gatherings?occasion=Unapproved+occasion').get_data(as_text=True)
-        self.assertNotIn('name="occasion" value="Unapproved occasion"', html)
+        self.assertNotIn('<option value="Unapproved occasion"', html)
         for path in ['/visit','/gatherings']:
             self.assertIn('restaurant is wheelchair accessible', self.client.get(path).get_data(as_text=True))
         html = self.client.get('/ice-cream').get_data(as_text=True)

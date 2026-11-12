@@ -13,7 +13,7 @@ from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from .content import local_now, load_content
 from .models import db, Inquiry, InquiryAttempt
 
-OCCASIONS = ["Birthday", "Family celebration", "Shower", "Company gathering", "School trip", "Fundraiser", "Other", "Not sure yet"]
+OCCASIONS = ["Birthday", "Family celebration", "Shower", "Company gathering", "Mini golf outing", "School trip", "Fundraiser", "Other", "Not sure yet"]
 INTERESTS = ["Dining", "Private space", "Mini golf", "Ice cream & desserts", "Not sure yet"]
 FLEXIBILITY = ["Preferred date", "Flexible date", "Not sure yet"]
 EMAIL = re.compile(r"^[^\s@<>\r\n]+@[^\s@<>\r\n]+\.[^\s@<>\r\n]+$")
