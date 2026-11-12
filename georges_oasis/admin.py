@@ -12,7 +12,7 @@ from .services.auth import require_roles, audit
 from .services.abuse import take_limit
 from .content import load_content, public_content
 from .public.sitemap import PAGES
-from .inquiries import notify, OCCASIONS, INTERESTS, FLEXIBILITY, new_submission_token
+from .inquiries import notify, new_submission_token
 
 admin_bp = Blueprint("admin", __name__, url_prefix="/admin")
 DEMO_PASSWORD_HASH = generate_password_hash("password")
@@ -78,7 +78,10 @@ def dashboard():
     notification_alerts = db.session.scalar(db.select(db.func.count()).select_from(Inquiry).where(Inquiry.notification_state.in_(['failed','pending','not_configured'])))
     overdue = db.session.scalar(db.select(db.func.count()).select_from(Inquiry).where(Inquiry.archived_at.is_(None), Inquiry.follow_up_at <= utcnow(), Inquiry.staff_state.notin_(['cancelled','spam','confirmed'])))
     drafts = db.session.scalar(db.select(db.func.count()).select_from(ContentRecord).where(db.or_(ContentRecord.published_id.is_(None), ContentRecord.draft_id != ContentRecord.published_id)))
-    return render_template('admin/dashboard.html', settings=settings, promotions=promotions, unread=unread, notification_alerts=notification_alerts, overdue=overdue, drafts=drafts, page=page)
+    active_specials = sum(bool(menu['items']) for menu in public_content()['special_menus'])
+    return render_template('admin/dashboard.html', settings=settings, promotions=promotions, unread=unread,
+                           notification_alerts=notification_alerts, overdue=overdue, drafts=drafts,
+                           active_specials=active_specials, page=page)
 
 
 @admin_bp.post("/display")
@@ -264,8 +267,9 @@ def retry_notification(inquiry_id):
 @admin_bp.get('/content-review')
 @require_roles('owner', 'editor')
 def content_review():
-    data=load_content()
-    return render_template('admin/content_review.html',data=data,pages=PAGES)
+    from .services.catalog import apply_catalog
+    data = apply_catalog(load_content(), include_drafts=True)
+    return render_template('admin/content_review.html', data=data, pages=PAGES)
 
 
 @admin_bp.get('/preview/<key>')
@@ -274,7 +278,7 @@ def preview(key):
     page=next((p for p in PAGES if p['key']==key),None)
     if page is None:
         abort(404)
-    return render_template('public/'+key+'.html',page=page,review_mode=True,site_pages=PAGES,current_year=datetime.now().year,**public_content(include_drafts=True),deals=[],coupons=[],values={'submission_token':new_submission_token(),'contact_method':'email','date_flexibility':'Not sure yet','interests':[]},errors={},occasions=OCCASIONS,interests=INTERESTS,flexibilities=FLEXIBILITY)
+    return render_template('public/'+key+'.html',page=page,review_mode=True,site_pages=PAGES,current_year=datetime.now().year,**public_content(include_drafts=True),deals=[],coupons=[],values={'submission_token':new_submission_token()},errors={})
 
 
 @admin_bp.get('/source-menu/<filename>')

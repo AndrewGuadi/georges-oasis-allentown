@@ -28,7 +28,7 @@ class MenuPhotosTest(unittest.TestCase):
     def test_reviewed_dish_photos_have_assets_and_descriptive_captions(self):
         manifest=json.loads((Path(self.app.static_folder)/'images/oasis/manifest.json').read_text())['assets']
         reviewed=[i for i in self.items.values() if i.get('photo_review')]
-        self.assertEqual(len(reviewed),9)
+        self.assertEqual(len(reviewed),10)
         for item in reviewed:
             self.assertTrue(item['photo_alt']);self.assertTrue(item['photo_caption'])
             self.assertIn(item['photo'],manifest)
@@ -36,9 +36,9 @@ class MenuPhotosTest(unittest.TestCase):
                 self.assertTrue((Path(self.app.static_folder)/variant['path']).is_file())
     def test_all_dishes_and_price_policy_survive_photo_enhancement(self):
         html=self.client.get('/food-and-ice-cream').get_data(as_text=True)
-        self.assertEqual(html.count('data-menu-item '),212)
+        self.assertEqual(html.count('data-menu-item '),216)
         self.assertNotIn('$',html)
-        self.assertEqual(html.count('class="menu-item menu-item--pictured"'),13)
+        self.assertEqual(html.count('class="menu-item menu-item--pictured"'),14)
         self.assertIn('data-menu-group-photos',html)
         self.assertIn('id="menu-photo-viewer"',html)
         self.assertIn('js/photo-viewer.js',html)

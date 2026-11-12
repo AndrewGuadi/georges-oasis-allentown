@@ -9,8 +9,11 @@
 {% block content %}
 <div class="homepage-design">
   {% include 'public/home/hero.html' %}
+  {% include 'public/home/plan_visit.html' %}
+  {% if today_special %}{% include 'public/home/today_special.html' %}{% endif %}
   {% include 'public/home/quick_hours.html' %}
   {% include 'public/home/burger.html' %}
+  {% include 'public/home/ice_cream.html' %}
   {% include 'public/home/food_gallery.html' %}
   {% include 'public/home/features.html' %}
   {% include 'public/home/welcome.html' %}
@@ -20,5 +23,10 @@
   {% include 'public/home/visit.html' %}
   {% include 'public/promotions.html' %}
 </div>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/plan-visit.js') }}" defer></script>
+<script src="{{ url_for('static', filename='js/hero-messages.js') }}" defer></script>
+{% if today_special %}<script src="{{ url_for('static', filename='js/today-special.js') }}" defer></script>{% endif %}
 {% endblock %}
 

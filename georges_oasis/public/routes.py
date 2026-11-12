@@ -3,7 +3,7 @@ from flask import current_app, abort, make_response, redirect, render_template, 
 from . import public_bp
 from .sitemap import PAGES, LEGACY
 from ..content import public_content, clock_time, money
-from ..inquiries import FLEXIBILITY, INTERESTS, OCCASIONS, form_values, new_submission_token, submit_inquiry
+from ..inquiries import INTERESTS, OCCASIONS, form_values, new_submission_token, submit_inquiry
 from ..models import db, homepage_promotions, current_promotions, Inquiry
 
 public_bp.add_app_template_filter(money, 'money')
@@ -31,7 +31,11 @@ def page_view(page):
                 from ..services.abuse import take_limit
                 if not take_limit('inquiry-forms', request.remote_addr or 'unknown', 60):
                     abort(429)
-            values = {"occasion":request.args.get("occasion", "") if request.args.get("occasion") in OCCASIONS else "", "contact_method":"email","date_flexibility":"Not sure yet","interests":[request.args['interest']] if request.args.get('interest') in INTERESTS else []}
+            occasion, interest = request.args.get("occasion"), request.args.get("interest")
+            values = {
+                "occasion": occasion if occasion in OCCASIONS else "",
+                "interests": [interest] if interest in INTERESTS else [],
+            }
             errors, status = {},200
             if request.method == "POST":
                 values = form_values()
@@ -41,7 +45,7 @@ def page_view(page):
                 if 'form' in errors and 'expired' in errors['form']:
                     values['submission_token'] = new_submission_token()
             values.setdefault('submission_token',new_submission_token())
-            context.update(values=values,errors=errors,occasions=OCCASIONS,interests=INTERESTS,flexibilities=FLEXIBILITY)
+            context.update(values=values, errors=errors, occasions=OCCASIONS, interests=INTERESTS)
             response = make_response(render_template('public/gatherings.html',**context),status)
             response.headers['Cache-Control'] = 'no-store'
             if status == 429:

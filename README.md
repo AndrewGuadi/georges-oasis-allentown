@@ -69,6 +69,8 @@ Optional browser verification (requires Playwright and Chromium): `python script
 
 ## Stage-two staff backend
 
-Menu, weekly specials, dated offers, media and typed inquiry workflows are now available under `/admin`. See [stage-two operation and verification](build_docs/backend_stage_two_implementation.md) for migrations, the idempotent catalog import, named staff accounts, production limits and the required notification worker. The development login remains `username` / `password` until named accounts are provisioned; production rejects these defaults. The upgraded local catalog preserves all 212 menu items and keeps unreviewed prices hidden.
+Menu, weekly specials, dated offers, media and typed inquiry workflows are now available under `/admin`. See [stage-two operation and verification](build_docs/backend_stage_two_implementation.md) for migrations, the idempotent catalog import, named staff accounts, production limits and the required notification worker. The development login remains `username` / `password` until named accounts are provisioned; production rejects these defaults. The catalog imports the current menu, including price-free dishes and portions, and keeps unreviewed prices hidden.
 
-Notifications are now queued after a durable submission; run `flask --app app process-notifications --watch` under supervision when delivery is configured. An absent worker does not lose inquiries: staff must monitor the inbox and notification alerts.
+On a deployment upgrading from the previous staff backend, apply the database migrations before reloading the web app. For a first catalog import, review `flask --app app import-catalog --dry-run`, then run `flask --app app import-catalog`. The import preserves the current public menu and refuses to replace an existing staff catalog.
+
+Notifications are queued with the saved inquiry; run `flask --app app process-notifications --watch` under supervision when delivery is configured. An absent worker does not lose inquiries: staff must monitor the inbox and notification alerts.

@@ -76,7 +76,7 @@ class BackendStageTwoTest(unittest.TestCase):
 
     def test_import_reconciles_cents_and_is_idempotent(self):
         with self.app.app_context():
-            self.assertEqual(db.session.scalar(db.select(db.func.count()).select_from(ContentRecord).where(ContentRecord.kind=='item')),212)
+            self.assertEqual(db.session.scalar(db.select(db.func.count()).select_from(ContentRecord).where(ContentRecord.kind=='item')),sum(len(c['items']) for c in self.source['menu_categories']))
             for category in self.source['menu_categories']:
                 for item in category['items']:
                     row=db.session.scalar(db.select(ContentRecord).where(ContentRecord.key==item['id']))
@@ -118,7 +118,16 @@ class BackendStageTwoTest(unittest.TestCase):
             self.assertEqual(self.client.post(f'/admin/content/{rid}',data=form).status_code,400,price)
         with self.app.app_context():
             row=db.session.get(ContentRecord,rid)
-            self.assertEqual(row.draft.data['price_cents'],1095)
+            self.assertIsNone(row.draft.data['price_cents'])
+
+    def test_current_menu_can_be_edited_without_prices(self):
+        rid, form = self.item_form(action='publish', price='', variants='Two pieces |', add_ons='Extra toast |')
+        self.assertEqual(self.client.post(f'/admin/content/{rid}', data=form).status_code, 302)
+        with self.app.app_context():
+            dish = to_public(db.session.get(ContentRecord, rid).published.data)
+            self.assertIsNone(dish['price'])
+            self.assertEqual(dish['variants'], [{'label': 'Two pieces', 'price': None}])
+        self.assertIn(b'Two pieces', self.client.get('/food-and-ice-cream').data)
 
     def test_pause_archive_restore_and_duplicate(self):
         rid,version=self.record()
@@ -131,7 +140,7 @@ class BackendStageTwoTest(unittest.TestCase):
         rid,version=self.record()
         self.assertEqual(self.client.post(f'/admin/content/{rid}',data={'version_id':version,'action':'duplicate'}).status_code,302)
         with self.app.app_context():
-            self.assertEqual(db.session.scalar(db.select(db.func.count()).select_from(ContentRecord).where(ContentRecord.kind=='item')),213)
+            self.assertEqual(db.session.scalar(db.select(db.func.count()).select_from(ContentRecord).where(ContentRecord.kind=='item')),sum(len(c['items']) for c in self.source['menu_categories'])+1)
 
     def test_general_request_private_notes_search_and_conflict(self):
         result,_=self.submit(inquiry_type='general',occasion='',interests=[],notes='Question about access')
@@ -224,6 +233,10 @@ class BackendStageTwoTest(unittest.TestCase):
         self.assertIn(b'Literal',self.client.get('/admin/inquiries?interest=Mini+golf').data)
         self.assertNotIn(b'Literal',self.client.get('/admin/inquiries?interest=Dining').data)
         self.assertEqual(self.client.get('/admin/menu?state=unreviewed').status_code,200)
+        catalog = self.client.get('/admin/menu?q=Monte+Cristo')
+        self.assertEqual(catalog.status_code, 200)
+        self.assertIn(b'Monte Cristo', catalog.data)
+        self.assertNotIn(b'Literal % underscore_ name', catalog.data)
         self.assertEqual(self.client.get('/admin/menu?page=2&q=').status_code,200)
 
     def test_anonymous_menu_cache_invalidates_on_publish_and_excludes_staff(self):

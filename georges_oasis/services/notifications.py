@@ -5,9 +5,18 @@ from sqlalchemy.exc import SQLAlchemyError
 from ..models import db, Inquiry, NotificationOutbox, utcnow
 
 
+def notification_recipient():
+    from flask import current_app
+    from ..content import load_content
+    recipient = current_app.config.get('INQUIRY_RECIPIENT')
+    if not recipient and current_app.config.get('INQUIRY_SENDER'):
+        recipient = load_content()['business'].get('email')
+    return recipient
+
+
 def configured():
     from flask import current_app
-    return bool(current_app.config.get('INQUIRY_NOTIFIER') or current_app.config.get('INQUIRY_RECIPIENT'))
+    return bool(current_app.config.get('INQUIRY_NOTIFIER') or notification_recipient())
 
 
 def queue_notification(inquiry):

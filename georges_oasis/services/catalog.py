@@ -135,9 +135,12 @@ def validate_revision(kind, data, publishing=False):
         raise ValueError('A name or title up to 160 characters is required.')
     if len(data.get('group', '')) > 160:
         raise ValueError('Keep group names under 160 characters.')
-    if kind == 'item' and any(type(option.get('price_cents')) is not int or option['price_cents'] < 0 for option in data.get('variants', []) + data.get('add_ons', [])):
-        raise ValueError('Every variant and addition needs an exact price.')
-    for field in ('description', 'inclusions', 'intro', 'terms', 'note', 'price_note'):
+    if kind == 'item':
+        options = data.get('variants', []) + data.get('add_ons', [])
+        amounts = [option.get('price_cents') for option in options]
+        if any(value is not None and (type(value) is not int or value < 0) for value in amounts):
+            raise ValueError('Option prices must be exact amounts or left blank.')
+    for field in ('description', 'inclusions', 'intro', 'terms', 'note', 'summary', 'price_note'):
         if len(data.get(field, '')) > 4000:
             raise ValueError('Keep each description or note under 4,000 characters.')
     metadata = data.get('metadata', {})
@@ -162,8 +165,6 @@ def validate_revision(kind, data, publishing=False):
                 raise ValueError()
         except (ValueError, KeyError, TypeError):
             raise ValueError('Recurring offers need same-day start/end times and terms.') from None
-    if kind == 'item' and data.get('price_cents') is None and not data.get('variants') and not data.get('price_note'):
-        raise ValueError('Supply a price, priced variants or an explicit price note.')
     if publishing and kind in ('weekly', 'recurring') and any(x.get('price_cents') is not None for x in [data, *data.get('items', [])]) and not data.get('prices_reviewed'):
         raise ValueError('Review the special prices before publishing.')
 

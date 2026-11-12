@@ -1,14 +1,53 @@
 {% extends 'public/section_page.html' %}
+{% from 'public/includes/external_action.html' import external_action with context %}
 {% set soft_serve = service_facts|selectattr('key', 'equalto', 'soft_serve')|first %}
-{% block page_intro %}{{ intro('A little scoop of happiness', 'Ice cream & sweet little moments.', ice_cream_experience.visit_text ~ ' Enjoy a sundae, a cone or a Greek pastry, with a place to sit and savor it.', 'george-oasis-chocolate-sundae', 'An Oasis sundae topped with whipped cream', 'Browse Desserts', '#desserts', 'Plan Your Visit', url_for('public.visit')) }}{% endblock %}
+{% block page_intro %}
+<div class="ice-cream-parlor">
+  {{ intro('At the ice cream counter', 'Old-Fashioned Sundaes. One Big Banana Split.', ice_cream_experience.visit_text ~ ' Order at the counter and grab a seat.', 'george-oasis-banana-split', 'George’s Oasis banana split in a long glass dish with whipped cream, chocolate sauce and nuts', 'See the Ice Cream Menu', '#desserts', 'Plan Your Visit', url_for('public.visit')) }}
+</div>
+{% endblock %}
 {% block page_body %}
-{{ food_features(featured_desserts, 'Find your sweet spot.', 'A few ways to treat yourself', 'sweet-favorites') }}
+{% if pie_campaign %}
+<section class="page-shell holiday-pies" id="holiday-pies" aria-labelledby="holiday-pies-title">
+  <div>
+    <h2 id="holiday-pies-title">Holiday pies</h2>
+    <p class="holiday-pies-dates">
+      {% if pie_campaign.accepting_orders %}Order by <strong><time datetime="{{ pie_campaign.deadline.isoformat() }}">{{ pie_campaign.deadline.strftime('%B %-d') }}</time></strong>.<br>{% else %}Pie orders are closed.<br>{% endif %}
+      Pick up at George’s Oasis on
+      <strong>{% for pickup in pie_campaign.pickups %}{% if not loop.first %} or {% endif %}<time datetime="{{ pickup.isoformat() }}">{{ pickup.strftime('%B %-d') }}</time>{% endfor %}</strong>.
+    </p>
+    {% if pie_campaign.accepting_orders %}
+      {{ external_action('pie_order', 'Order a Holiday Pie', 'btn btn-primary') }}
+    {% else %}
+      <a class="text-link" href="{{ url_for('public.visit') }}">Hours &amp; Directions {{ icon('arrow') }}</a>
+    {% endif %}
+  </div>
+  {% if pie_campaign.accepting_orders %}
+    <div>
+      <ul class="holiday-pie-list" aria-label="Whole pies and prices">
+        {% for pie in pie_campaign.pies %}
+          <li><span>{{ pie.name }}</span><strong>{{ (pie.price|money).removesuffix('.00') }}</strong></li>
+        {% endfor %}
+      </ul>
+      <p class="fine-copy">Have another flavor in mind? Choose “Other” on the form.</p>
+    </div>
+  {% endif %}
+</section>
+{% endif %}
+{{ food_features(featured_desserts, 'Ice cream counter favorites.', 'Sundaes & cones', 'sweet-favorites') }}
+<section class="page-shell page-section" id="homemade-desserts" aria-labelledby="homemade-desserts-title">
+  <h2 id="homemade-desserts-title">Homemade desserts</h2>
+  <p class="body-copy">Ask at the counter which pies and desserts are available today.</p>
+  <ul class="flavor-list">
+    {% for dessert in ice_cream_experience.homemade_desserts %}<li>{{ dessert }}</li>{% endfor %}
+  </ul>
+</section>
 <section class="page-shell page-section ice-cream-welcome" id="seasonal-availability">
   {{ section_heading('Inside the restaurant', 'Order at the counter. Stay for a scoop.') }}
   <p class="body-copy">{{ ice_cream_experience.ordering_text }}</p>
   <div class="treat-facts"><div><h3>Today’s flavors</h3><p>{{ ice_cream_experience.flavor_text }}</p></div><div><h3>Soft serve</h3><p>{% if soft_serve.state == 'open' %}{{ soft_serve.label }}. {{ soft_serve.note }}{% else %}Soft serve is seasonal. Ask at the counter about current availability.{% endif %}</p></div><div><h3>Just for ice cream?</h3><p>Absolutely. You’re welcome to make a treat your whole visit.</p></div></div>
 </section>
-<section class="page-shell dessert-menu" id="desserts">{{ section_heading('Sundaes, cones & Greek pastries', 'The dessert menu.') }}{% for category in menu_categories if category.id in ['ice-cream-and-desserts','bakery-and-custom-pies'] %}{{ menu_category(category) }}{% endfor %}{% if dessert_flavors %}<section class="flavor-section" id="ice-cream-flavors"><h2>Hard ice cream flavors</h2><ul class="flavor-list">{% for flavor in dessert_flavors.hard_ice_cream %}<li>{{ flavor }}</li>{% endfor %}</ul></section>{% endif %}</section>
-{{ faq([('Where do I order ice cream?', 'At the counter inside the restaurant. Order your treat, then settle into a seat to enjoy it.'),('Where are the dessert prices?', 'The menu above lists serving sizes, prices and toppings. Ask at the counter about today’s selection.'),('Can I ask about ingredients or dietary needs?', 'Yes. Speak with staff before ordering so they can discuss ingredients and your needs.')], 'Before your first scoop') }}
+<section class="page-shell dessert-menu" id="desserts">{{ section_heading('Sundaes, cones & homemade sweets', 'The dessert menu.') }}{% for category in menu_categories if category.id in ['ice-cream-and-desserts','bakery-and-custom-pies'] %}{{ menu_category(category) }}{% endfor %}{% if dessert_flavors %}<section class="flavor-section" id="ice-cream-flavors"><h2>Hard ice cream flavors</h2><ul class="flavor-list">{% for flavor in dessert_flavors.hard_ice_cream %}<li>{{ flavor }}</li>{% endfor %}</ul></section>{% endif %}</section>
+{{ faq([('Where do I order ice cream?', 'At the counter inside the restaurant. Order your treat, then settle into a seat to enjoy it.'),('Where are the dessert prices?', 'See the menu above.' if show_menu_prices else 'Ask at the counter for current dessert prices.'),('Can I ask about ingredients or dietary needs?', 'Yes. Speak with staff before ordering so they can discuss ingredients and your needs.')], 'Before your first scoop') }}
 {{ final_cta('A little fresh air, too', 'Make a little more of your visit.', 'Explore the mini golf course and its separate seasonal availability.', 'Explore Mini Golf', url_for('public.mini_golf'), 'Plan Your Visit', url_for('public.visit')) }}
 {% endblock %}

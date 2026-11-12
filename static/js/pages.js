@@ -1,4 +1,12 @@
 (() => {
+  const menuPdfTrigger = document.getElementById('menu-pdf-trigger');
+  const menuPdfDialog = document.getElementById('printed-menus');
+  if (menuPdfTrigger && typeof menuPdfDialog?.showModal === 'function') {
+    menuPdfTrigger.addEventListener('click', () => menuPdfDialog.showModal());
+    menuPdfDialog.addEventListener('close', () => menuPdfTrigger.focus({ preventScroll: true }));
+    menuPdfTrigger.hidden = false;
+  }
+
   const searchPanel = document.querySelector('[data-menu-search]');
   if (searchPanel) {
     searchPanel.hidden = false;
@@ -32,35 +40,28 @@
   }
   const form = document.getElementById('inquiry-form');
   if (form) {
-    const updateContact = () => {
-      const selected = form.querySelector('[name=contact_method]:checked')?.value;
-      form.querySelectorAll('[data-contact]').forEach(field => {
-        field.hidden = !!selected && field.dataset.contact !== selected;
-        field.querySelector('input').required = field.dataset.contact === selected;
-      });
-    };
-    form.querySelectorAll('[name=contact_method]').forEach(input => input.addEventListener('change', updateContact));
-    updateContact();
     const errors = document.getElementById('form-errors');
     if (errors) window.addEventListener('pageshow', () => requestAnimationFrame(() => errors.focus()));
     errors?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-      const target = document.getElementById(link.hash.slice(1));
-      (target?.matches('fieldset') ? target.querySelector('input') : target)?.focus();
+      document.getElementById(link.hash.slice(1))?.focus();
     }));
-    const datePlan = form.querySelector('[name=date_flexibility]');
-    const dateInput = form.querySelector('[name=preferred_date]');
-    const updateDate = () => { dateInput.required = datePlan.value === 'Preferred date'; };
-    datePlan.addEventListener('change', updateDate);
-    updateDate();
+    const occasion = form.elements.occasion;
+    const notesPrompt = document.getElementById('inquiry-notes-prompt');
+    const button = form.querySelector('[type=submit]');
+    const submitLabel = button.querySelector('[data-inquiry-submit-label]');
+    function syncInquiryCopy() {
+      const option = occasion.selectedOptions[0];
+      notesPrompt.textContent = option.dataset.notesPrompt;
+      submitLabel.textContent = option.dataset.submitLabel;
+    }
+    occasion.addEventListener('change', syncInquiryCopy);
     form.addEventListener('submit', () => {
-      const button = form.querySelector('[type=submit]');
       button.disabled = true;
-      button.textContent = 'Sending your request…';
+      submitLabel.textContent = 'Sending your inquiry…';
     });
     window.addEventListener('pageshow', () => {
-      const button = form.querySelector('[type=submit]');
       button.disabled = false;
-      button.textContent = 'Send Event Inquiry →';
+      syncInquiryCopy();
     });
   }
 })();

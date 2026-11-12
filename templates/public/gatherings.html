@@ -1,13 +1,191 @@
 {% extends 'public/section_page.html' %}
-{% block page_intro %}{{ intro('Gather in the Allentown–Bethlehem area', 'A quieter place to bring people together.', 'Give your team a change of pace, or bring the family together for a celebration. Explore a welcoming restaurant setting for corporate lunches, team bonding, birthdays and showers.', 'george-oasis-dining-room-window-tables', 'Window-side tables in the Oasis dining room', 'Ask About Your Event', '#event-inquiry', 'See the Spaces', '#private-events') }}{% endblock %}
+{% block title %}Parties, Team Lunches & Group Outings | George’s Oasis, Allentown{% endblock %}
+{% block description %}Plan a birthday, shower, office lunch or group mini golf outing at George’s Oasis on Schoenersville Road in Allentown, PA.{% endblock %}
+{% block extra_head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/gatherings.css') }}">
+{% endblock %}
+{% block page_intro %}
+  {{ intro(
+    'Parties, team lunches & group outings · Allentown, PA',
+    'Bring your people to George’s Oasis.',
+    'Get everyone around the table for a birthday. Give the office a lunch break worth leaving the building for. Take the kids mini golfing and let them pick their ice cream after the last hole. It’s all right here on Schoenersville Road.',
+    'george-oasis-outside-group',
+    'Guests gathering around an outdoor table at George’s Oasis',
+    'Find Your Outing', '#choose-an-outing',
+    'Get Directions', external_links.directions
+  ) }}
+{% endblock %}
+
+{% macro gathering_questions(title, entries) %}
+<div class="gathering-questions">
+  <h3>{{ title }}</h3>
+  <div class="faq-list">
+    {% for question, answer in entries %}
+      <details>
+        <summary>{{ question }} <span aria-hidden="true">+</span></summary>
+        <p>{{ answer }}</p>
+      </details>
+    {% endfor %}
+  </div>
+</div>
+{% endmacro %}
+
 {% block page_body %}
-<section class="page-shell page-section" id="private-events"><div class="two-column"><figure class="framed-photo">{{ site_image('george-oasis-catering-buffet', sizes='(max-width: 760px) calc(100vw - 40px), 50vw') }}<figcaption>A buffet arranged beside the dining-room windows. Discuss food arrangements with staff.</figcaption></figure><div>{{ section_heading('Corporate gatherings in Allentown–Bethlehem', 'Step away from the office. Reconnect around the table.') }}<p class="body-copy">Bring colleagues together in relaxed surroundings, with a meal and a little breathing room from the working day. A professional gathering can still feel personal: time for conversation, a team lunch, or a round of mini golf when the course is available.</p><p class="body-copy">Tell us your group size, preferred date, food plans and any meeting needs. Staff can discuss the space and arrangements that suit your team.</p><a class="btn btn-primary" href="{{ url_for('public.gatherings', occasion='Company gathering', _anchor='event-inquiry') }}">Plan a Corporate Gathering {{ icon('arrow') }}</a></div></div></section>
-<section class="page-shell photo-pair-section" aria-label="Gatherings at the Oasis"><div class="two-cards">
-<figure class="bundle-photo-frame">{{ site_image('george-oasis-outside-group', sizes='(max-width: 760px) calc(100vw - 40px), 45vw') }}<figcaption>Outdoor tables · A gathering around the table. Ask about arrangements for your date.</figcaption></figure>
-<figure class="bundle-photo-frame">{{ site_image('george-oasis-indoor-party-buffet-balloons', sizes='(max-width: 760px) calc(100vw - 40px), 45vw') }}<figcaption>Indoor celebrations · A decorated buffet for a special occasion.</figcaption></figure>
-</div></section>
-<section class="soft-section page-section"><div class="page-shell">{{ section_heading('Any reason to gather', 'Your people. Your occasion.') }}<div class="three-cards"><article class="info-card" id="birthday-parties"><span class="card-index">01</span><h3>Birthdays & celebrations</h3><p>Tell us about your birthday, shower or family celebration and what you’d like to include.</p></article><article class="info-card" id="company-and-group-outings"><span class="card-index">02</span><h3>Company & group outings</h3><p>Make room for a team lunch, professional connection or a relaxed company outing away from the office.</p></article><article class="info-card"><span class="card-index">03</span><h3>Mini golf together</h3><p>Ask about a course outing, school visit or fundraiser, with food or a sweet finish if you’d like.</p></article></div></div></section>
-<section class="page-shell page-section"><div class="section-heading centered"><p class="section-eyebrow">A simple start</p><h2>From an idea to a day together.</h2></div><ol class="planning-steps"><li><span>01</span><h3>Share your plans</h3><p>Tell us the occasion, approximate guest count and preferred date—or let us know you’re flexible.</p></li><li><span>02</span><h3>Talk through the options</h3><p>Staff review your request and discuss availability, space, food and activities.</p></li><li><span>03</span><h3>Confirm the details</h3><p>Finalize the arrangements directly with the restaurant before treating your event as booked.</p></li></ol></section>
-<section class="inquiry-section" id="event-inquiry"><div class="page-shell inquiry-layout"><div class="inquiry-aside">{{ section_heading('Let’s start planning', 'What do you have in mind?', 'A few details help us give you a useful response. It’s okay if you haven’t decided everything yet.') }}<p class="body-copy">Prefer to talk it through?</p><a class="text-link" href="{{ business.phone_uri }}">{{ icon('phone') }} {{ business.phone }}</a><p class="fine-copy">The restaurant is wheelchair accessible. Include any specific access or setup needs with your plans.</p></div>{% include 'public/includes/inquiry_form.html' %}</div></section>
-{{ faq([('Do I need an exact date to inquire?', 'No. Choose Flexible date or Not sure yet and share what you know. A date is required only when you choose Preferred date.'),('What happens after I send an inquiry?', 'You’ll receive a request reference after your details are saved. Staff will use your contact information to discuss the plans with you.'),('Can we include mini golf or dessert?', 'Select those interests in the form. Staff can discuss what is available for your date and group.'),('Where can I find capacity, prices or event policies?', 'These depend on the arrangements discussed with staff. Include your group size and questions in the inquiry so they can give you the relevant information.')], 'A few questions organizers ask') }}
+<section class="page-shell gathering-picker" id="choose-an-outing" aria-labelledby="outing-picker-title">
+  <h2 id="outing-picker-title">What are you planning?</h2>
+  <div class="gathering-picker-grid">
+    {% for anchor, photo, title, description, action in [
+      ('birthday-parties', 'george-oasis-indoor-party-buffet-balloons', 'Family Parties & Celebrations', 'Birthdays, showers, reunions, and a place to get everyone around the table.', 'Explore Family Parties'),
+      ('company-and-group-outings', 'george-oasis-dining-room-window-tables', 'Office & Team Lunches', 'A freshly made lunch, room for the team, and a quieter place to spend your break.', 'Explore Team Lunches'),
+      ('group-golf-outings', 'george-oasis-mini-golf-players-waterfall', 'Mini Golf & Group Outings', 'A round of mini golf, a bite to eat, and a scoop to finish.', 'Explore Golf Outings'),
+    ] %}
+      <a class="gathering-choice" href="#{{ anchor }}">
+        {{ site_image(photo, alt='', sizes='(max-width: 640px) 34vw, (max-width: 1320px) 30vw, 400px') }}
+        <div class="gathering-choice-copy">
+          <h3>{{ title }}</h3>
+          <p>{{ description }}</p>
+          <span>{{ action }} {{ icon('arrow') }}</span>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+<div id="private-events">
+<section class="gathering-section" id="birthday-parties" aria-labelledby="birthday-parties-title">
+  <div class="page-shell">
+    <div class="gathering-story">
+      <div>
+        <p class="section-eyebrow">Family parties & celebrations</p>
+        <h2 id="birthday-parties-title">A birthday, a shower, or finally getting everyone in the same room.</h2>
+        <p class="body-copy">Maybe it’s your mom’s birthday and relatives are driving in from three directions. Maybe you’re hosting a shower and need room for gifts, food, and a few people who’ll show up early to help. Or maybe you just want the whole family together somewhere everyone can sit and talk.</p>
+        <p class="body-copy">Start with an approximate headcount. We’ll help you work out where the group can sit, how to handle food, and what else you’d like to include.</p>
+        <dl class="gathering-options">
+          <div><dt>A family meal together</dt><dd>Ask about seating your group together and having guests choose from the restaurant menu.</dd></div>
+          <div><dt>A celebration in the back room</dt><dd>Ask about the room for your date and tell us if you need space for gifts, decorations, or cake.</dd></div>
+          <div><dt>A birthday with something to do</dt><dd>During golf season, ask about starting with a round and getting together afterward for food or ice cream.</dd></div>
+        </dl>
+      </div>
+      <figure class="gathering-photo">
+        {{ site_image('george-oasis-indoor-party-buffet-balloons', sizes='(max-width: 760px) calc(100vw - 40px), 45vw') }}
+        <figcaption>The Oasis set up for an indoor celebration.</figcaption>
+      </figure>
+    </div>
+    <div class="gathering-planning">
+      <aside class="gathering-example" aria-labelledby="family-example-title">
+        <p class="small-label">Sample plan · Pricing pending</p>
+        <h3 id="family-example-title">Saturday lunch for 20</h3>
+        <p>Guests catch up, sit down to lunch, then stay at the table for cake or ice cream. A sample food budget of <strong>$24 per guest</strong> puts the meal subtotal at <strong>$480</strong>. Ask us for a quote with the menu, what’s included, and any additional charges.</p>
+        <div class="page-actions">
+          <a class="btn btn-primary" href="{{ url_for('public.gatherings', occasion='Family celebration', _anchor='event-inquiry') }}">Check Your Party Date {{ icon('arrow') }}</a>
+          <a class="text-link" href="{{ business.phone_uri }}">Call About a Celebration</a>
+        </div>
+      </aside>
+      {{ gathering_questions('Questions family organizers ask', [
+        ('Can we have the back room to ourselves?', 'Ask about private use for your date and group size. We’ll let you know which space is available and whether a room charge or minimum applies.'),
+        ('Can we bring cake or decorations?', 'Tell us what you’d like to bring and whether you need time to set up. We’ll confirm what the space can accommodate.'),
+        ('Can guests order individually?', 'Tell us whether you’d prefer individual orders or a menu selected ahead of time. We’ll discuss what works for your group and when you’re coming.'),
+        ('What if I’m still waiting on RSVPs?', 'Give us your best estimate and mention how much it could change. We’ll let you know when we need your final count.'),
+        ('What about seating access or dietary needs?', 'The restaurant is wheelchair accessible. If anyone needs a particular seating setup or has a dietary concern, tell us so staff can discuss the details with you.'),
+      ]) }}
+    </div>
+  </div>
+</section>
+</div>
+
+<section class="gathering-section gathering-section--green" id="company-and-group-outings" aria-labelledby="team-lunch-title">
+  <div class="page-shell">
+    <div class="gathering-story">
+      <div>
+        <p class="section-eyebrow">Office & team lunches</p>
+        <h2 id="team-lunch-title">A freshly made lunch, with time to get back to work.</h2>
+        <p class="body-copy">You have a lunch break, a group to feed, and a time everyone needs to be back. Come to the Oasis for char-grilled burgers, wraps, salads, and rice bowls in a spacious dining room where the team can hear each other talk.</p>
+        <p class="body-copy">Tell us how many are coming, when you can arrive, and when the last person needs to leave. We’ll confirm what we can accommodate before you put it on everyone’s calendar.</p>
+        <dl class="gathering-options">
+          <div><dt>A lunch break with a hard stop</dt><dd>Give us your arrival and departure times so we can talk through menu choices and timing.</dd></div>
+          <div><dt>A lunch the company is paying for</dt><dd>Share your headcount, budget per person, and whether you need one check.</dd></div>
+          <div><dt>A monthly team lunch</dt><dd>Tell us the day and time that usually work for your team and how often you’d like to come.</dd></div>
+        </dl>
+      </div>
+      <figure class="gathering-photo">
+        {{ site_image('george-oasis-menu-food-spread', sizes='(max-width: 760px) calc(100vw - 40px), 45vw') }}
+        <figcaption>Lunch selections from the Oasis kitchen.</figcaption>
+      </figure>
+    </div>
+    <div class="gathering-planning">
+      <aside class="gathering-example" aria-labelledby="team-example-title">
+        <p class="small-label">Sample offer · Pricing and timing pending</p>
+        <h3 id="team-example-title">The Team Lunch</h3>
+        <p>A choice of selected sandwiches, wraps, or salads with a side and fountain drink. This example uses <strong>$16 per person</strong> and a <strong>45-minute visit</strong> with selections sent ahead.</p>
+        <p>For 12, the sample meal subtotal is <strong>$192</strong> before tax and any applicable service charges. Ask us what we can offer for your group and lunch window.</p>
+        <div class="page-actions">
+          <a class="btn btn-primary" href="{{ url_for('public.gatherings', occasion='Company gathering', _anchor='event-inquiry') }}">Plan a Team Lunch {{ icon('arrow') }}</a>
+          <a class="text-link" href="{{ url_for('public.food', _anchor='lunch-and-dinner') }}">Browse the Lunch Menu</a>
+        </div>
+      </aside>
+      {{ gathering_questions('Questions office organizers ask', [
+        ('How would ordering ahead work?', 'Ask about sending one list of lunch selections for your team. We’ll confirm which choices are available and when we need the list.'),
+        ('We only have 30 minutes at the restaurant. Is that enough?', 'Tell us up front. We’ll check what we can accommodate for your group, including whether a shorter menu or ordering ahead would help.'),
+        ('Can we get one check or ask about separate checks?', 'Tell us which you need when you inquire. We’ll discuss the payment arrangement ahead of time.'),
+        ('Can we do this again next month?', 'Ask about a regular lunch date. Share the day and time that usually work for your team and we’ll check availability.'),
+      ]) }}
+    </div>
+  </div>
+</section>
+
+<section class="gathering-section" id="group-golf-outings" aria-labelledby="group-golf-title">
+  <div class="page-shell">
+    <div class="gathering-story">
+      <div>
+        <p class="section-eyebrow">Mini golf & group outings</p>
+        <h2 id="group-golf-title">Play a round. Grab a bite. Finish with a scoop.</h2>
+        <p class="body-copy">Follow the course past the waterfall and see who gets bragging rights. Then head over for a bite or let the kids pick their ice cream. The course and restaurant are at the same location.</p>
+        <p class="body-copy">Coming with the family? Check the rates and season before you head over. <strong>Children age 3 and under play free.</strong> For a school trip, youth group, or fundraiser, tell us how many are coming and what you’d like to include.</p>
+        <dl class="gathering-options">
+          <div><dt>Golf and a scoop</dt><dd>Play a round, then meet up for ice cream. A simple format for a birthday or family group.</dd></div>
+          <div><dt>Golf and lunch</dt><dd>Play first and sit down to eat afterward, or ask about lunch before you head out to the course.</dd></div>
+          <div><dt>A school trip or fundraiser</dt><dd>Share your number of students and adults, your arrival and departure times, and whether you need to keep groups together.</dd></div>
+        </dl>
+      </div>
+      <figure class="gathering-photo">
+        {{ site_image('george-oasis-mini-golf-players-waterfall', sizes='(max-width: 760px) calc(100vw - 40px), 45vw') }}
+        <figcaption>A round by the waterfall at George’s Oasis.</figcaption>
+      </figure>
+    </div>
+    <div class="gathering-planning">
+      <aside class="gathering-example" aria-labelledby="golf-example-title">
+        <p class="small-label">Sample plan · Pricing pending</p>
+        <h3 id="golf-example-title">A round and a scoop</h3>
+        <p>A sample group budget of <strong>$16 per participant</strong> for mini golf and ice cream. Ask about current group rates, adding lunch, or reserving the whole course.</p>
+        <div class="page-actions">
+          <a class="btn btn-primary" href="{{ url_for('public.gatherings', occasion='Mini golf outing', interest='Mini golf', _anchor='event-inquiry') }}">Plan a Group Golf Outing {{ icon('arrow') }}</a>
+          <a class="text-link" href="{{ url_for('public.mini_golf', _anchor='pricing') }}">See Mini Golf Rates &amp; Season</a>
+        </div>
+      </aside>
+      {{ gathering_questions('Questions group organizers ask', [
+        ('Can we reserve the entire course?', 'Ask about whole-course availability and the flat fee for your date. Let us know how many will play and how long you plan to be here.'),
+        ('What if some people want to come but don’t want to play?', 'Give us two numbers: how many are coming and how many expect to play. That helps us discuss golf and restaurant arrangements.'),
+        ('Can our group include lunch, ice cream, or both?', 'Yes, ask about adding a meal or ice cream. Tell us when your group needs to leave so we can talk through what fits.'),
+        ('What happens if the weather changes?', 'Mini golf is outdoors. Ask us about rain options before confirming your date so you know what to tell the group.'),
+      ]) }}
+    </div>
+  </div>
+</section>
+
+<section class="inquiry-section" id="event-inquiry" aria-labelledby="gathering-inquiry-title">
+  <div class="page-shell inquiry-layout">
+    <div class="inquiry-aside">
+      <div class="section-heading">
+        <h2 id="gathering-inquiry-title">Plan your outing.</h2>
+        <p>Tell us what you’re planning, roughly how many are coming, and when you’d like to visit. We’ll get back to you with availability, options, and pricing before you commit.</p>
+      </div>
+      <p class="body-copy">Prefer to talk it through?</p>
+      <a class="text-link" href="{{ business.phone_uri }}">{{ icon('phone') }} {{ business.phone }}</a>
+      <p class="fine-copy"><strong>{{ business.name }}</strong><br>{{ business.address }}<br>{{ business.city }}</p>
+      <a class="text-link" href="{{ url_for('public.visit', _anchor='directions') }}">Directions &amp; Restaurant Hours {{ icon('arrow') }}</a>
+    </div>
+    {% include 'public/includes/inquiry_form.html' %}
+  </div>
+</section>
 {% endblock %}

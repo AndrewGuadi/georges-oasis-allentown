@@ -59,11 +59,10 @@ def settings():
     return redirect(url_for('backend.content_edit', record_id=record.id))
 
 
-@backend_bp.get('/admin/menu')
-@backend_bp.get('/admin/specials')
+@backend_bp.get('/admin/menu', defaults={'specials': False})
+@backend_bp.get('/admin/specials', endpoint='specials_catalog', defaults={'specials': True})
 @require_roles('owner', 'editor')
-def catalog():
-    specials = request.path.endswith('/specials')
+def catalog(specials):
     kinds = ['weekly', 'recurring'] if specials else ['category', 'item', 'settings']
     query = db.select(ContentRecord).options(joinedload(ContentRecord.draft), joinedload(ContentRecord.published)).where(ContentRecord.kind.in_(kinds))
     category = request.args.get('category', '')
@@ -80,10 +79,6 @@ def catalog():
         query = query.where(ContentRecord.kind == 'item', ContentRecord.draft.has(ContentRevision.data['prices_reviewed'].as_boolean().is_not(True)))
     q = request.args.get('q', '').strip()[:120]
     if q:
-        from .services.search import indexed_ids
-        indexed = indexed_ids(q)
-        if indexed is not None:
-            return query.where(Inquiry.id.in_(indexed))
         escaped = q.replace('\\', '\\\\').replace('%', '\\%').replace('_', '\\_')
         query = query.where(ContentRecord.draft.has(db.or_(ContentRevision.data['name'].as_string().ilike('%' + escaped + '%', escape='\\'), ContentRevision.data['title'].as_string().ilike('%' + escaped + '%', escape='\\'))))
     page = db.paginate(query.order_by(ContentRecord.kind, ContentRecord.parent_key, ContentRecord.position, ContentRecord.id), per_page=25, max_per_page=100, error_out=False)
@@ -98,7 +93,7 @@ def options(text, label):
             continue
         parts = line.split('|')
         if len(parts) != 2 or not parts[0].strip() or len(parts[0]) > 160:
-            raise ValueError('Each option needs a label and price, separated by |.')
+            raise ValueError('Enter each option as label | price. Leave the price blank if it should be omitted.')
         result.append({label: parts[0].strip(), 'price': parts[1].strip()})
     if len(result) > 50:
         raise ValueError('Use at most 50 options.')
@@ -112,7 +107,7 @@ def form_data(record):
         data['weekly_special_days'] = [int(v) for v in form.getlist('weekdays')]
         data['menu_pricing'] = {'show_prices': 'show_prices' in form, 'note': 'For current prices, check the ordering menu or ask the restaurant.', 'metadata': data.get('menu_pricing', {}).get('metadata', {})}
         return to_storage(data)
-    for field in ('name', 'title', 'description', 'intro', 'group', 'inclusions', 'price_note', 'terms', 'note', 'photo', 'photo_alt', 'photo_caption'):
+    for field in ('name', 'title', 'description', 'intro', 'group', 'inclusions', 'price_note', 'terms', 'note', 'summary', 'photo', 'photo_alt', 'photo_caption'):
         if field in form:
             data[field] = form[field].strip()
     data['id'] = data.get('id', record.key.split(':')[-1])
@@ -228,7 +223,7 @@ def content_edit(record_id=None, kind=None):
     photos += [('upload:' + m.id, m.alt) for m in db.session.scalars(db.select(MediaAsset).order_by(MediaAsset.created_at.desc()).limit(200))]
     comparison = []
     previous = to_public(record.published.data) if record and record.published else {}
-    for field, label in [('name','Name'),('title','Title'),('description','Description'),('intro','Introduction'),('group','Group'),('inclusions','Inclusions'),('price','Base price (USD)'),('price_note','Price note'),('variants','Variants'),('add_ons','Additions'),('items','Dishes'),('terms','Terms'),('note','Note'),('weekday','Weekday'),('start_time','Starts'),('end_time','Ends'),('prices_reviewed','Prices reviewed'),('photo_alt','Image description'),('menu_pricing','Public prices'),('weekly_special_days','Specials days')]:
+    for field, label in [('name','Name'),('title','Title'),('description','Description'),('intro','Introduction'),('group','Group'),('inclusions','Inclusions'),('price','Base price (USD)'),('price_note','Price note'),('variants','Variants'),('add_ons','Additions'),('items','Dishes'),('terms','Terms'),('summary','Public summary'),('note','Note'),('weekday','Weekday'),('start_time','Starts'),('end_time','Ends'),('prices_reviewed','Prices reviewed'),('photo_alt','Image description'),('menu_pricing','Public prices'),('weekly_special_days','Specials days')]:
         def display(value):
             if isinstance(value, list):
                 return '\n'.join(' | '.join(str(v) for k,v in entry.items() if k != 'metadata' and v is not None) if isinstance(entry, dict) else str(entry) for entry in value)

@@ -1,5 +1,70 @@
+{% from 'admin/icons.html' import icon %}
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Owner dashboard | George’s Oasis</title><meta name="robots" content="noindex,nofollow"><link rel="stylesheet" href="{{ url_for('static', filename='css/owner.css') }}"></head>
-<body><header><a href="{{ url_for('admin.dashboard') }}">George’s Oasis · Owner dashboard</a><nav><a href="{{ url_for('public.home') }}">View website</a>{% if session.get('owner') %}{% if staff_role in ['owner','editor'] %}<a href="/admin/menu">Menu</a><a href="/admin/specials">Specials</a><a href="{{ url_for('backend.media') }}">Media</a><a href="{{ url_for('admin.content_review') }}">Content review</a>{% endif %}{% if staff_role in ['owner','inquiry'] %}<a href="{{ url_for('admin.inquiries') }}">Inquiries</a>{% endif %}<a href="{{ url_for('backend.password') }}">Password</a>{% if staff_role=='owner' %}<a href="{{ url_for('backend.staff') }}">Staff</a>{% endif %}{% endif %}{% if session.get('owner') %}<form method="post" action="{{ url_for('admin.logout') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button>Log out</button></form>{% endif %}</nav></header><main>
-{% for category, message in get_flashed_messages(with_categories=true) %}<p role="alert" class="notice {{ category }}">{{ message }}</p>{% endfor %}
-{% block content %}{% endblock %}</main><script src="{{ url_for('static',filename='js/admin.js') }}" defer></script></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Staff dashboard{% endblock %} | George’s Oasis</title>
+  <meta name="robots" content="noindex,nofollow">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/owner.css') }}">
+</head>
+{% set signed_in = session.get('owner') %}
+{% set content_access = staff_role in ['owner', 'editor'] %}
+{% set inquiry_access = staff_role in ['owner', 'inquiry'] %}
+{% set endpoint = request.endpoint %}
+{% set content_screen = endpoint in ['backend.catalog', 'backend.specials_catalog', 'backend.content_edit', 'backend.media', 'admin.content_review', 'admin.preview'] %}
+{% set settings_screen = endpoint in ['backend.password', 'backend.staff', 'backend.settings'] %}
+{% set inquiry_screen = endpoint in ['admin.inquiries', 'admin.inquiry_detail', 'backend.inbox'] %}
+{% set dashboard_url = url_for('admin.dashboard') %}
+<body class="{{ 'staff-app' if signed_in else 'staff-signed-out' }}">
+  <a class="staff-skip" href="#staff-main">Skip to content</a>
+  <header class="staff-header">
+    <a class="staff-brand" href="{{ dashboard_url }}">George’s Oasis <span>Staff dashboard</span></a>
+    <nav class="staff-top-nav" aria-label="Staff tools">
+      <a href="{{ url_for('public.home') }}">View website</a>
+      {% if signed_in %}
+        {% if content_access %}
+          <a href="{{ url_for('backend.catalog') }}"{% if request.path == url_for('backend.catalog') %} aria-current="page"{% endif %}>Menu</a>
+          <a href="{{ url_for('backend.specials_catalog') }}"{% if request.path == url_for('backend.specials_catalog') %} aria-current="page"{% endif %}>Specials</a>
+          <a href="{{ url_for('backend.media') }}"{% if endpoint == 'backend.media' %} aria-current="page"{% endif %}>Media</a>
+          <a href="{{ url_for('admin.content_review') }}"{% if endpoint == 'admin.content_review' %} aria-current="page"{% endif %}>Content review</a>
+        {% endif %}
+        {% if inquiry_access %}<a href="{{ url_for('admin.inquiries') }}"{% if inquiry_screen %} aria-current="page"{% endif %}>Inquiries</a>{% endif %}
+        <a href="{{ url_for('backend.password') }}"{% if endpoint == 'backend.password' %} aria-current="page"{% endif %}>Password</a>
+        {% if staff_role == 'owner' %}<a href="{{ url_for('backend.staff') }}"{% if endpoint == 'backend.staff' %} aria-current="page"{% endif %}>Staff</a>{% endif %}
+      {% endif %}
+    </nav>
+    {% if signed_in %}
+      <div class="staff-account">
+        <form method="post" action="{{ url_for('admin.logout') }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <button type="submit">Log out</button>
+        </form>
+        <span class="staff-identity">{{ icon('user') }} {{ g.staff.display_name if g.staff else 'Owner' }}</span>
+      </div>
+    {% endif %}
+  </header>
+  <div class="staff-layout">
+    {% if signed_in %}
+      <nav class="staff-rail" aria-label="Dashboard sections">
+        {% if content_access %}
+          <a href="{{ dashboard_url }}"{% if endpoint == 'admin.dashboard' %} aria-current="page"{% endif %}>{{ icon('home') }} <span>Home</span></a>
+          <a href="{{ url_for('backend.catalog') }}"{% if content_screen %} aria-current="true"{% endif %}>{{ icon('menu') }} <span>Content</span></a>
+          <a href="{{ url_for('admin.dashboard', _anchor='dated-offers') }}"{% if endpoint in ['admin.edit', 'admin.promotion_preview'] %} aria-current="true"{% endif %}>{{ icon('marketing') }} <span>Marketing</span></a>
+        {% endif %}
+        {% if inquiry_access %}<a href="{{ url_for('admin.inquiries') }}"{% if inquiry_screen %} aria-current="true"{% endif %}>{{ icon('inbox') }} <span>Inquiries</span></a>{% endif %}
+        <a href="{{ url_for('backend.password') }}"{% if settings_screen %} aria-current="true"{% endif %}>{{ icon('settings') }} <span>Settings</span></a>
+      </nav>
+    {% endif %}
+    <main id="staff-main" class="staff-surface" tabindex="-1">
+      <div class="staff-content">
+        {% for category, message in get_flashed_messages(with_categories=true) %}
+          <p role="alert" class="notice {{ category }}">{{ message }}</p>
+        {% endfor %}
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+  </div>
+  <script src="{{ url_for('static', filename='js/admin.js') }}" defer></script>
+</body>
+</html>

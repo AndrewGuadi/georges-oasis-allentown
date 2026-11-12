@@ -10,12 +10,12 @@ import smtplib
 from flask import current_app, g, request, session
 from itsdangerous import BadSignature, SignatureExpired, URLSafeTimedSerializer
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
-from .content import local_now, load_content
-from .models import db, Inquiry, InquiryAttempt, InquiryHistory
+from .content import local_now
+from .models import db, Inquiry, InquiryHistory
 from .services.abuse import take_limit
-from .services.notifications import queue_notification
+from .services.notifications import notification_recipient, queue_notification
 
-OCCASIONS = ["Birthday", "Family celebration", "Shower", "Company gathering", "School trip", "Fundraiser", "Other", "Not sure yet"]
+OCCASIONS = ["Birthday", "Family celebration", "Shower", "Company gathering", "Mini golf outing", "School trip", "Fundraiser", "Other", "Not sure yet"]
 INTERESTS = ["Dining", "Private space", "Mini golf", "Ice cream & desserts", "Not sure yet"]
 FLEXIBILITY = ["Preferred date", "Flexible date", "Not sure yet"]
 EMAIL = re.compile(r"^[^\s@<>\r\n]+@[^\s@<>\r\n]+\.[^\s@<>\r\n]+$")
@@ -28,7 +28,11 @@ def new_submission_token():
     return signer().dumps({"actor":session["inquiry_actor"],"nonce":secrets.token_hex(24)})
 
 def form_values():
-    return {key:request.form.get(key, "").strip() for key in ["name","contact_method","email","phone","occasion","guest_count","preferred_date","date_flexibility","notes","submission_token","inquiry_type"]} | {"interests":request.form.getlist("interests")}
+    return {
+        key: request.form.get(key, "").strip()
+        for key in ("name", "contact_method", "email", "phone", "occasion",
+                    "guest_count", "preferred_date", "date_flexibility", "notes", "submission_token", "inquiry_type")
+    } | {"interests": request.form.getlist("interests")}
 
 def deliver_notification(inquiry):
     """Worker-only delivery; database state is owned by the outbox service."""
@@ -36,7 +40,8 @@ def deliver_notification(inquiry):
     if callback:
         callback(inquiry)
         return
-    recipient, sender = current_app.config.get('INQUIRY_RECIPIENT', ''), current_app.config.get('INQUIRY_SENDER', '')
+    recipient = notification_recipient()
+    sender = current_app.config.get('INQUIRY_SENDER')
     if not EMAIL.fullmatch(recipient or '') or not EMAIL.fullmatch(sender or ''):
         raise ValueError('Invalid staff mail configuration')
     message = EmailMessage()
@@ -91,24 +96,34 @@ def submit_inquiry(values):
         errors["form"] = "We couldn’t accept this request. Please call us to discuss your event."
     if not 1 <= len(values["name"]) <= 100:
         errors["name"] = "Enter your name (up to 100 characters)."
-    if values["contact_method"] not in ["email","phone"]:
+    email, phone = values["email"], values["phone"]
+    valid_email = len(email) <= 254 and bool(EMAIL.fullmatch(email))
+    valid_phone = 7 <= len(re.sub(r"\D", "", phone)) <= 15 and len(phone) <= 40 and not any(c in phone for c in "\r\n")
+    contact_method = values["contact_method"]
+    if not contact_method:
+        contact_method = "email" if valid_email or not phone else "phone"
+    if contact_method not in ("email", "phone"):
         errors["contact_method"] = "Choose how you’d like us to contact you."
-    contact = values.get(values["contact_method"], "") if values["contact_method"] in ["email","phone"] else ""
-    if values["contact_method"] == "email" and (len(contact)>254 or not EMAIL.fullmatch(contact)):
+    elif not email and not phone:
+        errors["email"] = "Enter an email address or phone number so we can reach you."
+    elif contact_method == "email" and not valid_email:
         errors["email"] = "Enter a valid email address."
-    if values["contact_method"] == "phone" and (not 7 <= len(re.sub(r"\D","",contact)) <= 15 or len(contact)>40 or any(c in contact for c in "\r\n")):
+    elif contact_method == "phone" and not valid_phone:
         errors["phone"] = "Enter a phone number we can reach you on."
-    kind = values.get('inquiry_type') or 'event'
-    if kind not in ('event', 'mini_golf_group', 'general', 'other'):
-        errors['inquiry_type'] = 'Choose a request type.'
-    if kind in ('general', 'other'):
-        values['occasion'] = 'Other'
-        values['date_flexibility'] = 'Not sure yet'
-        values['interests'] = values['interests'] or ['Not sure yet']
-        if not values['notes']:
-            errors['notes'] = 'Tell us how we can help.'
-    if values["occasion"] not in OCCASIONS:
-        errors["occasion"] = "Choose an occasion, or select Not sure yet."
+    occasion = values["occasion"] or "Not sure yet"
+    kind = values.get("inquiry_type") or (
+        "mini_golf_group" if occasion == "Mini golf outing" or "Mini golf" in values["interests"] else "event"
+    )
+    if kind not in ("event", "mini_golf_group", "general", "other"):
+        errors["inquiry_type"] = "Choose a request type."
+    if kind in ("general", "other"):
+        occasion = "Other"
+        values["date_flexibility"] = "Not sure yet"
+        values["interests"] = values["interests"] or ["Not sure yet"]
+        if not values["notes"]:
+            errors["notes"] = "Tell us how we can help."
+    if occasion not in OCCASIONS:
+        errors["occasion"] = "The event type wasn’t recognized. Review your request and send it again."
     guest_count = None
     if values["guest_count"]:
         try:
@@ -125,17 +140,34 @@ def submit_inquiry(values):
                 raise ValueError()
         except ValueError:
             errors["preferred_date"] = "Choose today or a future date."
-    if values["date_flexibility"] not in FLEXIBILITY:
+    date_flexibility = values["date_flexibility"] or "Not sure yet"
+    if date_flexibility not in FLEXIBILITY:
         errors["date_flexibility"] = "Choose a date preference."
-    elif values["date_flexibility"] == "Preferred date" and not preferred_date:
+    elif date_flexibility == "Preferred date" and not preferred_date:
         errors.setdefault("preferred_date","Enter a preferred date, or choose Flexible date / Not sure yet.")
-    if not values["interests"] or any(value not in INTERESTS for value in values["interests"]):
-        errors["interests"] = "Choose at least one interest, or Not sure yet."
+    if any(value not in INTERESTS for value in values["interests"]):
+        errors["interests"] = "The package interest wasn’t recognized. Review your request and send it again."
     if len(values["notes"])>2000:
         errors["notes"] = "Keep your notes to 2,000 characters or fewer."
     if errors:
         return None,errors,400
-    inquiry = Inquiry(reference="GO-"+uuid4().hex[:12].upper(),submission_key=submission_key,name=values["name"],contact_method=values["contact_method"],contact_detail=contact,occasion=values["occasion"],guest_count=guest_count,preferred_date=preferred_date,date_flexibility=values["date_flexibility"],interests=list(dict.fromkeys(values["interests"])),notes=values["notes"],inquiry_type=kind,source_route=request.path,contact_normalized=re.sub(r"\D", "", contact) if values["contact_method"] == "phone" else contact.casefold())
+    contact = values[contact_method]
+    inquiry = Inquiry(
+        reference="GO-" + uuid4().hex[:12].upper(),
+        submission_key=submission_key,
+        name=values["name"],
+        contact_method=contact_method,
+        contact_detail=contact,
+        occasion=occasion,
+        guest_count=guest_count,
+        preferred_date=preferred_date,
+        date_flexibility=date_flexibility,
+        interests=list(dict.fromkeys(values["interests"])),
+        notes=values["notes"],
+        inquiry_type=kind,
+        source_route=request.path,
+        contact_normalized=re.sub(r"\D", "", contact) if contact_method == "phone" else contact.casefold(),
+    )
     try:
         db.session.add(inquiry)
         db.session.flush()

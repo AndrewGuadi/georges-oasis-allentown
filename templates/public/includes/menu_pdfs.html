@@ -1,0 +1,21 @@
+<div class="page-shell menu-pdf-tools">
+  <button type="button" class="btn btn-outline" id="menu-pdf-trigger" aria-haspopup="dialog" aria-controls="printed-menus" hidden>Open/Download PDF Menu</button>
+</div>
+<dialog class="menu-pdf-dialog" id="printed-menus" aria-labelledby="printed-menu-title">
+  <div class="menu-pdf-header">
+    <h2 id="printed-menu-title">PDF menus</h2>
+    <form method="dialog">
+      <button class="menu-pdf-close" type="submit" aria-label="Close PDF menus"><span aria-hidden="true">×</span></button>
+    </form>
+  </div>
+  <p id="menu-pdf-new-tab">Opens in a new tab.</p>
+  <ul class="menu-pdf-links">
+    {% for label, filename in [('Breakfast', 'Breakfast_Menu.pdf'), ('Lunch & Dinner', 'Lunch_and_Dinner_Menu.pdf'), ('Ice Cream & Dessert', 'Ice_Cream_and_Desserts_Menu.pdf')] %}
+    <li>
+      <a href="{{ url_for('static', filename='menus/' ~ filename) }}" target="_blank" rel="noopener" aria-describedby="menu-pdf-new-tab"{% if loop.first %} autofocus{% endif %}>
+        {{ label }} <span aria-hidden="true">↗</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</dialog>

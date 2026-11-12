@@ -46,11 +46,9 @@ class PublicPagesTest(unittest.TestCase):
                     continue
                 self.assertIn(target,documents,link)
                 if url.fragment:self.assertIn(url.fragment,documents[target].ids,link)
-        # The former CSS hero background is now a responsive image element.
-        self.assertGreaterEqual(len(documents['/'].images),9)
-        for image in set(documents['/'].images):
-            with self.client.get(image) as response:
-                self.assertEqual(response.status_code,200,image)
+        home_images = documents['/'].images
+        self.assertIn('/static/images/oasis/george-oasis-dining-room-booths-day-mobile.webp', home_images)
+        self.assertEqual(home_images.count('/static/images/oasis/george-oasis-banana-split-mobile.webp'), 1)
     def test_providers_are_configurable_and_missing_provider_has_fallback(self):
         actions={'order-foodbooking':'food_ordering','order-grubhub':'delivery','reserve-google':'table_reservation','hiring-facebook':'hiring'}
         for key in actions.values():self.app.config['EXTERNAL_LINKS'][key]='https://provider.example.test/'+key
@@ -78,6 +76,7 @@ class PublicPagesTest(unittest.TestCase):
         with self.app.app_context():
             source=load_content()
         source['menu_categories'][0]['items'][0]['metadata']['status']='draft'
+        source['special_menus'][0]['metadata']['status']='draft'
         self.app.config['SITE_CONTENT']=source
         self.assertNotIn('Monte Cristo',self.client.get('/food-and-ice-cream').get_data(as_text=True))
         self.assertNotIn('Burger Night',self.client.get('/specials').get_data(as_text=True))

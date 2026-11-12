@@ -3,8 +3,9 @@ import unittest
 import re
 from copy import deepcopy
 from datetime import datetime
+from unittest.mock import patch
 from georges_oasis import create_app
-from georges_oasis.content import load_content, service_status
+from georges_oasis.content import load_content, public_content, service_status
 from georges_oasis.models import db
 from georges_oasis.public.sitemap import PAGES
 
@@ -25,6 +26,7 @@ class HomepageReviewTest(unittest.TestCase):
 
     def test_shared_offers_exclude_tuesday_and_unapproved_details(self):
         source = deepcopy(self.source)
+        source['special_menus'] = []
         source['offers'] = [dict(id=str(day), title=f'Approved offer {day}', weekday=day,
             start_time='15:00', end_time='20:00', price=None, terms='Dine in only.',
             metadata={'status':'approved','source':'Test fixture','reviewed_at':'2026-10-16'}) for day in [1,2,3,4]]
@@ -45,13 +47,44 @@ class HomepageReviewTest(unittest.TestCase):
             self.assertNotIn('Approved offer 3', html)
 
     def test_draft_specials_are_not_claimed_absent(self):
+        for menu in self.source['special_menus']:
+            menu['metadata']['status'] = 'draft'
+        self.app.config['SITE_CONTENT'] = self.source
         for route in ['/', '/specials']:
             html = self.client.get(route).get_data(as_text=True)
             self.assertNotIn('no current specials', html)
             self.assertNotIn('Conflicting source prices', html)
-            self.assertNotIn('Wednesday Burger Night', html)
+            self.assertNotIn('Burger Night', html)
             for day in ['Wednesday','Thursday','Friday']:
                 self.assertIn(day, html)
+
+    def test_homepage_special_follows_the_restaurants_day(self):
+        cases = [
+            ('2026-11-11T04:59:00+00:00', None, None),
+            ('2026-11-11T05:00:00+00:00', 'wednesday', 'Burger Night'),
+            ('2026-11-12T05:00:00+00:00', 'thursday', 'Half-Price Appetizers'),
+            ('2026-11-13T05:00:00+00:00', 'friday', 'Crabcake Fridays'),
+            ('2026-11-14T05:00:00+00:00', None, None),
+        ]
+        for timestamp, day, title in cases:
+            with self.subTest(timestamp=timestamp):
+                now = datetime.fromisoformat(timestamp)
+                with patch('georges_oasis.public.routes.public_content', lambda: public_content(now=now)):
+                    html = self.client.get('/').get_data(as_text=True)
+                if day is None:
+                    self.assertNotIn('id="today-special-dialog"', html)
+                    continue
+                dialog = html.split('id="today-special-dialog"', 1)[1].split('</dialog>', 1)[0]
+                self.assertIn(f'id="today-special-title">{title}</h2>', dialog)
+                self.assertIn(f'href="/specials#special-{day}"', dialog)
+                self.assertIn('Today from 3 PM', dialog)
+
+        for item in self.source['special_menus'][0]['items']:
+            item['metadata']['status'] = 'draft'
+        self.app.config['SITE_CONTENT'] = self.source
+        wednesday = datetime.fromisoformat('2026-11-11T20:00:00+00:00')
+        with patch('georges_oasis.public.routes.public_content', lambda: public_content(now=wednesday)):
+            self.assertNotIn('id="today-special-dialog"', self.client.get('/').get_data(as_text=True))
 
     def test_contact_is_shared_and_preview_is_not_indexed(self):
         self.app.config['INQUIRY_RECIPIENT'] = 'restaurant@example.test'

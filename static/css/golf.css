@@ -9,3 +9,4 @@
  .golf-hero-photo > img { object-fit:contain; }
  .golf-photo-open img { height:auto; }
 }
+.golf-prices .golf-child-note { margin-top:4px; }

@@ -1,0 +1,11 @@
+<section class="home-ice-cream" aria-labelledby="home-ice-cream-title">
+  <div class="home-ice-cream-inner">
+    {{ site_image('george-oasis-banana-split', sizes='(max-width: 760px) calc(100vw - 40px), (max-width: 1320px) 54vw, 710px', class_name='home-banana-split-photo') }}
+    <div class="home-ice-cream-copy">
+      <p class="section-eyebrow">At the ice cream counter</p>
+      <h2 id="home-ice-cream-title">One Big Banana Split.</h2>
+      <p>Come in just for ice cream, or finish your meal with an old-fashioned sundae.</p>
+      {{ oasis_button('Explore Ice Cream', url_for('public.ice_cream')) }}
+    </div>
+  </div>
+</section>
