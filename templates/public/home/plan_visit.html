@@ -15,15 +15,15 @@
       <a class="text-link" href="{{ url_for('public.ice_cream') }}">Explore Ice Cream {{ icon('arrow') }}</a>
     </section>
     <section class="plan-visit-card">
-      <h3>Events</h3>
-      <p>Corporate luncheons, family gatherings, and birthdays.</p>
-      <a class="text-link" href="{{ url_for('public.gatherings', _anchor='event-inquiry') }}">Ask About an Event {{ icon('arrow') }}</a>
+      <h3>Parties &amp; Groups</h3>
+      <p>Find the right outing for a family celebration, team lunch, or group golf day.</p>
+      <a class="text-link" href="{{ url_for('public.gatherings', _anchor='outing-picker-title') }}">Choose an Outing {{ icon('arrow') }}</a>
     </section>
     <section class="plan-visit-card">
       <h3>Experiences</h3>
-      <p>Play mini golf, stop for ice cream, or ask about packages for families and groups.</p>
+      <p>Play a round of mini golf, finish with ice cream, or bring a group.</p>
       <a class="text-link" href="{{ url_for('public.mini_golf') }}">Explore Mini Golf {{ icon('arrow') }}</a>
-      <a class="text-link" href="{{ url_for('public.gatherings', interest='Mini golf', _anchor='event-inquiry') }}">Ask About Packages {{ icon('arrow') }}</a>
+      <a class="text-link" href="{{ url_for('public.gatherings', _anchor='group-golf-outings') }}">Explore Group Golf Outings {{ icon('arrow') }}</a>
     </section>
   </div>
   <a class="text-link plan-visit-hours" href="{{ url_for('public.visit') }}">Hours &amp; Directions {{ icon('arrow') }}</a>
