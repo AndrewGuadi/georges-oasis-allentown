@@ -943,7 +943,14 @@
             "reviewed_at": "2026-10-26",
             "match": "dish-type",
             "notes": "Photo illustrates the dish type, not guaranteed portion, ingredients or included sides."
-          }
+          },
+          "additional_photos": [
+            {
+              "photo": "george-oasis-pancake-with-fresh-fruit",
+              "alt": "Pancake topped with strawberries, blueberries, banana slices and whipped cream",
+              "caption": "Pancake with fresh fruit and whipped cream from the Oasis kitchen."
+            }
+          ]
         },
         {
           "id": "breakfast-36",
@@ -1015,6 +1022,15 @@
             "transcription": "Checked against the restaurant’s published menu image on October 16, 2026. Publication requested by user; not a separate owner price confirmation.",
             "valid_from": null,
             "valid_until": null
+          },
+          "photo": "george-oasis-belgian-waffle-fresh-fruit-plated",
+          "photo_alt": "Waffle pieces topped with strawberries, blueberries and whipped cream",
+          "photo_caption": "Belgian waffle with fresh fruit from the Oasis kitchen.",
+          "photo_review": {
+            "source": "User-supplied restaurant photo; matched to the breakfast menu.",
+            "reviewed_at": "2026-11-12",
+            "match": "dish-type",
+            "notes": "Photo illustrates the dish type, not guaranteed portion, ingredients or included sides."
           }
         },
         {

@@ -2455,6 +2455,78 @@
           "bytes": 214706
         }
       }
+    },
+    "george-oasis-belgian-waffle-fresh-fruit": {
+      "key": "george-oasis-belgian-waffle-fresh-fruit",
+      "alt": "Belgian waffle with strawberries, blueberries and whipped cream",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-belgian-waffle-fresh-fruit-mobile.webp",
+          "width": 640,
+          "height": 360,
+          "bytes": 31456
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-belgian-waffle-fresh-fruit-tablet.webp",
+          "width": 1280,
+          "height": 720,
+          "bytes": 81602
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-belgian-waffle-fresh-fruit-desktop.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 138420
+        }
+      }
+    },
+    "george-oasis-belgian-waffle-fresh-fruit-plated": {
+      "key": "george-oasis-belgian-waffle-fresh-fruit-plated",
+      "alt": "Waffle pieces topped with strawberries, blueberries and whipped cream",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-belgian-waffle-fresh-fruit-plated-mobile.webp",
+          "width": 640,
+          "height": 360,
+          "bytes": 25124
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-belgian-waffle-fresh-fruit-plated-tablet.webp",
+          "width": 1280,
+          "height": 720,
+          "bytes": 64466
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-belgian-waffle-fresh-fruit-plated-desktop.webp",
+          "width": 1920,
+          "height": 1080,
+          "bytes": 107056
+        }
+      }
+    },
+    "george-oasis-pancake-with-fresh-fruit": {
+      "key": "george-oasis-pancake-with-fresh-fruit",
+      "alt": "Pancake topped with strawberries, blueberries, banana slices and whipped cream",
+      "variants": {
+        "mobile": {
+          "path": "images/oasis/george-oasis-pancake-with-fresh-fruit-mobile.webp",
+          "width": 640,
+          "height": 674,
+          "bytes": 48650
+        },
+        "tablet": {
+          "path": "images/oasis/george-oasis-pancake-with-fresh-fruit-tablet.webp",
+          "width": 1280,
+          "height": 1348,
+          "bytes": 124838
+        },
+        "desktop": {
+          "path": "images/oasis/george-oasis-pancake-with-fresh-fruit-desktop.webp",
+          "width": 1536,
+          "height": 1618,
+          "bytes": 169590
+        }
+      }
     }
   }
 }
