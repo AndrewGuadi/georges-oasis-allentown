@@ -162,7 +162,7 @@
       "id": "breakfast",
       "name": "Breakfast",
       "intro": "Find your morning favorite, from eggs and omelets to pancakes and breakfast sandwiches.",
-      "photo": "george-oasis-french-toast",
+      "photo": "george-oasis-belgian-waffle-fresh-fruit-plated",
       "items": [
         {
           "id": "breakfast-1",
@@ -1426,8 +1426,8 @@
           }
         }
       ],
-      "photo_alt": "French toast with powdered sugar and a visible cream filling",
-      "photo_source": "Georges-Oasis-Responsive-Photos.zip"
+      "photo_alt": "Waffle pieces topped with strawberries, blueberries and whipped cream",
+      "photo_source": "User-supplied restaurant photo"
     },
     {
       "id": "lunch-and-dinner",
