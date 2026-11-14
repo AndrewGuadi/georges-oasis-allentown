@@ -18,11 +18,7 @@ def take_limit(namespace, identity, limit, seconds=900):
     statement = statement.on_conflict_do_update(index_elements=['key'], set_={
         'window': window,
         'count': db.case((RateBucket.window == window, RateBucket.count + 1), else_=1),
-    })
-    db.session.execute(statement)
-    # The upsert holds the write lock until commit, so the read sees our count.
-    count = db.session.execute(
-        db.select(RateBucket.count).where(RateBucket.key == key)
-    ).scalar_one()
+    }).returning(RateBucket.count)
+    count = db.session.execute(statement).scalar_one()
     db.session.commit()
     return count <= limit
