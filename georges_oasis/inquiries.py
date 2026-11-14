@@ -7,6 +7,7 @@ import hmac
 import re
 import secrets
 import smtplib
+import ssl
 from flask import current_app, request, session
 from itsdangerous import BadSignature, SignatureExpired, URLSafeTimedSerializer
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
@@ -50,7 +51,7 @@ def notify(inquiry):
         if callback is not None:
             callback(inquiry)
         else:
-            sender = current_app.config.get("INQUIRY_SENDER", "")
+            sender = current_app.config.get("INQUIRY_SENDER") or ""
             if not EMAIL.fullmatch(recipient) or not EMAIL.fullmatch(sender):
                 raise ValueError("Invalid staff mail configuration")
             message = EmailMessage()
@@ -61,14 +62,18 @@ def notify(inquiry):
             message.set_content(f"Reference: {inquiry.reference}\nName: {inquiry.name}\nContact: {inquiry.contact_method}: {inquiry.contact_detail}\nOccasion: {inquiry.occasion}\nGuests: {inquiry.guest_count or 'Not sure yet'}\nDate: {inquiry.preferred_date or inquiry.date_flexibility}\nInterests: {', '.join(inquiry.interests)}\nNotes: {inquiry.notes}\n\nThis is an inquiry, not a confirmed booking.")
             with smtplib.SMTP(current_app.config.get("SMTP_HOST", "localhost"),current_app.config.get("SMTP_PORT",587),timeout=8) as smtp:
                 if current_app.config.get("SMTP_TLS",True):
-                    smtp.starttls()
+                    smtp.starttls(context=ssl.create_default_context())
                 if current_app.config.get("SMTP_USERNAME"):
                     smtp.login(current_app.config["SMTP_USERNAME"],current_app.config["SMTP_PASSWORD"])
                 smtp.send_message(message)
         inquiry.notification_state = "sent"
-    except Exception:
+    except Exception as error:
         inquiry.notification_state = "failed"
-        current_app.logger.error("Staff notification failed for saved inquiry %s; review the owner dashboard.",inquiry.reference)
+        current_app.logger.error(
+            "Staff notification failed for saved inquiry %s (%s); review the owner dashboard.",
+            inquiry.reference,
+            type(error).__name__,
+        )
     try:
         db.session.commit()
     except SQLAlchemyError:
