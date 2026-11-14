@@ -21,10 +21,16 @@ def home():
 
 def page_view(page):
     def view():
+        if request.method == 'POST' and page['key'] == 'gatherings':
+            request.max_content_length = 32 * 1024
         context = {"page":page}
         if page["key"] == "specials":
             context.update(current_promotions())
         if page["key"] == "gatherings":
+            if request.method == 'GET':
+                from ..services.abuse import take_limit
+                if not take_limit('inquiry-forms', request.remote_addr or 'unknown', 60):
+                    abort(429)
             occasion, interest = request.args.get("occasion"), request.args.get("interest")
             values = {
                 "occasion": occasion if occasion in OCCASIONS else "",
@@ -42,8 +48,14 @@ def page_view(page):
             context.update(values=values, errors=errors, occasions=OCCASIONS, interests=INTERESTS)
             response = make_response(render_template('public/gatherings.html',**context),status)
             response.headers['Cache-Control'] = 'no-store'
+            if status == 429:
+                response.headers['Retry-After'] = '900'
             return response
-        response = make_response(render_template(f"public/{page['key']}.html",**context))
+        if page['key'] in ('food', 'ice_cream'):
+            from ..services.public_cache import menu_response
+            response = menu_response(lambda: make_response(render_template(f"public/{page['key']}.html", **context)))
+        else:
+            response = make_response(render_template(f"public/{page['key']}.html", **context))
         response.headers['Cache-Control'] = 'no-cache'
         return response
     return view

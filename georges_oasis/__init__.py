@@ -26,6 +26,9 @@ def create_app(test_config=None):
         TRUSTED_HOSTS=[h.strip() for h in os.environ.get("TRUSTED_HOSTS", "").split(",") if h.strip()] or None,
         EXTERNAL_LINKS=EXTERNAL_LINKS.copy(),
         MAX_CONTENT_LENGTH=5 * 1024 * 1024,
+        STAFF_IDLE_SECONDS=1800,
+        ABUSE_KEY=os.environ.get('ABUSE_KEY'),
+        STAFF_BASE_URL=os.environ.get('STAFF_BASE_URL', ''),
         INQUIRY_RECIPIENT=os.environ.get("INQUIRY_RECIPIENT"),
         INQUIRY_SENDER=os.environ.get("INQUIRY_SENDER"),
         SMTP_HOST=os.environ.get("SMTP_HOST", "localhost"),
@@ -58,7 +61,8 @@ def create_app(test_config=None):
     def check_content():
         import click
         from .content import load_content, validate_content
-        issues = validate_content(load_content())
+        from .services.catalog import apply_catalog
+        issues = validate_content(apply_catalog(load_content(), include_drafts=True))
         if issues:
             raise click.ClickException("\n".join(issues))
         click.echo("Content structure is valid. Draft records remain unpublished.")
@@ -72,7 +76,20 @@ def create_app(test_config=None):
         return Path(filename).stem + ".webp"
 
     db.init_app(app)
+    from sqlalchemy import event
+    with app.app_context():
+        if db.engine.dialect.name == 'sqlite':
+            @event.listens_for(db.engine, 'connect')
+            def sqlite_foreign_keys(connection, record):
+                connection.execute('PRAGMA foreign_keys=ON')
     Migrate(app, db)
+    @app.before_request
+    def bounded_public_forms():
+        from flask import request
+        if request.method == 'POST' and request.path == '/gatherings':
+            request.max_content_length = 32 * 1024
+        elif request.method == 'POST' and request.path == '/admin/login':
+            request.max_content_length = 16 * 1024
     CSRFProtect(app)
 
     from .public import public_bp
@@ -80,6 +97,12 @@ def create_app(test_config=None):
     app.register_blueprint(public_bp)
     from .admin import admin_bp
     app.register_blueprint(admin_bp)
+    from .backend import backend_bp
+    app.register_blueprint(backend_bp)
+    from .commands import register_commands
+    register_commands(app)
+    from .services.auth import configure_auth
+    configure_auth(app)
     from .security import configure_security
     configure_security(app)
     return app

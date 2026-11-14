@@ -1,5 +1,5 @@
 """Shared response protections and customer-friendly failure recovery."""
-from flask import make_response, render_template, request
+from flask import g, make_response, render_template, request
 from flask_wtf.csrf import CSRFError
 from werkzeug.exceptions import SecurityError
 from .content import public_content
@@ -22,6 +22,7 @@ def configure_security(app):
         return response
 
     def error_page(code, title, message):
+        g.error_render = True
         response = make_response(render_template(
             "public/error.html", error_code=code, error_title=title, error_message=message,
             site_pages=PAGES, current_year=datetime.now(timezone.utc).year, **public_content()), code)
@@ -43,7 +44,17 @@ def configure_security(app):
             return response
         return error_page(400, "Let’s try that again.", "Your form session expired. Go back, refresh the page, and try again.")
 
+    @app.errorhandler(409)
+    @app.errorhandler(503)
+    def conflict(error):
+        response = make_response(render_template('admin/conflict.html',
+            message=error.description, title='This record changed' if error.code==409 else 'Changes were not saved',
+            submitted={key: value for key, value in request.form.items() if key not in ('csrf_token', 'password', 'current_password', 'confirm_password')}), error.code)
+        response.headers['Cache-Control'] = 'no-store'
+        return response
+
     for code, title, message in [
+        (403, 'Access is restricted.', 'Your staff account does not have permission for this action.'),
         (400, "We couldn’t open that request.", "Please check the address or return to the homepage."),
         (404, "A little off the beaten path.", "That page isn’t here. Find your way back to a good meal, a round of golf, or your next visit."),
         (413, "That upload is a little too large.", "Go back and choose a file smaller than 5 MB, then try again."),

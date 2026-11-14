@@ -1,5 +1,84 @@
 {% extends 'admin/base.html' %}
-{% block content %}<section class="panel"><h2>Event inquiries</h2><p>{{ unread }} new {{ 'inquiry' if unread == 1 else 'inquiries' }} waiting for review.</p>{% if notification_alerts %}<p class="notice error">{{ notification_alerts }} saved {{ 'request needs' if notification_alerts == 1 else 'requests need' }} direct dashboard review: email notification is pending, failed, or not configured.</p>{% endif %}<a class="button primary" href="{{ url_for('admin.inquiries') }}">Review inquiries</a> <a class="button" href="{{ url_for('admin.content_review') }}">Content & launch review</a></section><h1>Deals & coupons</h1><p>Make an offer, choose when it runs, and turn it on when you’re ready.</p>
-<section class="panel"><h2>Show on the homepage</h2><form method="post" action="{{ url_for('admin.display') }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><label class="check"><input type="checkbox" name="deals_enabled" {% if settings.deals_enabled %}checked{% endif %}> Weekly deals popup</label><label class="check"><input type="checkbox" name="coupons_enabled" {% if settings.coupons_enabled %}checked{% endif %}> Coupons section</label><p>Only enabled offers within their scheduled dates appear. Empty sections stay hidden.</p><button class="primary">Save homepage visibility</button></form></section>
-<div class="row"><h2>Your offers</h2><a class="button primary" href="{{ url_for('admin.edit') }}">+ Add an offer</a></div>
-{% for p in promotions %}<article class="panel row"><div>{% if p.image %}<img class="thumbnail" src="{{ url_for('admin.uploaded_image', filename=p.image) }}" alt="">{% endif %}<p>{{ 'Weekly deal' if p.kind == 'deal' else 'Coupon' }} · <strong>{{ p.status }}</strong></p><h3>{{ p.title }}</h3><p>{{ (p.starts_at|local_input|replace('T', ' ')) or 'Starts immediately' }} → {{ (p.ends_at|local_input|replace('T', ' ')) or 'No end date' }} (Allentown time)</p></div><div class="row"><a class="button" href="{{ url_for('admin.edit', promotion_id=p.id) }}">Edit</a><form method="post" action="{{ url_for('admin.toggle', promotion_id=p.id) }}"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><button>{{ 'Turn off' if p.enabled else 'Turn on' }}</button></form></div></article>{% else %}<section class="panel"><h3>No offers yet</h3><p>Add your first weekly deal or coupon. You can save it hidden until you’re ready.</p></section>{% endfor %}{% endblock %}
+{% from 'admin/icons.html' import icon %}
+{% block content %}
+<section class="dashboard-overview" aria-labelledby="dashboard-title">
+  <h1 id="dashboard-title">Staff Dashboard</h1>
+  <p class="dashboard-subtitle">At a glance</p>
+  <div class="dashboard-metrics">
+    <a class="dashboard-metric panel" href="{{ url_for('backend.catalog') }}">
+      <span class="metric-icon">{{ icon('menu') }}</span>
+      <div><h2>Menu control</h2><span class="status-pill {{ 'status-attention' if drafts else 'status-neutral' }}">{{ drafts }} content {{ 'draft' if drafts == 1 else 'drafts' }}</span></div>
+    </a>
+    <a class="dashboard-metric panel" href="{{ url_for('backend.specials_catalog') }}">
+      <span class="metric-icon">{{ icon('calendar') }}</span>
+      <div><h2>Weekly specials</h2><span class="status-pill {{ 'status-live' if active_specials else 'status-neutral' }}">{{ active_specials ~ ' published' if active_specials else 'None published' }}</span></div>
+    </a>
+    {% if staff_role == 'owner' %}
+      <a class="dashboard-metric panel" href="{{ url_for('admin.inquiries', due='1') }}">
+        <span class="metric-icon">{{ icon('inbox') }}</span>
+        <h2>{{ overdue }} {{ 'follow-up' if overdue == 1 else 'follow-ups' }} due</h2>
+      </a>
+    {% endif %}
+  </div>
+</section>
+
+<section class="panel dashboard-inquiries" aria-labelledby="inquiries-title">
+  <div>
+    <h2 id="inquiries-title">Event inquiries</h2>
+    <p class="inquiry-count">{% if not unread %}<span class="dashboard-check">{{ icon('check') }}</span>{% endif %}{{ unread }} new {{ 'inquiry' if unread == 1 else 'inquiries' }} waiting for review.</p>
+    {% if notification_alerts %}
+      <p class="notice error">{{ notification_alerts }} saved {{ 'request needs' if notification_alerts == 1 else 'requests need' }} direct dashboard review: email notification is pending, failed, or not configured.</p>
+    {% endif %}
+  </div>
+  <div class="staff-actions">
+    {% if staff_role == 'owner' %}<a class="button primary" href="{{ url_for('admin.inquiries') }}">Review inquiries</a>{% endif %}
+    <a class="button" href="{{ url_for('admin.content_review') }}">Content &amp; launch review</a>
+  </div>
+</section>
+
+<section class="dashboard-marketing" id="dated-offers" aria-labelledby="offers-title">
+  <h2 id="offers-title">Deals &amp; Coupons</h2>
+  <p class="dashboard-subtitle">Make an offer, choose when it runs, and turn it on when you’re ready.</p>
+  <div class="dashboard-marketing-grid">
+    <section class="panel dashboard-visibility" aria-labelledby="visibility-title">
+      <h3 id="visibility-title">Show on the homepage</h3>
+      <form method="post" action="{{ url_for('admin.display') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <label class="staff-switch">Deals section <input type="checkbox" name="deals_enabled"{% if settings.deals_enabled %} checked{% endif %}></label>
+        <label class="staff-switch">Coupons section <input type="checkbox" name="coupons_enabled"{% if settings.coupons_enabled %} checked{% endif %}></label>
+        <p>Only enabled offers within their scheduled dates appear. Empty sections stay hidden.</p>
+        <button class="primary" type="submit">Save homepage visibility</button>
+      </form>
+    </section>
+    <section class="dashboard-offers" aria-labelledby="offer-list-title">
+      <div class="dashboard-offers-heading">
+        <h3 id="offer-list-title">Your offers</h3>
+        <a class="button primary" href="{{ url_for('admin.edit') }}">{{ icon('plus') }} Add an offer</a>
+      </div>
+      <div class="panel offer-list">
+        {% for p in promotions %}
+          <article class="offer-row">
+            {% if p.image %}<img class="thumbnail" src="{{ url_for('admin.uploaded_image', filename=p.image) }}" alt="">{% endif %}
+            <div class="offer-copy">
+              <p>{{ 'Weekly deal' if p.kind == 'deal' else 'Coupon' }} <span class="status-pill {{ 'status-expired' if p.status == 'Expired' else 'status-live' if p.status in ['Live', 'Active'] else 'status-neutral' }}">{{ p.status }}</span></p>
+              <h4>{{ p.title }}</h4>
+              <p class="offer-schedule">{{ (p.starts_at|local_input|replace('T', ' ')) or 'Starts immediately' }} → {{ (p.ends_at|local_input|replace('T', ' ')) or 'No end date' }} (Allentown time)</p>
+            </div>
+            <div class="staff-actions">
+              <a class="button" href="{{ url_for('admin.edit', promotion_id=p.id) }}" aria-label="Edit {{ p.title }}">Edit</a>
+              <form method="post" action="{{ url_for('admin.toggle', promotion_id=p.id) }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="hidden" name="version_id" value="{{ p.version_id }}">
+                <button type="submit" aria-label="{{ 'Turn off' if p.enabled else 'Turn on' }} {{ p.title }}">{{ 'Turn off' if p.enabled else 'Turn on' }}</button>
+              </form>
+            </div>
+          </article>
+        {% else %}
+          <div class="offer-row offer-empty"><div><h4>No offers yet</h4><p>Add a weekly deal or coupon. You can save a draft until it’s ready.</p></div></div>
+        {% endfor %}
+      </div>
+      {% include 'admin/pagination.html' %}
+    </section>
+  </div>
+</section>
+{% endblock %}

@@ -243,3 +243,6 @@ build_docs/*
 !build_docs/CLIENT_LAUNCH_MEETING.md
 !build_docs/OWNER_LAUNCH_WORKSHEET.md
 migrations/**/__pycache__/
+!build_docs/backend_stage_two.md
+!build_docs/backend_stage_two_implementation.md
+!build_docs/backend_stage_two_performance.json

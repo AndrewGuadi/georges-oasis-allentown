@@ -5,14 +5,23 @@ from decimal import Decimal, InvalidOperation
 from pathlib import Path
 from zoneinfo import ZoneInfo
 import json
-from flask import current_app
+from functools import lru_cache
+from flask import current_app, g, has_request_context
 
 LOCAL = ZoneInfo("America/New_York")
 DATA_PATH = Path(__file__).with_name("content") / "site.json"
 
+@lru_cache(maxsize=4)
+def _read_content(path, modified, size):
+    return json.loads(Path(path).read_text())
+
+
 def load_content():
     override = current_app.config.get("SITE_CONTENT")
-    return deepcopy(override) if override is not None else json.loads(DATA_PATH.read_text())
+    if override is not None:
+        return deepcopy(override)
+    stat = DATA_PATH.stat()
+    return deepcopy(_read_content(str(DATA_PATH), stat.st_mtime_ns, stat.st_size))
 
 def local_now(now=None):
     value = now or datetime.now(timezone.utc)
@@ -145,8 +154,21 @@ def offer_state(offer, now=None):
         return "hidden"
 
 def public_content(now=None, include_drafts=False):
+    if not has_request_context():
+        return _public_content(now, include_drafts)
+    cache_key = (now, include_drafts, bool(g.get('error_render')))
+    request_cache = g.setdefault('public_content_cache', {})
+    if cache_key in request_cache:
+        return request_cache[cache_key]
+    result = _public_content(now, include_drafts)
+    request_cache[cache_key] = result
+    return result
+
+
+def _public_content(now=None, include_drafts=False):
+    from .services.catalog import apply_catalog
     now = local_now(now)
-    data = load_content()
+    data = load_content() if g.get("error_render") else apply_catalog(load_content(), include_drafts)
     pricing = data.get("menu_pricing", {})
     show_menu_prices = pricing.get("show_prices") is True and publishable(pricing, now)
     categories = deepcopy(data["menu_categories"])
@@ -201,7 +223,7 @@ def public_content(now=None, include_drafts=False):
     def features(key):
         return [items_by_id[feature['item_id']] | feature
                 for feature in data.get(key, []) if feature['item_id'] in items_by_id]
-    return {"show_menu_prices":show_menu_prices, "special_menus":special_menus, "featured_menu_items":features('menu_features'), "featured_desserts":features('dessert_features'),
+    return {"uploaded_images":data.get("uploaded_images", {}), "show_menu_prices":show_menu_prices, "special_menus":special_menus, "featured_menu_items":features('menu_features'), "featured_desserts":features('dessert_features'),
             "today_special": today_special,
             "pie_campaign": current_pie_campaign(data.get("pie_campaign", {}), now),
             "visit_details":data.get('visit_details', {}), "ice_cream_experience":data.get('ice_cream_experience', {}),
@@ -226,14 +248,11 @@ def validate_content(data):
             start,end=boundary(meta.get('valid_from')),boundary(meta.get('valid_until'))
             if start and end and end <= start:raise ValueError()
         except (ValueError,TypeError):issues.append(f'{label}: invalid review date or validity window.')
-    pricing_enabled = data.get('menu_pricing', {}).get('show_prices', False)
     for category in data.get('menu_categories',[]):
         for item in category.get('items',[]):
             label=item.get('id','Menu item');metadata(item,label)
             if not item.get('name'):issues.append(f'{label}: a name is required.')
             variant_prices = [v.get('price') for v in item.get('variants', [])]
-            if pricing_enabled and item.get('price') is None and not any(v is not None for v in variant_prices) and not item.get('price_note'):
-                issues.append(f'{label}: a price, priced variants or explicit price note is required when menu prices are enabled.')
             prices = [item.get('price'), *variant_prices, *(v.get('price') for v in item.get('add_ons', []))]
             for value in (price for price in prices if price is not None):
                 try:money(value)
