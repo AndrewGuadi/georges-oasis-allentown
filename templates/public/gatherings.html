@@ -63,7 +63,7 @@
         <p class="body-copy">Start with an approximate headcount. We’ll help you work out where the group can sit, how to handle food, and what else you’d like to include.</p>
         <dl class="gathering-options">
           <div><dt>A family meal together</dt><dd>Ask about seating your group together and having guests choose from the restaurant menu.</dd></div>
-          <div><dt>A celebration in the back room</dt><dd>Ask about the room for your date and tell us if you need space for gifts, decorations, or cake.</dd></div>
+          <div><dt>A celebration in the back room</dt><dd>You’re welcome to bring cake and decorations. A $50 deposit applies to groups of 18 or more or to reserve the entire back room. We apply the deposit to your check.</dd></div>
           <div><dt>A birthday with something to do</dt><dd>During golf season, ask about starting with a round and getting together afterward for food or ice cream.</dd></div>
         </dl>
       </div>
@@ -74,17 +74,18 @@
     </div>
     <div class="gathering-planning">
       <aside class="gathering-example" aria-labelledby="family-example-title">
-        <p class="small-label">Sample plan · Pricing pending</p>
-        <h3 id="family-example-title">Saturday lunch for 20</h3>
-        <p>Guests catch up, sit down to lunch, then stay at the table for cake or ice cream. A sample food budget of <strong>$24 per guest</strong> puts the meal subtotal at <strong>$480</strong>. Ask us for a quote with the menu, what’s included, and any additional charges.</p>
+        <h3 id="family-example-title">Group meal packages</h3>
+        <p><strong>Breakfast starts at $12 per person, plus tip.</strong> Choose entrées or a buffet with eggs, home fries, a side of breakfast meat, and coffee or tea.</p>
+        <p><strong>Lunch is $15 per person, plus tip.</strong> Includes a sandwich, a side, and a drink.</p>
+        <p><strong>Dinner is $20 per person, plus tip.</strong> Includes two sides, a drink, and dessert. Entrée options include chicken Parmesan, homemade meatloaf, homemade lasagna, spaghetti and meatballs, crab cakes, and grilled salmon.</p>
         <div class="page-actions">
           <a class="btn btn-primary" href="{{ url_for('public.gatherings', occasion='Family celebration', _anchor='event-inquiry') }}">Check Your Party Date {{ icon('arrow') }}</a>
           <a class="text-link" href="{{ business.phone_uri }}">Call About a Celebration</a>
         </div>
       </aside>
       {{ gathering_questions('Questions family organizers ask', [
-        ('Can we have the back room to ourselves?', 'Ask about private use for your date and group size. We’ll let you know which space is available and whether a room charge or minimum applies.'),
-        ('Can we bring cake or decorations?', 'Tell us what you’d like to bring and whether you need time to set up. We’ll confirm what the space can accommodate.'),
+        ('Can we have the back room to ourselves?', 'Ask about availability for your date. A $50 deposit applies to reserve the entire back room or for groups of 18 or more. We apply it to your check.'),
+        ('Can we bring cake or decorations?', 'Yes. You’re welcome to bring cake and decorations. Let us know if you’ll need time to set up.'),
         ('Can guests order individually?', 'Tell us whether you’d prefer individual orders or a menu selected ahead of time. We’ll discuss what works for your group and when you’re coming.'),
         ('What if I’m still waiting on RSVPs?', 'Give us your best estimate and mention how much it could change. We’ll let you know when we need your final count.'),
         ('What about seating access or dietary needs?', 'The restaurant is wheelchair accessible. If anyone needs a particular seating setup or has a dietary concern, tell us so staff can discuss the details with you.'),
@@ -115,10 +116,9 @@
     </div>
     <div class="gathering-planning">
       <aside class="gathering-example" aria-labelledby="team-example-title">
-        <p class="small-label">Sample offer · Pricing and timing pending</p>
         <h3 id="team-example-title">The Team Lunch</h3>
-        <p>A choice of selected sandwiches, wraps, or salads with a side and fountain drink. This example uses <strong>$16 per person</strong> and a <strong>45-minute visit</strong> with selections sent ahead.</p>
-        <p>For 12, the sample meal subtotal is <strong>$192</strong> before tax and any applicable service charges. Ask us what we can offer for your group and lunch window.</p>
+        <p><strong>$15 per person, plus tip.</strong> The package includes a sandwich, a side, and a drink. Dessert is optional.</p>
+        <p>Ordering ahead can help groups of up to about 20 plan for a 45-minute lunch. Share your headcount and schedule so we can confirm timing.</p>
         <div class="page-actions">
           <a class="btn btn-primary" href="{{ url_for('public.gatherings', occasion='Company gathering', _anchor='event-inquiry') }}">Plan a Team Lunch {{ icon('arrow') }}</a>
           <a class="text-link" href="{{ url_for('public.food', _anchor='lunch-and-dinner') }}">Browse the Lunch Menu</a>
@@ -155,19 +155,20 @@
     </div>
     <div class="gathering-planning">
       <aside class="gathering-example" aria-labelledby="golf-example-title">
-        <p class="small-label">Sample plan · Pricing pending</p>
-        <h3 id="golf-example-title">A round and a scoop</h3>
-        <p>A sample group budget of <strong>$16 per participant</strong> for mini golf and ice cream. Ask about current group rates, adding lunch, or reserving the whole course.</p>
+        <h3 id="golf-example-title">Mini golf packages</h3>
+        <p><strong>$9 per person</strong> for mini golf and a small ice cream.</p>
+        <p><strong>$11 per person</strong> for mini golf and a medium ice cream or milkshake.</p>
+        <p>Ask about discounted mini golf for school field trips and programs serving people with special needs.</p>
         <div class="page-actions">
           <a class="btn btn-primary" href="{{ url_for('public.gatherings', occasion='Mini golf outing', interest='Mini golf', _anchor='event-inquiry') }}">Plan a Group Golf Outing {{ icon('arrow') }}</a>
           <a class="text-link" href="{{ url_for('public.mini_golf', _anchor='pricing') }}">See Mini Golf Rates &amp; Season</a>
         </div>
       </aside>
       {{ gathering_questions('Questions group organizers ask', [
-        ('Can we reserve the entire course?', 'Ask about whole-course availability and the flat fee for your date. Let us know how many will play and how long you plan to be here.'),
+        ('Can we reserve the entire course?', 'Groups of 20 or more can ask about renting the whole course for $75 for 90 minutes or $100 for two hours. Tell us your date and how many will play.'),
         ('What if some people want to come but don’t want to play?', 'Give us two numbers: how many are coming and how many expect to play. That helps us discuss golf and restaurant arrangements.'),
         ('Can our group include lunch, ice cream, or both?', 'Yes, ask about adding a meal or ice cream. Tell us when your group needs to leave so we can talk through what fits.'),
-        ('What happens if the weather changes?', 'Mini golf is outdoors. Ask us about rain options before confirming your date so you know what to tell the group.'),
+        ('What happens if the weather changes?', 'If it rains, you can schedule a rain date or keep your meal plans and skip the golf.'),
       ]) }}
     </div>
   </div>
