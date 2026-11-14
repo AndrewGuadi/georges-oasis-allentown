@@ -10,6 +10,23 @@ from .models import (db, StaffUser, AuditEvent, InquiryAttempt, LoginAttempt,
 
 
 def register_commands(app):
+    @app.cli.command('test-email')
+    def test_email():
+        """Send one labeled test email to the configured staff recipient."""
+        from .inquiries import send_staff_email
+        import smtplib
+        try:
+            send_staff_email('George’s Oasis — email delivery test',
+                'This is a requested test of the George’s Oasis website email settings.\n\n'
+                'No customer request or booking was created.\n\n'
+                'If you received this message, the configured SMTP server accepted the test and delivered it to this mailbox.')
+        except Exception as exc:
+            code = getattr(exc, 'smtp_code', None)
+            detail = f' (SMTP {code})' if isinstance(code, int) else ''
+            hint = ' Verify the SMTP username and provider app password.' if isinstance(exc, smtplib.SMTPAuthenticationError) else ' Check the mail configuration and provider connection.'
+            raise click.ClickException(f'Email test failed: {type(exc).__name__}{detail}.{hint} No delivery confirmed.') from None
+        click.echo('SMTP server accepted the test email. Check the configured recipient inbox and spam folder to confirm delivery.')
+
     @app.cli.command('import-catalog')
     @click.option('--dry-run', is_flag=True)
     def import_catalog_command(dry_run):

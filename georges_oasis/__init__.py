@@ -34,6 +34,7 @@ def create_app(test_config=None):
         SMTP_HOST=os.environ.get("SMTP_HOST", "localhost"),
         SMTP_PORT=int(os.environ.get("SMTP_PORT", "587")),
         SMTP_TLS=os.environ.get("SMTP_TLS", "true").lower() == "true",
+        SMTP_SSL=os.environ.get('SMTP_SSL', str(os.environ.get('SMTP_PORT', '587') == '465')).lower() == 'true',
         SMTP_USERNAME=os.environ.get("SMTP_USERNAME"),
         SMTP_PASSWORD=os.environ.get("SMTP_PASSWORD"),
         OWNER_USERNAME=os.environ.get("OWNER_USERNAME", "username"),

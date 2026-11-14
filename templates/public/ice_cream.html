@@ -29,7 +29,7 @@
           <li><span>{{ pie.name }}</span><strong>{{ (pie.price|money).removesuffix('.00') }}</strong></li>
         {% endfor %}
       </ul>
-      <p class="fine-copy">Have another flavor in mind? Choose “Other” on the form.</p>
+      <p class="fine-copy">{% if external_links.pie_order %}Have another flavor in mind? Choose “Other” on the form.{% else %}Call the restaurant to confirm your pie selection, pickup and payment details.{% endif %}</p>
     </div>
   {% endif %}
 </section>

@@ -29,7 +29,25 @@ Business/menu/schedule content lives in `georges_oasis/content/site.json`. Only 
 
 Event inquiries are saved before a receipt is shown. They do not confirm bookings. Duplicate submission tokens produce one record. Email is optional; unconfigured/failed delivery is visible in the staff inbox and dashboard. Never use a production deployment without a staff monitoring process.
 
-For production set `OASIS_ENV=production`, `OWNER_USERNAME` and `OWNER_PASSWORD_HASH`; production refuses the demo password fallback. Optional notifications use `INQUIRY_RECIPIENT`, `INQUIRY_SENDER`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_TLS`, `SMTP_USERNAME` and `SMTP_PASSWORD`. No live notifications were sent during this build.
+For production set `OASIS_ENV=production`, `OWNER_USERNAME` and `OWNER_PASSWORD_HASH`; production refuses the demo password fallback. Optional notifications use `INQUIRY_RECIPIENT`, `INQUIRY_SENDER`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_TLS`, `SMTP_SSL`, `SMTP_USERNAME` and `SMTP_PASSWORD`.
+
+### Email configuration and testing
+
+For local development, copy the mail settings from `.env.example` into your ignored `.env` and restrict its permissions with `chmod 600 .env`. Both the Flask CLI and the `app:app` Gunicorn entry point load this file; existing environment variables take precedence. Restart running web and worker processes after changing mail settings.
+
+For Gmail, use the full account email as `SMTP_USERNAME` and a current Google App Password as `SMTP_PASSWORD`. The sender should be that account or an authorized sending alias. Spaces in Google's four-group app password display are accepted. Use port 587 with `SMTP_TLS=true` and `SMTP_SSL=false`, or port 465 with `SMTP_SSL=true`. Both encrypted transports verify the server certificate.
+
+Send one labeled test to the configured recipient:
+
+```bash
+.venv/bin/flask --app app test-email
+```
+
+Success means the SMTP server accepted the message; confirm it arrives in the recipient inbox or spam folder. The command creates no inquiry and does not drain existing queued notifications. Its errors omit credentials and provider message bodies.
+
+Customer inquiries are committed to the database first, then the website independently attempts the staff alert and a customer acknowledgment when an email address is provided. Email failures do not fail the submission: the customer still receives their receipt, and staff can review both delivery statuses. Set `STAFF_BASE_URL` to the final website origin for direct staff inbox links.
+
+On a hosted deployment, prefer the host's private environment-variable settings rather than uploading a local `.env` or typing credentials into shell `export` commands. No separate password manager is required. A `.env` remains plaintext and should stay out of Git, build artifacts and shared backups.
 
 See [implementation and deployment notes](build_docs/IMPLEMENTATION.md) for the route map, components, schema, time semantics, verification and limitations. See [the consolidated owner review](build_docs/OWNER_REVIEW.md) for remaining business facts and source gaps.
 
@@ -69,8 +87,20 @@ Optional browser verification (requires Playwright and Chromium): `python script
 
 ## Stage-two staff backend
 
-Menu, weekly specials, dated offers, media and typed inquiry workflows are now available under `/admin`. See [stage-two operation and verification](build_docs/backend_stage_two_implementation.md) for migrations, the idempotent catalog import, named staff accounts, production limits and the required notification worker. The development login remains `username` / `password` until named accounts are provisioned; production rejects these defaults. The catalog imports the current menu, including price-free dishes and portions, and keeps unreviewed prices hidden.
+Menu, weekly specials, dated offers, media and typed inquiry workflows are now available under `/admin`. The development login remains `username` / `password` until named accounts are provisioned; production rejects these defaults. The catalog imports the current menu, including price-free dishes and portions, and keeps unreviewed prices hidden.
 
 On a deployment upgrading from the previous staff backend, apply the database migrations before reloading the web app. For a first catalog import, review `flask --app app import-catalog --dry-run`, then run `flask --app app import-catalog`. The import preserves the current public menu and refuses to replace an existing staff catalog.
 
-Notifications are queued with the saved inquiry; run `flask --app app process-notifications --watch` under supervision when delivery is configured. An absent worker does not lose inquiries: staff must monitor the inbox and notification alerts.
+No always-on notification worker is required. Each new inquiry saves its request, initial history and notification jobs before attempting email. Duplicate submissions return the original receipt without sending either email again. Missing configuration or delivery failures remain visible in the staff inbox; use **Retry staff notification** or **Retry customer acknowledgment** to retry only the affected email. Retrying one does not resend the successful other message.
+
+To retry queued jobs that are due, run this command from the project directory:
+
+```bash
+.venv/bin/flask --app app process-notifications --limit 100
+```
+
+It processes up to 100 eligible jobs and exits. Failed deliveries retain their retry schedule, with at most five attempts before staff intervention is needed. `--watch` remains optional for deployments that choose continuous background retries. Staff should monitor the inquiry dashboard regardless of email delivery.
+
+Staff alerts, customer acknowledgments and delivery-test emails share branded HTML templates under `templates/emails/`, with a plain-text alternative. They use the site’s green, cream and gold palette, a text wordmark, system fonts and a fluid table layout; no remote images or fonts are required. Staff alerts include a dashboard button when `STAFF_BASE_URL` is valid, or sign-in instructions when it is absent. Customer acknowledgments include the reference, next steps and booking disclaimer, with replies directed to the restaurant's public email (or the sender when that address is unavailable). They include no staff links or submitted message details. Phone-only inquiries receive the on-screen receipt. The receipt reflects customer email status without exposing the address. Render fixture previews without sending mail using `.venv/bin/python scripts/email_preview.py`.
+
+Apply database migrations before deploying customer acknowledgments. Existing inquiries are marked `not_requested`; upgrading does not send historical customers any email.

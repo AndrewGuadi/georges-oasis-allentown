@@ -76,6 +76,8 @@ class Inquiry(db.Model):
     name = db.Column(db.String(100), nullable=False)
     contact_method = db.Column(db.String(10), nullable=False)
     contact_detail = db.Column(db.String(254), nullable=False)
+    email = db.Column(db.String(254), nullable=False, default='')
+    phone = db.Column(db.String(40), nullable=False, default='')
     occasion = db.Column(db.String(60), nullable=False)
     guest_count = db.Column(db.Integer, nullable=True)
     preferred_date = db.Column(db.Date, nullable=True)
@@ -85,6 +87,7 @@ class Inquiry(db.Model):
     received_at = db.Column(db.DateTime, nullable=False, default=lambda: datetime.now(timezone.utc).replace(tzinfo=None))
     staff_state = db.Column(db.String(32), nullable=False, default="new")
     notification_state = db.Column(db.String(20), nullable=False, default="pending")
+    customer_notification_state = db.Column(db.String(20), nullable=False, default='not_requested')
     inquiry_type = db.Column(db.String(24), nullable=False, default='event')
     source_route = db.Column(db.String(100), nullable=False, default='/gatherings')
     assigned_user_id = db.Column(db.Integer, db.ForeignKey('staff_user.id'))
@@ -204,6 +207,19 @@ class NotificationOutbox(db.Model):
     last_error = db.Column(db.String(100))
     sent_at = db.Column(db.DateTime)
     __table_args__ = (db.Index('ix_outbox_due', 'state', 'next_attempt_at'),)
+
+
+class CustomerAcknowledgment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    inquiry_id = db.Column(db.Integer, db.ForeignKey('inquiry.id'), nullable=False, unique=True)
+    state = db.Column(db.String(20), nullable=False, default='pending')
+    attempts = db.Column(db.Integer, nullable=False, default=0)
+    next_attempt_at = db.Column(db.DateTime, nullable=False, default=utcnow)
+    lease_until = db.Column(db.DateTime)
+    lease_token = db.Column(db.String(40))
+    last_error = db.Column(db.String(100))
+    sent_at = db.Column(db.DateTime)
+    __table_args__ = (db.Index('ix_customer_ack_due', 'state', 'next_attempt_at'),)
 
 
 class RateBucket(db.Model):

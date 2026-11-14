@@ -64,6 +64,17 @@ class PublicPagesTest(unittest.TestCase):
         html=self.client.get('/order').get_data(as_text=True)
         self.assertIn('Call Us for Ordering',html)
         self.assertNotIn('href="None"',html)
+    def test_contact_links_and_internal_inquiry_action(self):
+        for path in ['/'] + [p['path'] for p in PAGES]:
+            links = Document(self.client.get(path).get_data(as_text=True)).links
+            self.assertIn('tel:+16102641955', links, path)
+            self.assertIn('mailto:georgesoasisrestaurant@gmail.com', links, path)
+        from flask import render_template_string
+        with self.app.test_request_context():
+            html = render_template_string("{% from 'public/includes/external_action.html' import external_action with context %}{{ external_action('group_reservation', 'Ask about a group') }}", business=load_content()['business'])
+        self.assertIn('href="/gatherings#event-inquiry"', html)
+        self.assertNotIn('target="_blank"', html)
+
     def test_legacy_redirects_preserve_query(self):
         for path in LEGACY:
             response=self.client.get(path+'?source=old-menu')

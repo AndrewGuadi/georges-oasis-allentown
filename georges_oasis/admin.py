@@ -7,7 +7,7 @@ from zoneinfo import ZoneInfo
 from flask import Blueprint, abort, current_app, flash, redirect, render_template, request, send_from_directory, session, url_for
 from PIL import Image, UnidentifiedImageError
 from werkzeug.security import check_password_hash, generate_password_hash
-from .models import db, Promotion, DisplaySettings, Inquiry, LoginAttempt, StaffUser, NotificationOutbox, ContentRecord, utcnow
+from .models import db, Promotion, DisplaySettings, Inquiry, LoginAttempt, StaffUser, NotificationOutbox, CustomerAcknowledgment, ContentRecord, utcnow
 from .services.auth import require_roles, audit
 from .services.abuse import take_limit
 from .content import load_content, public_content
@@ -75,7 +75,7 @@ def dashboard():
     page = db.paginate(db.select(Promotion).order_by(Promotion.id.desc()), per_page=25, error_out=False)
     promotions = page.items
     unread = db.session.scalar(db.select(db.func.count()).select_from(Inquiry).where(Inquiry.staff_state=='new', Inquiry.archived_at.is_(None)))
-    notification_alerts = db.session.scalar(db.select(db.func.count()).select_from(Inquiry).where(Inquiry.notification_state.in_(['failed','pending','not_configured'])))
+    notification_alerts = db.session.scalar(db.select(db.func.count()).select_from(Inquiry).where(db.or_(Inquiry.notification_state.in_(['failed','pending','not_configured']), Inquiry.customer_notification_state.in_(['failed','pending','not_configured']))))
     overdue = db.session.scalar(db.select(db.func.count()).select_from(Inquiry).where(Inquiry.archived_at.is_(None), Inquiry.follow_up_at <= utcnow(), Inquiry.staff_state.notin_(['cancelled','spam','confirmed'])))
     drafts = db.session.scalar(db.select(db.func.count()).select_from(ContentRecord).where(db.or_(ContentRecord.published_id.is_(None), ContentRecord.draft_id != ContentRecord.published_id)))
     active_specials = sum(bool(menu['items']) for menu in public_content()['special_menus'])
@@ -243,25 +243,34 @@ def inquiry_detail(inquiry_id):
 @require_roles('owner', 'inquiry')
 def retry_notification(inquiry_id):
     inquiry=db.get_or_404(Inquiry,inquiry_id)
-    from .services.notifications import configured
+    from .services.notifications import configured, customer_configured
+    audience = request.form.get('audience', 'staff')
+    if audience not in ('staff', 'customer'):
+        abort(400)
+    job_model = NotificationOutbox if audience == 'staff' else CustomerAcknowledgment
+    state_field = 'notification_state' if audience == 'staff' else 'customer_notification_state'
+    ready = configured() if audience == 'staff' else customer_configured() and bool(inquiry.email)
+    state = getattr(inquiry, state_field)
     if inquiry.staff_state == 'spam':
-        flash('Restore this request from spam before queuing a notification.', 'error')
-    elif configured() and inquiry.notification_state != 'sent':
-        row = db.session.scalar(db.select(NotificationOutbox).where(NotificationOutbox.inquiry_id == inquiry.id))
+        flash('Restore this request from spam before sending a notification.', 'error')
+    elif ready and state not in ('sent', 'not_requested'):
+        row = db.session.scalar(db.select(job_model).where(job_model.inquiry_id == inquiry_id))
         if row and row.state == 'sending' and row.lease_until and row.lease_until > utcnow():
-            flash('A worker is already sending this notification.')
-            return redirect(url_for('admin.inquiry_detail', inquiry_id=inquiry.id))
+            flash('This notification is already being sent.')
+            return redirect(url_for('admin.inquiry_detail', inquiry_id=inquiry_id))
         if row:
             row.state, row.attempts, row.next_attempt_at = 'pending', 0, utcnow()
         else:
-            db.session.add(NotificationOutbox(inquiry_id=inquiry.id))
-        inquiry.notification_state = 'pending'
-        audit('notification.retry', inquiry.reference)
+            db.session.add(job_model(inquiry_id=inquiry_id))
+        setattr(inquiry, state_field, 'pending')
+        audit('notification.retry', inquiry.reference, audience)
         db.session.commit()
-        flash('Staff notification queued.')
+        from .services.notifications import attempt_notification
+        attempt_notification(inquiry_id, audience=audience)
+        flash('Notification attempted. Check its status below.')
     else:
-        flash('Notification already sent or delivery is not configured.')
-    return redirect(url_for('admin.inquiry_detail',inquiry_id=inquiry.id))
+        flash('Notification already sent, not requested, or delivery is not configured.')
+    return redirect(url_for('admin.inquiry_detail',inquiry_id=inquiry_id))
 
 
 @admin_bp.get('/content-review')

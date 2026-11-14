@@ -1,5 +1,6 @@
 """Run against a local preview: PLAYWRIGHT_BROWSERS_PATH=... python scripts/browser_check.py."""
 import json
+import os
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 
@@ -15,7 +16,7 @@ with sync_playwright() as p:
     for width in [320, 390, 768, 1440]:
         page.set_viewport_size({'width': width, 'height': 900})
         for route in ROUTES:
-            response = page.goto('http://127.0.0.1:5000' + route, wait_until='networkidle')
+            response = page.goto(os.environ.get('OASIS_TEST_BASE_URL', 'http://127.0.0.1:5000') + route, wait_until='networkidle')
             assert response.status == 200, (route, response.status)
             assert page.locator('h1').count() == 1, route
             overflow = page.evaluate('document.documentElement.scrollWidth > innerWidth')
@@ -29,15 +30,14 @@ with sync_playwright() as p:
             if width in [390, 1440]:
                 page.screenshot(path=str(artifacts / f'{route.strip("/") or "home"}-{width}.png'), full_page=True)
     page.set_viewport_size({'width':390,'height':844})
-    page.goto('http://127.0.0.1:5000/')
+    page.goto(os.environ.get('OASIS_TEST_BASE_URL', 'http://127.0.0.1:5000') + '/')
     page.locator('#mobile-navigation summary').click()
     assert page.locator('#mobile-navigation').get_attribute('open') is not None
     page.keyboard.press('Escape')
     assert page.locator('#mobile-navigation').get_attribute('open') is None
-    page.goto('http://127.0.0.1:5000/gatherings')
-    page.locator('input[value=phone]').check()
+    page.goto(os.environ.get('OASIS_TEST_BASE_URL', 'http://127.0.0.1:5000') + '/gatherings')
     assert page.locator('#phone').is_visible()
-    assert not page.locator('#email').is_visible()
+    assert page.locator('#email').is_visible()
     page.locator('button[type=submit]').click()
     assert page.locator('#form-errors').is_visible()
     expect(page.locator('#form-errors')).to_be_focused()
