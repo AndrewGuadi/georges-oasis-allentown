@@ -29,7 +29,21 @@ Business/menu/schedule content lives in `georges_oasis/content/site.json`. Only 
 
 Event inquiries are saved before a receipt is shown. They do not confirm bookings. Duplicate submission tokens produce one record. Email is optional; unconfigured/failed delivery is visible in the staff inbox and dashboard. Never use a production deployment without a staff monitoring process.
 
-For production set `OASIS_ENV=production`, `OWNER_USERNAME` and `OWNER_PASSWORD_HASH`; production refuses the demo password fallback. Optional notifications use `INQUIRY_RECIPIENT`, `INQUIRY_SENDER`, `SMTP_HOST`, `SMTP_PORT`, `SMTP_TLS`, `SMTP_USERNAME` and `SMTP_PASSWORD`. No live notifications were sent during this build.
+## Inquiry email through Gmail
+
+Put these settings in the project-root `.env` or in your hosting environment. The app loads `.env` at startup and gives existing environment variables precedence.
+
+```dotenv
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_TLS=true
+SMTP_USERNAME=your-sending-account@gmail.com
+SMTP_PASSWORD=your-google-app-password
+INQUIRY_SENDER=your-sending-account@gmail.com
+INQUIRY_RECIPIENT=georgesoasisrestaurant@gmail.com
+```
+
+Use the sending account’s Google app password without spaces and keep `.env` out of Git. On PythonAnywhere, install the updated `requirements.txt` in the web app’s virtual environment, then reload the app. Submit a test inquiry from Parties & Groups and check the recipient’s inbox and `/admin/inquiries`. If a guest provides an email address as their contact method, replies to the staff notification go to the guest.
 
 See [implementation and deployment notes](build_docs/IMPLEMENTATION.md) for the route map, components, schema, time semantics, verification and limitations. See [the consolidated owner review](build_docs/OWNER_REVIEW.md) for remaining business facts and source gaps.
 

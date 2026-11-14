@@ -56,6 +56,44 @@ class InquiryTest(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertIn('Enter an email address or phone number', response.get_data(as_text=True))
         self.assertEqual(self.notifications, [])
+    def test_inquiry_sends_once_via_gmail_starttls(self):
+        self.app.config.update(
+            INQUIRY_NOTIFIER=None,
+            INQUIRY_SENDER="sender@example.test",
+            INQUIRY_RECIPIENT="staff@example.test",
+            SMTP_HOST="smtp.gmail.com",
+            SMTP_PORT=587,
+            SMTP_TLS=True,
+            SMTP_USERNAME="sender@example.test",
+            SMTP_PASSWORD="fake-app-password",
+        )
+        for method, contact in (("email", "organizer@example.test"), ("phone", "610 555 0100")):
+            with self.subTest(method=method):
+                form = self.form()
+                form.update(contact_method=method, email="", phone="")
+                form[method] = contact
+                with patch("georges_oasis.inquiries.smtplib.SMTP") as smtp:
+                    first = self.client.post("/gatherings", data=form)
+                    duplicate = self.client.post("/gatherings", data=form)
+                    self.assertEqual(first.status_code, 303)
+                    self.assertEqual(duplicate.location, first.location)
+                    smtp.assert_called_once_with("smtp.gmail.com", 587, timeout=8)
+                    connection = smtp.return_value.__enter__.return_value
+                    self.assertEqual(
+                        [call[0] for call in connection.method_calls],
+                        ["starttls", "login", "send_message"],
+                    )
+                    self.assertTrue(connection.starttls.call_args.kwargs["context"].check_hostname)
+                    connection.login.assert_called_once_with("sender@example.test", "fake-app-password")
+                    message = connection.send_message.call_args.args[0]
+                    self.assertEqual(message["From"], "sender@example.test")
+                    self.assertEqual(message["To"], "staff@example.test")
+                    self.assertEqual(message["Reply-To"], contact if method == "email" else None)
+                    self.assertIn(contact, message.get_content())
+                with self.app.app_context():
+                    inquiry = db.session.execute(db.select(Inquiry).filter_by(contact_method=method)).scalar_one()
+                    self.assertEqual(inquiry.notification_state, "sent")
+
     def test_notification_outage_keeps_receipt_and_owner_alert(self):
         def fail(inquiry):raise RuntimeError('Test mail outage')
         self.app.config['INQUIRY_NOTIFIER']=fail

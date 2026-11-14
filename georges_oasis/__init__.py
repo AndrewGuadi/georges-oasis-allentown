@@ -1,3 +1,4 @@
+from dotenv import load_dotenv
 from flask import Flask
 from pathlib import Path
 import os
@@ -11,6 +12,7 @@ from datetime import timedelta
 
 def create_app(test_config=None):
     """Create and configure the George's Oasis website application."""
+    load_dotenv(Path(__file__).resolve().parents[1] / ".env", override=False)
     app = Flask(__name__, template_folder="../templates", static_folder="../static")
     Path(app.instance_path).mkdir(parents=True, exist_ok=True)
     secret_file = Path(app.instance_path) / "session-key"
