@@ -11,9 +11,10 @@ from ..models import db, ContentRecord, ContentRevision
 def menu_response(render):
     if session or current_app.config.get('SITE_CONTENT') is not None:
         return render()
-    from ..content import DATA_PATH
+    from ..content import DATA_PATH, local_now
     generation = tuple(db.session.execute(db.select(db.func.count(ContentRecord.id), db.func.sum(ContentRecord.version_id))).one()) + (db.session.scalar(db.select(db.func.max(ContentRevision.id))),)
-    key = (request.url_root, request.path, generation, DATA_PATH.stat().st_mtime_ns)
+    key = (request.url_root, request.path, generation, DATA_PATH.stat().st_mtime_ns,
+           local_now().replace(microsecond=0).isoformat())
     cache = current_app.extensions.setdefault('anonymous_menu_pages', {})
     now = time.time()
     cached = cache.get(request.path)

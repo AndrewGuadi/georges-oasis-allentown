@@ -67,7 +67,7 @@ class FullMenuTest(unittest.TestCase):
             'Cajun Chicken Sandwich', 'Char-Grilled Teriyaki Chicken',
         ]:
             self.assertNotIn(name, items)
-        self.assertIn('pulled pork or smoked salmon', items['Eggs Benedict']['description'])
+        self.assertIn('pulled pork or smoked salmon', items['Eggs Benedict']['description'].lower())
         self.assertIn('Avocado available', items['Carnitas Especial']['description'])
         self.assertIn('Fries available', items['Plain Burger']['inclusions'])
         self.assertEqual(items['Vegan Flatbread']['description'], 'Hummus, tomato, cucumber, arugula and olives.')

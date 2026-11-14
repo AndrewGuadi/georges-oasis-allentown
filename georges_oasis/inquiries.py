@@ -1,13 +1,16 @@
 """Server-side inquiry validation, durable receipts, and optional staff notifications."""
 from datetime import date, datetime, timedelta, timezone
 from email.message import EmailMessage
+from email.headerregistry import Address
 from hashlib import sha256
 from uuid import uuid4
 import hmac
 import re
 import secrets
 import smtplib
-from flask import current_app, g, request, session
+import ssl
+from flask import current_app, g, request, session, render_template
+from urllib.parse import urlsplit
 from itsdangerous import BadSignature, SignatureExpired, URLSafeTimedSerializer
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 from .content import local_now
@@ -34,27 +37,99 @@ def form_values():
                     "guest_count", "preferred_date", "date_flexibility", "notes", "submission_token", "inquiry_type")
     } | {"interests": request.form.getlist("interests")}
 
-def deliver_notification(inquiry):
-    """Worker-only delivery; database state is owned by the outbox service."""
-    callback = current_app.config.get('INQUIRY_NOTIFIER')
-    if callback:
-        callback(inquiry)
-        return
+def send_staff_email(subject, body, *, reference=None, inbox_url=None):
+    """Send one staff message using the same transport for tests and the worker."""
     recipient = notification_recipient()
     sender = current_app.config.get('INQUIRY_SENDER')
     if not EMAIL.fullmatch(recipient or '') or not EMAIL.fullmatch(sender or ''):
         raise ValueError('Invalid staff mail configuration')
+    from .content import load_content
+    business = load_content()['business']
     message = EmailMessage()
-    message['From'], message['To'] = sender, recipient
-    message['Subject'] = f'Oasis inquiry {inquiry.reference}'
-    base = current_app.config.get('STAFF_BASE_URL', '').rstrip('/')
-    message.set_content(f'Reference: {inquiry.reference}\nA new inquiry is saved in the staff inbox.\n{base}/admin/inquiries/{inquiry.id}\nSign in to review it. This is not a confirmed booking.')
-    with smtplib.SMTP(current_app.config.get('SMTP_HOST', 'localhost'), current_app.config.get('SMTP_PORT', 587), timeout=8) as smtp:
-        if current_app.config.get('SMTP_TLS', True):
-            smtp.starttls()
+    message['From'] = Address(display_name=business['name'], addr_spec=sender)
+    message['To'] = recipient
+    message['Subject'] = subject
+    message.set_content(body)
+    message.add_alternative(render_template('emails/message.html',
+        business=business, subject=subject,
+        preheader=f'New saved inquiry {reference}. Sign in to review.' if reference else 'A message from the George’s Oasis website.',
+        eyebrow='FROM YOUR WEBSITE' if reference else 'STAFF EMAIL CHECK',
+        heading='A new inquiry is waiting.' if reference else subject,
+        reference=reference, inbox_url=inbox_url,
+        paragraphs=body.split('\n\n')), subtype='html')
+    _send_email(message)
+
+
+def _send_email(message):
+    """Shared SMTP transport for independently addressed staff/customer mail."""
+    host = current_app.config.get('SMTP_HOST', 'localhost')
+    port = current_app.config.get('SMTP_PORT', 587)
+    use_ssl = current_app.config.get('SMTP_SSL', port == 465)
+    options = {'timeout': 15}
+    if use_ssl:
+        options['context'] = ssl.create_default_context()
+    transport = smtplib.SMTP_SSL if use_ssl else smtplib.SMTP
+    with transport(host, port, **options) as smtp:
+        if not use_ssl and current_app.config.get('SMTP_TLS', True):
+            smtp.starttls(context=ssl.create_default_context())
         if current_app.config.get('SMTP_USERNAME'):
-            smtp.login(current_app.config['SMTP_USERNAME'], current_app.config['SMTP_PASSWORD'])
-        smtp.send_message(message)
+            password = current_app.config.get('SMTP_PASSWORD') or ''
+            # Google displays its generated app passwords in four groups.
+            if host.casefold() == 'smtp.gmail.com' and re.fullmatch(r'[a-zA-Z]{4}( [a-zA-Z]{4}){3}', password):
+                password = password.replace(' ', '')
+            smtp.login(current_app.config['SMTP_USERNAME'], password)
+        refused = smtp.send_message(message)
+        if refused:
+            raise smtplib.SMTPRecipientsRefused(refused)
+
+
+def deliver_notification(inquiry):
+    """Delivery after storage; database state is owned by the outbox service."""
+    callback = current_app.config.get('INQUIRY_NOTIFIER')
+    if callback:
+        callback(inquiry)
+        return
+    base = current_app.config.get('STAFF_BASE_URL', '').rstrip('/')
+    parsed = urlsplit(base)
+    allowed_schemes = ('https',) if current_app.config.get('PRODUCTION') else ('https', 'http')
+    inbox_url = f'{base}/admin/inquiries/{inquiry.id}' if parsed.scheme in allowed_schemes and parsed.netloc and not parsed.username and not parsed.query and not parsed.fragment else None
+    inbox = (inbox_url if inbox_url else
+             'Open the restaurant website and sign in at /admin to review this reference.')
+    send_staff_email(f'Oasis inquiry {inquiry.reference}', f'Reference: {inquiry.reference}\nA new inquiry is saved in the staff inbox.\n{inbox}\nSign in to review it. This is not a confirmed booking.', reference=inquiry.reference, inbox_url=inbox_url)
+
+
+def deliver_customer_acknowledgment(inquiry):
+    callback = current_app.config.get('CUSTOMER_NOTIFIER')
+    if callback:
+        callback(inquiry)
+        return
+    from .content import load_content
+    business = load_content()['business']
+    sender = current_app.config.get('INQUIRY_SENDER')
+    if not EMAIL.fullmatch(sender or '') or not EMAIL.fullmatch(inquiry.email or ''):
+        raise ValueError('Invalid acknowledgment mail configuration')
+    reply_to = business.get('email') or sender
+    if not EMAIL.fullmatch(reply_to):
+        reply_to = sender
+    subject = f'We received your inquiry | {business["name"]} | {inquiry.reference}'
+    body = (f'Thanks for reaching out to {business["name"]}.\n\n'
+            f'We received your inquiry. Your reference is {inquiry.reference}.\n\n'
+            'Our team will review your message and contact you using the details you provided. '
+            'This acknowledges receipt only; availability, pricing and any booking still need staff confirmation.\n\n'
+            f'For a question or an update, reply to this email or call {business["phone"]}. '
+            'Please mention your reference. There is no need to submit the form again.\n\n'
+            'Please do not email payment details or sensitive personal information.')
+    message = EmailMessage()
+    message['From'] = Address(display_name=business['name'], addr_spec=sender)
+    message['To'] = inquiry.email
+    message['Reply-To'] = Address(display_name=business['name'], addr_spec=reply_to)
+    message['Subject'] = subject
+    message.set_content(body)
+    message.add_alternative(render_template('emails/customer_acknowledgment.html',
+        business=business, subject=subject, reference=inquiry.reference,
+        preheader='Your inquiry is saved. Here’s what happens next.',
+        recipient_notice='You received this email because this address was entered on an inquiry to ' + business['name'] + '.'), subtype='html')
+    _send_email(message)
 
 
 def notify(inquiry):
@@ -110,6 +185,10 @@ def submit_inquiry(values):
         errors["email"] = "Enter a valid email address."
     elif contact_method == "phone" and not valid_phone:
         errors["phone"] = "Enter a phone number we can reach you on."
+    if email and not valid_email:
+        errors["email"] = "Enter a valid email address."
+    if phone and not valid_phone:
+        errors["phone"] = "Enter a phone number we can reach you on."
     occasion = values["occasion"] or "Not sure yet"
     kind = values.get("inquiry_type") or (
         "mini_golf_group" if occasion == "Mini golf outing" or "Mini golf" in values["interests"] else "event"
@@ -158,6 +237,8 @@ def submit_inquiry(values):
         name=values["name"],
         contact_method=contact_method,
         contact_detail=contact,
+        email=email,
+        phone=phone,
         occasion=occasion,
         guest_count=guest_count,
         preferred_date=preferred_date,
@@ -168,12 +249,14 @@ def submit_inquiry(values):
         source_route=request.path,
         contact_normalized=re.sub(r"\D", "", contact) if contact_method == "phone" else contact.casefold(),
     )
+    saved_new = False
     try:
         db.session.add(inquiry)
         db.session.flush()
         db.session.add(InquiryHistory(inquiry_id=inquiry.id, new_state='new', actor='public-submission'))
         queue_notification(inquiry)
         db.session.commit()
+        saved_new = True
     except IntegrityError:
         db.session.rollback()
         inquiry = db.session.execute(db.select(Inquiry).filter_by(submission_key=submission_key)).scalar_one_or_none()
@@ -184,4 +267,10 @@ def submit_inquiry(values):
         g.error_render = True
         return None,{"form":"We couldn’t save your request. Your details are still below. Try again or call us."},503
     authorize_receipt(inquiry)
+    if saved_new:
+        from .services.notifications import attempt_notification
+        # Receipt data stays available even if notification status updates fail.
+        # authorize_receipt has loaded the committed row before detaching it.
+        db.session.expunge(inquiry)
+        attempt_notification(inquiry.id)
     return inquiry,{},303

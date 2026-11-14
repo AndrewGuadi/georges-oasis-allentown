@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="x-apple-disable-message-reformatting">
+  <meta name="color-scheme" content="light">
+  <title>{{ subject }}</title>
+  <style>
+    body, table, td, a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+    table, td { mso-table-lspace:0pt; mso-table-rspace:0pt; }
+    table { border-collapse:collapse; }
+    a { text-decoration:underline; }
+    @media screen and (max-width:620px) {
+      .email-outer { padding:16px 8px !important; }
+      .email-section { padding-left:24px !important; padding-right:24px !important; }
+      .email-title { font-size:28px !important; line-height:34px !important; }
+      .email-button { display:block !important; text-align:center !important; }
+    }
+  </style>
+</head>
+<body style="margin:0;padding:0;width:100%;background-color:#f3efe4;color:#263d34;font-family:Arial,Helvetica,sans-serif;">
+  <div style="display:none;font-size:1px;line-height:1px;color:#f3efe4;max-height:0;max-width:0;opacity:0;overflow:hidden;mso-hide:all;">{{ preheader }}</div>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f3efe4" style="width:100%;background-color:#f3efe4;">
+    <tr><td class="email-outer" align="center" style="padding:36px 16px;">
+      <!--[if mso]><table role="presentation" width="600" align="center" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;table-layout:fixed;">
+        <tr><td class="email-section" bgcolor="#073b2e" style="padding:32px 40px;background-color:#073b2e;border-top:4px solid #d3a547;">
+          <p style="margin:0;color:#fffaf0;font-family:Georgia,'Times New Roman',serif;font-size:32px;line-height:40px;">{{ business.name }}</p>
+          <p style="margin:8px 0 0;color:#edce8b;font-size:11px;line-height:18px;letter-spacing:1.6px;">GOOD FOOD. GREAT TIMES. FOR EVERYONE.</p>
+        </td></tr>
+        <tr><td class="email-section" bgcolor="#fffdf7" style="padding:36px 40px 40px;background-color:#fffdf7;word-wrap:break-word;overflow-wrap:anywhere;">
+          {% block content %}{% endblock %}
+        </td></tr>
+        <tr><td class="email-section" bgcolor="#eae5d8" style="padding:24px 40px;background-color:#eae5d8;">
+          <p style="margin:0 0 8px;color:#334c40;font-family:Georgia,'Times New Roman',serif;font-size:20px;line-height:26px;">A little time at the Oasis.</p>
+          <p style="margin:0;color:#4c594f;font-size:13px;line-height:21px;">{{ business.address }}<br>{{ business.city }}<br><a href="{{ business.phone_uri }}" style="color:#073b2e;text-decoration:underline;">{{ business.phone }}</a></p>
+          <p style="margin:16px 0 0;color:#596258;font-size:12px;line-height:19px;">{{ recipient_notice|default('Sent by the ' ~ business.name ~ ' website to the configured staff inbox.') }}</p>
+        </td></tr>
+      </table>
+      <!--[if mso]></td></tr></table><![endif]-->
+    </td></tr>
+  </table>
+</body>
+</html>

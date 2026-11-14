@@ -316,14 +316,20 @@ def inquiry_query():
     if q:
         from .services.search import indexed_ids
         indexed = indexed_ids(q)
-        if indexed is not None:
-            return query.where(Inquiry.id.in_(indexed))
         escaped = q.replace('\\', '\\\\').replace('%', '\\%').replace('_', '\\_')
         pattern = '%' + escaped + '%'
-        expressions = [field.ilike(pattern, escape='\\') for field in (Inquiry.reference, Inquiry.name, Inquiry.contact_detail, Inquiry.notes)]
+        fields = (Inquiry.email, Inquiry.phone) if indexed is not None else (Inquiry.reference, Inquiry.name, Inquiry.contact_detail, Inquiry.email, Inquiry.phone, Inquiry.notes)
+        expressions = [field.ilike(pattern, escape='\\') for field in fields]
+        if indexed is not None:
+            expressions.append(Inquiry.id.in_(indexed))
         if re.fullmatch(r'[+()\d\s.\-]+', q) and (digits := re.sub(r'\D', '', q)):
             expressions.append(Inquiry.contact_normalized.contains(digits))
-        expressions.append(db.select(InquiryNote.id).where(InquiryNote.inquiry_id == Inquiry.id, InquiryNote.body.ilike(pattern, escape='\\')).exists())
+            normalized_phone = Inquiry.phone
+            for separator in '+() .-':
+                normalized_phone = db.func.replace(normalized_phone, separator, '')
+            expressions.append(normalized_phone.contains(digits))
+        if indexed is None:
+            expressions.append(db.select(InquiryNote.id).where(InquiryNote.inquiry_id == Inquiry.id, InquiryNote.body.ilike(pattern, escape='\\')).exists())
         query = query.where(db.or_(*expressions))
     return query
 
@@ -458,9 +464,9 @@ def export():
         abort(400, description='Narrow the filters to at most 10,000 inquiries before exporting.')
     buffer = io.StringIO()
     writer = csv.writer(buffer)
-    writer.writerow(['Reference', 'Type', 'Status', 'Name', 'Contact', 'Received', 'Preferred date'])
+    writer.writerow(['Reference', 'Type', 'Status', 'Name', 'Contact', 'Email', 'Phone', 'Received', 'Preferred date'])
     for row in rows:
-        values = [row.reference, row.inquiry_type, row.staff_state, row.name, row.contact_detail, str(row.received_at), str(row.preferred_date or '')]
+        values = [row.reference, row.inquiry_type, row.staff_state, row.name, row.contact_detail, row.email, row.phone, str(row.received_at), str(row.preferred_date or '')]
         writer.writerow(["'" + v if v.startswith(('\t','\r','\n')) or v.lstrip().startswith(('=', '+', '-', '@')) else v for v in values])
     audit('inquiry.export', 'inquiries', f'{len(rows)} rows')
     commit()

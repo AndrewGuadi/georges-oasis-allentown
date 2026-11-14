@@ -18,7 +18,7 @@ logger = logging.getLogger('alembic.env')
 def get_engine():
     try:
         # this works with Flask-SQLAlchemy<3 and Alchemical
-        return current_app.extensions['migrate'].db.engine
+        return current_app.extensions['migrate'].db.get_engine()
     except (TypeError, AttributeError):
         # this works with Flask-SQLAlchemy>=3
         return current_app.extensions['migrate'].db.engine
@@ -94,11 +94,6 @@ def run_migrations_online():
     if conf_args.get("process_revision_directives") is None:
         conf_args["process_revision_directives"] = process_revision_directives
 
-    if conf_args.get('include_object') is None:
-        def include_object(obj, name, type_, reflected, compare_to):
-            # FTS5 virtual/shadow tables are maintained by their explicit migration.
-            return not (type_ == 'table' and name.startswith('inquiry_search'))
-        conf_args['include_object'] = include_object
     connectable = get_engine()
 
     with connectable.connect() as connection:

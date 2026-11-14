@@ -90,6 +90,32 @@ class ApprovedPageUpdatesTest(unittest.TestCase):
         self.assertIn('settle into a seat', html)
         self.assertIn('just for ice cream', html)
 
+    def test_staff_content_review_renders_unpriced_menu_variants(self):
+        with self.client.session_transaction() as session:
+            session['owner'] = True
+        response = self.client.get('/admin/content-review')
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('2 pancakes: Price not set', response.get_data(as_text=True))
+
+    def test_staff_content_review_distinguishes_missing_zero_and_set_prices(self):
+        item = self.source['menu_categories'][0]['items'][0]
+        item['price'] = 0
+        item['variants'] = [
+            {'label': 'Unpriced test portion', 'price': None},
+            {'label': 'Zero test portion', 'price': 0},
+            {'label': 'Priced test portion', 'price': '12.50'},
+        ]
+        self.app.config['SITE_CONTENT'] = self.source
+        with self.client.session_transaction() as session:
+            session['owner'] = True
+        response = self.client.get('/admin/content-review')
+        self.assertEqual(response.status_code, 200)
+        html = response.get_data(as_text=True)
+        self.assertIn('Unpriced test portion: Price not set', html)
+        self.assertIn('Zero test portion: $0.00', html)
+        self.assertIn('Priced test portion: $12.50', html)
+        self.assertIn('<p>$0.00', html)
+
     def test_holiday_pie_order_and_pickup_switch_on_eastern_dates(self):
         def page_at(instant):
             now = datetime.fromisoformat(instant)
@@ -101,7 +127,8 @@ class ApprovedPageUpdatesTest(unittest.TestCase):
         self.assertNotIn('id="holiday-pies"', page_at('2026-11-11T04:59:00+00:00'))
         ordering = page_at('2026-11-23T04:59:00+00:00')
         self.assertIn('id="holiday-pies"', ordering)
-        self.assertIn(self.app.config['EXTERNAL_LINKS']['pie_order'], ordering)
+        self.assertIn('Call to Order a Holiday Pie', ordering)
+        self.assertNotIn('docs.google.com/forms/', ordering)
         self.assertIn('datetime="2026-11-22"', ordering)
         self.assertIn('datetime="2026-11-24"', ordering)
         self.assertIn('datetime="2026-11-25"', ordering)
@@ -113,7 +140,7 @@ class ApprovedPageUpdatesTest(unittest.TestCase):
             self.assertIn(f'<span>{name}</span><strong>${price}</strong>', ordering)
         pickup = page_at('2026-11-23T05:00:00+00:00')
         self.assertIn('Pie orders are closed.', pickup)
-        self.assertNotIn(self.app.config['EXTERNAL_LINKS']['pie_order'], pickup)
+        self.assertNotIn('Call to Order a Holiday Pie', pickup)
         self.assertIn('id="holiday-pies"', page_at('2026-11-26T04:59:00+00:00'))
         self.assertNotIn('id="holiday-pies"', page_at('2026-11-26T05:00:00+00:00'))
 

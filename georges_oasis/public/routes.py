@@ -67,9 +67,10 @@ for page in PAGES:
 def inquiry_received(reference):
     if reference not in session.get('inquiry_receipts',[]):
         abort(404)
-    if not db.session.execute(db.select(Inquiry.id).filter_by(reference=reference)).scalar_one_or_none():
+    inquiry = db.session.scalar(db.select(Inquiry).filter_by(reference=reference))
+    if inquiry is None:
         abort(404)
-    response = make_response(render_template('public/inquiry_received.html',reference=reference))
+    response = make_response(render_template('public/inquiry_received.html',reference=reference, customer_notification_state=inquiry.customer_notification_state))
     response.headers['X-Robots-Tag'] = 'noindex, nofollow'
     response.headers['Cache-Control'] = 'no-store'
     return response

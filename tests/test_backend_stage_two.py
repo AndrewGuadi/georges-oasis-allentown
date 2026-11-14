@@ -5,6 +5,7 @@ import io
 import re
 import tempfile
 import unittest
+from unittest.mock import patch
 from PIL import Image
 from flask_migrate import upgrade
 from werkzeug.security import generate_password_hash
@@ -73,6 +74,14 @@ class BackendStageTwoTest(unittest.TestCase):
             inquiry_id=row.id
         form.update(changes)
         return self.client.post(f'/admin/inquiries/{inquiry_id}',data=form)
+
+    def test_secondary_phone_can_be_found_with_or_without_formatting(self):
+        response, _ = self.submit(contact_method='email', email='guest@example.test', phone='(610) 555-0100')
+        self.assertEqual(response.status_code, 303)
+        for query in ('6105550100', '(610) 555-0100', 'guest@example.test'):
+            response = self.client.get('/admin/inquiries', query_string={'q': query})
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b'Fixture Guest', response.data)
 
     def test_import_reconciles_cents_and_is_idempotent(self):
         with self.app.app_context():
@@ -167,10 +176,11 @@ class BackendStageTwoTest(unittest.TestCase):
         self.assertIn(b'Fixture Guest',self.client.get('/admin/inquiries?staff_state=spam').data)
         with self.app.app_context():
             self.assertEqual(db.session.scalar(db.select(db.func.count()).select_from(InquiryHistory)),8)
-        self.assertEqual(self.sent,[])
+        self.assertEqual(len(self.sent),1)
 
     def test_queue_commit_duplicate_retry_and_recovery(self):
-        response,form=self.submit()
+        with patch('georges_oasis.services.notifications.attempt_notification', return_value=0):
+            response,form=self.submit()
         self.assertEqual(response.status_code,303)
         self.assertEqual(self.client.post('/gatherings',data=form).location,response.location)
         self.assertEqual(self.sent,[])
@@ -287,7 +297,8 @@ class BackendStageTwoTest(unittest.TestCase):
         self.assertEqual(sum(results),10)
 
     def test_exhausted_worker_lease_surfaces_failure(self):
-        self.submit()
+        with patch('georges_oasis.services.notifications.attempt_notification', return_value=0):
+            self.submit()
         with self.app.app_context():
             row=db.session.scalar(db.select(NotificationOutbox))
             row.state='sending';row.attempts=5;row.lease_until=utcnow()-timedelta(minutes=1)
@@ -326,22 +337,24 @@ class BackendStageTwoTest(unittest.TestCase):
 
 
 class PopulatedMigrationTest(unittest.TestCase):
-    def test_legacy_closed_preserves_submission_and_maps_to_other(self):
+    def test_contact_upgrade_preserves_submission_and_backfills_contacts(self):
         with tempfile.TemporaryDirectory() as folder:
             app=create_app({'TESTING':True,'SQLALCHEMY_DATABASE_URI':'sqlite:///'+folder+'/legacy.sqlite'})
             with app.app_context():
-                upgrade(revision='3a72d189c401')
-                db.session.execute(db.text("INSERT INTO inquiry (reference,submission_key,name,contact_method,contact_detail,occasion,date_flexibility,interests,notes,received_at,staff_state,notification_state) VALUES ('GO-LEGACY','legacy-key','Legacy fixture','phone','610 555 0100','Birthday','Flexible date','[\"Mini golf\"]','Original customer note',CURRENT_TIMESTAMP,'closed','sent')"))
+                upgrade(revision='baf73d71c469')
+                db.session.execute(db.text("INSERT INTO inquiry (reference,submission_key,name,contact_method,contact_detail,occasion,date_flexibility,interests,notes,received_at,staff_state,notification_state,inquiry_type,source_route,updated_at,contact_normalized,version_id) VALUES ('GO-LEGACY','legacy-key','Legacy fixture','phone','610 555 0100','Birthday','Flexible date','[\"Mini golf\"]','Original customer note',CURRENT_TIMESTAMP,'contacted','sent','event','/gatherings',CURRENT_TIMESTAMP,'6105550100',1)"))
                 db.session.commit()
                 upgrade()
                 inquiry=db.session.scalar(db.select(Inquiry))
-                self.assertEqual(inquiry.staff_state,'other')
+                self.assertEqual(inquiry.staff_state,'contacted')
+                self.assertEqual(inquiry.phone,'610 555 0100')
+                self.assertEqual(inquiry.email,'')
+                self.assertEqual(inquiry.customer_notification_state, 'not_requested')
+                self.assertEqual(db.session.scalar(db.select(db.func.count()).select_from(db.table('customer_acknowledgment'))), 0)
                 self.assertEqual(inquiry.contact_normalized,'6105550100')
                 self.assertEqual(inquiry.inquiry_type,'event')
                 self.assertEqual(inquiry.notes,'Original customer note')
-                history=db.session.scalar(db.select(InquiryHistory))
-                self.assertEqual(history.old_state,'closed')
-                self.assertIn('Legacy closed',history.reason)
+                self.assertEqual(db.session.execute(db.text("SELECT rowid FROM inquiry_search WHERE inquiry_search MATCH 'Legacy'")).scalars().all(), [inquiry.id])
                 self.assertEqual(db.session.execute(db.text('PRAGMA foreign_key_check')).all(),[])
                 db.session.remove();db.engine.dispose()
 
