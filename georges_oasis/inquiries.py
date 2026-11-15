@@ -37,7 +37,7 @@ def form_values():
                     "guest_count", "preferred_date", "date_flexibility", "notes", "submission_token", "inquiry_type")
     } | {"interests": request.form.getlist("interests")}
 
-def send_staff_email(subject, body, *, reference=None, inbox_url=None):
+def send_staff_email(subject, body, *, reference=None, inbox_url=None, details=(), customer_message=None):
     """Send one staff message using the same transport for tests and the worker."""
     recipient = notification_recipient()
     sender = current_app.config.get('INQUIRY_SENDER')
@@ -55,7 +55,7 @@ def send_staff_email(subject, body, *, reference=None, inbox_url=None):
         preheader=f'New saved inquiry {reference}. Sign in to review.' if reference else 'A message from the George’s Oasis website.',
         eyebrow='FROM YOUR WEBSITE' if reference else 'STAFF EMAIL CHECK',
         heading='A new inquiry is waiting.' if reference else subject,
-        reference=reference, inbox_url=inbox_url,
+        reference=reference, inbox_url=inbox_url, details=details, customer_message=customer_message,
         paragraphs=body.split('\n\n')), subtype='html')
     _send_email(message)
 
@@ -95,7 +95,33 @@ def deliver_notification(inquiry):
     inbox_url = f'{base}/admin/inquiries/{inquiry.id}' if parsed.scheme in allowed_schemes and parsed.netloc and not parsed.username and not parsed.query and not parsed.fragment else None
     inbox = (inbox_url if inbox_url else
              'Open the restaurant website and sign in at /admin to review this reference.')
-    send_staff_email(f'Oasis inquiry {inquiry.reference}', f'Reference: {inquiry.reference}\nA new inquiry is saved in the staff inbox.\n{inbox}\nSign in to review it. This is not a confirmed booking.', reference=inquiry.reference, inbox_url=inbox_url)
+    email = inquiry.email or (inquiry.contact_detail if inquiry.contact_method == 'email' else '')
+    phone = inquiry.phone or (inquiry.contact_detail if inquiry.contact_method == 'phone' else '')
+    details = [
+        ('Inquiry ID', str(inquiry.id)),
+        ('Customer name', inquiry.name),
+        ('Email', email),
+        ('Phone', phone),
+        ('Preferred contact method', inquiry.contact_method.capitalize()),
+        ('Occasion', inquiry.occasion),
+        ('Estimated guests', str(inquiry.guest_count) if inquiry.guest_count is not None else ''),
+        ('Preferred date', inquiry.preferred_date.isoformat() if inquiry.preferred_date else ''),
+        ('Date flexibility', inquiry.date_flexibility),
+        ('Interests', ', '.join(inquiry.interests or [])),
+    ]
+    details = [(label, value) for label, value in details if value]
+    customer_message = inquiry.notes or 'No message provided.'
+    field_lines = '\n'.join(f'{label}: {value}' for label, value in details)
+    body = (
+        f'Reference: {inquiry.reference}\n{field_lines}\n\n'
+        f'Customer message:\n{customer_message}\n\n'
+        f'{inbox}\n\nThis inquiry does not confirm a booking.'
+    )
+    send_staff_email(
+        f'Oasis inquiry {inquiry.reference}', body,
+        reference=inquiry.reference, inbox_url=inbox_url,
+        details=details, customer_message=customer_message,
+    )
 
 
 def deliver_customer_acknowledgment(inquiry):
