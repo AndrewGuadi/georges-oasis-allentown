@@ -4,7 +4,19 @@
   <h1 class="email-title" style="margin:0 0 20px;color:#073b2e;font-family:Georgia,'Times New Roman',serif;font-size:34px;line-height:40px;font-weight:normal;">{{ heading }}</h1>
   {% if reference %}
     <p style="margin:0 0 24px;padding:16px;background-color:#f3efe4;border-left:3px solid #b68a36;color:#334c40;font-size:14px;line-height:24px;">INQUIRY REFERENCE<br><strong style="color:#073b2e;font-size:20px;letter-spacing:0.5px;word-break:break-word;">{{ reference }}</strong></p>
-    <p style="margin:0 0 24px;color:#334c40;font-size:16px;line-height:26px;">A new inquiry has been saved to your staff dashboard. Sign in to review the details and plan your followup.</p>
+    <p style="margin:0 0 24px;color:#334c40;font-size:16px;line-height:26px;">A new inquiry has been saved to your staff dashboard.</p>
+    {% if details %}
+      <table aria-label="Inquiry details" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 24px;width:100%;border-collapse:collapse;color:#334c40;font-size:14px;line-height:22px;">
+        {% for label, value in details %}
+          <tr>
+            <th scope="row" align="left" style="padding:8px 12px 8px 0;border-bottom:1px solid #ddd5c2;vertical-align:top;">{{ label }}</th>
+            <td style="padding:8px 0;border-bottom:1px solid #ddd5c2;vertical-align:top;word-break:break-word;">{{ value }}</td>
+          </tr>
+        {% endfor %}
+      </table>
+      <h2 style="margin:0 0 8px;color:#073b2e;font-size:17px;line-height:24px;">Customer message</h2>
+      <p style="margin:0 0 24px;color:#334c40;font-size:16px;line-height:26px;word-break:break-word;">{% for line in customer_message.splitlines() %}{{ line }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p>
+    {% endif %}
     {% if inbox_url %}
       <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 24px;width:100%;"><tr><td align="left">
         <a class="email-button" href="{{ inbox_url }}" style="display:inline-block;padding:16px 24px;background-color:#073b2e;border:1px solid #073b2e;border-radius:4px;color:#fffaf0;font-size:16px;line-height:22px;font-weight:bold;text-decoration:none;mso-padding-alt:16px;">Review the inquiry</a>
@@ -13,7 +25,7 @@
     {% else %}
       <p style="margin:0 0 24px;padding:16px;background-color:#f3efe4;color:#334c40;font-size:16px;line-height:26px;">Open the restaurant website, sign in at <strong>/admin</strong> and look up the reference above.</p>
     {% endif %}
-    <p style="margin:0;padding-top:20px;border-top:1px solid #ddd5c2;color:#596258;font-size:13px;line-height:21px;">This inquiry does not confirm a booking. Customer contact details and messages remain in the staff dashboard.</p>
+    <p style="margin:0;padding-top:20px;border-top:1px solid #ddd5c2;color:#596258;font-size:13px;line-height:21px;">This inquiry does not confirm a booking.</p>
   {% else %}
     {% for paragraph in paragraphs %}
       <p style="margin:0 0 20px;color:#334c40;font-size:16px;line-height:26px;">{% for line in paragraph.splitlines() %}{{ line }}{% if not loop.last %}<br>{% endif %}{% endfor %}</p>

@@ -85,8 +85,10 @@ class InquiryTest(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertIn('Enter a phone number', response.get_data(as_text=True))
 
-    def test_worker_mail_has_absolute_link_or_clear_inbox_instructions(self):
-        self.client.post('/gatherings', data=self.form())
+    def test_worker_mail_includes_inquiry_details_and_inbox_instructions(self):
+        form = self.form()
+        form.update(phone='610 555 0100', notes='Please call.\n<em>Special request</em>')
+        self.assertEqual(self.client.post('/gatherings', data=form).status_code, 303)
         self.app.config.update(INQUIRY_NOTIFIER=None, INQUIRY_RECIPIENT='staff@example.test', INQUIRY_SENDER='website@example.test')
         from georges_oasis.inquiries import deliver_notification
         with self.app.app_context(), patch('georges_oasis.inquiries.smtplib.SMTP') as smtp:
@@ -97,7 +99,18 @@ class InquiryTest(unittest.TestCase):
                 deliver_notification(inquiry)
                 message = smtp.return_value.__enter__.return_value.send_message.call_args.args[0]
                 body = message.get_body(preferencelist=('plain',)).get_content()
-                self.assertNotIn('organizer@example.test', body)
+                html = message.get_body(preferencelist=('html',)).get_content()
+                self.assertEqual(message['To'], 'staff@example.test')
+                self.assertIn(inquiry.reference, message['Subject'])
+                for value in (inquiry.reference, inquiry.name, 'organizer@example.test',
+                              '610 555 0100', inquiry.occasion, 'Mini golf'):
+                    self.assertIn(value, body)
+                    self.assertIn(value, html)
+                self.assertIn(f'Inquiry ID: {inquiry.id}', body)
+                self.assertIn(f'Estimated guests: {inquiry.guest_count}', body)
+                self.assertIn('Please call.\n<em>Special request</em>', body)
+                self.assertIn('Please call.<br>&lt;em&gt;Special request&lt;/em&gt;', html)
+                self.assertNotIn('<em>Special request</em>', html)
                 if base:
                     self.assertIn('https://restaurant.example/admin/inquiries/1', body)
                 else:
