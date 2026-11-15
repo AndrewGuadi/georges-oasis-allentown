@@ -17,6 +17,7 @@ from .content import local_now
 from .models import db, Inquiry, InquiryHistory
 from .services.abuse import take_limit
 from .services.notifications import notification_recipient, queue_notification
+from .services.turnstile import TurnstileUnavailable, verify_inquiry_challenge
 
 OCCASIONS = ["Birthday", "Family celebration", "Shower", "Company gathering", "Mini golf outing", "School trip", "Fundraiser", "Other", "Not sure yet"]
 INTERESTS = ["Dining", "Private space", "Mini golf", "Ice cream & desserts", "Not sure yet"]
@@ -178,6 +179,7 @@ def submit_inquiry(values):
             raise BadSignature("Wrong session")
         submission_key = sha256(values["submission_token"].encode()).hexdigest()
     except (BadSignature, SignatureExpired):
+        g.inquiry_form_result = "session_expired"
         return None,{"form":"This form session has expired. Please review your details and send again."},400
     try:
         existing = db.session.execute(db.select(Inquiry).filter_by(submission_key=submission_key)).scalar_one_or_none()
@@ -256,6 +258,15 @@ def submit_inquiry(values):
         errors["notes"] = "Keep your notes to 2,000 characters or fewer."
     if errors:
         return None,errors,400
+    if current_app.config["TURNSTILE_SITE_KEY"]:
+        try:
+            verified = verify_inquiry_challenge(request.form.get("cf-turnstile-response", ""))
+        except TurnstileUnavailable:
+            current_app.logger.warning("Inquiry Turnstile verification unavailable")
+            return None, {"form": "We couldn’t load the security check. Please try again or call us."}, 503
+        if not verified:
+            g.inquiry_form_result = "bot_check_failed"
+            return None, {"form": "Please complete the security check below and send again."}, 400
     contact = values[contact_method]
     inquiry = Inquiry(
         reference="GO-" + uuid4().hex[:12].upper(),
@@ -294,6 +305,9 @@ def submit_inquiry(values):
         return None,{"form":"We couldn’t save your request. Your details are still below. Try again or call us."},503
     authorize_receipt(inquiry)
     if saved_new:
+        if current_app.config["GA4_MEASUREMENT_ID"]:
+            pending = session.get("analytics_inquiry_receipts", [])
+            session["analytics_inquiry_receipts"] = (pending + [inquiry.reference])[-20:]
         from .services.notifications import attempt_notification
         # Receipt data stays available even if notification status updates fail.
         # authorize_receipt has loaded the committed row before detaching it.

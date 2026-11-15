@@ -90,6 +90,10 @@
     </div>
     <div class="inquiry-submit">
       <p>We’ll get in touch to talk through availability, pricing and next steps.</p>
+      {% if config.TURNSTILE_SITE_KEY and not review_mode %}
+      <div class="cf-turnstile" data-sitekey="{{ config.TURNSTILE_SITE_KEY }}" data-action="gatherings_inquiry" data-appearance="interaction-only" data-size="flexible"></div>
+      <noscript><p>Enable JavaScript to send an inquiry, or call <a href="{{ business.phone_uri }}">{{ business.phone }}</a>.</p></noscript>
+      {% endif %}
       <button type="submit" class="btn btn-primary"><span data-inquiry-submit-label>{{ profile[1] }}</span> <span aria-hidden="true">→</span></button>
     </div>
     {% if review_mode %}</fieldset>{% endif %}

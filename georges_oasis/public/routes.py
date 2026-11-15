@@ -1,5 +1,5 @@
 from datetime import datetime, timezone
-from flask import current_app, abort, make_response, redirect, render_template, request, session, url_for
+from flask import current_app, abort, g, make_response, redirect, render_template, request, session, url_for
 from . import public_bp
 from .sitemap import PAGES, LEGACY
 from ..content import public_content, clock_time, money
@@ -42,6 +42,11 @@ def page_view(page):
                 inquiry,errors,status = submit_inquiry(values)
                 if inquiry:
                     return redirect(url_for('public.inquiry_received',reference=inquiry.reference),code=303)
+                g.setdefault("inquiry_form_result", {
+                    400: "validation_error",
+                    429: "rate_limited",
+                    503: "temporarily_unavailable",
+                }.get(status, "submission_error"))
                 if 'form' in errors and 'expired' in errors['form']:
                     values['submission_token'] = new_submission_token()
             values.setdefault('submission_token',new_submission_token())
@@ -70,6 +75,10 @@ def inquiry_received(reference):
     inquiry = db.session.scalar(db.select(Inquiry).filter_by(reference=reference))
     if inquiry is None:
         abort(404)
+    pending = session.get("analytics_inquiry_receipts", [])
+    if reference in pending:
+        g.inquiry_form_result = "saved"
+        session["analytics_inquiry_receipts"] = [item for item in pending if item != reference]
     response = make_response(render_template('public/inquiry_received.html',reference=reference, customer_notification_state=inquiry.customer_notification_state))
     response.headers['X-Robots-Tag'] = 'noindex, nofollow'
     response.headers['Cache-Control'] = 'no-store'
