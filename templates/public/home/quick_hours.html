@@ -1,7 +1,14 @@
 <section class="quick-visit" aria-label="Restaurant hours at a glance">
   <details class="quick-hours">
     <summary><span>{{ icon('clock') }} <strong>Restaurant hours</strong>{% for service in dining_services if service.key == 'restaurant' %}<span class="quick-hours-status">{{ service.label }} · {{ service.note }}</span>{% endfor %}</span><span class="hours-toggle">View week <span aria-hidden="true">+</span></span></summary>
-    <div class="quick-hours-panel">{% for service in dining_services if service.key == 'restaurant' %}<dl>{% for day in service.schedule %}<div><dt>{{ day.day }}</dt><dd>{% if not day.known %}Call for hours{% elif not day.windows %}Closed{% else %}{% for window in day.windows %}{{ window[0]|clock_time|replace(':00','') }}–{{ window[1]|clock_time|replace(':00','') }}{% if not loop.last %}<br>{% endif %}{% endfor %}{% endif %}</dd></div>{% endfor %}</dl>{% if service.exception_note %}<p>{{ service.exception_note }}</p>{% endif %}{% endfor %}<p>Dinner follows its own schedule. <a class="text-link" href="{{ url_for('public.visit', _anchor='dinner-hours') }}">See restaurant & dinner hours →</a></p></div>
+    <div class="quick-hours-panel">
+      {% for service in dining_services if service.key == 'restaurant' %}
+        <dl>{% for day in service.schedule %}<div><dt>{{ day.day }}</dt><dd>{% if not day.known %}Call for hours{% elif not day.windows %}Closed{% else %}{% for window in day.windows %}{{ window[0]|clock_time|replace(':00','') }}–{{ window[1]|clock_time|replace(':00','') }}{% if not loop.last %}<br>{% endif %}{% endfor %}{% endif %}</dd></div>{% endfor %}</dl>
+        {% if service.schedule_note %}<p>{{ service.schedule_note }}</p>{% endif %}
+        {% if service.exception_note %}<p>{{ service.exception_note }}</p>{% endif %}
+      {% endfor %}
+      <p>Dinner follows its own schedule. <a class="text-link" href="{{ url_for('public.visit', _anchor='dinner-hours') }}">See restaurant & dinner hours →</a></p>
+    </div>
   </details>
   <a class="quick-call" href="{{ business.phone_uri }}">{{ icon('phone') }} {{ business.phone }}</a>
 </section>

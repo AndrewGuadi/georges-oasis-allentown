@@ -22,11 +22,10 @@
       "name": "Restaurant hours",
       "metadata": {
         "status": "approved",
-        "source": "User-provided General and Dinner hours, October 14, 2026",
-        "reviewed_at": "2026-10-14",
+        "source": "User-provided OASIS_RESTAURANT_HOURS_V3 flyer",
+        "reviewed_at": "2026-11-15",
         "valid_from": null,
-        "valid_until": null,
-        "notes": "General and dinner schedules approved by user. Previous kitchen and breakfast cutoffs are not part of this approval."
+        "valid_until": null
       },
       "weekly": {
         "0": [
@@ -38,31 +37,31 @@
         "1": [
           [
             "07:00",
-            "20:00"
+            "19:30"
           ]
         ],
         "2": [
           [
             "07:00",
-            "20:00"
+            "19:30"
           ]
         ],
         "3": [
           [
             "07:00",
-            "20:00"
+            "19:30"
           ]
         ],
         "4": [
           [
             "07:00",
-            "21:00"
+            "20:00"
           ]
         ],
         "5": [
           [
             "08:00",
-            "21:00"
+            "20:00"
           ]
         ],
         "6": []
@@ -71,7 +70,8 @@
       "season": "unknown",
       "cutoff_minutes": null,
       "breakfast_cutoff": null,
-      "note": "General restaurant hours. Dinner follows its own schedule."
+      "note": "General restaurant hours. Dinner follows its own schedule.",
+      "schedule_note": "On Fridays and Saturdays, the kitchen closes 30 minutes before the restaurant, and ice cream and desserts are available until closing."
     },
     {
       "key": "golf",
@@ -111,11 +111,11 @@
       "name": "Dinner",
       "metadata": {
         "status": "approved",
-        "source": "User-provided General and Dinner hours, October 14, 2026",
-        "reviewed_at": "2026-10-14",
+        "source": "User-provided October dinner schedule and OASIS_RESTAURANT_HOURS_V3 flyer",
+        "reviewed_at": "2026-11-15",
         "valid_from": null,
         "valid_until": null,
-        "notes": "General and dinner schedules approved by user. Previous kitchen and breakfast cutoffs are not part of this approval."
+        "notes": "Existing dinner schedule with Friday and Saturday end times aligned to the flyer’s kitchen cutoff."
       },
       "weekly": {
         "0": [],
@@ -140,13 +140,13 @@
         "4": [
           [
             "15:00",
-            "20:00"
+            "19:30"
           ]
         ],
         "5": [
           [
             "08:00",
-            "21:00"
+            "19:30"
           ]
         ],
         "6": []

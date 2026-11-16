@@ -100,6 +100,7 @@ def service_status(service, now=None):
     weekly = service.get("weekly", {})
     days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
     result["schedule"] = [{"day":day,"windows":weekly.get(str(i), []),"known":str(i) in weekly} for i,day in enumerate(days)]
+    result["schedule_note"] = service.get("schedule_note")
     result["breakfast"] = service.get("breakfast_cutoff")
     today_key = current.date().isoformat()
     exceptions = service.get("exceptions", {})
