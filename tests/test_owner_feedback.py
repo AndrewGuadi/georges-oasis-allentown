@@ -91,4 +91,4 @@ class OwnerFeedbackTest(unittest.TestCase):
         self.assertLess(html.index('A burger worth slowing down for'), html.index('class="features"'))
         self.assertIn('Char-grilled burgers', html)
         self.assertIn('View week', html)
-        self.assertIn('Dinner follows its own schedule', html)
+        self.assertIn('See hours and directions', html)

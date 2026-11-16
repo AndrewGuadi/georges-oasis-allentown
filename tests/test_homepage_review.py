@@ -96,20 +96,18 @@ class HomepageReviewTest(unittest.TestCase):
             self.assertEqual(response.headers['X-Robots-Tag'], 'noindex, nofollow')
         self.assertIn('Disallow: /\n', self.client.get('/robots.txt').get_data(as_text=True))
 
-    def test_dinner_next_service_exceptions_and_unknown_golf(self):
-        dinner = next(s for s in self.source['services'] if s['key'] == 'dinner')
-        now = datetime.fromisoformat('2026-10-16T14:00:00-04:00')
-        self.assertEqual(service_status(dinner, now)['note'], 'Dinner begins at 3 PM today.')
-        dinner['exceptions'] = {'2026-10-16': []}
-        self.assertEqual(service_status(dinner, now)['note'], 'View service hours.')
+    def test_restaurant_next_service_exceptions_and_unknown_golf(self):
+        restaurant = next(s for s in self.source['services'] if s['key'] == 'restaurant')
+        now = datetime.fromisoformat('2026-10-16T06:00:00-04:00')
+        self.assertEqual(service_status(restaurant, now)['note'], 'Opens at 7 AM today.')
+        restaurant['exceptions'] = {'2026-10-16': []}
+        self.assertEqual(service_status(restaurant, now)['exception_note'], 'Closed today: special schedule.')
         golf = next(s for s in self.source['services'] if s['key'] == 'golf')
         self.assertEqual(service_status(golf, now)['state'], 'unknown')
-        saturday = next(s for s in self.source['services'] if s['key'] == 'dinner')['weekly']['5']
-        self.assertEqual(saturday, [['08:00', '19:30']])
 
     def test_restaurant_hours_and_weekend_kitchen_cutoff(self):
         restaurant = next(s for s in self.source['services'] if s['key'] == 'restaurant')
-        dinner = next(s for s in self.source['services'] if s['key'] == 'dinner')
+        self.assertNotIn('dinner', [service['key'] for service in self.source['services']])
         self.assertEqual(restaurant['weekly'], {
             '0': [['07:00', '15:00']],
             '1': [['07:00', '19:30']],
@@ -121,14 +119,16 @@ class HomepageReviewTest(unittest.TestCase):
         })
         for date in ('2026-11-13', '2026-11-14'):
             with self.subTest(date=date):
-                before_cutoff = datetime.fromisoformat(f'{date}T19:29:00-05:00')
                 after_cutoff = datetime.fromisoformat(f'{date}T19:30:00-05:00')
-                self.assertEqual(service_status(dinner, before_cutoff)['state'], 'open')
-                self.assertEqual(service_status(dinner, after_cutoff)['state'], 'closed')
+                closing = datetime.fromisoformat(f'{date}T20:00:00-05:00')
                 self.assertEqual(service_status(restaurant, after_cutoff)['state'], 'open')
+                self.assertEqual(service_status(restaurant, closing)['state'], 'closed')
         for path, hours_markup in (('/', 'quick-hours-panel'), ('/visit', 'dining-hours-table'), ('/order', 'dining-hours-table')):
             with self.subTest(path=path):
                 response = self.client.get(path)
                 self.assertEqual(response.status_code, 200)
                 html = response.get_data(as_text=True)
                 self.assertIn(restaurant['schedule_note'], html.split(hours_markup, 1)[1])
+                self.assertNotIn('dinner-hours', html)
+        menu = self.client.get('/food-and-ice-cream').get_data(as_text=True)
+        self.assertNotIn('restaurant and dinner hours separately', menu)

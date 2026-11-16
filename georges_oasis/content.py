@@ -131,7 +131,7 @@ def service_status(service, now=None):
         note = "View service hours."
         if future_starts:
             next_start = min(future_starts).strftime('%-I:%M %p').replace(':00', '')
-            note = f"{'Dinner begins' if service['key'] == 'dinner' else 'Opens'} at {next_start} today."
+            note = f"Opens at {next_start} today."
         return result | {"state":"closed","label":"Closed now","note":note}
     except (ValueError,TypeError,OverflowError):
         return result | {"state":"unknown","label":"Check hours","schedule":[]}
@@ -228,7 +228,7 @@ def _public_content(now=None, include_drafts=False):
             "today_special": today_special,
             "pie_campaign": current_pie_campaign(data.get("pie_campaign", {}), now),
             "visit_details":data.get('visit_details', {}), "ice_cream_experience":data.get('ice_cream_experience', {}),
-            "ordering_details":data.get('ordering_details', {}), "photo_placements":data.get("photo_placements", {}), "menu_sources":data.get("menu_sources", []) if show_menu_prices else [], "menu_item_count":sum(len(c["items"]) for c in categories), "weekly_special_days": data.get("weekly_special_days", [2, 3, 4]), "has_menu_items":any(c["items"] for c in categories),"consumer_advisory":data.get("consumer_advisory",{}).get("text"),"dessert_flavors":data.get("dessert_flavors") if include_drafts or publishable(data.get("dessert_flavors",{}),now) else None,"menu_download_url":data.get("menu_download",{}).get("url") if show_menu_prices and publishable(data.get("menu_download",{}),now) else None,"business":business,"menu_categories":categories,"service_facts":service_facts,"dining_services":[s for s in service_facts if s["key"] in ("restaurant", "dinner")],"editorial_offers":offers,"golf_rates":data["golf"] if include_drafts or publishable(data["golf"],now) else None,"story_record":data["story"] if include_drafts or publishable(data["story"],now) else None,"media":data["media"]}
+            "ordering_details":data.get('ordering_details', {}), "photo_placements":data.get("photo_placements", {}), "menu_sources":data.get("menu_sources", []) if show_menu_prices else [], "menu_item_count":sum(len(c["items"]) for c in categories), "weekly_special_days": data.get("weekly_special_days", [2, 3, 4]), "has_menu_items":any(c["items"] for c in categories),"consumer_advisory":data.get("consumer_advisory",{}).get("text"),"dessert_flavors":data.get("dessert_flavors") if include_drafts or publishable(data.get("dessert_flavors",{}),now) else None,"menu_download_url":data.get("menu_download",{}).get("url") if show_menu_prices and publishable(data.get("menu_download",{}),now) else None,"business":business,"menu_categories":categories,"service_facts":service_facts,"dining_services":[s for s in service_facts if s["key"] == "restaurant"],"editorial_offers":offers,"golf_rates":data["golf"] if include_drafts or publishable(data["golf"],now) else None,"story_record":data["story"] if include_drafts or publishable(data["story"],now) else None,"media":data["media"]}
 
 
 def clock_time(value):
