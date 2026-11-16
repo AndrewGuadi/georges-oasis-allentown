@@ -2,6 +2,7 @@ import re
 import unittest
 import sqlite3
 import tempfile
+from io import BytesIO
 from contextlib import closing
 from unittest.mock import patch
 from sqlalchemy.exc import OperationalError
@@ -31,6 +32,65 @@ class InquiryTest(unittest.TestCase):
         self.assertIn('does not confirm a booking',receipt.get_data(as_text=True));self.assertNotIn('organizer@example.test',receipt.get_data(as_text=True))
         self.assertEqual(receipt.headers['X-Robots-Tag'],'noindex, nofollow')
         self.assertEqual(self.app.test_client().get(first.location).status_code,404)
+
+    def test_turnstile_protects_storage_and_tracks_only_the_first_receipt(self):
+        self.app.config.update(GA4_MEASUREMENT_ID='G-TEST',
+                               TURNSTILE_SITE_KEY='widget-key', TURNSTILE_SECRET_KEY='private-key')
+        page = self.client.get('/gatherings')
+        self.assertIn(b'data-sitekey="widget-key"', page.data)
+        self.assertNotIn(b'private-key', page.data)
+        self.assertIn("frame-src 'self' https://challenges.cloudflare.com", page.headers['Content-Security-Policy'])
+        self.assertIn(b'data-analytics-id="G-TEST"', page.data)
+
+        form = self.form()
+        with patch('georges_oasis.services.turnstile.urlopen') as siteverify:
+            missing = self.client.post('/gatherings', data=form)
+            self.assertEqual(missing.status_code, 400)
+            self.assertIn(b'data-inquiry-result="bot_check_failed"', missing.data)
+            self.assertIn(b'Test Organizer', missing.data)
+            siteverify.assert_not_called()
+
+            form['cf-turnstile-response'] = 'challenge-token'
+            response = siteverify.return_value.__enter__
+            for payload in (
+                b'{"success":false,"error-codes":["timeout-or-duplicate"]}',
+                b'{"success":true,"hostname":"unrelated.example","action":"gatherings_inquiry"}',
+                b'{"success":true,"hostname":"localhost","action":"different_form"}',
+            ):
+                response.return_value = BytesIO(payload)
+                rejected = self.client.post('/gatherings', data=form)
+                self.assertEqual(rejected.status_code, 400)
+            with self.app.app_context():
+                self.assertEqual(db.session.query(Inquiry).count(), 0)
+                self.assertEqual(db.session.query(NotificationOutbox).count(), 0)
+            self.assertEqual(self.notifications, [])
+
+            response.return_value = BytesIO(
+                b'{"success":true,"hostname":"localhost","action":"gatherings_inquiry"}')
+            saved = self.client.post('/gatherings', data=form)
+            self.assertEqual(saved.status_code, 303)
+            self.assertEqual(len(self.notifications), 1)
+            verification_call_count = siteverify.call_count
+            receipt = self.client.get(saved.location)
+            self.assertIn(b'data-inquiry-result="saved"', receipt.data)
+            duplicate = self.client.post('/gatherings', data=form)
+            self.assertEqual(duplicate.location, saved.location)
+            self.assertEqual(siteverify.call_count, verification_call_count)
+            self.assertNotIn(b'data-inquiry-result="saved"', self.client.get(saved.location).data)
+            self.assertEqual(len(self.notifications), 1)
+
+    def test_turnstile_outage_preserves_form_without_saving(self):
+        self.app.config.update(GA4_MEASUREMENT_ID='G-TEST',
+                               TURNSTILE_SITE_KEY='widget-key', TURNSTILE_SECRET_KEY='private-key')
+        form = self.form()
+        form['cf-turnstile-response'] = 'challenge-token'
+        with patch('georges_oasis.services.turnstile.urlopen', side_effect=TimeoutError):
+            with self.assertLogs(self.app.logger, level='WARNING'):
+                response = self.client.post('/gatherings', data=form)
+        self.assertEqual(response.status_code, 503)
+        self.assertIn(b'data-inquiry-result="temporarily_unavailable"', response.data)
+        self.assertIn(b'Test Organizer', response.data)
+        self.assertEqual(self.notifications, [])
     def test_validation_preservation_and_safe_rendering(self):
         form=self.form();form.update(name='<script>alert(1)</script>',email='invalid',guest_count='-3')
         response=self.client.post('/gatherings',data=form);self.assertEqual(response.status_code,400)

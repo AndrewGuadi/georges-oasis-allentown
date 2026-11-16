@@ -36,6 +36,9 @@
     {% block content %}{% endblock %}
   </main>
   {% include 'public/includes/footer.html' %}
+  {% if analytics_id %}
+  <script src="{{ url_for('static', filename='js/analytics.js') }}" data-analytics-id="{{ analytics_id }}" data-inquiry-result="{{ inquiry_form_result }}" defer></script>
+  {% endif %}
   <script src="{{ url_for('static', filename='js/navigation.js') }}" defer></script>
   {% block scripts %}{% endblock %}
 </body>

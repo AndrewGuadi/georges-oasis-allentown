@@ -4,6 +4,9 @@
 {% block extra_head %}
   {{ super() }}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/gatherings.css') }}">
+  {% if config.TURNSTILE_SITE_KEY and not review_mode %}
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  {% endif %}
 {% endblock %}
 {% block page_intro %}
   {{ intro(

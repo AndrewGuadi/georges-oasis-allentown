@@ -1,6 +1,7 @@
 from flask import Flask
 from pathlib import Path
 import os
+import re
 import secrets
 from flask_wtf.csrf import CSRFProtect
 from flask_migrate import Migrate
@@ -31,6 +32,9 @@ def create_app(test_config=None):
         STAFF_BASE_URL=os.environ.get('STAFF_BASE_URL', ''),
         INQUIRY_RECIPIENT=os.environ.get("INQUIRY_RECIPIENT"),
         INQUIRY_SENDER=os.environ.get("INQUIRY_SENDER"),
+        GA4_MEASUREMENT_ID=os.environ.get("GA4_MEASUREMENT_ID", "").strip(),
+        TURNSTILE_SITE_KEY=os.environ.get("TURNSTILE_SITE_KEY", "").strip(),
+        TURNSTILE_SECRET_KEY=os.environ.get("TURNSTILE_SECRET_KEY", "").strip(),
         SMTP_HOST=os.environ.get("SMTP_HOST", "localhost"),
         SMTP_PORT=int(os.environ.get("SMTP_PORT", "587")),
         SMTP_TLS=os.environ.get("SMTP_TLS", "true").lower() == "true",
@@ -46,6 +50,11 @@ def create_app(test_config=None):
 
     if test_config:
         app.config.update(test_config)
+    measurement_id = app.config["GA4_MEASUREMENT_ID"]
+    if measurement_id and not re.fullmatch(r"G-[A-Z0-9]+", measurement_id):
+        raise RuntimeError("GA4_MEASUREMENT_ID must be a GA4 web stream measurement ID.")
+    if bool(app.config["TURNSTILE_SITE_KEY"]) != bool(app.config["TURNSTILE_SECRET_KEY"]):
+        raise RuntimeError("Set both Turnstile keys to enable inquiry verification.")
     from .oasis_images import init_oasis_images
     init_oasis_images(app)
     if app.config["PRODUCTION"]:

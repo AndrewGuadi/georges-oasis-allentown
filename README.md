@@ -84,6 +84,23 @@ The public menu uses the ordering service until the owner approves its draft rec
 
 Optional browser verification (requires Playwright and Chromium): `python scripts/browser_check.py`, with the local app on port 5000. It checks all public routes at 320, 390, 768 and 1440 pixels, plus mobile navigation and form errors. Screenshots and results go to `/tmp/oasis-browser`.
 
+## Analytics, Search Console and inquiry spam protection
+
+Set `GA4_MEASUREMENT_ID` to the property's web stream ID (`G-…`) to enable public-site analytics. In that web stream, disable the enhanced-measurement form interactions, outbound clicks, downloads, and browser-history page views so the site's explicit events supply those measurements. Use Realtime or DebugView to check a page view and the following events. Mark `generate_lead` as a key event and use a funnel exploration with device category to compare mobile and desktop.
+
+| Event | What it measures |
+| --- | --- |
+| `oasis_action` | Clicks to important pages, calls, directions, ordering, reservations and menu PDFs |
+| `inquiry_form_view`, `inquiry_form_start` | The form coming into view and the first interaction with it |
+| `inquiry_submit_attempt`, `inquiry_submit_error` | Submissions and recoverable errors, with a fixed error reason |
+| `generate_lead` | The first confirmation view after a new inquiry is saved |
+
+Register `action`, `menu`, `form_name`, and `reason` as event-scoped custom dimensions as needed. The tag uses query-free page URLs, a generic receipt URL, and referrer origins. It sends no inquiry fields or reference identifiers. Browser tracking reflects visitors who can load the tag, while the staff inbox records saved inquiries.
+
+For Google Search Console, add or select the Domain property `georgesoasis.com` and verify the Google-provided TXT record at the root of the Cloudflare DNS zone. Ensure the deployed WSGI app uses its production settings above. Confirm public pages have no `X-Robots-Tag: noindex` and that `/robots.txt` allows public crawling, then submit `https://www.georgesoasis.com/sitemap.xml`. Inspect the live homepage, menu and gatherings URLs after submission.
+
+For Turnstile, create a Managed widget for `www.georgesoasis.com` with pre-clearance disabled. Set `TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` together in the web app's environment. The secret is server-only. The gatherings form verifies each new submission before saving or sending mail. Test both the success path and a rejected challenge after enabling the widget.
+
 
 ## Stage-two staff backend
 

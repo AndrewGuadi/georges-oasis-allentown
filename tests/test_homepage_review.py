@@ -105,4 +105,30 @@ class HomepageReviewTest(unittest.TestCase):
         golf = next(s for s in self.source['services'] if s['key'] == 'golf')
         self.assertEqual(service_status(golf, now)['state'], 'unknown')
         saturday = next(s for s in self.source['services'] if s['key'] == 'dinner')['weekly']['5']
-        self.assertEqual(saturday, [['08:00', '21:00']])
+        self.assertEqual(saturday, [['08:00', '19:30']])
+
+    def test_restaurant_hours_and_weekend_kitchen_cutoff(self):
+        restaurant = next(s for s in self.source['services'] if s['key'] == 'restaurant')
+        dinner = next(s for s in self.source['services'] if s['key'] == 'dinner')
+        self.assertEqual(restaurant['weekly'], {
+            '0': [['07:00', '15:00']],
+            '1': [['07:00', '19:30']],
+            '2': [['07:00', '19:30']],
+            '3': [['07:00', '19:30']],
+            '4': [['07:00', '20:00']],
+            '5': [['08:00', '20:00']],
+            '6': [],
+        })
+        for date in ('2026-11-13', '2026-11-14'):
+            with self.subTest(date=date):
+                before_cutoff = datetime.fromisoformat(f'{date}T19:29:00-05:00')
+                after_cutoff = datetime.fromisoformat(f'{date}T19:30:00-05:00')
+                self.assertEqual(service_status(dinner, before_cutoff)['state'], 'open')
+                self.assertEqual(service_status(dinner, after_cutoff)['state'], 'closed')
+                self.assertEqual(service_status(restaurant, after_cutoff)['state'], 'open')
+        for path, hours_markup in (('/', 'quick-hours-panel'), ('/visit', 'dining-hours-table'), ('/order', 'dining-hours-table')):
+            with self.subTest(path=path):
+                response = self.client.get(path)
+                self.assertEqual(response.status_code, 200)
+                html = response.get_data(as_text=True)
+                self.assertIn(restaurant['schedule_note'], html.split(hours_markup, 1)[1])
