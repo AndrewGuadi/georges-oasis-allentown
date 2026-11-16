@@ -1,6 +1,6 @@
 <table class="dining-hours-table">
-  <caption>{{ hours_caption|default('Restaurant & dinner hours') }}</caption>
-  <thead><tr><th scope="col">Day</th>{% for service in dining_services %}<th scope="col"{% if service.key == 'dinner' %} id="dinner-hours"{% endif %}>{{ service.name }}</th>{% endfor %}</tr></thead>
+  <caption>{{ hours_caption|default('Restaurant hours') }}</caption>
+  <thead><tr><th scope="col">Day</th>{% for service in dining_services %}<th scope="col">Hours</th>{% endfor %}</tr></thead>
   <tbody>{% for index in range(7) %}<tr><th scope="row">{{ ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'][index] }}</th>{% for service in dining_services %}<td>{% if not service.schedule or not service.schedule[index].known %}Call for hours{% elif not service.schedule[index].windows %}Closed{% else %}{% for window in service.schedule[index].windows %}{{ window[0]|clock_time|replace(':00','') }}–{{ window[1]|clock_time|replace(':00','') }}{% if not loop.last %}<br>{% endif %}{% endfor %}{% endif %}</td>{% endfor %}</tr>{% endfor %}</tbody>
 </table>
 {% for service in dining_services %}
