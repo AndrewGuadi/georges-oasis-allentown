@@ -29,6 +29,12 @@
           "width": 1672,
           "height": 941,
           "bytes": 193570
+        },
+        "compact": {
+          "path": "images/oasis/george-oasis-banana-split-1024w.webp",
+          "width": 1024,
+          "height": 576,
+          "bytes": 73458
         }
       }
     },
@@ -389,6 +395,12 @@
           "width": 1920,
           "height": 1080,
           "bytes": 117644
+        },
+        "compact": {
+          "path": "images/oasis/george-oasis-gyro-wrap-1024w.webp",
+          "width": 1024,
+          "height": 576,
+          "bytes": 35152
         }
       }
     },
@@ -461,6 +473,12 @@
           "width": 1920,
           "height": 1080,
           "bytes": 151272
+        },
+        "compact": {
+          "path": "images/oasis/george-oasis-bacon-cheeseburger-and-fries-1024w.webp",
+          "width": 1024,
+          "height": 576,
+          "bytes": 42158
         }
       }
     },
@@ -893,6 +911,12 @@
           "width": 1920,
           "height": 1280,
           "bytes": 176200
+        },
+        "compact": {
+          "path": "images/oasis/george-oasis-bacon-cheeseburger-and-fries-02-1120w.webp",
+          "width": 1120,
+          "height": 747,
+          "bytes": 61752
         }
       }
     },
@@ -1930,7 +1954,7 @@
     },
     "george-oasis-restaurant-exterior-sign": {
       "key": "george-oasis-restaurant-exterior-sign",
-      "alt": "George\u2019s Oasis exterior sign beside outdoor seating and parking",
+      "alt": "George’s Oasis exterior sign beside outdoor seating and parking",
       "variants": {
         "mobile": {
           "path": "images/oasis/george-oasis-restaurant-exterior-sign-mobile.webp",
@@ -1973,6 +1997,12 @@
           "width": 1920,
           "height": 1282,
           "bytes": 185754
+        },
+        "compact": {
+          "path": "images/oasis/george-oasis-dining-room-booths-day-1120w.webp",
+          "width": 1120,
+          "height": 748,
+          "bytes": 60120
         }
       }
     },
@@ -2477,6 +2507,12 @@
           "width": 1920,
           "height": 1080,
           "bytes": 138420
+        },
+        "compact": {
+          "path": "images/oasis/george-oasis-belgian-waffle-fresh-fruit-1024w.webp",
+          "width": 1024,
+          "height": 576,
+          "bytes": 42668
         }
       }
     },

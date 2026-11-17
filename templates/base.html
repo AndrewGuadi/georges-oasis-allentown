@@ -18,16 +18,14 @@
   <meta name="twitter:card" content="summary_large_image">
   {% if request.endpoint == 'public.home' %}<script type="application/ld+json">{{ {'@context': 'https://schema.org', '@type': 'Restaurant', 'name': business.name, 'url': url_for('public.home',_external=True), 'telephone': business.phone, 'address': business.address ~ ', ' ~ business.city, 'image': photo_url(photo_placements.social, external=true), 'hasMenu': url_for('public.food',_external=True)}|tojson }}</script>{% endif %}
 
-  <link rel="stylesheet" href="{{ url_for('static',filename='css/tailwind.css') }}">
   {% if request.endpoint and request.endpoint.startswith('public.') and request.endpoint != 'public.inquiry_received' %}<link rel="canonical" href="{{ url_for(request.endpoint,_external=True) }}"><meta property="og:url" content="{{ url_for(request.endpoint,_external=True) }}">{% endif %}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
-
+  {% block stylesheets %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/site.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/oasis-images.css') }}">
   {% block extra_head %}{% endblock %}
-  <link rel="stylesheet" href="{{ url_for('static',filename='css/feedback-polish.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/feedback-polish.css') }}">
+  {% endblock %}
 </head>
 <body class="font-sans antialiased">
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -37,7 +35,7 @@
   </main>
   {% include 'public/includes/footer.html' %}
   {% if analytics_id %}
-  <script src="{{ url_for('static', filename='js/analytics.js') }}" data-analytics-id="{{ analytics_id }}" data-inquiry-result="{{ inquiry_form_result }}" defer></script>
+  <script src="{{ url_for('static', filename='js/analytics.js') }}" data-analytics-id="{{ analytics_id }}" data-inquiry-result="{{ inquiry_form_result }}"{% if request.endpoint == "public.home" %} data-analytics-after-load{% endif %} defer></script>
   {% endif %}
   <script src="{{ url_for('static', filename='js/navigation.js') }}" defer></script>
   {% block scripts %}{% endblock %}

@@ -10,10 +10,13 @@
     menu.open = false;
     if (restoreFocus) menu.querySelector('summary').focus();
   };
-  const updateHeader = () => header.classList.toggle('is-scrolled', window.scrollY > 0);
-  window.addEventListener('scroll', updateHeader, { passive: true });
-  window.addEventListener('pageshow', updateHeader);
-  updateHeader();
+  const scrollMarker = document.getElementById('header-scroll-marker');
+  if (scrollMarker && 'IntersectionObserver' in window) {
+    const shadowObserver = new IntersectionObserver(([entry]) => {
+      header.classList.toggle('is-scrolled', entry.intersectionRatio < 1);
+    }, { threshold: 1 });
+    shadowObserver.observe(scrollMarker);
+  }
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape') menus.forEach(menu => closeMenu(menu, menu.contains(document.activeElement)));
   });
