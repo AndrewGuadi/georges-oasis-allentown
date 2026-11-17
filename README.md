@@ -12,7 +12,7 @@ python -m venv .venv
 .venv/bin/flask --app app run
 ```
 
-Compiled CSS is included. After changing Tailwind classes:
+Compiled CSS is included. Rebuild it after editing Tailwind classes or any CSS imported by the homepage bundle:
 
 ```bash
 npm ci

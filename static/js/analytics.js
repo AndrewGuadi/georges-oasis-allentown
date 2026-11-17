@@ -1,5 +1,6 @@
 (() => {
-  const { analyticsId, inquiryResult } = document.currentScript.dataset;
+  const script = document.currentScript;
+  const { analyticsId, inquiryResult } = script.dataset;
   const { origin, pathname } = window.location;
   const isReceipt = pathname.startsWith('/inquiry-received/');
   const pageLocation = origin + (isReceipt ? '/inquiry-received' : pathname);
@@ -104,8 +105,28 @@
     }
   });
 
-  const loader = document.createElement('script');
-  loader.async = true;
-  loader.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(analyticsId);
-  document.head.append(loader);
+  const startup = new AbortController();
+  function loadTag() {
+    if (startup.signal.aborted) return;
+    startup.abort();
+    const loader = document.createElement('script');
+    loader.async = true;
+    loader.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(analyticsId);
+    document.head.append(loader);
+  }
+
+  if (script.hasAttribute('data-analytics-after-load') && !inquiryResult
+      && document.readyState !== 'complete' && !document.hidden) {
+    // The event queue is ready now. Let the hero load first unless a visitor acts.
+    const options = { signal: startup.signal, capture: true };
+    window.addEventListener('load', loadTag, { signal: startup.signal });
+    for (const event of ['pointerdown', 'keydown', 'click']) {
+      window.addEventListener(event, loadTag, options);
+    }
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) loadTag();
+    }, { signal: startup.signal });
+  } else {
+    loadTag();
+  }
 })();

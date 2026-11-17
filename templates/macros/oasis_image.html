@@ -3,8 +3,7 @@
   {%- set asset = oasis_images[key] -%}
   {%- set desktop = asset.variants.desktop -%}
   {%- set ns = namespace(widths=[], sources=[]) -%}
-  {%- for label in ['mobile', 'tablet', 'desktop'] -%}
-    {%- set variant = asset.variants[label] -%}
+  {%- for variant in asset.variants.values()|sort(attribute='width') -%}
     {%- if variant.width not in ns.widths -%}
       {%- set ns.widths = ns.widths + [variant.width] -%}
       {%- set ns.sources = ns.sources + [url_for('static', filename=variant.path) ~ ' ' ~ variant.width ~ 'w'] -%}
